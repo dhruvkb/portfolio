@@ -12,6 +12,7 @@ module.exports = {
     '@vue/typescript/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:vuejs-accessibility/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2021,
