@@ -24,6 +24,19 @@ module.exports = {
     semi: ['error', 'never', { beforeStatementContinuationChars: 'always' }],
     'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }],
     'import/prefer-default-export': 'off',
+    'import/order': ['error', {
+      'newlines-between': 'always',
+      groups: ['builtin', 'external', 'internal', 'type'],
+      alphabetize: { order: 'asc', caseInsensitive: true },
+      pathGroups: [
+        { pattern: '{vue,pinia}', group: 'builtin' },
+        { pattern: '@/{components/**,App.vue}', group: 'internal', position: 'after' },
+        { pattern: '@/assets/**', group: 'internal', position: 'after' },
+        { pattern: '@/data/**', group: 'internal', position: 'after' },
+        { pattern: '@/**', group: 'internal' },
+      ],
+      pathGroupsExcludedImportTypes: [],
+    }],
   },
   overrides: [
     {
