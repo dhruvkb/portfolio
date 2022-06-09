@@ -45,6 +45,7 @@ module.exports = {
         indent: 'off', // superseded by vue/script-indent
         'max-len': 'off', // hard to write short lines when using Tailwind
         'vue/block-lang': ['error', { script: { lang: 'ts' } }],
+        'vue/html-closing-bracket-newline': ['error', { singleline: 'never', multiline: 'never' }],
         'vue/multi-word-component-names': 'off',
         'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }],
       },
