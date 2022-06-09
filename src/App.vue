@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import RootLayout from '@/layouts/Root.vue'
+  import Root from '@/layouts/Root.vue'
 </script>
 
 <template>
-  <RootLayout />
+  <Root class="h-full" />
 </template>
