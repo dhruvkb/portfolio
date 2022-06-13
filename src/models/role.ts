@@ -1,4 +1,6 @@
+import { Epic } from '@/models/project'
 import { ResumeNode, ResumeNodeJson } from '@/models/resume'
+import { Overwrite } from '@/types/utils'
 
 export interface Period {
   /**
@@ -16,36 +18,26 @@ export interface Period {
 export interface RoleJson extends ResumeNodeJson {
   type: string
   period: Period
+  epics?: string[]
 }
 
-export class Role extends ResumeNode implements RoleJson {
+export class Role extends ResumeNode implements Overwrite<RoleJson, {
+  epics: Epic[]
+}> {
   type: string
   period: Period
+  epics: Epic[]
 
   isLast: boolean
 
-  constructor(role: RoleJson, isLast = false) {
+  constructor(role: RoleJson, epics: Epic[], isLast = false) {
     super(role)
 
     this.type = role.type
     this.period = role.period
 
+    this.epics = epics
     this.isLast = isLast
-  }
-
-  /** whether I am currently working in this role */
-  isActive(): boolean {
-    return this.period.end === undefined
-  }
-
-  /** the human-readable start date of the period */
-  periodStart(): string {
-    return this.period.start.join(' ')
-  }
-
-  /** the human-readable end date of the period */
-  periodEnd(): string {
-    return this.period.end?.join(' ') ?? ''
   }
 }
 
