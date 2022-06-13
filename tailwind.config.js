@@ -1,7 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-const paddingSafe = require('tailwindcss-padding-safe')
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
+
 const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -71,6 +71,18 @@ module.exports = {
     },
   },
   plugins: [
-    paddingSafe,
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          pls: (value) => ({ paddingLeft: `max(${value}, env(safe-area-inset-left))` }),
+          prs: (value) => ({ paddingRight: `max(${value}, env(safe-area-inset-right))` }),
+          pts: (value) => ({ paddingTop: `max(${value}, env(safe-area-inset-top))` }),
+          pbs: (value) => ({ paddingBottom: `max(${value}, env(safe-area-inset-bottom))` }),
+        },
+        {
+          values: theme('spacing'),
+        },
+      )
+    }),
   ],
 }

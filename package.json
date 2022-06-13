@@ -36,7 +36,6 @@
     "postcss": "^8.4.14",
     "postcss-import": "^14.1.0",
     "tailwindcss": "^3.0.24",
-    "tailwindcss-padding-safe": "github:desaintflorent/tailwindcss-padding-safe",
     "typescript": "^4.5.4",
     "vite": "^2.9.9",
     "vue-tsc": "^0.34.15"
