@@ -1,5 +1,3 @@
-import { Breakpoint } from '@/models/breakpoints'
-
 export interface FsNode {
   name: string
   aliases: string[]
@@ -24,20 +22,4 @@ export class ResumeNode implements ResumeNodeJson {
 
     this.node = node.node
   }
-}
-
-/**
- * Describes the properties of a column in the resume table.
- */
-export interface ColumnSpec {
-  code: string
-  display: string
-
-  breakpoint?: Breakpoint
-  componentName?: string
-}
-
-export interface RowData<T extends string = string> {
-  isLast: boolean // Draws a border below the row.
-  data: { [code in T]: unknown }
 }
