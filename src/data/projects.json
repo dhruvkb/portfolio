@@ -1,0 +1,248 @@
+[
+  {
+    "slug": "pls",
+    "name": "pls",
+    "node": {
+      "name": "pls",
+      "aliases": []
+    },
+    "children": [
+      {
+        "slug": "app",
+        "name": "CLI application",
+        "url": "https://pypi.org/project/pls/",
+        "technologies": [
+          {
+            "name": "Python",
+            "icon": "python"
+          }
+        ],
+        "node": {
+          "name": "pls.py",
+          "aliases": []
+        }
+      },
+      {
+        "slug": "documentation",
+        "name": "Documentation",
+        "url": "https://dhruvkb.github.io/pls/",
+        "technologies": [
+          {
+            "name": "Markdown",
+            "icon": "markdown"
+          },
+          {
+            "name": "Vue",
+            "icon": "vuedotjs"
+          }
+        ],
+        "node": {
+          "name": "documentation.md",
+          "aliases": []
+        }
+      }
+    ]
+  },
+  {
+    "slug": "openverse",
+    "name": "Openverse",
+    "node": {
+      "name": "openverse",
+      "aliases": []
+    },
+    "children": [
+      {
+        "slug": "openverse",
+        "name": "Search engine",
+        "url": "https://wordpress.org/openverse",
+        "technologies": [
+          {
+            "name": "JavaScript",
+            "icon": "javascript"
+          },
+          {
+            "name": "Nuxt",
+            "icon": "nuxtdotjs"
+          },
+          {
+            "name": "Tailwind",
+            "icon": "tailwindcss"
+          }
+        ],
+        "node": {
+          "name": "openverse.vue",
+          "aliases": []
+        }
+      }
+    ]
+  },
+  {
+    "slug": "seeelaye",
+    "name": "see·el·aye",
+    "node": {
+      "name": "seeelaye",
+      "aliases": []
+    },
+    "children": [
+      {
+        "slug": "seeelaye",
+        "name": "CLI emulator",
+        "url": "https://seeelaye.vercel.app",
+        "technologies": [
+          {
+            "name": "TypeScript",
+            "icon": "typescript"
+          },
+          {
+            "name": "Vue",
+            "icon": "vuedotjs"
+          }
+        ],
+        "node": {
+          "name": "seeelaye.ts",
+          "aliases": []
+        }
+      }
+    ]
+  },
+  {
+    "slug": "vocabulary",
+    "name": "Vocabulary",
+    "node": {
+      "name": "vocabulary",
+      "aliases": []
+    },
+    "children": [
+      {
+        "slug": "vocabulary",
+        "name": "UI components",
+        "url": "",
+        "technologies": [
+          {
+            "name": "JavaScript",
+            "icon": "javascript"
+          },
+          {
+            "name": "Vue",
+            "icon": "vuedotjs"
+          }
+        ],
+        "node": {
+          "name": "vocabulary.vue",
+          "aliases": []
+        }
+      }
+    ]
+  },
+  {
+    "slug": "omniport",
+    "name": "Omniport",
+    "node": {
+      "name": "omniport",
+      "aliases": []
+    },
+    "children": [
+      {
+        "slug": "infrastructure",
+        "name": "Infrastructure",
+        "url": "",
+        "technologies": [
+          {
+            "name": "Docker",
+            "icon": "docker"
+          },
+          {
+            "name": "Bash",
+            "icon": "gnubash"
+          }
+        ],
+        "node": {
+          "name": "infrastructure.yml",
+          "aliases": []
+        }
+      },
+      {
+        "slug": "backend",
+        "name": "Backend",
+        "url": "",
+        "technologies": [
+          {
+            "name": "Python",
+            "icon": "python"
+          },
+          {
+            "name": "django",
+            "icon": "django"
+          }
+        ],
+        "node": {
+          "name": "backend.py",
+          "aliases": []
+        }
+      },
+      {
+        "slug": "documentation",
+        "name": "Documentation",
+        "url": "",
+        "technologies": [
+          {
+            "name": "reST (Sphinx)",
+            "icon": "readthedocs"
+          }
+        ],
+        "node": {
+          "name": "documentation.rst",
+          "aliases": []
+        }
+      }
+    ]
+  },
+  {
+    "slug": "portfolio",
+    "name": "Portfolio",
+    "node": {
+      "name": "portfolio",
+      "aliases": []
+    },
+    "children": [
+      {
+        "slug": "website",
+        "name": "Website",
+        "url": "",
+        "technologies": [
+          {
+            "name": "TypeScript",
+            "icon": "typescript"
+          },
+          {
+            "name": "Vue",
+            "icon": "vuedotjs"
+          },
+          {
+            "name": "Tailwind",
+            "icon": "tailwindcss"
+          }
+        ],
+        "node": {
+          "name": "website.vue",
+          "aliases": []
+        }
+      },
+      {
+        "slug": "resume",
+        "name": "Résumé",
+        "url": "",
+        "technologies": [
+          {
+            "name": "LaTeX",
+            "icon": "latex"
+          }
+        ],
+        "node": {
+          "name": "resume.tex",
+          "aliases": []
+        }
+      }
+    ]
+  }
+]
