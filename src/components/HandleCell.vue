@@ -1,0 +1,58 @@
+<script setup lang="ts">
+  import { SimpleIcon } from 'simple-icons'
+  import {
+    siGithub,
+    siLinkedin,
+    siInstagram,
+  } from 'simple-icons/icons'
+
+  import { Icon as IconType, Path } from '@/models/icon'
+
+  import Icon from '@/components/Icon.vue'
+  import Link from '@/components/Link.vue'
+
+  import envelope from '@/assets/icons/envelope.json'
+
+  defineProps({
+    text: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      default: undefined,
+    },
+    icon: {
+      type: String,
+      default: undefined,
+    },
+  })
+
+  const simpleIcons: Record<string, SimpleIcon> = {
+    github: siGithub,
+    linkedin: siLinkedin,
+    instagram: siInstagram,
+  }
+  const customIcons: Record<string, IconType> = {
+    envelope: envelope as IconType,
+  }
+
+  const getPaths = (icon: string): Path[] => customIcons[icon]?.paths ?? [{
+    d: simpleIcons[icon].path,
+    'fill-rule': 'nonzero',
+  }]
+</script>
+
+<template>
+  <component
+    :is="url ? Link : 'span'"
+    :dest="url"
+    is-plain>
+    <div class="flex flex-row items-center gap-2">
+      <Icon
+        v-if="icon"
+        :paths="getPaths(icon)" />
+      {{ text }}
+    </div>
+  </component>
+</template>
