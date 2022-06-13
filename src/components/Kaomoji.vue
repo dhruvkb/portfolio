@@ -63,5 +63,14 @@
 </script>
 
 <template>
-  <span aria-hidden="true">{{ face }}</span>
+  <span
+    class="flex flex-col items-center gap-4"
+    aria-hidden="true">
+    {{ face }}
+    <em
+      class="text-sm"
+      title="This is not me.">
+      Ceci n'est pas moi.
+    </em>
+  </span>
 </template>
