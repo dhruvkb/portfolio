@@ -3,6 +3,7 @@ module.exports = {
     './index.html',
     './src/**/*.{pcss,vue,js,ts}',
   ],
+  darkMode: 'media',
   theme: {
     extend: {
       spacing: {
