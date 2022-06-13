@@ -12,6 +12,7 @@ module.exports = {
   darkMode: 'media',
   theme: {
     extend: {
+      // `screens` should be synchronised with `@/models/breakpoints.ts`.
       spacing: {
         ch: '1ch',
         indent: '2ch',
