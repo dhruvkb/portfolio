@@ -24,16 +24,6 @@ export class Project extends ResumeNode implements ProjectJson {
 
     this.isLast = isLast
   }
-
-  /** the names of all technologies involved in the project */
-  technologyNames(): string {
-    return this.technologies.map((tech) => tech.name).join(', ')
-  }
-
-  /** the icon of the main technology used to build the project */
-  primaryTechnologyIcon(): string {
-    return this.technologies[0].icon
-  }
 }
 
 export interface Epic extends ResumeNodeJson {
