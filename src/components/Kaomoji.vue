@@ -1,3 +1,7 @@
+<!--
+Draws a face to the screen consisting of CJK characters.
+-->
+
 <script setup lang="ts">
   import { computed, PropType } from 'vue'
 
