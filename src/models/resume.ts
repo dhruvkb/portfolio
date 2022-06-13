@@ -38,6 +38,6 @@ export interface ColumnSpec {
 }
 
 export interface RowData<T extends string = string> {
-  isLast: boolean
+  isLast: boolean // Draws a border below the row.
   data: { [code in T]: unknown }
 }
