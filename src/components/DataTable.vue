@@ -59,7 +59,7 @@ separators between row groups.
   <table class="w-full border-collapse">
     <caption
       v-if="title"
-      class="px-page border-b border-neutral-200 py-1 text-left text-xs font-semibold uppercase text-neutral-500 dark:border-neutral-900 dark:text-neutral-600">
+      class="px-page border-b border-neutral-200 py-1 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-900 dark:text-neutral-600">
       {{ title }}
     </caption>
 
@@ -69,13 +69,13 @@ separators between row groups.
           v-for="column in columns"
           :key="column.code"
           :class="column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : ''"
-          class="first-of-type:pl-page last-of-type:pr-page border-b border-neutral-500 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-500 dark:border-neutral-600 dark:text-neutral-600">
+          class="first-of-type:pl-page last-of-type:pr-page border-b border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
           {{ column.display }}
         </th>
       </tr>
     </thead>
 
-    <tbody class="text-lg transition-colors duration-200 hover:text-neutral-500 dark:hover:text-neutral-600">
+    <tbody class="text-lg transition-colors duration-200 hover:text-neutral-400 dark:hover:text-neutral-600">
       <tr
         v-for="(row, rowIndex) in rows"
         :key="rowIndex"

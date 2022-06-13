@@ -36,7 +36,7 @@ module.exports = {
          Light theme:
          - background:            white
          - emphasised background: 200
-         - de-emphasised text:    500
+         - de-emphasised text:    400
          - regular text:          700
          - emphasised text:       900
 
