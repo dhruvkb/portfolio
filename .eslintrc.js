@@ -13,6 +13,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:vuejs-accessibility/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2021,
@@ -44,6 +45,7 @@ module.exports = {
       rules: {
         indent: 'off', // superseded by vue/script-indent
         'max-len': 'off', // hard to write short lines when using Tailwind
+        'tailwindcss/no-custom-classname': 'off', // custom classes are useful
         'vue/block-lang': ['error', { script: { lang: 'ts' } }],
         'vue/html-closing-bracket-newline': ['error', { singleline: 'never', multiline: 'never' }],
         'vue/multi-word-component-names': 'off',
@@ -57,6 +59,10 @@ module.exports = {
         alias: { '@': './src' },
         extensions: ['.ts', '.js'],
       },
+    },
+    tailwindcss: {
+      officialSorting: true,
+      cssFiles: ['**/*.pcss', '!**/node_modules', '!**/.*', '!**/dist', '!**/build'],
     },
   },
 }
