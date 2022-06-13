@@ -50,15 +50,22 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Inter', // Inter
-        'ui-sans-serif', // system
-        'system-ui', '-apple-system', 'BlinkMacSystemFont', // macOS
-        'sans-serif', // generic fallback
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'system-ui',
+        'ui-sans-serif',
+        '"Segoe UI"',
+        'Roboto',
+        'Oxygen-Sans',
+        'Ubuntu',
+        'Cantarell',
+        '"Helvetica Neue"',
+        'sans-serif',
       ],
       mono: [
-        '"JetBrains Mono"', // JetBrains Mono
-        'ui-monospace', // system
-        'monospace', // generic fallback
+        '"JetBrains Mono"',
+        'ui-monospace',
+        'monospace',
       ],
     },
   },
