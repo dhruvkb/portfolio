@@ -35,23 +35,17 @@
     <meta name="twitter:site" content="@dhruvkb_">
     <meta name="twitter:creator" content="@dhruvkb_">
 
-    <meta name="theme-color" content="#073642">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 
     <!-- Icons -->
     <link rel="icon" href="/favicon.png">
 
     <!-- Styling -->
     <style>
-      html {
-        display: flex;
-        min-height: 100%;
-      }
-      body {
-        flex: 1;
-      }
-      #app {
-        height: 100%;
-      }
+      html { @apply flex min-h-full bg-white text-neutral-700 dark:bg-black dark:text-neutral-400; }
+      body { @apply flex-1; }
+      #app { @apply h-full; }
     </style>
   </head>
 
