@@ -26,7 +26,7 @@ is still active.
     <span class="hidden font-mono tracking-tighter md:inline">
       <span>{{ start.join("'") }}</span>
       <span class="m-1 text-neutral-400 dark:text-neutral-600">&ndash;</span>
-      <span v-if="!isActive">{{ end.join("'") }}</span>
+      <span v-if="!isActive">{{ end?.join("'") }}</span>
     </span>
 
     <div

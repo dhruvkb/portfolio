@@ -5,7 +5,7 @@ separators between row groups.
 -->
 
 <script setup lang="ts">
-  import { PropType } from 'vue'
+  import { Component, PropType } from 'vue'
 
   import { Breakpoint } from '@/models/breakpoints'
   import { ColumnSpec, RowData } from '@/models/data_table'
@@ -32,7 +32,7 @@ separators between row groups.
   })
 
   // Used for dynamically-rendered components.
-  const components = {
+  const components: Record<string, Component> = {
     Handle: HandleCell,
     Organisation: OrganisationCell,
     Period: PeriodCell,
