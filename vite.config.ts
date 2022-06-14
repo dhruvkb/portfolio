@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite' // eslint-disable-line import/no-extraneous-dependencies
-import vue from '@vitejs/plugin-vue' // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 
 import * as path from 'path'
+
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
