@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="page">
+  <div>
     <Kaomoji />
   </div>
 </template>
