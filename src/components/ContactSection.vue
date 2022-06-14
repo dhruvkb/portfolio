@@ -1,3 +1,8 @@
+<!--
+Renders all media that can be used to contact me in a table, including
+hyperlinks, where appropriate.
+-->
+
 <script setup lang="ts">
   import { computed } from 'vue'
 

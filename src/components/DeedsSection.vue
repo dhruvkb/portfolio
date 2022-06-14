@@ -1,5 +1,5 @@
 <!--
-Display a list of what I do and can do.
+Displays a list of what I do and can do.
 -->
 
 <script setup lang="ts">

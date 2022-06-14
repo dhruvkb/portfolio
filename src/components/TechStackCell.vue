@@ -1,3 +1,8 @@
+<!--
+Renders the tech stack of a project as a list of technologies alongside their
+icons and logos.
+-->
+
 <script setup lang="ts">
   import { PropType } from 'vue'
 

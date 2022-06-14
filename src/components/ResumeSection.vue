@@ -1,3 +1,8 @@
+<!--
+Displays a list of my past work experiences and projects in a tabular format.
+Uses data from the 'resume' store in Pinia.
+-->
+
 <script setup lang="ts">
   import { computed } from 'vue'
 

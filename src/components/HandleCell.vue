@@ -1,3 +1,8 @@
+<!--
+Renders a hyperlink to my address for a contact medium alongside an icon
+representing the medium.
+-->
+
 <script setup lang="ts">
   import { SimpleIcon } from 'simple-icons'
   import {

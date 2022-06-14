@@ -1,3 +1,7 @@
+<!--
+Renders the name of the organisation alongside the logo of the organisation.
+-->
+
 <script setup lang="ts">
   import { PropType } from 'vue'
 

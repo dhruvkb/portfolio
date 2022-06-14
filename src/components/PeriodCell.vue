@@ -1,3 +1,8 @@
+<!--
+Renders the period of activity of a role, with a dot that indicates if that role
+is still active.
+-->
+
 <script setup lang="ts">
   import { computed, PropType } from 'vue'
 
