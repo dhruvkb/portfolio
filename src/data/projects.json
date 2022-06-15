@@ -52,7 +52,7 @@
     },
     "children": [
       {
-        "slug": "openverse",
+        "slug": "frontend",
         "name": "Search engine",
         "url": "https://github.com/WordPress/openverse-frontend/",
         "technologies": [
@@ -70,7 +70,26 @@
           }
         ],
         "node": {
-          "name": "openverse.vue",
+          "name": "openverse-frontend.vue",
+          "aliases": []
+        }
+      },
+      {
+        "slug": "backend",
+        "name": "API",
+        "url": "https://github.com/WordPress/openverse-api/",
+        "technologies": [
+          {
+            "name": "Python",
+            "icon": "python"
+          },
+          {
+            "name": "Django",
+            "icon": "django"
+          }
+        ],
+        "node": {
+          "name": "openverse_api.py",
           "aliases": []
         }
       }
