@@ -5,7 +5,8 @@ separators between row groups.
 -->
 
 <script setup lang="ts">
-  import { Component, PropType } from 'vue'
+  import { PropType } from 'vue'
+  import type { Component } from 'vue'
 
   import { Breakpoint } from '@/models/breakpoints'
   import { ColumnSpec, RowData } from '@/models/data_table'
