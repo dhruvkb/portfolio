@@ -44,6 +44,7 @@ export class Role extends ResumeNode implements Overwrite<RoleJson, {
 export interface Org extends ResumeNodeJson {
   url: string
   icon: string
+  shortName?: string
 
   roles: Record<string, Role>
 }

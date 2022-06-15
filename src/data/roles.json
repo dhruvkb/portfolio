@@ -34,7 +34,8 @@
   {
     "slug": "wordpress",
     "name": "WordPress",
-    "url": "",
+    "shortName": "WP",
+    "url": "https://wordpress.org/openverse/",
     "icon": "wordpress",
     "node": {
       "name": "wordpress",
@@ -64,6 +65,7 @@
   {
     "slug": "center_of_ci",
     "name": "Center of CI",
+    "shortName": "CCI",
     "url": "https://centerofci.org",
     "icon": "centerofci",
     "node": {
@@ -126,6 +128,7 @@
   {
     "slug": "creative_commons",
     "name": "Creative Commons",
+    "shortName": "CC",
     "url": "https://opensource.creativecommons.org",
     "icon": "creativecommons",
     "node": {
@@ -215,6 +218,7 @@
   {
     "slug": "img",
     "name": "IMG, IIT Roorkee",
+    "shortName": "IMG IIT-R",
     "url": "https://img.channeli.in",
     "icon": "imgiitroorkee",
     "node": {

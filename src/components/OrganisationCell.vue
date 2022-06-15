@@ -52,6 +52,13 @@ Renders the name of the organisation alongside the logo of the organisation.
 <template>
   <span class="inline-flex flex-row items-center gap-2">
     <Icon :paths="getPaths(organisation.icon)" />
+
+    <!-- Short name for small screens -->
+    <span class="sm:hidden">
+      {{ organisation.shortName ?? organisation.name }}
+    </span>
+
+    <!-- Complete name for large screens -->
     <span class="hidden sm:inline">
       {{ organisation.name }}
     </span>
