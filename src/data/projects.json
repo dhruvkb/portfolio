@@ -54,7 +54,7 @@
       {
         "slug": "openverse",
         "name": "Search engine",
-        "url": "https://wordpress.org/openverse",
+        "url": "https://github.com/WordPress/openverse-frontend/",
         "technologies": [
           {
             "name": "JavaScript",
@@ -116,7 +116,7 @@
       {
         "slug": "vocabulary",
         "name": "UI components",
-        "url": "",
+        "url": "https://github.com/creativecommons/vocabulary/",
         "technologies": [
           {
             "name": "JavaScript",
@@ -145,7 +145,7 @@
       {
         "slug": "infrastructure",
         "name": "Infrastructure",
-        "url": "",
+        "url": "https://github.com/IMGIITRoorkee/omniport-docker/",
         "technologies": [
           {
             "name": "Docker",
@@ -164,7 +164,7 @@
       {
         "slug": "backend",
         "name": "Backend",
-        "url": "",
+        "url": "https://github.com/IMGIITRoorkee/omniport-frontend/",
         "technologies": [
           {
             "name": "Python",
@@ -183,7 +183,7 @@
       {
         "slug": "documentation",
         "name": "Documentation",
-        "url": "",
+        "url": "https://github.com/IMGIITRoorkee/omniport-docs/",
         "technologies": [
           {
             "name": "reST (Sphinx)",
@@ -208,7 +208,7 @@
       {
         "slug": "website",
         "name": "Website",
-        "url": "",
+        "url": "https://github.com/dhruvkb/portfolio/",
         "technologies": [
           {
             "name": "TypeScript",
@@ -231,7 +231,7 @@
       {
         "slug": "resume",
         "name": "Résumé",
-        "url": "",
+        "url": "https://github.com/dhruvkb/resume/",
         "technologies": [
           {
             "name": "LaTeX",
