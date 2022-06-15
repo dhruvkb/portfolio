@@ -71,7 +71,7 @@ separators between row groups.
         <th
           v-for="column in columns"
           :key="column.code"
-          :class="column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : ''"
+          :class="[column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : '', ...(column.classes ?? [])]"
           class="first-of-type:pl-page last-of-type:pr-page border-b border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
           {{ column.display }}
         </th>

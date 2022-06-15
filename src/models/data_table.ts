@@ -11,6 +11,8 @@ export interface ColumnSpec {
 
   // the lowest breakpoint at which the column appears
   breakpoint?: Breakpoint
+  // the classes to apply to the column headers, specifically for width control
+  classes?: string[]
   // the name of the Vue component to use to render the cell
   componentName?: string
 }
