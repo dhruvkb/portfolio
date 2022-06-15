@@ -36,7 +36,9 @@ in a new tab without a referrer.
       v-bind="params"
       target="_blank"
       rel="noreferrer">
-      <slot />
+      <slot>
+        Link
+      </slot>
     </component>
     <span
       class="text-base font-semibold text-red-500 transition-transform duration-100 group-hover:translate-x-1"

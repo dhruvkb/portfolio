@@ -12,6 +12,7 @@ separators between row groups.
   import { ColumnSpec, RowData } from '@/models/data_table'
 
   import HandleCell from '@/components/HandleCell.vue'
+  import LinkCell from '@/components/Link.vue' // Link
   import OrganisationCell from '@/components/OrganisationCell.vue'
   import PeriodCell from '@/components/PeriodCell.vue'
   import TechStackCell from '@/components/TechStackCell.vue'
@@ -35,6 +36,7 @@ separators between row groups.
   // Used for dynamically-rendered components.
   const components: Record<string, Component> = {
     Handle: HandleCell,
+    Link: LinkCell,
     Organisation: OrganisationCell,
     Period: PeriodCell,
     TechStack: TechStackCell,
