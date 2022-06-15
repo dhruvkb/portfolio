@@ -15,11 +15,28 @@ Uses data from the 'resume' store in Pinia.
   const resumeStore = useResumeStore()
 
   const experienceColumns = [
-    { code: 'org', display: 'Org', componentName: 'Organisation' },
+    {
+      code: 'org',
+      display: 'Org',
+      componentName: 'Organisation',
+      classes: ['lg:w-[16rem] xl:w-[24rem]'] as string[],
+    },
+    {
+      code: 'link',
+      display: 'Link',
+      componentName: 'Link',
+      breakpoint: 'lg',
+      classes: ['w-[6rem]'] as string[],
+    },
     { code: 'name', display: 'Role' },
-    { code: 'type', display: 'Type' },
+    { code: 'type', display: 'Type', breakpoint: 'lg' },
     { code: 'epics', display: 'Epics', breakpoint: 'lg' },
-    { code: 'period', display: 'Period', componentName: 'Period' },
+    {
+      code: 'period',
+      display: 'Period',
+      componentName: 'Period',
+      classes: ['w-[4rem]', 'md:w-[12rem]'] as string[],
+    },
   ] as const
   type RoleData = RowData<typeof experienceColumns[number]['code']>
 
@@ -36,6 +53,7 @@ Uses data from the 'resume' store in Pinia.
             type: role.type,
             epics: role.epics.map((epic) => epic.name).join(', '),
             period: role.period,
+            link: { dest: org.url, isPlain: true },
           },
         })
       })
@@ -44,8 +62,23 @@ Uses data from the 'resume' store in Pinia.
   })
 
   const projectsColumns = [
-    { code: 'epic', display: 'Epic' },
-    { code: 'name', display: 'Project' },
+    {
+      code: 'epic',
+      display: 'Epic',
+      classes: ['w-[12rem]'] as string[],
+    },
+    {
+      code: 'name',
+      display: 'Project',
+      classes: ['w-[12rem]'] as string[],
+    },
+    {
+      code: 'link',
+      display: 'Link',
+      componentName: 'Link',
+      breakpoint: 'lg',
+      classes: ['w-[6rem]'] as string[],
+    },
     { code: 'technologies', display: 'Tech', componentName: 'TechStack' },
   ] as const
   type ProjectData = RowData<typeof projectsColumns[number]['code']>
@@ -61,6 +94,7 @@ Uses data from the 'resume' store in Pinia.
             epic: epic.name,
             name: project.name,
             technologies: { technologies: project.technologies },
+            link: { dest: project.url, isPlain: true },
           },
         })
       })
