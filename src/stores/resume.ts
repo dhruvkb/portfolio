@@ -14,18 +14,21 @@ export const useResumeStore = defineStore('resume', () => {
   const projectsData: EpicJson[] = projectsJson
   projectsData.forEach((epicJson) => {
     const projectMap: Record<string, Project> = {}
+    const projectList: Project[] = []
+
     epicJson.children.forEach((projectJson) => {
-      projectMap[projectJson.slug] = new Project(projectJson, epicJson)
+      const project = new Project(projectJson, epicJson)
+      projectMap[projectJson.slug] = project
+      projectList.push(project)
+      projects.value.push(project)
     })
 
     const epic = {
       ...epicJson,
       projects: projectMap,
     }
-    Object.values(projectMap).forEach((project) => project.setEpic(epic))
-
+    projectList.forEach((project) => project.setEpic(epic))
     epics.value[epicJson.slug] = epic
-    projects.value.push(...Object.values(projectMap))
   })
 
   const orgs: Ref<Record<string, Org>> = ref({})
@@ -34,9 +37,14 @@ export const useResumeStore = defineStore('resume', () => {
   const rolesData: OrgJson[] = rolesJson
   rolesData.forEach((orgJson) => {
     const roleMap: Record<string, Role> = {}
+    const roleList: Role[] = []
+
     orgJson.children.forEach((roleJson) => {
       const role = new Role(roleJson, orgJson)
       roleMap[roleJson.slug] = role
+      roleList.push(role)
+      roles.value.push(role)
+
       roleJson.epics?.forEach((epicName: string) => {
         role.associateEpic(epics.value[epicName])
       })
@@ -46,10 +54,8 @@ export const useResumeStore = defineStore('resume', () => {
       ...orgJson,
       roles: roleMap,
     }
-    Object.values(roleMap).forEach((role) => role.setOrg(org))
-
+    roleList.forEach((role) => role.setOrg(org))
     orgs.value[orgJson.slug] = org
-    roles.value.push(...Object.values(roleMap))
   })
 
   return {
