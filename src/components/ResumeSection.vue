@@ -21,7 +21,7 @@ Uses data from the 'resume' store in Pinia.
       code: 'org',
       display: 'Org',
       componentName: 'Organisation',
-      classes: ['lg:w-[16rem] xl:w-[24rem]'] as string[],
+      classes: ['lg:w-[16rem] xl:w-[22rem]'] as string[],
     },
     {
       code: 'link',
@@ -37,7 +37,7 @@ Uses data from the 'resume' store in Pinia.
       code: 'period',
       display: 'Period',
       componentName: 'Period',
-      classes: ['w-[4rem]', 'md:w-[12rem]'] as string[],
+      classes: ['w-[4rem]', 'md:w-[13rem]'] as string[],
     },
   ] as const
   type RoleData = RowData<typeof experienceColumns[number]['code']>
@@ -58,12 +58,12 @@ Uses data from the 'resume' store in Pinia.
     {
       code: 'epic',
       display: 'Epic',
-      classes: ['w-[12rem]'] as string[],
+      classes: ['lg:w-[11rem]'] as string[],
     },
     {
       code: 'name',
       display: 'Project',
-      classes: ['w-[12rem]'] as string[],
+      classes: ['lg:w-[11rem]'] as string[],
     },
     {
       code: 'link',
