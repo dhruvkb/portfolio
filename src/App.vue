@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <Root class="h-full" />
+  <Root />
 </template>
