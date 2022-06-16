@@ -1,25 +1,28 @@
-export interface FsNode {
+export interface NodeIdentity {
   name: string
   aliases: string[]
 }
 
-export interface ResumeNodeJson {
+/* JSON models */
+
+export interface ResumeItemJson {
   name: string
   slug: string
 
-  node: FsNode
+  node: NodeIdentity
 }
 
-export class ResumeNode implements ResumeNodeJson {
-  name: string
-  slug: string
+/* JS models */
 
-  node: FsNode
+// Use interface/class merging to avoid declaring variables again.
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ResumeItem extends ResumeItemJson {}
 
-  constructor(node: ResumeNodeJson) {
-    this.name = node.name
-    this.slug = node.slug
+export class ResumeItem {
+  constructor(resumeItemJson: ResumeItemJson) {
+    this.name = resumeItemJson.name
+    this.slug = resumeItemJson.slug
 
-    this.node = node.node
+    this.node = resumeItemJson.node
   }
 }

@@ -4,6 +4,7 @@ Uses data from the 'resume' store in Pinia.
 -->
 
 <script setup lang="ts">
+  import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
 
   import { RowData } from '@/models/data_table'
@@ -13,6 +14,7 @@ Uses data from the 'resume' store in Pinia.
   import Link from '@/components/Link.vue'
 
   const resumeStore = useResumeStore()
+  const { projects, roles } = storeToRefs(resumeStore)
 
   const experienceColumns = [
     {
@@ -40,26 +42,17 @@ Uses data from the 'resume' store in Pinia.
   ] as const
   type RoleData = RowData<typeof experienceColumns[number]['code']>
 
-  const roleData = computed(() => {
-    const data: RoleData[] = []
-    const { experience } = resumeStore
-    Object.values(experience).forEach((org) => {
-      Object.values(org.roles).forEach((role) => {
-        data.push({
-          isLast: role.isLast,
-          data: {
-            org: { organisation: org },
-            name: role.name,
-            type: role.type,
-            epics: role.epics.map((epic) => epic.name).join(', '),
-            period: role.period,
-            link: { dest: org.url, isPlain: true },
-          },
-        })
-      })
-    })
-    return data
-  })
+  const roleData = computed(() => roles.value.map((role): RoleData => ({
+    isLast: role.isLast,
+    data: {
+      org: { organisation: role.org },
+      name: role.name,
+      type: role.type,
+      epics: role.epics.map((epic) => epic.name).join(', '),
+      period: role.period,
+      link: { dest: role.org.url, isPlain: true },
+    },
+  })))
 
   const projectsColumns = [
     {
@@ -83,24 +76,15 @@ Uses data from the 'resume' store in Pinia.
   ] as const
   type ProjectData = RowData<typeof projectsColumns[number]['code']>
 
-  const projectData = computed(() => {
-    const data: ProjectData[] = []
-    const { epics } = resumeStore
-    Object.values(epics).forEach((epic) => {
-      Object.values(epic.projects).forEach((project) => {
-        data.push({
-          isLast: project.isLast,
-          data: {
-            epic: epic.name,
-            name: project.name,
-            technologies: { technologies: project.technologies },
-            link: { dest: project.url, isPlain: true },
-          },
-        })
-      })
-    })
-    return data
-  })
+  const projectData = computed(() => projects.value.map((project): ProjectData => ({
+    isLast: project.isLast,
+    data: {
+      epic: project.epic.name,
+      name: project.name,
+      technologies: { technologies: project.technologies },
+      link: { dest: project.url, isPlain: true },
+    },
+  })))
 </script>
 
 <template>

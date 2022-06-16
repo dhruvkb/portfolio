@@ -1,31 +1,50 @@
-import { ResumeNode, ResumeNodeJson } from '@/models/resume'
+import { ResumeItemJson, ResumeItem } from '@/models/resume'
 
 export interface Technology {
   name: string
   icon: string
 }
 
-export interface ProjectJson extends ResumeNodeJson {
+/* JSON models */
+
+export interface ProjectJson extends ResumeItemJson {
   url: string
   technologies: Technology[]
 }
 
-export class Project extends ResumeNode implements ProjectJson {
-  url: string
-  technologies: Technology[]
-
-  isLast: boolean
-
-  constructor(project: ProjectJson, isLast = false) {
-    super(project)
-
-    this.url = project.url
-    this.technologies = project.technologies
-
-    this.isLast = isLast
-  }
+export interface EpicJson extends ResumeItemJson {
+  children: ProjectJson[]
 }
 
-export interface Epic extends ResumeNodeJson {
+/* JS models */
+
+// Use interface/class merging to avoid declaring variables again.
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Project extends ProjectJson {}
+
+export interface Epic extends EpicJson {
   projects: Record<string, Project>
+}
+
+export class Project extends ResumeItem {
+  isLast: boolean
+  epic!: Epic
+
+  constructor(projectJson: ProjectJson, epicJson: EpicJson) {
+    super(projectJson)
+
+    this.url = projectJson.url
+    this.technologies = projectJson.technologies
+
+    const siblings = epicJson.children
+    this.isLast = siblings.indexOf(projectJson) === siblings.length - 1
+  }
+
+  /**
+   * Set the given `Epic` instance as the parent of this project.
+   * @param epic - the parent epic to link to the project
+   */
+  setEpic(epic: Epic) {
+    this.epic = epic
+  }
 }
