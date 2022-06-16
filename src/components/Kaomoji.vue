@@ -3,13 +3,13 @@ Draws a face to the screen consisting of CJK characters.
 -->
 
 <script setup lang="ts">
-  import { computed, PropType } from 'vue'
+  import { computed } from 'vue'
 
-  const props = defineProps({
-    mood: {
-      type: String as PropType<'happy' | 'confused'>,
-      default: 'happy',
-    },
+  interface Props {
+    mood?: 'happy' | 'confused'
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    mood: 'happy',
   })
 
   const edgePairs: [string, string][] = [

@@ -18,20 +18,12 @@ representing the medium.
 
   import envelope from '@/assets/icons/envelope.json'
 
-  defineProps({
-    text: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      default: undefined,
-    },
-    icon: {
-      type: String,
-      default: undefined,
-    },
-  })
+  interface Props {
+    text: string
+    url?: string
+    icon?: string
+  }
+  defineProps<Props>()
 
   const simpleIcons: Record<string, SimpleIcon> = {
     github: siGithub,

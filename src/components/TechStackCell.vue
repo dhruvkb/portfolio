@@ -4,8 +4,6 @@ icons and logos.
 -->
 
 <script setup lang="ts">
-  import { PropType } from 'vue'
-
   import { SimpleIcon } from 'simple-icons'
   import {
     siDjango,
@@ -27,12 +25,10 @@ icons and logos.
 
   import Icon from '@/components/Icon.vue'
 
-  defineProps({
-    technologies: {
-      type: Array as PropType<Technology[]>,
-      required: true,
-    },
-  })
+  interface Props {
+    technologies: Technology[]
+  }
+  defineProps<Props>()
 
   const icons: Record<string, SimpleIcon> = {
     django: siDjango,

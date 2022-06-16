@@ -5,7 +5,6 @@ separators between row groups.
 -->
 
 <script setup lang="ts">
-  import { PropType } from 'vue'
   import type { Component } from 'vue'
 
   import { Breakpoint } from '@/models/breakpoints'
@@ -17,21 +16,12 @@ separators between row groups.
   import PeriodCell from '@/components/PeriodCell.vue'
   import TechStackCell from '@/components/TechStackCell.vue'
 
-  defineProps({
-    title: {
-      type: String,
-      default: undefined,
-    },
-    columns: {
-      // Using `Readonly` because it has been defined with `as const`.
-      type: Array as PropType<Readonly<ColumnSpec[]>>,
-      default: () => [],
-    },
-    rows: {
-      type: Array as PropType<RowData[]>,
-      default: () => [],
-    },
-  })
+  interface Props {
+    title?: string
+    columns: Readonly<ColumnSpec[]>
+    rows: RowData[]
+  }
+  defineProps<Props>()
 
   // Used for dynamically-rendered components.
   const components: Record<string, Component> = {

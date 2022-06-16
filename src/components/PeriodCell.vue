@@ -4,18 +4,13 @@ is still active.
 -->
 
 <script setup lang="ts">
-  import { computed, PropType } from 'vue'
+  import { computed } from 'vue'
 
-  const props = defineProps({
-    start: {
-      type: Array as PropType<string[]>,
-      required: true,
-    },
-    end: {
-      type: Array as PropType<string[]>,
-      default: undefined,
-    },
-  })
+  interface Props {
+    start: string[],
+    end?: string[]
+  }
+  const props = defineProps<Props>()
 
   const isActive = computed(() => !props.end)
   const description = computed(() => (isActive.value ? 'Active role' : 'Past role'))

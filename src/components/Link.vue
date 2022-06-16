@@ -9,15 +9,12 @@ in a new tab without a referrer.
 
   import { RouterLink } from 'vue-router'
 
-  const props = defineProps({
-    isPlain: {
-      type: Boolean,
-    },
-    // may be a full URL or the name of a Vue Router route
-    dest: {
-      type: String,
-      required: true,
-    },
+  interface Props {
+    dest: string
+    isPlain?: boolean
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    isPlain: false,
   })
 
   const isExternal = computed(() => props.dest.startsWith('http'))

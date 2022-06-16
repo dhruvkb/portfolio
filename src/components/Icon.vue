@@ -4,16 +4,12 @@ presentational as it is hidden from assistive technologies.
 -->
 
 <script setup lang="ts">
-  import { PropType } from 'vue'
-
   import { Path } from '@/models/icon'
 
-  defineProps({
-    paths: {
-      type: Array as PropType<Path[]>,
-      required: true,
-    },
-  })
+  interface Props {
+    paths: Path[]
+  }
+  defineProps<Props>()
 </script>
 
 <template>
