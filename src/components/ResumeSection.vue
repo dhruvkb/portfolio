@@ -50,7 +50,7 @@ Uses data from the 'resume' store in Pinia.
       type: role.type,
       epics: role.epics.map((epic) => epic.name).join(', '),
       period: role.period,
-      link: { dest: role.org.url, isPlain: true },
+      link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, isPlain: true },
     },
   })))
 
@@ -82,7 +82,7 @@ Uses data from the 'resume' store in Pinia.
       epic: project.epic.name,
       name: project.name,
       technologies: { technologies: project.technologies },
-      link: { dest: project.url, isPlain: true },
+      link: { dest: project.url, label: project.urlLabel, isPlain: true },
     },
   })))
 </script>
@@ -105,6 +105,7 @@ Uses data from the 'resume' store in Pinia.
       :rows="projectData" />
     <div class="px-page">
       <Link
+        label="Résumé as PDF"
         dest="https://dhruvkb.github.io/resume/">
         Résumé
       </Link>

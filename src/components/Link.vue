@@ -11,6 +11,7 @@ in a new tab without a referrer.
 
   interface Props {
     dest: string
+    label: string
     isPlain?: boolean
   }
   const props = withDefaults(defineProps<Props>(), {
@@ -31,6 +32,7 @@ in a new tab without a referrer.
       class="hover:underline"
       :class="{ 'text-xs font-semibold uppercase': !isPlain }"
       v-bind="params"
+      :aria-label="label"
       target="_blank"
       rel="noreferrer">
       <slot>

@@ -9,6 +9,7 @@ export interface Technology {
 
 export interface ProjectJson extends ResumeItemJson {
   url: string
+  urlLabel: string
   technologies: Technology[]
 }
 
@@ -34,6 +35,7 @@ export class Project extends ResumeItem {
     super(projectJson)
 
     this.url = projectJson.url
+    this.urlLabel = projectJson.urlLabel
     this.technologies = projectJson.technologies
 
     const siblings = epicJson.children

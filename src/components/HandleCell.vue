@@ -11,6 +11,7 @@ representing the medium.
     siInstagram,
   } from 'simple-icons/icons'
 
+  import { ContactMedium } from '@/models/contact'
   import { Icon as IconType, Path } from '@/models/icon'
 
   import Icon from '@/components/Icon.vue'
@@ -19,9 +20,7 @@ representing the medium.
   import envelope from '@/assets/icons/envelope.json'
 
   interface Props {
-    text: string
-    url?: string
-    icon?: string
+    medium: ContactMedium
   }
   defineProps<Props>()
 
@@ -42,14 +41,13 @@ representing the medium.
 
 <template>
   <component
-    :is="url ? Link : 'span'"
-    :dest="url"
+    :is="medium.url ? Link : 'span'"
+    :dest="medium.url"
+    :label="`${medium.name} profile`"
     is-plain>
     <div class="flex flex-row items-center gap-2">
-      <Icon
-        v-if="icon"
-        :paths="getPaths(icon)" />
-      {{ text }}
+      <Icon :paths="getPaths(medium.icon)" />
+      {{ medium.text }}
     </div>
   </component>
 </template>

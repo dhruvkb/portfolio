@@ -11,6 +11,7 @@
         "slug": "app",
         "name": "CLI application",
         "url": "https://pypi.org/project/pls/",
+        "urlLabel": "PyPI package for pls",
         "technologies": [
           {
             "name": "Python",
@@ -26,6 +27,7 @@
         "slug": "documentation",
         "name": "Documentation",
         "url": "https://dhruvkb.github.io/pls/",
+        "urlLabel": "User documentation for pls",
         "technologies": [
           {
             "name": "Markdown",
@@ -55,6 +57,7 @@
         "slug": "frontend",
         "name": "Search engine",
         "url": "https://github.com/WordPress/openverse-frontend/",
+        "urlLabel": "GitHub repo for Openverse frontend",
         "technologies": [
           {
             "name": "JavaScript",
@@ -78,6 +81,7 @@
         "slug": "backend",
         "name": "API",
         "url": "https://github.com/WordPress/openverse-api/",
+        "urlLabel": "GitHub repo for Openverse API",
         "technologies": [
           {
             "name": "Python",
@@ -107,6 +111,7 @@
         "slug": "seeelaye",
         "name": "CLI emulator",
         "url": "https://seeelaye.vercel.app",
+        "urlLabel": "Developer documentation for see·el·aye",
         "technologies": [
           {
             "name": "TypeScript",
@@ -136,6 +141,7 @@
         "slug": "vocabulary",
         "name": "UI components",
         "url": "https://github.com/creativecommons/vocabulary/",
+        "urlLabel": "GitHub repo for Vocabulary",
         "technologies": [
           {
             "name": "JavaScript",
@@ -165,6 +171,7 @@
         "slug": "infrastructure",
         "name": "Infrastructure",
         "url": "https://github.com/IMGIITRoorkee/omniport-docker/",
+        "urlLabel": "GitHub repo for Omniport infrastructure",
         "technologies": [
           {
             "name": "Docker",
@@ -184,6 +191,7 @@
         "slug": "backend",
         "name": "Backend",
         "url": "https://github.com/IMGIITRoorkee/omniport-frontend/",
+        "urlLabel": "GitHub repo for Omniport backend",
         "technologies": [
           {
             "name": "Python",
@@ -202,7 +210,8 @@
       {
         "slug": "documentation",
         "name": "Documentation",
-        "url": "https://github.com/IMGIITRoorkee/omniport-docs/",
+        "url": "https://omniport.readthedocs.io/",
+        "urlLabel": "Developer documentation for Omniport",
         "technologies": [
           {
             "name": "reST (Sphinx)",
@@ -228,6 +237,7 @@
         "slug": "website",
         "name": "Website",
         "url": "https://github.com/dhruvkb/portfolio/",
+        "urlLabel": "GitHub repo for this website",
         "technologies": [
           {
             "name": "TypeScript",
@@ -251,6 +261,7 @@
         "slug": "resume",
         "name": "Résumé",
         "url": "https://github.com/dhruvkb/resume/",
+        "urlLabel": "GitHub repo for my résumé LaTeX",
         "technologies": [
           {
             "name": "LaTeX",

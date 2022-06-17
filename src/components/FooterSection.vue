@@ -38,7 +38,9 @@ Renders the footer with some important links and a 'Thank you' note.
       </template>
     </div>
 
-    <Link dest="https://github.com/dhruvkb/portfolio-brut">
+    <Link
+      label="Source code for this website"
+      dest="https://github.com/dhruvkb/portfolio-brut">
       Source code
     </Link>
   </footer>

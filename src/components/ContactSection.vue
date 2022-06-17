@@ -22,7 +22,7 @@ hyperlinks, where appropriate.
     isLast: medium.isLast ?? false,
     data: {
       name: medium.name,
-      handle: medium, // Props will automatically use fields from object.
+      handle: { medium }, // Props will automatically use fields from object.
     },
   }))
 </script>
