@@ -4,11 +4,12 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
+  import { ContactMedium } from '@/models/contact'
   import { RowData } from '@/models/data_table'
 
   import DataTable from '@/components/DataTable.vue'
 
-  import contactMedia from '@/data/contact.json'
+  import contactsJson from '@/data/contacts.json'
 
   const contactColumns = [
     { code: 'name', display: 'Medium' },
@@ -16,7 +17,8 @@ hyperlinks, where appropriate.
   ] as const
   type ContactData = RowData<typeof contactColumns[number]['code']>
 
-  const contactData = contactMedia.map((medium): ContactData => ({
+  const contactData: ContactMedium[] = contactsJson
+  const contactMedia = contactData.map((medium): ContactData => ({
     isLast: medium.isLast ?? false,
     data: {
       name: medium.name,
@@ -39,6 +41,6 @@ hyperlinks, where appropriate.
     <DataTable
       class="mb-6"
       :columns="contactColumns"
-      :rows="contactData" />
+      :rows="contactMedia" />
   </div>
 </template>
