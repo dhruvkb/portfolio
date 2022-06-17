@@ -4,8 +4,6 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
-  import { computed } from 'vue'
-
   import { RowData } from '@/models/data_table'
 
   import DataTable from '@/components/DataTable.vue'
@@ -18,19 +16,13 @@ hyperlinks, where appropriate.
   ] as const
   type ContactData = RowData<typeof contactColumns[number]['code']>
 
-  const contactData = computed(() => {
-    const data: ContactData[] = []
-    contactMedia.forEach((medium) => {
-      data.push({
-        isLast: medium.isLast ?? false,
-        data: {
-          name: medium.name,
-          handle: medium, // Props will automatically use fields from object.
-        },
-      })
-    })
-    return data
-  })
+  const contactData = contactMedia.map((medium): ContactData => ({
+    isLast: medium.isLast ?? false,
+    data: {
+      name: medium.name,
+      handle: medium, // Props will automatically use fields from object.
+    },
+  }))
 </script>
 
 <template>
