@@ -32,9 +32,12 @@ module.exports = {
       alphabetize: { order: 'asc', caseInsensitive: true },
       pathGroups: [
         { pattern: '{vue,pinia}', group: 'builtin' },
-        { pattern: '@/{components/**,App.vue}', group: 'internal', position: 'after' },
+        { pattern: '@/components/**', group: 'internal', position: 'after' },
+        { pattern: '@/cells/**', group: 'internal', position: 'after' },
+        { pattern: '@/sections/**', group: 'internal', position: 'after' },
         { pattern: '@/assets/**', group: 'internal', position: 'after' },
         { pattern: '@/data/**', group: 'internal', position: 'after' },
+        { pattern: '@/App.vue', group: 'internal', position: 'after' },
         { pattern: '@/**', group: 'internal' },
       ],
       pathGroupsExcludedImportTypes: [],

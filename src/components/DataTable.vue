@@ -10,11 +10,12 @@ separators between row groups.
   import { Breakpoint } from '@/models/breakpoints'
   import { ColumnSpec, RowData } from '@/models/data_table'
 
-  import HandleCell from '@/components/HandleCell.vue'
   import LinkCell from '@/components/Link.vue' // Link
-  import OrganisationCell from '@/components/OrganisationCell.vue'
-  import PeriodCell from '@/components/PeriodCell.vue'
-  import TechStackCell from '@/components/TechStackCell.vue'
+
+  import HandleCell from '@/cells/HandleCell.vue'
+  import OrganisationCell from '@/cells/OrganisationCell.vue'
+  import PeriodCell from '@/cells/PeriodCell.vue'
+  import TechStackCell from '@/cells/TechStackCell.vue'
 
   interface Props {
     title?: string

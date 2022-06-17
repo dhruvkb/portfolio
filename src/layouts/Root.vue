@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import ContactSection from '@/components/ContactSection.vue'
-  import DeedsSection from '@/components/DeedsSection.vue'
-  import FooterSection from '@/components/FooterSection.vue'
-  import HelloSection from '@/components/HelloSection.vue'
-  import ResumeSection from '@/components/ResumeSection.vue'
+  import ContactSection from '@/sections/ContactSection.vue'
+  import DeedsSection from '@/sections/DeedsSection.vue'
+  import FooterSection from '@/sections/FooterSection.vue'
+  import HelloSection from '@/sections/HelloSection.vue'
+  import ResumeSection from '@/sections/ResumeSection.vue'
 </script>
 
 <template>
