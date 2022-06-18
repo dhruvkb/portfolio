@@ -45,21 +45,22 @@ Displays a list of what I do and can do.
 </script>
 
 <template>
-  <div class="px-page">
-    <h1>What do I do?</h1>
+  <section class="px-page">
+    <h1 aria-label="What do I do?">
+      What do I do?
+    </h1>
 
-    <p
-      ref="deedsEl"
-      class="mb-6 text-3xl leading-snug sm:text-4xl">
+    <p class="mb-6 text-3xl leading-snug sm:text-4xl">
       I
       <template
         v-for="(deed, index) in deeds"
         :key="index">
-        <span class="align-top font-mono text-sm font-semibold text-neutral-400 dark:text-neutral-600">[{{ index + 1 }}]</span>
+        <span class="align-top font-mono text-sm font-semibold text-neutral-400 dark:text-neutral-600">
+          [{{ index + 1 }}]
+        </span>
         <span
           class="gradient-text hover:text-tx"
-          :class="[deed.gradients, {'text-tx': index === activeDeed}]"
-          @touchstart="() => {}">
+          :class="[deed.gradients, {'text-tx': index === activeDeed}]">
           {{ deed.text }}
         </span>
         <span v-if="index < deeds.length - 2">; </span>
@@ -68,10 +69,12 @@ Displays a list of what I do and can do.
       </template>
     </p>
 
-    <p
-      class="text-3xl sm:text-4xl"
-      title="This refers to both me, the person and this site.">
-      I am a <strong>work in progress</strong><span class="align-top text-xs">🚧</span>.
+    <p class="text-sm leading-snug">
+      <span
+        class="inline-block -translate-y-1/2 align-top text-xs"
+        aria-hidden="true">
+        🚧
+      </span>This site, like myself, is a work in progress.
     </p>
-  </div>
+  </section>
 </template>

@@ -7,19 +7,25 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
 </script>
 
 <template>
-  <div class="px-page">
-    <h1 class="ps-2 lg:ps-4">
-      Hello!
+  <section class="px-page">
+    <h1 class="ps-2 lg:ps-4 normal-case">
+      <Kaomoji aria-hidden="true" />
+      <span class="sr-only">Hello</span>
     </h1>
 
-    <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
-      <p class="text-3xl leading-snug sm:text-4xl">
-        I'm <span class="site-title">Dhruv Bhanushali</span>, a
-        <strong>software developer</strong> and
-        <strong>open-source maintainer</strong> who also wears many other hats.
-      </p>
+    <p class="gradient-text inline-block from-red-500 to-fuchsia-500 text-3xl leading-snug text-tx selection:bg-neutral-200 selection:text-red-500 dark:selection:bg-neutral-900 sm:text-4xl">
+      <span class="font-black">dhruv</span>
+      <span>kb</span>
+    </p>
 
-      <Kaomoji class="self-center justify-self-center text-4xl" />
-    </div>
-  </div>
+    <p class="mb-6 text-3xl leading-snug sm:text-4xl">
+      <strong>software developer</strong> and
+      <strong>open-source maintainer</strong>
+      <span class="text-red-500">*</span>
+    </p>
+
+    <p class="text-sm leading-snug">
+      <span class="text-red-500">*</span>Also wears many other hats.
+    </p>
+  </section>
 </template>

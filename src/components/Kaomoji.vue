@@ -67,14 +67,5 @@ Draws a face to the screen consisting of CJK characters.
 </script>
 
 <template>
-  <span
-    class="flex flex-col items-center gap-4"
-    aria-hidden="true">
-    {{ face }}
-    <em
-      class="text-sm"
-      title="This is not me.">
-      Ceci n'est pas moi.
-    </em>
-  </span>
+  <span>{{ face }}</span>
 </template>
