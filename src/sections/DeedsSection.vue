@@ -57,7 +57,7 @@ Displays a list of what I do and can do.
         :key="index">
         <span class="align-top font-mono text-sm font-semibold text-neutral-400 dark:text-neutral-600">[{{ index + 1 }}]</span>
         <span
-          class="grad-text"
+          class="gradient-text hover:text-tx"
           :class="[deed.gradients, {'text-tx': index === activeDeed}]"
           @touchstart="() => {}">
           {{ deed.text }}
@@ -75,9 +75,3 @@ Displays a list of what I do and can do.
     </p>
   </div>
 </template>
-
-<style>
-  .grad-text {
-    @apply hover:text-tx bg-clip-text bg-gradient-to-r box-decoration-clone transition-colors duration-200;
-  }
-</style>
