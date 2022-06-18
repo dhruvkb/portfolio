@@ -30,7 +30,9 @@ hyperlinks, where appropriate.
 <template>
   <div>
     <div class="px-page mb-6">
-      <h1>Let's talk</h1>
+      <h1 aria-label="Let's talk">
+        Let's talk
+      </h1>
 
       <p class="text-3xl leading-snug sm:text-4xl">
         I'm always open to collaborating on new ideas.

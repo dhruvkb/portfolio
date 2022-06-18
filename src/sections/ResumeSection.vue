@@ -90,7 +90,9 @@ Uses data from the 'resume' store in Pinia.
 <template>
   <div>
     <div class="px-page mb-6">
-      <h1>What have I done?</h1>
+      <h1 aria-label="What have I done?">
+        What have I done?
+      </h1>
     </div>
 
     <DataTable

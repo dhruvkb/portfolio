@@ -28,6 +28,7 @@ export interface Epic extends EpicJson {
 }
 
 export class Project extends ResumeItem {
+  isFirst: boolean
   isLast: boolean
   epic!: Epic
 
@@ -39,6 +40,7 @@ export class Project extends ResumeItem {
     this.technologies = projectJson.technologies
 
     const siblings = epicJson.children
+    this.isFirst = siblings.indexOf(projectJson) === 0
     this.isLast = siblings.indexOf(projectJson) === siblings.length - 1
   }
 
