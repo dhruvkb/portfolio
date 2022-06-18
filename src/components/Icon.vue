@@ -14,7 +14,7 @@ presentational as it is hidden from assistive technologies.
 
 <template>
   <svg
-    class="h-4 w-4"
+    class="h-[1em] w-[1em]"
     viewBox="0 0 24 24"
     aria-hidden="true">
     <path
