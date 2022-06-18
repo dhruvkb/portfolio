@@ -19,7 +19,6 @@ export interface RoleJson extends ResumeItemJson {
 
 export interface OrgJson extends ResumeItemJson {
   shortName?: string
-  icon: string
   url: string
 
   children: RoleJson[]

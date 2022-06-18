@@ -32,15 +32,15 @@ Renders the name of the organisation alongside the logo of the organisation.
 
   const simpleIcons: Record<string, SimpleIcon> = {
     automattic: siAutomattic,
-    creativecommons: siCreativecommons,
+    creative_commons: siCreativecommons,
     fampay: siFampay,
     hackerearth: siHackerearth,
     wordpress: siWordpress,
   }
   const customIcons: Record<string, IconType> = {
-    centerofci: centerofci as IconType,
+    center_of_ci: centerofci as IconType,
     browserstack: browserstack as IconType,
-    imgiitroorkee: imgiitroorkee as IconType,
+    img: imgiitroorkee as IconType,
   }
 
   const getPaths = (organisation: string): Path[] => customIcons[organisation]?.paths ?? [{
@@ -51,7 +51,7 @@ Renders the name of the organisation alongside the logo of the organisation.
 
 <template>
   <span class="inline-flex flex-row items-center gap-2">
-    <Icon :paths="getPaths(organisation.icon)" />
+    <Icon :paths="getPaths(organisation.slug)" />
 
     <!-- Short name for small screens -->
     <span class="sm:hidden">

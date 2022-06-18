@@ -3,7 +3,6 @@
     "slug": "automattic",
     "name": "Automattic",
     "url": "https://automattic.com",
-    "icon": "automattic",
     "node": {
       "name": "automattic",
       "aliases": [
@@ -36,7 +35,6 @@
     "name": "WordPress",
     "shortName": "WP",
     "url": "https://wordpress.org/openverse/",
-    "icon": "wordpress",
     "node": {
       "name": "wordpress",
       "aliases": []
@@ -67,7 +65,6 @@
     "name": "Center of CI",
     "shortName": "CCI",
     "url": "https://centerofci.org",
-    "icon": "centerofci",
     "node": {
       "name": "center_of_ci",
       "aliases": [
@@ -96,7 +93,6 @@
     "slug": "browserstack",
     "name": "BrowserStack",
     "url": "https://browserstack.com",
-    "icon": "browserstack",
     "node": {
       "name": "browserstack",
       "aliases": [
@@ -130,7 +126,6 @@
     "name": "Creative Commons",
     "shortName": "CC",
     "url": "https://opensource.creativecommons.org",
-    "icon": "creativecommons",
     "node": {
       "name": "creative_commons",
       "aliases": [
@@ -220,7 +215,6 @@
     "name": "IMG, IIT Roorkee",
     "shortName": "IMG IIT-R",
     "url": "https://img.channeli.in",
-    "icon": "imgiitroorkee",
     "node": {
       "name": "img",
       "aliases": []
@@ -254,7 +248,6 @@
     "slug": "fampay",
     "name": "FamPay",
     "url": "https://fampay.in",
-    "icon": "fampay",
     "node": {
       "name": "fampay",
       "aliases": []
@@ -285,7 +278,6 @@
     "slug": "hackerearth",
     "name": "HackerEarth",
     "url": "https://hackerearth.com",
-    "icon": "hackerearth",
     "node": {
       "name": "hackerearth",
       "aliases": [
