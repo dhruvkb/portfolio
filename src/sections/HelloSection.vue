@@ -10,7 +10,7 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
   <section
     class="px-page"
     aria-label="Hello">
-    <h1 class="ps-2 lg:ps-4 normal-case">
+    <h1 class="normal-case">
       <Kaomoji aria-hidden="true" />
       <span class="sr-only">Hello</span>
     </h1>
