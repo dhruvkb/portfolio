@@ -57,9 +57,9 @@ Displays a list of what I do and can do.
       <template
         v-for="(deed, index) in deeds"
         :key="index">
-        <span class="align-top font-mono text-sm font-semibold text-neutral-400 dark:text-neutral-600">
-          [{{ index + 1 }}]
-        </span>
+        <span
+          class="align-top font-mono text-sm font-semibold text-neutral-400 dark:text-neutral-600"
+          aria-hidden="true">[{{ index + 1 }}]</span>
         <span
           class="gradient-text hover:text-tx"
           :class="[deed.gradients, {'text-tx': index === activeDeed}]">
