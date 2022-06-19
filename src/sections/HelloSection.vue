@@ -7,7 +7,9 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
 </script>
 
 <template>
-  <section class="px-page">
+  <section
+    class="px-page"
+    aria-label="Hello">
     <h1 class="ps-2 lg:ps-4 normal-case">
       <Kaomoji aria-hidden="true" />
       <span class="sr-only">Hello</span>

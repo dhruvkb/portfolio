@@ -45,7 +45,9 @@ Displays a list of what I do and can do.
 </script>
 
 <template>
-  <section class="px-page">
+  <section
+    class="px-page"
+    aria-label="Deeds">
     <h1 aria-label="What do I do?">
       What do I do?
     </h1>

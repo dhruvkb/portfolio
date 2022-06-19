@@ -88,7 +88,7 @@ Uses data from the 'resume' store in Pinia.
 </script>
 
 <template>
-  <div>
+  <section aria-label="Résumé">
     <div class="px-page mb-6">
       <h1 aria-label="What have I done?">
         What have I done?
@@ -112,5 +112,5 @@ Uses data from the 'resume' store in Pinia.
         Résumé
       </Link>
     </div>
-  </div>
+  </section>
 </template>

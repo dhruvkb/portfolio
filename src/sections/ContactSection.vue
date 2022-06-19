@@ -28,7 +28,7 @@ hyperlinks, where appropriate.
 </script>
 
 <template>
-  <div>
+  <section aria-label="Contact">
     <div class="px-page mb-6">
       <h1 aria-label="Let's talk">
         Let's talk
@@ -44,5 +44,5 @@ hyperlinks, where appropriate.
       class="mb-6"
       :columns="contactColumns"
       :rows="contactMedia" />
-  </div>
+  </section>
 </template>
