@@ -41,7 +41,6 @@ hyperlinks, where appropriate.
     </div>
 
     <DataTable
-      class="mb-6"
       title="Contact media"
       :columns="contactColumns"
       :rows="contactMedia" />
