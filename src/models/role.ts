@@ -35,6 +35,7 @@ export interface Org extends OrgJson {
 }
 
 export class Role extends ResumeItem {
+  isFirst: boolean
   isLast: boolean
   org!: Org
 
@@ -46,6 +47,7 @@ export class Role extends ResumeItem {
     this.epics = []
 
     const siblings = orgJson.children
+    this.isFirst = siblings.indexOf(roleJson) === 0
     this.isLast = siblings.indexOf(roleJson) === siblings.length - 1
   }
 
