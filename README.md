@@ -1,5 +1,5 @@
 <a href="https://dhruvkb.github.io">
-  <img src="readme_assets/cover.jpg" alt="A picture of me" width="100%"/>
+  <img src="readme_assets/cover.jpeg" alt="A picture of me" width="100%"/>
 </a>
 
 <h1 align="center">
