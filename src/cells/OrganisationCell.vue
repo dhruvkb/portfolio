@@ -61,9 +61,4 @@ Renders the name of the organisation alongside the logo of the organisation.
       {{ org.name }}
     </span>
   </span>
-  <span
-    v-else
-    class="text-neutral-400 dark:text-neutral-600">
-    -
-  </span>
 </template>
