@@ -41,7 +41,7 @@
     },
     "children": [
       {
-        "slug": "",
+        "slug": "project_maintainer",
         "name": "Project maintainer",
         "period": {
           "start": [
