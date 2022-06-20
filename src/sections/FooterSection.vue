@@ -7,8 +7,12 @@ Renders the footer with some important links and a 'Thank you' note.
 
   import Link from '@/components/Link.vue'
 
-  const breakpointClasses: Record<Breakpoint | '', string> = {
-    '': 'sm:hidden',
+  const breakpointClasses: Record<Breakpoint | 'mob', string> = {
+    /*
+     Since Tailwind is mobile-first, 'mob' isn't a real breakpoint.
+     See https://tailwindcss.com/docs/responsive-design#mobile-first
+     */
+    mob: 'sm:hidden',
     sm: 'hidden sm:inline md:hidden',
     md: 'hidden md:inline lg:hidden',
     lg: 'hidden lg:inline xl:hidden',
