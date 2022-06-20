@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref, Ref } from 'vue'
 
 import { Epic, EpicJson, Project } from '@/models/project'
 import { Org, OrgJson, Role } from '@/models/role'
@@ -8,54 +7,29 @@ import projectsJson from '@/data/projects.json'
 import rolesJson from '@/data/roles.json'
 
 export const useResumeStore = defineStore('resume', () => {
-  const epics: Ref<Record<string, Epic>> = ref({})
-  const projects: Ref<Project[]> = ref([])
+  // Parse project data from JSON.
+  const epicData: EpicJson[] = projectsJson
+  const epics: Record<string, Epic> = Object.fromEntries(
+    epicData.map((epicJson) => [epicJson.slug, new Epic(epicJson)]),
+  )
+  const projects: Project[] = Object.values(epics)
+    .flatMap((epic) => Object.values(epic.projects))
 
-  const projectsData: EpicJson[] = projectsJson
-  projectsData.forEach((epicJson) => {
-    const projectMap: Record<string, Project> = {}
-    const projectList: Project[] = []
+  // Parse role data from JSON.
+  const orgData: OrgJson[] = rolesJson
+  const orgs: Record<string, Org> = Object.fromEntries(
+    orgData.map((orgJson) => [orgJson.slug, new Org(orgJson)]),
+  )
+  const roles: Role[] = Object.values(orgs)
+    .flatMap((org) => Object.values(org.roles))
 
-    epicJson.children.forEach((projectJson) => {
-      const project = new Project(projectJson, epicJson)
-      projectMap[projectJson.slug] = project
-      projectList.push(project)
-      projects.value.push(project)
+  // Establish role-epic associations.
+  roles.forEach((role) => {
+    role.epicSlugs?.forEach((slug) => {
+      const epic = epics[slug]
+      role.associateEpic(epic)
+      epic.associateRole(role)
     })
-
-    const epic = {
-      ...epicJson,
-      projects: projectMap,
-    }
-    projectList.forEach((project) => project.setEpic(epic))
-    epics.value[epicJson.slug] = epic
-  })
-
-  const orgs: Ref<Record<string, Org>> = ref({})
-  const roles: Ref<Role[]> = ref([])
-
-  const rolesData: OrgJson[] = rolesJson
-  rolesData.forEach((orgJson) => {
-    const roleMap: Record<string, Role> = {}
-    const roleList: Role[] = []
-
-    orgJson.children.forEach((roleJson) => {
-      const role = new Role(roleJson, orgJson)
-      roleMap[roleJson.slug] = role
-      roleList.push(role)
-      roles.value.push(role)
-
-      roleJson.epics?.forEach((epicName: string) => {
-        role.associateEpic(epics.value[epicName])
-      })
-    })
-
-    const org = {
-      ...orgJson,
-      roles: roleMap,
-    }
-    roleList.forEach((role) => role.setOrg(org))
-    orgs.value[orgJson.slug] = org
   })
 
   return {

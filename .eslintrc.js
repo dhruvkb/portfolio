@@ -23,6 +23,7 @@ module.exports = {
   },
   rules: {
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    'max-classes-per-file': 'off', // allow more than one class in a file
     semi: ['error', 'never', { beforeStatementContinuationChars: 'always' }],
     'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }],
     'import/prefer-default-export': 'off',

@@ -4,7 +4,6 @@ Uses data from the 'resume' store in Pinia.
 -->
 
 <script setup lang="ts">
-  import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
 
   import { RowData } from '@/models/data_table'
@@ -14,14 +13,13 @@ Uses data from the 'resume' store in Pinia.
   import Link from '@/components/Link.vue'
 
   const resumeStore = useResumeStore()
-  const { projects, roles } = storeToRefs(resumeStore)
 
   const experienceColumns = [
     {
       code: 'org',
       display: 'Org',
       componentName: 'Organisation',
-      classes: ['lg:w-[16rem] xl:w-[22rem]'] as string[],
+      classes: ['lg:w-[16rem]'] as string[],
     },
     {
       code: 'link',
@@ -42,7 +40,7 @@ Uses data from the 'resume' store in Pinia.
   ] as const
   type RoleData = RowData<typeof experienceColumns[number]['code']>
 
-  const roleData = computed(() => roles.value.map((role): RoleData => ({
+  const roleData = computed(() => resumeStore.roles.map((role): RoleData => ({
     isLast: role.isLast,
     data: {
       org: { org: role.org },
@@ -55,6 +53,12 @@ Uses data from the 'resume' store in Pinia.
   })))
 
   const projectsColumns = [
+    {
+      code: 'org',
+      display: 'Org',
+      componentName: 'Organisation',
+      classes: ['lg:w-[16rem]'] as string[],
+    },
     {
       code: 'epic',
       display: 'Epic',
@@ -76,9 +80,10 @@ Uses data from the 'resume' store in Pinia.
   ] as const
   type ProjectData = RowData<typeof projectsColumns[number]['code']>
 
-  const projectData = computed(() => projects.value.map((project): ProjectData => ({
+  const projectData = computed(() => resumeStore.projects.map((project): ProjectData => ({
     isLast: project.isLast,
     data: {
+      org: { org: project.epic.role?.org },
       epic: project.epic.name,
       name: project.name,
       technologies: { technologies: project.technologies },
@@ -95,16 +100,18 @@ Uses data from the 'resume' store in Pinia.
       </h1>
     </div>
 
-    <DataTable
-      class="mb-6"
-      title="Experience"
-      :columns="experienceColumns"
-      :rows="roleData" />
-    <DataTable
-      class="mb-6"
-      title="Projects"
-      :columns="projectsColumns"
-      :rows="projectData" />
+    <!-- TODO: Revisit the idea of both tables being side by side. -->
+    <div class="mb-6 grid grid-cols-1 gap-6">
+      <DataTable
+        title="Experience"
+        :columns="experienceColumns"
+        :rows="roleData" />
+      <DataTable
+        title="Projects"
+        :columns="projectsColumns"
+        :rows="projectData" />
+    </div>
+
     <div class="px-page">
       <Link
         label="Résumé as PDF"

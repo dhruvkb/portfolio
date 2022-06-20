@@ -1,6 +1,5 @@
 import { Epic } from '@/models/project'
 import { ResumeItem, ResumeItemJson } from '@/models/resume'
-import { Overwrite } from '@/types/utils'
 
 export interface Period {
   start: string[]
@@ -14,7 +13,7 @@ export interface RoleJson extends ResumeItemJson {
   period: Period
 
   /* references to epic by slug */
-  epics?: string[]
+  epicSlugs?: string[]
 }
 
 export interface OrgJson extends ResumeItemJson {
@@ -24,39 +23,53 @@ export interface OrgJson extends ResumeItemJson {
   children: RoleJson[]
 }
 
-/* JS models */
+/* JS models: Use interface/class merging to avoid declaring variables again. */
 
-// Use interface/class merging to avoid declaring variables again.
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Role extends Overwrite<RoleJson, { epics: Epic[] }> {}
+export interface Role extends RoleJson {}
 
-export interface Org extends OrgJson {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Org extends OrgJson {}
+
+export class Org extends ResumeItem {
   roles: Record<string, Role>
+
+  constructor(orgJson: OrgJson) {
+    super(orgJson)
+
+    this.shortName = orgJson.shortName
+    this.url = orgJson.url
+
+    this.children = orgJson.children
+    this.roles = Object.fromEntries(
+      this.children.map((roleJson) => {
+        const role = new Role(roleJson, this)
+        return [role.slug, role]
+      }),
+    )
+  }
 }
 
 export class Role extends ResumeItem {
   isFirst: boolean
   isLast: boolean
   org!: Org
+  epics: Epic[]
 
-  constructor(roleJson: RoleJson, orgJson: OrgJson) {
+  constructor(roleJson: RoleJson, org: Org) {
     super(roleJson)
 
     this.type = roleJson.type
     this.period = roleJson.period
-    this.epics = []
+    this.epicSlugs = roleJson.epicSlugs
 
-    const siblings = orgJson.children
+    this.org = org
+
+    const siblings = org.children
     this.isFirst = siblings.indexOf(roleJson) === 0
     this.isLast = siblings.indexOf(roleJson) === siblings.length - 1
-  }
 
-  /**
-   * Set the given `Org` instance as the parent of this role.
-   * @param org - the parent organisation to link to the role
-   */
-  setOrg(org: Org) {
-    this.org = org
+    this.epics = [] // populated in `associateEpic`
   }
 
   /**

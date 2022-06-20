@@ -24,7 +24,7 @@
           "name": "code_wrangler.js",
           "aliases": []
         },
-        "epics": [
+        "epicSlugs": [
           "openverse"
         ]
       }
@@ -54,7 +54,7 @@
           "name": "project_maintainer.js",
           "aliases": []
         },
-        "epics": [
+        "epicSlugs": [
           "openverse"
         ]
       }
@@ -147,7 +147,7 @@
           "name": "project_maintainer.js",
           "aliases": []
         },
-        "epics": [
+        "epicSlugs": [
           "vocabulary"
         ]
       },
@@ -238,7 +238,7 @@
           "name": "chief_coordinator_tech.md",
           "aliases": []
         },
-        "epics": [
+        "epicSlugs": [
           "omniport"
         ]
       }
