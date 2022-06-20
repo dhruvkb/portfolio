@@ -46,7 +46,7 @@ Displays a list of what I do and can do.
 
 <template>
   <section
-    class="px-page"
+    class="px-page max-w-screen-lg"
     aria-label="Deeds">
     <h1 aria-label="What do I do?">
       What do I do?
