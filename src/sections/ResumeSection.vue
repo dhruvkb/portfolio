@@ -45,7 +45,7 @@ Uses data from the 'resume' store in Pinia.
   const roleData = computed(() => roles.value.map((role): RoleData => ({
     isLast: role.isLast,
     data: {
-      org: { organisation: role.org },
+      org: { org: role.org },
       name: role.name,
       type: role.type,
       epics: role.epics.map((epic) => epic.name).join(', '),

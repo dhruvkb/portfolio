@@ -3,8 +3,6 @@ Renders the name of the organisation alongside the logo of the organisation.
 -->
 
 <script setup lang="ts">
-  import { PropType } from 'vue'
-
   import { SimpleIcon } from 'simple-icons'
   import {
     siAutomattic,
@@ -23,12 +21,10 @@ Renders the name of the organisation alongside the logo of the organisation.
   import centerofci from '@/assets/icons/centerofci.json'
   import imgiitroorkee from '@/assets/icons/imgiitroorkee.json'
 
-  defineProps({
-    organisation: {
-      type: Object as PropType<Org>,
-      required: true,
-    },
-  })
+  interface Props {
+    org?: Org
+  }
+  defineProps<Props>()
 
   const simpleIcons: Record<string, SimpleIcon> = {
     automattic: siAutomattic,
@@ -43,24 +39,31 @@ Renders the name of the organisation alongside the logo of the organisation.
     img: imgiitroorkee as IconType,
   }
 
-  const getPaths = (organisation: string): Path[] => customIcons[organisation]?.paths ?? [{
-    d: simpleIcons[organisation].path,
+  const getPaths = (slug: string): Path[] => customIcons[slug]?.paths ?? [{
+    d: simpleIcons[slug].path,
     'fill-rule': 'nonzero',
   }]
 </script>
 
 <template>
-  <span class="inline-flex flex-row items-center gap-2">
-    <Icon :paths="getPaths(organisation.slug)" />
+  <span
+    v-if="org"
+    class="inline-flex flex-row items-center gap-2">
+    <Icon :paths="getPaths(org.slug)" />
 
     <!-- Short name for small screens -->
     <span class="sm:hidden">
-      {{ organisation.shortName ?? organisation.name }}
+      {{ org.shortName ?? org.name }}
     </span>
 
     <!-- Complete name for large screens -->
     <span class="hidden sm:inline">
-      {{ organisation.name }}
+      {{ org.name }}
     </span>
+  </span>
+  <span
+    v-else
+    class="text-neutral-400 dark:text-neutral-600">
+    -
   </span>
 </template>
