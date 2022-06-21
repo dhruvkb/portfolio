@@ -35,7 +35,7 @@ is still active.
 </script>
 
 <template>
-  <span class="flex flex-row items-center justify-center sm:justify-between">
+  <span class="flex flex-row items-center justify-center md:justify-between">
     <span class="sr-only">{{ descText }}</span>
 
     <span
