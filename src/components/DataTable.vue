@@ -64,7 +64,7 @@ separators between row groups.
           :key="column.code"
           :class="[column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : '', ...(column.classes ?? [])]"
           :aria-label="column.display"
-          class="first-of-type:pl-page last-of-type:pr-page border-y border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
+          class="first-of-type:pl-page last-of-type:pr-page box-content border-y border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
           {{ column.display }}
         </th>
       </tr>

@@ -8,30 +8,31 @@ export const useProjectTable = () => {
 
   const columns = [
     {
-      code: 'org',
-      display: 'Org',
-      componentName: 'Organisation',
-      breakpoint: 'lg', // same as breakpoint of Epic in `rolesColumns`
-      classes: ['w-[16rem]'] as string[],
-    },
-    {
       code: 'epic',
       display: 'Epic',
-      classes: ['lg:w-[11rem]'] as string[],
+      classes: ['w-[7rem]'] as string[],
     },
     {
       code: 'name',
       display: 'Project',
-      classes: ['lg:w-[11rem]'] as string[],
+      classes: ['w-[10rem]'] as string[],
+    },
+    {
+      code: 'org',
+      display: 'Org',
+      componentName: 'Organisation',
+      breakpoint: 'lg', // same as breakpoint of Epic in `rolesColumns`
+      classes: ['w-[13rem]'] as string[],
     },
     {
       code: 'link',
       display: 'Link',
       componentName: 'Link',
       breakpoint: 'lg',
-      classes: ['w-[6rem]'] as string[],
+      classes: ['w-[5rem]'] as string[],
     },
     {
+      // Infinite expansion column
       code: 'technologies',
       display: 'Tech',
       componentName: 'TechStack',

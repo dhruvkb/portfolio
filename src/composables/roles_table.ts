@@ -11,34 +11,38 @@ export const useRoleTable = () => {
       code: 'org',
       display: 'Org',
       componentName: 'Organisation',
-      classes: ['lg:w-[16rem]'] as string[],
+      classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
     },
     {
       code: 'link',
       display: 'Link',
       componentName: 'Link',
       breakpoint: 'lg',
-      classes: ['w-[6rem]'] as string[],
+      classes: ['w-[5rem]'] as string[],
     },
     {
+      // Infinite expansion column
       code: 'name',
       display: 'Role',
-    },
-    {
-      code: 'type',
-      display: 'Type',
-      breakpoint: 'lg',
     },
     {
       code: 'epics',
       display: 'Epics',
       breakpoint: 'lg', // same as breakpoint of Org in `projectsColumns`
+      classes: ['w-[7rem]'] as string[],
+    },
+    {
+      code: 'type',
+      display: 'Type',
+      breakpoint: 'xl',
+      classes: ['w-[7rem]'] as string[],
     },
     {
       code: 'period',
       display: 'Period',
+      breakpoint: 'sm',
       componentName: 'Period',
-      classes: ['w-[4rem]', 'md:w-[13rem]'] as string[],
+      classes: ['w-[3rem]', 'md:w-[11rem]'] as string[],
     },
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>
