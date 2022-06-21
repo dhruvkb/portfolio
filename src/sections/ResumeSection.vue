@@ -25,7 +25,7 @@ Uses data from the 'resume' store in Pinia.
     <!-- TODO: Revisit the idea of both tables being side by side. -->
     <div class="mb-6 grid grid-cols-1 gap-6">
       <DataTable
-        title="Experience"
+        title="Roles"
         :columns="roleColumns"
         :rows="roleData" />
       <DataTable
