@@ -46,18 +46,24 @@ Renders the name of the organisation alongside the logo of the organisation.
 </script>
 
 <template>
-  <span
-    v-if="org"
-    class="inline-flex flex-row items-center gap-2">
-    <Icon :paths="getPaths(org.slug)" />
+  <span v-if="org">
+    <span class="sr-only">{{ org.name }}</span>
+
+    <Icon
+      class="mr-2 inline-block"
+      :paths="getPaths(org.slug)" />
 
     <!-- Short name for small screens -->
-    <span class="sm:hidden">
+    <span
+      class="sm:hidden"
+      aria-hidden="true">
       {{ org.shortName ?? org.name }}
     </span>
 
     <!-- Complete name for large screens -->
-    <span class="hidden sm:inline">
+    <span
+      class="hidden sm:inline"
+      aria-hidden="true">
       {{ org.name }}
     </span>
   </span>
