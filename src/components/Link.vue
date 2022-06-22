@@ -7,8 +7,6 @@ in a new tab without a referrer.
 <script setup lang="ts">
   import { computed } from 'vue'
 
-  import { RouterLink } from 'vue-router'
-
   interface Props {
     dest: string
     label: string
@@ -20,23 +18,23 @@ in a new tab without a referrer.
 
   const isExternal = computed(() => props.dest.startsWith('http'))
 
-  const params = isExternal.value
-    ? { href: props.dest, target: '_blank', rel: 'noreferrer' } // anchor tag uses `href` attribute
-    : { to: { name: props.dest } } // `RouterLink` uses `to` prop
+  const params = computed(() => (isExternal.value
+    ? { target: '_blank', rel: 'noreferrer' }
+    : { }))
 </script>
 
 <template>
   <div class="group inline-flex flex-row items-center gap-1">
-    <component
-      :is="isExternal ? 'a': RouterLink"
+    <a
       class="hover:underline"
       :class="{ 'text-xs font-semibold uppercase': !isPlain }"
       v-bind="params"
+      :href="dest"
       :aria-label="label">
       <slot>
         Link
       </slot>
-    </component>
+    </a>
     <span
       class="text-base font-semibold text-red-500 transition-transform duration-100 group-hover:translate-x-1"
       :class="{ 'group-hover:-translate-y-1': isExternal }"

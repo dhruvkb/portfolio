@@ -1,10 +1,10 @@
 import { computed } from 'vue'
 
+import { useResume } from '@/composables/resume'
 import { RowData } from '@/models/data_table'
-import { useResumeStore } from '@/stores/resume'
 
 export const useRoleTable = () => {
-  const resumeStore = useResumeStore()
+  const resumeStore = useResume()
 
   const columns = [
     {

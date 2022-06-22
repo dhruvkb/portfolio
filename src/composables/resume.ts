@@ -1,12 +1,10 @@
-import { defineStore } from 'pinia'
-
 import { Epic, EpicJson, Project } from '@/models/project'
 import { Org, OrgJson, Role } from '@/models/role'
 
 import projectsJson from '@/data/projects.json'
 import rolesJson from '@/data/roles.json'
 
-export const useResumeStore = defineStore('resume', () => {
+export const useResume = () => {
   // Parse project data from JSON.
   const epicData: EpicJson[] = projectsJson
   const epics: Record<string, Epic> = Object.fromEntries(
@@ -39,4 +37,4 @@ export const useResumeStore = defineStore('resume', () => {
     orgs,
     roles,
   }
-})
+}
