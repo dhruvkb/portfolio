@@ -21,7 +21,7 @@ in a new tab without a referrer.
   const isExternal = computed(() => props.dest.startsWith('http'))
 
   const params = isExternal.value
-    ? { href: props.dest } // anchor tag uses `href` attribute
+    ? { href: props.dest, target: '_blank', rel: 'noreferrer' } // anchor tag uses `href` attribute
     : { to: { name: props.dest } } // `RouterLink` uses `to` prop
 </script>
 
@@ -32,9 +32,7 @@ in a new tab without a referrer.
       class="hover:underline"
       :class="{ 'text-xs font-semibold uppercase': !isPlain }"
       v-bind="params"
-      :aria-label="label"
-      target="_blank"
-      rel="noreferrer">
+      :aria-label="label">
       <slot>
         Link
       </slot>
