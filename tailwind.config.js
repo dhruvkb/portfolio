@@ -6,8 +6,7 @@ const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './index.html',
-    './src/**/*.{pcss,vue,js,ts}',
+    './src/**/*.{pcss,vue,js,ts,astro}',
   ],
   darkMode: 'media',
   theme: {
