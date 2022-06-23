@@ -38,7 +38,6 @@ module.exports = {
         { pattern: '@/sections/**', group: 'internal', position: 'after' },
         { pattern: '@/assets/**', group: 'internal', position: 'after' },
         { pattern: '@/data/**', group: 'internal', position: 'after' },
-        { pattern: '@/App.vue', group: 'internal', position: 'after' },
         { pattern: '@/**', group: 'internal' },
       ],
       pathGroupsExcludedImportTypes: [],
