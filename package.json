@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "astro dev",
     "prebuild": "npm run checks",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "astro build",
+    "preview": "astro preview",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue .",
     "lint:fix": "npm run lint -- --fix",
     "types": "vue-tsc --noEmit",
@@ -14,20 +14,19 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.7",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "pinia": "^2.0.14",
     "simple-icons": "^7.0.0",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.15"
+    "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@astrojs/vue": "^0.1.5",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
-    "@vitejs/plugin-vue": "^2.3.3",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
+    "astro": "^1.0.0-beta.50",
+    "autoprefixer": "^10.4.7",
     "eslint": "^8.16.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-custom-alias": "^1.3.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-tailwindcss": "^3.5.2",
@@ -39,7 +38,6 @@
     "postcss-import": "^14.1.0",
     "tailwindcss": "^3.0.24",
     "typescript": "^4.5.4",
-    "vite": "^2.9.9",
     "vue-tsc": "^0.37.8"
   }
 }
