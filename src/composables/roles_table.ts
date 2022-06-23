@@ -55,7 +55,7 @@ export const useRoleTable = () => {
       type: role.type,
       epics: role.epics.map((epic) => epic.name).join(', '),
       period: role.period,
-      link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, isPlain: true },
+      link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, variant: 'plain' },
     },
   })))
 

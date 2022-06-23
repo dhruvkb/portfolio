@@ -10,10 +10,16 @@ in a new tab without a referrer.
   interface Props {
     dest: string
     label: string
-    isPlain?: boolean
+    /**
+     * the styling of the link; this can be one of three options:
+     * - regular: font style and arrow
+     * - plain: only arrow
+     * - base: no style
+     */
+    variant?: 'regular' | 'plain' | 'base'
   }
   const props = withDefaults(defineProps<Props>(), {
-    isPlain: false,
+    variant: 'regular',
   })
 
   const isExternal = computed(() => props.dest.startsWith('http'))
@@ -27,7 +33,7 @@ in a new tab without a referrer.
   <div class="group inline-flex flex-row items-center gap-1">
     <a
       class="hover:underline"
-      :class="{ 'text-xs font-semibold uppercase': !isPlain }"
+      :class="{ 'text-xs font-semibold uppercase': variant === 'regular' }"
       v-bind="params"
       :href="dest"
       :aria-label="label">
@@ -36,6 +42,7 @@ in a new tab without a referrer.
       </slot>
     </a>
     <span
+      v-if="variant !== 'base'"
       class="text-base font-semibold text-red-500 transition-transform duration-100 group-hover:translate-x-1"
       :class="{ 'group-hover:-translate-y-1': isExternal }"
       aria-hidden="true">

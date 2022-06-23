@@ -47,7 +47,7 @@ export const useProjectTable = () => {
       epic: project.epic.name,
       name: project.name,
       technologies: { technologies: project.technologies },
-      link: { dest: project.url, label: project.urlLabel, isPlain: true },
+      link: { dest: project.url, label: project.urlLabel, variant: 'plain' },
     },
   })))
 

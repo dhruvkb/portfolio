@@ -63,7 +63,7 @@ hyperlinks, where appropriate.
             :is="medium.url ? Link : 'span'"
             :label="`${medium.name} profile`"
             :dest="medium.url"
-            is-plain>
+            variant="plain">
             {{ medium.text }}
           </component>
         </div>
