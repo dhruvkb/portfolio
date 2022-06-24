@@ -1,3 +1,7 @@
+<page>
+  title: 404 Not Found
+</page>
+
 <script setup lang="ts">
   import Link from '@/components/Link.vue'
   import SiteTitle from '@/components/SiteTitle.vue'
