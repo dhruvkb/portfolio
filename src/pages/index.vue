@@ -3,6 +3,8 @@
 </page>
 
 <script setup lang="ts">
+  import AsciiArt from '@/components/AsciiArt.vue'
+
   import ContactSection from '@/sections/ContactSection.vue'
   import DeedsSection from '@/sections/DeedsSection.vue'
   import FooterSection from '@/sections/FooterSection.vue'
@@ -11,6 +13,8 @@
 </script>
 
 <template>
+  <AsciiArt />
+
   <main>
     <div class="flex min-h-screen flex-col justify-between gap-16 border-b border-neutral-200 pb-8 pts-8 dark:border-neutral-900 lg:gap-24 lg:pb-12 lg:pts-12">
       <HelloSection />
