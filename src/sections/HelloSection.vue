@@ -12,7 +12,9 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
     class="px-page"
     aria-label="Hello">
     <h1 class="normal-case">
-      <Kaomoji aria-hidden="true" />
+      <Kaomoji
+        client:load
+        aria-hidden="true" />
       <span class="sr-only">Hello</span>
     </h1>
 
