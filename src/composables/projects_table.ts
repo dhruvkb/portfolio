@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 
 import { useResume } from '@/composables/resume'
-import { RowData } from '@/models/data_table'
+import type { RowData } from '@/models/data_table'
 
 export const useProjectTable = () => {
   const resumeStore = useResume()

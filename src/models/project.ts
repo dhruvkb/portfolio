@@ -1,4 +1,4 @@
-import { ResumeItemJson, ResumeItem } from '@/models/resume'
+import { type ResumeItemJson, ResumeItem } from '@/models/resume'
 import type { Role } from '@/models/role'
 
 export interface Technology {

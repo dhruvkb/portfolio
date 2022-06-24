@@ -4,7 +4,7 @@ icons and logos.
 -->
 
 <script setup lang="ts">
-  import { SimpleIcon } from 'simple-icons'
+  import type { SimpleIcon } from 'simple-icons'
   import {
     siDjango,
     siDocker,
@@ -20,8 +20,8 @@ icons and logos.
     siVuedotjs,
   } from 'simple-icons/icons'
 
-  import { Path } from '@/models/icon'
-  import { Technology } from '@/models/project'
+  import type { Path } from '@/models/icon'
+  import type { Technology } from '@/models/project'
 
   import Icon from '@/components/Icon.vue'
 

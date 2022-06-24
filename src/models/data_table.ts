@@ -1,4 +1,4 @@
-import { Breakpoint } from '@/models/breakpoints'
+import type { Breakpoint } from '@/models/breakpoints'
 
 /**
  * Describes the properties of a column in the resume table.

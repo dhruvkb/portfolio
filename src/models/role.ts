@@ -1,5 +1,5 @@
-import { Epic } from '@/models/project'
-import { ResumeItem, ResumeItemJson } from '@/models/resume'
+import type { Epic } from '@/models/project'
+import { ResumeItem, type ResumeItemJson } from '@/models/resume'
 
 export interface Period {
   start: string[]

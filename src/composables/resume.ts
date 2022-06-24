@@ -1,5 +1,5 @@
-import { Epic, EpicJson, Project } from '@/models/project'
-import { Org, OrgJson, Role } from '@/models/role'
+import { Epic, type EpicJson, Project } from '@/models/project'
+import { Org, type OrgJson, Role } from '@/models/role'
 
 import projectsJson from '@/data/projects.json'
 import rolesJson from '@/data/roles.json'

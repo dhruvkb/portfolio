@@ -4,7 +4,7 @@ presentational as it is hidden from assistive technologies.
 -->
 
 <script setup lang="ts">
-  import { Path } from '@/models/icon'
+  import type { Path } from '@/models/icon'
 
   interface Props {
     paths: Path[]

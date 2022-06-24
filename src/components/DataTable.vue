@@ -7,14 +7,14 @@ separators between row groups.
 <script setup lang="ts">
   import type { Component } from 'vue'
 
-  import { Breakpoint } from '@/models/breakpoints'
-  import { ColumnSpec, RowData } from '@/models/data_table'
-
-  import LinkCell from '@/components/Link.vue' // Link
+  import type { Breakpoint } from '@/models/breakpoints'
+  import type { ColumnSpec, RowData } from '@/models/data_table'
 
   import OrganisationCell from '@/cells/OrganisationCell.vue'
   import PeriodCell from '@/cells/PeriodCell.vue'
   import TechStackCell from '@/cells/TechStackCell.vue'
+
+  import LinkCell from '@/components/Link.vue' // Link
 
   interface Props {
     title?: string

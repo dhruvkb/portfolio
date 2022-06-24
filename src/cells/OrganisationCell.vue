@@ -3,7 +3,7 @@ Renders the name of the organisation alongside the logo of the organisation.
 -->
 
 <script setup lang="ts">
-  import { SimpleIcon } from 'simple-icons'
+  import type { SimpleIcon } from 'simple-icons'
   import {
     siAutomattic,
     siCreativecommons,
@@ -12,8 +12,8 @@ Renders the name of the organisation alongside the logo of the organisation.
     siWordpress,
   } from 'simple-icons/icons'
 
-  import { Icon as IconType, Path } from '@/models/icon'
-  import { Org } from '@/models/role'
+  import type { Icon as IconType, Path } from '@/models/icon'
+  import type { Org } from '@/models/role'
 
   import Icon from '@/components/Icon.vue'
 

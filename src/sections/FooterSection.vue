@@ -3,7 +3,7 @@ Renders the footer with some important links and a 'Thank you' note.
 -->
 
 <script setup lang="ts">
-  import { Breakpoint } from '@/models/breakpoints'
+  import type { Breakpoint } from '@/models/breakpoints'
 
   import Link from '@/components/Link.vue'
 

@@ -4,16 +4,15 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
-
-  import { SimpleIcon } from 'simple-icons'
+  import type { SimpleIcon } from 'simple-icons'
   import {
     siGithub,
     siInstagram,
     siLinkedin,
   } from 'simple-icons/icons'
 
-  import { ContactMedium } from '@/models/contact'
-  import { Icon as IconType, Path } from '@/models/icon'
+  import type { ContactMedium } from '@/models/contact'
+  import type { Icon as IconType, Path } from '@/models/icon'
 
   import Icon from '@/components/Icon.vue'
   import Link from '@/components/Link.vue'
