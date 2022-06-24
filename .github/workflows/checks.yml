@@ -1,0 +1,34 @@
+name: Checks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  static:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install --prefer-offline --no-audit
+
+      - name: Type-check the codebase
+        run: npm run types
+
+      - name: Lint the codebase
+        run: npm run lint
