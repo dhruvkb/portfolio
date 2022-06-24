@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 
