@@ -51,7 +51,7 @@ Draws a face to the screen consisting of CJK characters.
       hands = []
   }
 
-  const sample = <T>(array: T[]): T => {
+  const sample = <T, >(array: T[]): T => {
     const len = array.length
     return array[Math.floor(Math.random() * len)]
   }
