@@ -1,10 +1,43 @@
-@import 'tailwindcss/base';
-@import "../atoms/root.pcss";
-@import "../atoms/typography.pcss";
-@import '../atoms/headings.pcss';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import 'tailwindcss/components';
-@import '../atoms/gradient-text.pcss';
+@layer base {
+  html {
+    @apply flex min-h-full bg-white text-neutral-700 dark:bg-black dark:text-neutral-400;
+  }
 
-@import 'tailwindcss/utilities';
-@import "../atoms/page.pcss";
+  body {
+    @apply flex-1;
+  }
+
+  h1 {
+    @apply text-sm font-semibold uppercase mb-4;
+  }
+
+  strong {
+    @apply font-medium text-neutral-900 dark:text-neutral-200;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    /* Set `text-tx`, `from-*` and `to-*` classes separately. */
+    @apply bg-clip-text bg-gradient-to-r box-decoration-clone;
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .pl-page {
+    @apply pls-2 sm:pls-4 lg:pls-8;
+  }
+
+  .pr-page {
+    @apply prs-2 sm:prs-4 lg:prs-8;
+  }
+
+  .px-page {
+    @apply pl-page pr-page;
+  }
+}
