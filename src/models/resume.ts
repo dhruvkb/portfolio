@@ -1,15 +1,8 @@
-export interface NodeIdentity {
-  name: string
-  aliases: string[]
-}
-
 /* JSON models */
 
 export interface ResumeItemJson {
   name: string
   slug: string
-
-  node: NodeIdentity
 }
 
 /* JS models */
@@ -22,7 +15,5 @@ export class ResumeItem {
   constructor(resumeItemJson: ResumeItemJson) {
     this.name = resumeItemJson.name
     this.slug = resumeItemJson.slug
-
-    this.node = resumeItemJson.node
   }
 }

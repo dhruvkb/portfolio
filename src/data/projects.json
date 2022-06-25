@@ -2,10 +2,6 @@
   {
     "slug": "pls",
     "name": "pls",
-    "node": {
-      "name": "pls",
-      "aliases": []
-    },
     "children": [
       {
         "slug": "app",
@@ -17,11 +13,7 @@
             "name": "Python",
             "icon": "python"
           }
-        ],
-        "node": {
-          "name": "pls.py",
-          "aliases": []
-        }
+        ]
       },
       {
         "slug": "documentation",
@@ -37,21 +29,13 @@
             "name": "Vue",
             "icon": "vuedotjs"
           }
-        ],
-        "node": {
-          "name": "documentation.md",
-          "aliases": []
-        }
+        ]
       }
     ]
   },
   {
     "slug": "openverse",
     "name": "Openverse",
-    "node": {
-      "name": "openverse",
-      "aliases": []
-    },
     "children": [
       {
         "slug": "frontend",
@@ -71,11 +55,7 @@
             "name": "Tailwind",
             "icon": "tailwindcss"
           }
-        ],
-        "node": {
-          "name": "openverse-frontend.vue",
-          "aliases": []
-        }
+        ]
       },
       {
         "slug": "backend",
@@ -91,21 +71,13 @@
             "name": "Django",
             "icon": "django"
           }
-        ],
-        "node": {
-          "name": "openverse_api.py",
-          "aliases": []
-        }
+        ]
       }
     ]
   },
   {
     "slug": "seeelaye",
     "name": "see·el·aye",
-    "node": {
-      "name": "seeelaye",
-      "aliases": []
-    },
     "children": [
       {
         "slug": "seeelaye",
@@ -121,21 +93,13 @@
             "name": "Vue",
             "icon": "vuedotjs"
           }
-        ],
-        "node": {
-          "name": "seeelaye.ts",
-          "aliases": []
-        }
+        ]
       }
     ]
   },
   {
     "slug": "vocabulary",
     "name": "Vocabulary",
-    "node": {
-      "name": "vocabulary",
-      "aliases": []
-    },
     "children": [
       {
         "slug": "vocabulary",
@@ -151,21 +115,13 @@
             "name": "Vue",
             "icon": "vuedotjs"
           }
-        ],
-        "node": {
-          "name": "vocabulary.vue",
-          "aliases": []
-        }
+        ]
       }
     ]
   },
   {
     "slug": "omniport",
     "name": "Omniport",
-    "node": {
-      "name": "omniport",
-      "aliases": []
-    },
     "children": [
       {
         "slug": "infrastructure",
@@ -181,11 +137,7 @@
             "name": "Bash",
             "icon": "gnubash"
           }
-        ],
-        "node": {
-          "name": "infrastructure.yml",
-          "aliases": []
-        }
+        ]
       },
       {
         "slug": "backend",
@@ -201,11 +153,7 @@
             "name": "django",
             "icon": "django"
           }
-        ],
-        "node": {
-          "name": "backend.py",
-          "aliases": []
-        }
+        ]
       },
       {
         "slug": "documentation",
@@ -217,21 +165,13 @@
             "name": "reST (Sphinx)",
             "icon": "readthedocs"
           }
-        ],
-        "node": {
-          "name": "documentation.rst",
-          "aliases": []
-        }
+        ]
       }
     ]
   },
   {
     "slug": "portfolio",
     "name": "Portfolio",
-    "node": {
-      "name": "portfolio",
-      "aliases": []
-    },
     "children": [
       {
         "slug": "website",
@@ -251,11 +191,7 @@
             "name": "Tailwind",
             "icon": "tailwindcss"
           }
-        ],
-        "node": {
-          "name": "website.vue",
-          "aliases": []
-        }
+        ]
       },
       {
         "slug": "resume",
@@ -267,11 +203,7 @@
             "name": "LaTeX",
             "icon": "latex"
           }
-        ],
-        "node": {
-          "name": "resume.tex",
-          "aliases": []
-        }
+        ]
       }
     ]
   }
