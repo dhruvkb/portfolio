@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "iles dev --open",
+    "dev": "iles dev",
     "prebuild": "npm run checks",
     "build": "iles build",
     "preview": "iles preview --open",
