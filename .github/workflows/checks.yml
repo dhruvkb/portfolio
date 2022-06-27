@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  static:
-    name: Static checks
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,8 +23,25 @@ jobs:
       - name: Install dependencies
         run: npm install --prefer-offline --no-audit
 
-      - name: Type-check the codebase
-        run: npm run types
-
       - name: Lint the codebase
         run: npm run lint
+
+  types:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Install dependencies
+        run: npm install --prefer-offline --no-audit
+
+      - name: Typecheck the codebase
+        run: npm run types
