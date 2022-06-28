@@ -1,5 +1,27 @@
 [
   {
+    "slug": "reschume",
+    "name": "Réschumé",
+    "children": [
+      {
+        "slug": "schema",
+        "name": "Résumé schema",
+        "url": "https://dhruvkb.github.io/reschume",
+        "urlLabel": "User documentation for Réschumé",
+        "technologies": [
+          {
+            "name": "Node.js",
+            "icon": "nodedotjs"
+          },
+          {
+            "name": "JSON",
+            "icon": "json"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "pls",
     "name": "pls",
     "children": [
@@ -202,6 +224,10 @@
           {
             "name": "LaTeX",
             "icon": "latex"
+          },
+          {
+            "name": "Réschumé",
+            "icon": "reschume"
           }
         ]
       }

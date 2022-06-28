@@ -3,46 +3,17 @@ Renders the name of the organisation alongside the logo of the organisation.
 -->
 
 <script setup lang="ts">
-  import type { SimpleIcon } from 'simple-icons'
-  import {
-    siAutomattic,
-    siCreativecommons,
-    siFampay,
-    siHackerearth,
-    siWordpress,
-  } from 'simple-icons/icons'
-
-  import type { Icon as IconType, Path } from '@/models/icon'
+  import { useIcon } from '@/composables/icon'
   import type { Org } from '@/models/role'
 
   import Icon from '@/components/Icon.vue'
-
-  import browserstack from '@/assets/icons/browserstack.json'
-  import centerofci from '@/assets/icons/centerofci.json'
-  import imgiitroorkee from '@/assets/icons/imgiitroorkee.json'
 
   interface Props {
     org?: Org
   }
   defineProps<Props>()
 
-  const simpleIcons: Record<string, SimpleIcon> = {
-    automattic: siAutomattic,
-    creative_commons: siCreativecommons,
-    fampay: siFampay,
-    hackerearth: siHackerearth,
-    wordpress: siWordpress,
-  }
-  const customIcons: Record<string, IconType> = {
-    center_of_ci: centerofci as IconType,
-    browserstack: browserstack as IconType,
-    img: imgiitroorkee as IconType,
-  }
-
-  const getPaths = (slug: string): Path[] => customIcons[slug]?.paths ?? [{
-    d: simpleIcons[slug].path,
-    'fill-rule': 'nonzero',
-  }]
+  const { getIconPaths } = useIcon()
 </script>
 
 <template>
@@ -51,7 +22,7 @@ Renders the name of the organisation alongside the logo of the organisation.
 
     <Icon
       class="mr-2 inline-block"
-      :paths="getPaths(org.slug)" />
+      :paths="getIconPaths(org.slug)" />
 
     <!-- Short name for small screens -->
     <span

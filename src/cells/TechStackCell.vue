@@ -4,23 +4,7 @@ icons and logos.
 -->
 
 <script setup lang="ts">
-  import type { SimpleIcon } from 'simple-icons'
-  import {
-    siDjango,
-    siDocker,
-    siGnubash,
-    siJavascript,
-    siLatex,
-    siMarkdown,
-    siNuxtdotjs,
-    siPython,
-    siReadthedocs,
-    siTailwindcss,
-    siTypescript,
-    siVuedotjs,
-  } from 'simple-icons/icons'
-
-  import type { Path } from '@/models/icon'
+  import { useIcon } from '@/composables/icon'
   import type { Technology } from '@/models/project'
 
   import Icon from '@/components/Icon.vue'
@@ -30,25 +14,7 @@ icons and logos.
   }
   defineProps<Props>()
 
-  const icons: Record<string, SimpleIcon> = {
-    django: siDjango,
-    docker: siDocker,
-    gnubash: siGnubash,
-    javascript: siJavascript,
-    latex: siLatex,
-    markdown: siMarkdown,
-    nuxtdotjs: siNuxtdotjs,
-    python: siPython,
-    readthedocs: siReadthedocs,
-    tailwindcss: siTailwindcss,
-    typescript: siTypescript,
-    vuedotjs: siVuedotjs,
-  }
-
-  const getPaths = (technology: string): Path[] => [{
-    d: icons[technology].path,
-    'fill-rule': 'nonzero',
-  }]
+  const { getIconPaths } = useIcon()
 </script>
 
 <template>
@@ -59,7 +25,7 @@ icons and logos.
       class="mr-2 border-r border-neutral-200 pr-2 first-of-type:ml-0 last-of-type:mr-0 last-of-type:border-0 dark:border-neutral-900">
       <span
         class="inline-flex flex-row items-center gap-2">
-        <Icon :paths="getPaths(technology.icon)" />
+        <Icon :paths="getIconPaths(technology.icon)" />
         <span class="sr-only sm:not-sr-only">{{ technology.name }}</span>
       </span>
     </span>
