@@ -14,6 +14,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "pinia": "^2.0.14",
     "simple-icons": "^7.0.0",
     "vue": "^3.2.25"
   },
