@@ -1,4 +1,5 @@
 import { defineApp } from 'iles'
+import { createPinia } from 'pinia'
 import { computed } from 'vue'
 
 import '@/styles/index.pcss'
@@ -63,4 +64,8 @@ export default defineApp({
       { rel: 'icon', href: '/favicon.png' },
     ],
   }),
+  enhanceApp: ({ app }) => {
+    const pinia = createPinia()
+    app.use(pinia)
+  },
 })

@@ -24,7 +24,7 @@ module.exports = {
       groups: ['builtin', 'external', 'internal'],
       alphabetize: { order: 'asc', caseInsensitive: true },
       pathGroups: [
-        { pattern: '{vue,vite,iles}', group: 'builtin' }, // base frameworks
+        { pattern: '{vue,vite,iles,pinia}', group: 'builtin' }, // base frameworks
         // Vue components
         { pattern: '@/cells/**', group: 'internal', position: 'after' },
         { pattern: '@/components/**', group: 'internal', position: 'after' },
