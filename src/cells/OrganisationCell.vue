@@ -22,7 +22,7 @@ Renders the name of the organisation alongside the logo of the organisation.
 
     <Icon
       class="mr-2 inline-block"
-      :paths="getIconPaths(org.slug)" />
+      :paths="getIconPaths(org.id)" />
 
     <!-- Short name for small screens -->
     <span

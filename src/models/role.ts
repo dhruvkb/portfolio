@@ -44,7 +44,7 @@ export class Org extends ResumeItem {
     this.roles = Object.fromEntries(
       this.children.map((roleJson) => {
         const role = new Role(roleJson, this)
-        return [role.slug, role]
+        return [role.id, role]
       }),
     )
   }

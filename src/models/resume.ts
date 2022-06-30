@@ -1,8 +1,12 @@
+import type { Bio } from '@/models/bio'
+import type { EpicJson } from '@/models/project'
+import type { OrgJson } from '@/models/role'
+
 /* JSON models */
 
 export interface ResumeItemJson {
   name: string
-  slug: string
+  id: string
 }
 
 /* JS models */
@@ -14,6 +18,13 @@ export interface ResumeItem extends ResumeItemJson {}
 export class ResumeItem {
   constructor(resumeItemJson: ResumeItemJson) {
     this.name = resumeItemJson.name
-    this.slug = resumeItemJson.slug
+    this.id = resumeItemJson.id
   }
+}
+
+// TODO: Move to Réschumé
+export interface Resume {
+  bio: Bio
+  projects: EpicJson[]
+  roles: OrgJson[]
 }

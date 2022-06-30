@@ -4,38 +4,14 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
-  import type { SimpleIcon } from 'simple-icons'
-  import {
-    siGithub,
-    siInstagram,
-    siLinkedin,
-  } from 'simple-icons/icons'
-
-  import type { ContactMedium } from '@/models/contact'
-  import type { Icon as IconType, Path } from '@/models/icon'
+  import { useContacts } from '@/composables/contacts'
+  import { useIcon } from '@/composables/icon'
 
   import Icon from '@/components/Icon.vue'
   import Link from '@/components/Link.vue'
 
-  import envelope from '@/assets/icons/envelope.json'
-
-  import contactsJson from '@/data/contacts.json'
-
-  const contactData: ContactMedium[] = contactsJson
-
-  const simpleIcons: Record<string, SimpleIcon> = {
-    github: siGithub,
-    linkedin: siLinkedin,
-    instagram: siInstagram,
-  }
-  const customIcons: Record<string, IconType> = {
-    envelope: envelope as IconType,
-  }
-
-  const getPaths = (icon: string): Path[] => customIcons[icon]?.paths ?? [{
-    d: simpleIcons[icon].path,
-    'fill-rule': 'nonzero',
-  }]
+  const { getIconPaths } = useIcon()
+  const { contactMedia } = useContacts()
 </script>
 
 <template>
@@ -48,7 +24,7 @@ hyperlinks, where appropriate.
 
     <div class="mb-6 grid grid-cols-1 gap-y-4 text-lg sm:grid-cols-3 lg:grid-cols-4">
       <div
-        v-for="medium in contactData"
+        v-for="medium in contactMedia"
         :key="medium.name"
         class="sm:last-of-type:col-span-3 lg:last-of-type:col-span-1">
         <h2 class="font-semibold">
@@ -57,13 +33,13 @@ hyperlinks, where appropriate.
         <div>
           <Icon
             class="mr-2 inline-block"
-            :paths="getPaths(medium.icon)" />
+            :paths="getIconPaths(medium.id)" />
           <component
             :is="medium.url ? Link : 'span'"
             :label="`${medium.name} profile`"
             :dest="medium.url"
             variant="plain">
-            {{ medium.text }}
+            {{ medium.username }}
           </component>
         </div>
       </div>

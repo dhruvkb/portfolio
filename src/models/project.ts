@@ -37,7 +37,7 @@ export class Epic extends ResumeItem {
     this.projects = Object.fromEntries(
       this.children.map((projectJson) => {
         const project = new Project(projectJson, this)
-        return [project.slug, project]
+        return [project.id, project]
       }),
     )
   }

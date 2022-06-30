@@ -1,10 +1,12 @@
+import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import { useResume } from '@/composables/resume'
 import type { RowData } from '@/models/data_table'
+import { useResume } from '@/stores/resume'
 
 export const useRoleTable = () => {
   const resumeStore = useResume()
+  const { roles } = storeToRefs(resumeStore)
 
   const columns = [
     {
@@ -47,7 +49,7 @@ export const useRoleTable = () => {
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>
 
-  const data = computed(() => resumeStore.roles.map((role): RoleData => ({
+  const data = computed(() => roles.value.map((role): RoleData => ({
     isLast: role.isLast,
     data: {
       org: { org: role.org },

@@ -19,12 +19,16 @@ import {
   siTailwindcss,
   siTypescript,
   siVuedotjs,
+  siGithub,
+  siInstagram,
+  siLinkedin,
 } from 'simple-icons/icons'
 
 import type { Icon as IconType, Path } from '@/models/icon'
 
 import browserstack from '@/assets/icons/browserstack.json'
 import centerofci from '@/assets/icons/centerofci.json'
+import envelope from '@/assets/icons/envelope.json'
 import imgiitroorkee from '@/assets/icons/imgiitroorkee.json'
 import reschume from '@/assets/icons/reschume.json'
 
@@ -51,6 +55,11 @@ const simpleIcons: Record<string, SimpleIcon> = {
   tailwindcss: siTailwindcss,
   typescript: siTypescript,
   vuedotjs: siVuedotjs,
+
+  // Contacts
+  github: siGithub,
+  linkedin: siLinkedin,
+  instagram: siInstagram,
 }
 const customIcons: Record<string, IconType> = {
   // Organisations
@@ -60,13 +69,22 @@ const customIcons: Record<string, IconType> = {
 
   // Technologies
   reschume: reschume as IconType,
+
+  // Contacts
+  email: envelope as IconType,
 }
 
 export const useIcon = () => {
-  const getIconPaths = (slug: string): Path[] => customIcons[slug]?.paths ?? [{
-    d: simpleIcons[slug].path,
-    'fill-rule': 'nonzero',
-  }]
+  const getIconPaths = (slug: string): Path[] => {
+    if (slug in customIcons) return customIcons[slug].paths
+    if (slug in simpleIcons) {
+      return [{
+        d: simpleIcons[slug].path,
+        'fill-rule': 'nonzero',
+      }]
+    }
+    return []
+  }
 
   return {
     getIconPaths,
