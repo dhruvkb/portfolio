@@ -24,10 +24,7 @@ import {
   siLinkedin,
 } from 'simple-icons/icons'
 
-import type {
-  Icon as IconType,
-  Path,
-} from '@/models/icon'
+import type { Icon as IconType, Path } from '@/models/icon'
 
 import browserstack from '@/assets/icons/browserstack.json'
 import center_of_ci from '@/assets/icons/center_of_ci.json' // eslint-disable-line camelcase
@@ -83,7 +80,7 @@ const customIcons: Record<string, IconType> = {
   pls,
   portfolio,
   reschume,
-  seeelaye,
+  seeelaye: seeelaye as IconType,
 
   // Contacts
   email,
