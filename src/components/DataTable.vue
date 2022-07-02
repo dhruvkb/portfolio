@@ -10,7 +10,7 @@ separators between row groups.
   import type { Breakpoint } from '@/models/breakpoints'
   import type { ColumnSpec, RowData } from '@/models/data_table'
 
-  import OrganisationCell from '@/cells/OrganisationCell.vue'
+  import BrandCell from '@/cells/BrandCell.vue'
   import PeriodCell from '@/cells/PeriodCell.vue'
   import TechStackCell from '@/cells/TechStackCell.vue'
 
@@ -25,8 +25,8 @@ separators between row groups.
 
   // Used for dynamically-rendered components.
   const components: Record<string, Component> = {
+    Brand: BrandCell,
     Link: LinkCell,
-    Organisation: OrganisationCell,
     Period: PeriodCell,
     TechStack: TechStackCell,
   }

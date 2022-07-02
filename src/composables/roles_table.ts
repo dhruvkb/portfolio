@@ -1,6 +1,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
+import type { RoleType } from 'reschume'
+
 import type { RowData } from '@/models/data_table'
 import { useResume } from '@/stores/resume'
 
@@ -12,7 +14,7 @@ export const useRoleTable = () => {
     {
       code: 'org',
       display: 'Org',
-      componentName: 'Organisation',
+      componentName: 'Brand',
       classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
     },
     {
@@ -52,7 +54,7 @@ export const useRoleTable = () => {
   const data = computed(() => roles.value.map((role): RoleData => ({
     isLast: role.isLast,
     data: {
-      org: { org: role.org },
+      org: role.org,
       name: role.name,
       type: role.type,
       epics: role.epics.map((epic) => epic.name).join(', '),

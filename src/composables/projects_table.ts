@@ -12,7 +12,8 @@ export const useProjectTable = () => {
     {
       code: 'epic',
       display: 'Epic',
-      classes: ['w-[7rem]'] as string[],
+      componentName: 'Brand',
+      classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
     },
     {
       code: 'name',
@@ -22,7 +23,7 @@ export const useProjectTable = () => {
     {
       code: 'org',
       display: 'Org',
-      componentName: 'Organisation',
+      componentName: 'Brand',
       breakpoint: 'lg', // same as breakpoint of Epic in `rolesColumns`
       classes: ['w-[13rem]'] as string[],
     },
@@ -45,9 +46,9 @@ export const useProjectTable = () => {
   const data = computed(() => projects.value.map((project): ProjectData => ({
     isLast: project.isLast,
     data: {
-      org: { org: project.epic.role?.org },
-      epic: project.epic.name,
+      epic: project.epic,
       name: project.name,
+      org: project.epic.role?.org ?? { },
       technologies: { technologies: project.technologies },
       link: { dest: project.url, label: project.urlLabel, variant: 'plain' },
     },

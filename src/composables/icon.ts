@@ -24,13 +24,20 @@ import {
   siLinkedin,
 } from 'simple-icons/icons'
 
-import type { Icon as IconType, Path } from '@/models/icon'
+import type {
+  Icon as IconType,
+  Path,
+} from '@/models/icon'
 
 import browserstack from '@/assets/icons/browserstack.json'
-import centerofci from '@/assets/icons/centerofci.json'
-import envelope from '@/assets/icons/envelope.json'
-import imgiitroorkee from '@/assets/icons/imgiitroorkee.json'
+import center_of_ci from '@/assets/icons/center_of_ci.json' // eslint-disable-line camelcase
+import email from '@/assets/icons/email.json'
+import img from '@/assets/icons/img.json'
+import openverse from '@/assets/icons/openverse.json'
+import pls from '@/assets/icons/pls.json'
+import portfolio from '@/assets/icons/portfolio.json'
 import reschume from '@/assets/icons/reschume.json'
+import seeelaye from '@/assets/icons/seeelaye.json'
 
 const simpleIcons: Record<string, SimpleIcon> = {
   // Organisations
@@ -56,6 +63,9 @@ const simpleIcons: Record<string, SimpleIcon> = {
   typescript: siTypescript,
   vuedotjs: siVuedotjs,
 
+  // Projects
+  vocabulary: siCreativecommons,
+
   // Contacts
   github: siGithub,
   linkedin: siLinkedin,
@@ -63,15 +73,20 @@ const simpleIcons: Record<string, SimpleIcon> = {
 }
 const customIcons: Record<string, IconType> = {
   // Organisations
-  center_of_ci: centerofci as IconType,
+  center_of_ci, // eslint-disable-line camelcase
   browserstack: browserstack as IconType,
-  img: imgiitroorkee as IconType,
+  img,
 
-  // Technologies
-  reschume: reschume as IconType,
+  // Projects
+  omniport: img,
+  openverse,
+  pls,
+  portfolio,
+  reschume,
+  seeelaye,
 
   // Contacts
-  email: envelope as IconType,
+  email,
 }
 
 export const useIcon = () => {

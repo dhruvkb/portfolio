@@ -1,41 +1,47 @@
 <!--
-Renders the name of the organisation alongside the logo of the organisation.
+Renders the name of a brand alongside its logo.
 -->
 
 <script setup lang="ts">
+  import { computed } from 'vue'
+
   import { useIcon } from '@/composables/icon'
-  import type { Org } from '@/models/role'
 
   import Icon from '@/components/Icon.vue'
 
   interface Props {
-    org?: Org
+    id?: string
+    name?: string
+    shortName?: string
   }
-  defineProps<Props>()
+  const props = defineProps<Props>()
 
   const { getIconPaths } = useIcon()
+
+  const isVisible = computed(() => Boolean(props.id) && Boolean(props.name))
 </script>
 
 <template>
-  <span v-if="org">
-    <span class="sr-only">{{ org.name }}</span>
+  <span v-if="isVisible">
+    <span class="sr-only">{{ name }}</span>
 
     <Icon
+      v-if="id"
       class="mr-2 inline-block"
-      :paths="getIconPaths(org.id)" />
+      :paths="getIconPaths(id)" />
 
     <!-- Short name for small screens -->
     <span
       class="sm:hidden"
       aria-hidden="true">
-      {{ org.shortName ?? org.name }}
+      {{ shortName ?? name }}
     </span>
 
     <!-- Complete name for large screens -->
     <span
       class="hidden sm:inline"
       aria-hidden="true">
-      {{ org.name }}
+      {{ name }}
     </span>
   </span>
 </template>
