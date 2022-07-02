@@ -6,30 +6,43 @@ is still active.
 <script setup lang="ts">
   import { computed } from 'vue'
 
+  import type { Date as DateType } from 'reschume'
+
   interface Props {
-    start: string[],
-    end?: string[]
+    start: DateType,
+    end?: DateType
   }
   const props = defineProps<Props>()
 
   const isActive = computed(() => !props.end)
   const description = computed(() => (isActive.value ? 'Active role' : 'Past role'))
 
-  const readableDate = (period: string[]) => {
-    const [shortMonth, yy] = period
+  const audibleDate = (period: DateType) => {
+    const [yyyy, mm = 1, dd = 1] = period
+
+    const options: Intl.DateTimeFormatOptions = {}
+    if (period.length >= 1) options.year = 'numeric'
+    if (period.length >= 2) options.month = 'long'
+    if (period.length >= 3) options.day = 'numeric'
+
+    return new Date(yyyy, mm - 1, dd).toLocaleString('default', options)
+  }
+
+  const readableDate = (period: DateType) => {
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    const monthNum = monthNames.indexOf(shortMonth)
-    const yearNum = parseInt(`20${yy}`, 10)
-    return new Date(yearNum, monthNum, 1).toLocaleString('default', { year: 'numeric', month: 'long' })
+
+    const [yyyy, mm = undefined, dd = undefined] = period
+    const dateText: (string | number)[] = [yyyy % 100]
+    if (mm) dateText.push(monthNames[mm - 1])
+    if (dd) dateText.push(dd)
+
+    return dateText.reverse().join('<span class="text-neutral-400 dark:text-neutral-600">.</span>')
   }
 
   const descText = computed(() => {
     let period
-    if (props.end) {
-      period = `${readableDate(props.start)} to ${readableDate(props.end)}`
-    } else {
-      period = `${readableDate(props.start)} to present`
-    }
+    if (props.end) period = `${audibleDate(props.start)} to ${audibleDate(props.end)}`
+    else period = `${audibleDate(props.start)} to present`
     return `${description.value}: ${period}`
   })
 </script>
@@ -41,11 +54,16 @@ is still active.
     <span
       class="hidden font-mono tracking-tighter md:inline"
       aria-hidden="true">
-      <span :title="readableDate(start)">{{ start.join("'") }}</span>
+      <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
+      <span
+        :title="audibleDate(start)"
+        v-html="readableDate(start)" />
       <span class="m-1 text-neutral-400 dark:text-neutral-600">&ndash;</span>
       <span
         v-if="end"
-        :title="readableDate(end)">{{ end.join("'") }}</span>
+        :title="audibleDate(end)"
+        v-html="readableDate(end)" />
+      <!-- eslint-enable vue/no-v-html -->
     </span>
 
     <span
