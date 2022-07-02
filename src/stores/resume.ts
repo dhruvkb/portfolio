@@ -2,9 +2,9 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 import axios from 'axios'
+import type { Resume } from 'reschume'
 
 import { Epic, Project } from '@/models/project'
-import type { Resume } from '@/models/resume'
 import { Org, Role } from '@/models/role'
 
 export const useResume = defineStore('resume', () => {

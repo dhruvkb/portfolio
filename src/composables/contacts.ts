@@ -1,7 +1,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import type { Profile } from '@/models/bio'
+import type { Profile } from 'reschume'
+
 import { useResume } from '@/stores/resume'
 
 export const useContacts = () => {
@@ -10,7 +11,7 @@ export const useContacts = () => {
 
   const contactMedia = computed(() => {
     const social = resume.value?.bio.social ?? []
-    const emails: Profile[] = resume.value?.bio.contact.emails.map((email) => ({
+    const emails: Profile[] = resume.value?.bio.contact?.emails.map((email) => ({
       id: 'email',
       name: 'Email',
       username: email,

@@ -1,36 +1,19 @@
-import { type ResumeItemJson, ResumeItem } from '@/models/resume'
+import type { Project as IProject, Epic as IEpic } from 'reschume'
+
+import { ResumeItem } from '@/models/resume'
 import type { Role } from '@/models/role'
 
-export interface Technology {
-  name: string
-  icon: string
-}
-
-/* JSON models */
-
-export interface ProjectJson extends ResumeItemJson {
-  url: string
-  urlLabel: string
-  technologies: Technology[]
-}
-
-export interface EpicJson extends ResumeItemJson {
-  children: ProjectJson[]
-}
-
-/* JS models: Use interface/class merging to avoid declaring variables again. */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Project extends IProject {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Project extends ProjectJson {}
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Epic extends EpicJson {}
+export interface Epic extends IEpic {}
 
 export class Epic extends ResumeItem {
   role!: Role
   projects: Record<string, Project>
 
-  constructor(epicJson: EpicJson) {
+  constructor(epicJson: IEpic) {
     super(epicJson)
 
     this.children = epicJson.children
@@ -55,12 +38,13 @@ export class Project extends ResumeItem {
   isFirst: boolean
   isLast: boolean
   epic: Epic
+  urlLabel: string
 
-  constructor(projectJson: ProjectJson, epic: Epic) {
+  constructor(projectJson: IProject, epic: Epic) {
     super(projectJson)
 
     this.url = projectJson.url
-    this.urlLabel = projectJson.urlLabel
+    this.urlLabel = typeof projectJson.urlLabel === 'string' ? projectJson.urlLabel : ''
     this.technologies = projectJson.technologies
 
     this.epic = epic

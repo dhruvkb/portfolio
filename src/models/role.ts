@@ -1,40 +1,18 @@
+import type { Role as IRole, Org as IOrg } from 'reschume'
+
 import type { Epic } from '@/models/project'
-import { ResumeItem, type ResumeItemJson } from '@/models/resume'
-
-export interface Period {
-  start: string[]
-  end?: string[]
-}
-
-/* JSON models */
-
-export interface RoleJson extends ResumeItemJson {
-  type: string
-  period: Period
-
-  /* references to epic by slug */
-  epicSlugs?: string[]
-}
-
-export interface OrgJson extends ResumeItemJson {
-  shortName?: string
-  url: string
-
-  children: RoleJson[]
-}
-
-/* JS models: Use interface/class merging to avoid declaring variables again. */
+import { ResumeItem } from '@/models/resume'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Role extends RoleJson {}
+export interface Role extends IRole {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Org extends OrgJson {}
+export interface Org extends IOrg {}
 
 export class Org extends ResumeItem {
   roles: Record<string, Role>
 
-  constructor(orgJson: OrgJson) {
+  constructor(orgJson: IOrg) {
     super(orgJson)
 
     this.shortName = orgJson.shortName
@@ -54,14 +32,15 @@ export class Role extends ResumeItem {
   isFirst: boolean
   isLast: boolean
   org!: Org
+  epicSlugs: string[]
   epics: Epic[]
 
-  constructor(roleJson: RoleJson, org: Org) {
+  constructor(roleJson: IRole, org: Org) {
     super(roleJson)
 
     this.type = roleJson.type
     this.period = roleJson.period
-    this.epicSlugs = roleJson.epicSlugs
+    this.epicSlugs = Array.isArray(roleJson.epicSlugs) ? roleJson.epicSlugs : []
 
     this.org = org
 
