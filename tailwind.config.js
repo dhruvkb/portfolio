@@ -10,6 +10,10 @@ module.exports = {
   theme: {
     extend: {
       // `screens` should be synchronised with `@/models/breakpoints.ts`.
+      screens: {
+        print: { raw: 'print' },
+        screen: { raw: 'screen' },
+      },
       spacing: {
         ch: '1ch',
         indent: '2ch',
