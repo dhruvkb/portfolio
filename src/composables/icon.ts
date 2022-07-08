@@ -8,6 +8,7 @@ import {
   siDjango,
   siDocker,
   siGnubash,
+  siIonic,
   siJavascript,
   siJson,
   siLatex,
@@ -26,6 +27,7 @@ import {
 
 import type { Icon as IconType, Path } from '@/models/icon'
 
+import _2fac from '@/assets/icons/2fac.json'
 import browserstack from '@/assets/icons/browserstack.json'
 import center_of_ci from '@/assets/icons/center_of_ci.json' // eslint-disable-line camelcase
 import email from '@/assets/icons/email.json'
@@ -48,6 +50,7 @@ const simpleIcons: Record<string, SimpleIcon> = {
   django: siDjango,
   docker: siDocker,
   gnubash: siGnubash,
+  ionic: siIonic,
   javascript: siJavascript,
   json: siJson,
   latex: siLatex,
@@ -75,6 +78,7 @@ const customIcons: Record<string, IconType> = {
   img,
 
   // Projects
+  '2fac': _2fac,
   omniport: img,
   openverse,
   pls,
