@@ -43,7 +43,7 @@ export default defineApp({
       { name: 'google-site-verification', content: 'rDaR4bofozdONdJoKYHh4JKPdCXaVt9QpLiZEcqbr7I' },
 
       // Open-graph
-      { property: 'og:image', content: 'https://dhruvkb.github.io/meta/cover.png' },
+      { property: 'og:image', content: 'https://dhruvkb.dev/og-image.png' },
       { property: 'og:type', content: 'website' },
 
       // Twitter
