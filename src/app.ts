@@ -62,6 +62,7 @@ export default defineApp({
 
       // Favicon
       { rel: 'icon', href: '/favicon.png' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ef4444' },
     ],
   }),
   enhanceApp: ({ app }) => {
