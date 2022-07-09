@@ -11,6 +11,7 @@ declare module 'vue' {
     Kaomoji: typeof import('./src/components/Kaomoji.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']
     SiteTitle: typeof import('./src/components/SiteTitle.vue')['default']
+    Subtitle: typeof import('./src/components/Subtitle.vue')['default']
   }
 }
 
