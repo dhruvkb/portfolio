@@ -5,6 +5,7 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
 <script setup lang="ts">
   import Kaomoji from '@/components/Kaomoji.vue'
   import SiteTitle from '@/components/SiteTitle.vue'
+  import Subtitle from '@/components/Subtitle.vue'
 </script>
 
 <template>
@@ -26,8 +27,6 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
       <span class="text-red-500">*</span>
     </p>
 
-    <p class="text-sm leading-snug">
-      <span class="text-red-500">*</span>Also wears many other hats.
-    </p>
+    <Subtitle client:load />
   </section>
 </template>
