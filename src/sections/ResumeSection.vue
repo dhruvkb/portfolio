@@ -4,19 +4,11 @@ Uses data from the 'resume' store in Pinia.
 -->
 
 <script setup lang="ts">
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  import { usePage } from 'iles'
-
   import { useProjectTable } from '@/composables/projects_table'
   import { useRoleTable } from '@/composables/roles_table'
-  import { useResume } from '@/stores/resume'
 
   import DataTable from '@/components/DataTable.vue'
   import Link from '@/components/Link.vue'
-
-  const { site } = usePage()
-  const resumeStore = useResume()
-  await resumeStore.initResume(site.resumeUrl)
 
   const { columns: roleColumns, data: roleData } = useRoleTable()
   const { columns: projectColumns, data: projectData } = useProjectTable()
