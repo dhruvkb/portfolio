@@ -25,7 +25,7 @@ hyperlinks, where appropriate.
     <div class="mb-6 grid grid-cols-1 gap-y-4 text-lg sm:grid-cols-3 lg:grid-cols-4">
       <div
         v-for="medium in contactMedia"
-        :key="medium.name"
+        :key="medium.id"
         class="sm:last-of-type:col-span-3 lg:last-of-type:col-span-1">
         <h2 class="font-semibold">
           {{ medium.name }}
