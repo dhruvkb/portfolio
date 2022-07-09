@@ -30,10 +30,11 @@ export const useRoleTable = () => {
       display: 'Role',
     },
     {
-      code: 'epics',
-      display: 'Epics',
+      code: 'epic',
+      display: 'Epic',
+      componentName: 'Brand',
       breakpoint: 'lg', // same as breakpoint of Org in `projectsColumns`
-      classes: ['w-[7rem]'] as string[],
+      classes: ['w-[13rem]'] as string[],
     },
     {
       code: 'type',
@@ -65,7 +66,7 @@ export const useRoleTable = () => {
       org: role.org,
       name: role.name,
       type: role.type ? roleTypes[role.type] : '',
-      epics: role.epics.map((epic) => epic.name).join(', '),
+      epic: role.epics[0],
       period: role.period,
       link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, variant: 'plain' },
     },
