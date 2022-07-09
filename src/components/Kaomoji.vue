@@ -5,6 +5,8 @@ Draws a face to the screen consisting of CJK characters.
 <script setup lang="ts">
   import { computed } from 'vue'
 
+  import { sample } from '@/utils/random'
+
   interface Props {
     mood?: 'happy' | 'confused'
   }
@@ -49,11 +51,6 @@ Draws a face to the screen consisting of CJK characters.
       eyePairs = []
       mouths = []
       hands = []
-  }
-
-  const sample = <T, >(array: T[]): T => {
-    const len = array.length
-    return array[Math.floor(Math.random() * len)]
   }
 
   const face = computed(() => {
