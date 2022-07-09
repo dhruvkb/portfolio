@@ -5,6 +5,8 @@ Displays a list of what I do and can do.
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
 
+  import ReferenceIndex from '@/components/ReferenceIndex.vue'
+
   const deeds = [
     {
       text: 'write elegant code',
@@ -57,9 +59,9 @@ Displays a list of what I do and can do.
       <template
         v-for="(deed, index) in deeds"
         :key="index">
-        <span
-          class="align-top font-mono text-sm font-semibold text-neutral-400 dark:text-neutral-600"
-          aria-hidden="true">[{{ index + 1 }}]</span>
+        <ReferenceIndex
+          class="align-top"
+          :index="index + 1" />
         <span
           class="gradient-text hover:text-tx"
           :class="[deed.gradients, {'text-tx': index === activeDeed}]">
