@@ -18,7 +18,7 @@ module.exports = {
     semi: ['error', 'never', { beforeStatementContinuationChars: 'always' }],
 
     'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }], // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js#L139
-    'import/no-extraneous-dependencies': ['error', { devDependencies: ['src/app.ts', '.eslintrc.js', 'iles.config.ts', 'tailwind.config.js'] }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/order': ['error', {
       'newlines-between': 'always',
       groups: ['builtin', 'external', 'internal'],
