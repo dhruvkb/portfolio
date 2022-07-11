@@ -10,16 +10,19 @@ Renders a funny, witty remark about me, as a person, or my profession, as a deve
   const subtitles = [
     'Also wears many other hats.',
     'Is a computer whisperer.',
-    'Writes code; sometimes gets paid for it.',
-    'Has talked to computers for over half his life.',
     'Designs his own websites.',
-    'Crafts new and innovative bugs.',
+    'Crafts new and innovative <s>apps</s> bugs.',
+    'Has talked to computers for over half his life.',
+    'Writes code; <em>sometimes</em> gets paid for it.',
   ]
   const subtitle = computed(() => sample(subtitles))
 </script>
 
 <template>
   <p class="mb-6 text-sm leading-snug">
-    <span class="text-red-500">*</span>{{ subtitle }}
+    <span class="text-red-500">*</span>
+    <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
+    <span v-html="subtitle" />
+    <!-- eslint-enable vue/no-v-html -->
   </p>
 </template>
