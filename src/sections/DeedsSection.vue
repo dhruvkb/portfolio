@@ -47,14 +47,12 @@ Displays a list of what I do and can do.
 </script>
 
 <template>
-  <section
-    class="px-page max-w-screen-lg"
-    aria-label="Deeds">
-    <h1 aria-label="What do I do?">
+  <section aria-label="Deeds">
+    <h2 aria-label="What do I do?">
       What do I do?
-    </h1>
+    </h2>
 
-    <p class="mb-6 text-3xl leading-snug sm:text-4xl">
+    <p class="mb-6 max-w-screen-lg text-2xl leading-snug sm:text-3xl md:text-4xl">
       I
       <template
         v-for="(deed, index) in deeds"

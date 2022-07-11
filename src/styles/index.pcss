@@ -8,11 +8,15 @@
   }
 
   body {
-    @apply flex-1;
+    @apply flex-1 flex flex-col;
   }
 
-  h1 {
-    @apply text-sm font-semibold uppercase mb-4;
+  h2 {
+    @apply text-sm font-semibold uppercase mb-4 flex flex-row items-center gap-2;
+
+    &::after {
+      @apply content-[''] block h-px bg-neutral-200 dark:bg-neutral-900 grow;
+    }
   }
 
   strong {
@@ -29,15 +33,35 @@
 }
 
 @layer utilities {
-  .pl-page {
-    @apply pls-2 sm:pls-4 lg:pls-8;
+  .pt-page {
+    @apply pts-2 sm:pts-4 lg:pts-8;
   }
 
   .pr-page {
     @apply prs-2 sm:prs-4 lg:prs-8;
   }
 
+  .pb-page {
+    @apply pbs-2 sm:pbs-4 lg:pbs-8;
+  }
+
+  .pl-page {
+    @apply pls-2 sm:pls-4 lg:pls-8;
+  }
+
   .px-page {
     @apply pl-page pr-page;
+  }
+
+  .py-page {
+    @apply pt-page pb-page;
+  }
+}
+
+#app {
+  @apply flex flex-1 flex-col;
+
+  main {
+    @apply flex-1;
   }
 }

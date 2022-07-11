@@ -1,5 +1,5 @@
 <!--
-Renders an introduction and displays the Kaomoji above a certain breakpoint.
+Renders the site-title and the kaomoji.
 -->
 
 <script setup lang="ts">
@@ -9,19 +9,18 @@ Renders an introduction and displays the Kaomoji above a certain breakpoint.
 </script>
 
 <template>
-  <section
-    class="px-page"
-    aria-label="Hello">
-    <h1 class="normal-case">
+  <section aria-label="Hello">
+    <!-- Using `h-5` to prevent layout shift when `Kaomoji` is loaded on the client. -->
+    <h2 class="h-5 normal-case">
       <Kaomoji
         client:load
         aria-hidden="true" />
       <span class="sr-only">Hello</span>
-    </h1>
+    </h2>
 
-    <SiteTitle />
+    <SiteTitle class="text-3xl sm:text-4xl lg:text-5xl" />
 
-    <p class="mb-6 text-3xl leading-snug sm:text-4xl">
+    <p class="mb-6 max-w-screen-lg text-2xl leading-snug sm:text-3xl md:text-4xl">
       <strong>software developer</strong> and
       <strong>open-source maintainer</strong>
       <span class="text-red-500">*</span>
