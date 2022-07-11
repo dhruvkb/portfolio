@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AsciiArt: typeof import('./src/components/AsciiArt.vue')['default']
     DataTable: typeof import('./src/components/DataTable.vue')['default']
+    GameOfLife: typeof import('./src/components/GameOfLife.vue')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
     Island: typeof import('./node_modules/iles/dist/client/app/components/Island.vue')['default']
     Kaomoji: typeof import('./src/components/Kaomoji.vue')['default']
