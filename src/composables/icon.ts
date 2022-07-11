@@ -80,7 +80,7 @@ const customIcons: Record<string, IconType> = {
   // Projects
   '2fac': _2fac,
   omniport: img,
-  openverse,
+  openverse, // TODO: Replace with icon imported from Simple Icons
   pls,
   portfolio,
   reschume,
