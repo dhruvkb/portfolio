@@ -6,14 +6,19 @@ Hopefully the user navigates away from it by that point.
 <script setup lang="ts">
   import { onMounted, ref } from 'vue'
 
-  import { useResizeObserver } from '@vueuse/core'
+  import { useResizeObserver, useMediaQuery } from '@vueuse/core'
 
   import { useGameOfLife } from '@/composables/game_of_life'
+
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion)')
 
   const columns = ref(0)
   const rows = ref(0)
   const { board, updateLoop } = useGameOfLife(columns, rows)
-  onMounted(updateLoop)
+  onMounted(() => {
+    // Start the animation after 5 seconds.
+    if (!prefersReducedMotion.value) setTimeout(updateLoop, 5000)
+  })
 
   const boardEl = ref<HTMLElement | null>(null)
   useResizeObserver(boardEl, (entries) => {
