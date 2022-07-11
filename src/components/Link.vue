@@ -37,7 +37,7 @@ in a new tab without a referrer.
 </script>
 
 <template>
-  <div class="group inline-flex flex-row items-center gap-1">
+  <span class="group inline-flex flex-row items-center gap-1">
     <a
       class="hover:underline"
       :class="{
@@ -58,5 +58,5 @@ in a new tab without a referrer.
       aria-hidden="true">
       {{ isExternal ? '↗' : '→' }}
     </span>
-  </div>
+  </span>
 </template>
