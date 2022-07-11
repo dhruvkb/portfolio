@@ -15,21 +15,23 @@ hyperlinks, where appropriate.
 </script>
 
 <template>
-  <section
-    class="px-page"
-    aria-label="Contact">
-    <h1 aria-label="Let's talk">
-      Let's talk
-    </h1>
+  <section aria-label="Contact">
+    <h2 aria-label="Contact">
+      Contact
+    </h2>
 
-    <div class="mb-6 grid grid-cols-1 gap-y-4 text-lg sm:grid-cols-3 lg:grid-cols-4">
+    <p class="mb-12 text-2xl leading-snug sm:text-3xl lg:text-4xl">
+      Let's get in touch.
+    </p>
+
+    <div class="grid grid-cols-1 gap-y-4 text-lg sm:grid-cols-3 lg:grid-cols-4">
       <div
         v-for="medium in contactMedia"
         :key="medium.id"
         class="sm:last-of-type:col-span-3 lg:last-of-type:col-span-1">
-        <h2 class="font-semibold">
+        <h3 class="font-medium">
           {{ medium.name }}
-        </h2>
+        </h3>
         <div>
           <Icon
             class="mr-2 inline-block"
@@ -44,10 +46,5 @@ hyperlinks, where appropriate.
         </div>
       </div>
     </div>
-
-    <p class="text-sm leading-snug">
-      I'm always open to collaborating on new and exciting ideas. To discuss a
-      project, drop me a line!
-    </p>
   </section>
 </template>

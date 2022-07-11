@@ -17,13 +17,13 @@ Uses data from the 'resume' store in Pinia.
 <template>
   <section aria-label="Résumé">
     <div class="px-page mb-6">
-      <h1 aria-label="What have I done?">
-        What have I done?
-      </h1>
+      <h2 aria-label="Résumé">
+        Résumé
+      </h2>
     </div>
 
     <!-- TODO: Revisit the idea of both tables being side by side. -->
-    <div class="mb-6 grid grid-cols-1 gap-6">
+    <div class="mb-12 grid grid-cols-1 gap-12">
       <DataTable
         title="Roles"
         :columns="roleColumns"
