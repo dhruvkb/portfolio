@@ -3,33 +3,27 @@
 </page>
 
 <script setup lang="ts">
+  import GameOfLife from '@/components/GameOfLife.vue'
   import Link from '@/components/Link.vue'
-  import SiteTitle from '@/components/SiteTitle.vue'
 </script>
 
 <template>
-  <main class="px-page flex min-h-screen flex-col items-center gap-6 pts-8 pbs-8 lg:pts-12 lg:pbs-12">
-    <!-- `mt-9` places header at same position as the homepage. -->
-    <Link
-      class="mt-9 self-start"
-      label="Homepage"
-      dest="/"
-      variant="base">
-      <SiteTitle />
-    </Link>
-    <div class="my-auto">
-      <h2 class="my-auto text-9xl font-black">
-        404
-      </h2>
+  <main class="px-page py-page flex flex-col gap-6">
+    <div class="relative z-10">
       <p class="mb-6 text-lg">
-        You seem
-        <span class="text-neutral-900 dark:text-neutral-200">lost</span>.
+        There's nothing here. You seem <strong>lost</strong>.
       </p>
       <Link
         label="Homepage"
         dest="/">
-        Go back?
+        Home
       </Link>
+    </div>
+
+    <div class="relative grow">
+      <GameOfLife
+        class="absolute inset-0 z-0"
+        client:load />
     </div>
   </main>
 </template>
