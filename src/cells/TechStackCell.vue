@@ -19,16 +19,13 @@ icons and logos.
 </script>
 
 <template>
-  <span>
+  <span class="divide-x leading-none">
     <span
       v-for="(technology) in technologies"
       :key="technology.name"
-      class="mr-2 border-r border-neutral-200 pr-2 first-of-type:ml-0 last-of-type:mr-0 last-of-type:border-0 dark:border-neutral-900">
-      <span
-        class="inline-flex flex-row items-center gap-2">
-        <Icon :paths="getIconPaths(technology.id)" />
-        <span class="sr-only sm:not-sr-only">{{ technology.name }}</span>
-      </span>
+      class="inline-flex flex-row items-center gap-2 border-neutral-200 px-2 first:pl-0 last:pr-0 dark:border-neutral-900">
+      <Icon :paths="getIconPaths(technology.id)" />
+      <span class="sr-only md:not-sr-only">{{ technology.name }}</span>
     </span>
   </span>
 </template>
