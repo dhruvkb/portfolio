@@ -4,14 +4,33 @@ Uses data from the 'resume' store in Pinia.
 -->
 
 <script setup lang="ts">
+  import { computed } from 'vue'
+
   import { useProjectTable } from '@/composables/projects_table'
   import { useRoleTable } from '@/composables/roles_table'
+
+  import BrandCell from '@/cells/BrandCell.vue'
+  import PeriodCell from '@/cells/PeriodCell.vue'
+  import TechStackCell from '@/cells/TechStackCell.vue'
 
   import DataTable from '@/components/DataTable.vue'
   import Link from '@/components/Link.vue'
 
   const { columns: roleColumns, data: roleData } = useRoleTable()
   const { columns: projectColumns, data: projectData } = useProjectTable()
+
+  const tables = computed(() => [
+    {
+      title: 'Roles',
+      columns: roleColumns,
+      rows: roleData.value,
+    },
+    {
+      title: 'Projects',
+      columns: projectColumns,
+      rows: projectData.value,
+    },
+  ])
 </script>
 
 <template>
@@ -25,13 +44,26 @@ Uses data from the 'resume' store in Pinia.
     <!-- TODO: Revisit the idea of both tables being side by side. -->
     <div class="mb-12 grid grid-cols-1 gap-12">
       <DataTable
-        title="Roles"
-        :columns="roleColumns"
-        :rows="roleData" />
-      <DataTable
-        title="Projects"
-        :columns="projectColumns"
-        :rows="projectData" />
+        v-for="(table, tableIndex) in tables"
+        :key="tableIndex"
+        v-bind="table">
+        <!-- Some of these templates will be unused, depending on the columns in the table. -->
+        <template #org="{ data: org }">
+          <BrandCell v-bind="org" />
+        </template>
+        <template #epic="{ data: epic }">
+          <BrandCell v-bind="epic" />
+        </template>
+        <template #link="{ data: link }">
+          <Link v-bind="link" />
+        </template>
+        <template #period="{ data: period }">
+          <PeriodCell v-bind="period" />
+        </template>
+        <template #technologies="{ data: technologies }">
+          <TechStackCell v-bind="technologies" />
+        </template>
+      </DataTable>
     </div>
 
     <div class="px-page">

@@ -1,9 +1,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
-import type { RoleType } from 'reschume'
-
 import type { RowData } from '@/models/data_table'
+import { roleTypes } from '@/models/role'
 import { useResume } from '@/stores/resume'
 
 export const useRoleTable = () => {
@@ -14,13 +13,11 @@ export const useRoleTable = () => {
     {
       code: 'org',
       display: 'Org',
-      componentName: 'Brand',
       classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
     },
     {
       code: 'link',
       display: 'Link',
-      componentName: 'Link',
       breakpoint: 'lg',
       classes: ['w-[5rem]'] as string[],
     },
@@ -32,7 +29,6 @@ export const useRoleTable = () => {
     {
       code: 'epic',
       display: 'Epic',
-      componentName: 'Brand',
       breakpoint: 'lg', // same as breakpoint of Org in `projectsColumns`
       classes: ['w-[13rem]'] as string[],
     },
@@ -46,27 +42,18 @@ export const useRoleTable = () => {
       code: 'period',
       display: 'Period',
       breakpoint: 'sm',
-      componentName: 'Period',
       classes: ['w-[3rem]', 'md:w-[11rem]'] as string[],
     },
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>
 
-  const roleTypes: Record<RoleType, string> = {
-    'foss-contributor': 'FOSS',
-    'part-timer': 'Part-timer',
-    'full-timer': 'Full-timer',
-    intern: 'Intern',
-    contractor: 'Contractor',
-  }
-
   const data = computed(() => roles.value.map((role): RoleData => ({
     isLast: role.isLast,
     data: {
-      org: role.org,
+      org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
       name: role.name,
       type: role.type ? roleTypes[role.type] : '',
-      epic: role.epics[0],
+      epic: (({ id, name }) => ({ id, name }))(role.epics[0] ?? {}),
       period: role.period,
       link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, variant: 'plain' },
     },

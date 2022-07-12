@@ -12,7 +12,6 @@ export const useProjectTable = () => {
     {
       code: 'epic',
       display: 'Epic',
-      componentName: 'Brand',
       classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
     },
     {
@@ -23,14 +22,12 @@ export const useProjectTable = () => {
     {
       code: 'org',
       display: 'Org',
-      componentName: 'Brand',
       breakpoint: 'lg', // same as breakpoint of Epic in `rolesColumns`
       classes: ['w-[13rem]'] as string[],
     },
     {
       code: 'link',
       display: 'Link',
-      componentName: 'Link',
       breakpoint: 'lg',
       classes: ['w-[5rem]'] as string[],
     },
@@ -38,7 +35,6 @@ export const useProjectTable = () => {
       // Infinite expansion column
       code: 'technologies',
       display: 'Tech',
-      componentName: 'TechStack',
     },
   ] as const
   type ProjectData = RowData<typeof columns[number]['code']>
@@ -46,10 +42,10 @@ export const useProjectTable = () => {
   const data = computed(() => projects.value.map((project): ProjectData => ({
     isLast: project.isLast,
     data: {
-      epic: project.epic,
+      epic: (({ id, name }) => ({ id, name }))(project.epic),
       name: project.name,
-      org: project.epic.role?.org ?? { },
-      technologies: { technologies: project.technologies },
+      org: (({ id, name, shortName }) => ({ id, name, shortName }))(project.epic.role?.org ?? {}),
+      technologies: { technologies: project.technologies ?? [] },
       link: { dest: project.url, label: project.urlLabel, variant: 'plain' },
     },
   })))

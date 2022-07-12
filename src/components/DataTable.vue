@@ -5,16 +5,8 @@ separators between row groups.
 -->
 
 <script setup lang="ts">
-  import type { Component } from 'vue'
-
   import type { Breakpoint } from '@/models/breakpoints'
   import type { ColumnSpec, RowData } from '@/models/data_table'
-
-  import BrandCell from '@/cells/BrandCell.vue'
-  import PeriodCell from '@/cells/PeriodCell.vue'
-  import TechStackCell from '@/cells/TechStackCell.vue'
-
-  import LinkCell from '@/components/Link.vue' // Link
 
   interface Props {
     title?: string
@@ -22,14 +14,6 @@ separators between row groups.
     rows: RowData[]
   }
   defineProps<Props>()
-
-  // Used for dynamically-rendered components.
-  const components: Record<string, Component> = {
-    Brand: BrandCell,
-    Link: LinkCell,
-    Period: PeriodCell,
-    TechStack: TechStackCell,
-  }
 
   const getColumnVisibilityClasses = (breakpoint?: Breakpoint): string[] => {
     if (!breakpoint) return []
@@ -84,13 +68,11 @@ separators between row groups.
           :scope="index === 0 ? 'row' : undefined"
           :class="getColumnVisibilityClasses(column.breakpoint)"
           class="first:pl-page last:pr-page p-1 text-left font-normal">
-          <component
-            :is="components[column.componentName]"
-            v-if="column.componentName"
-            v-bind="row.data[column.code]" />
-          <template v-else>
-            {{ row.data[column.code] }}
-          </template>
+          <slot
+            :name="column.code"
+            :data="row.data[column.code]">
+            {{ typeof row.data[column.code] === 'object' ? 'object' : row.data[column.code] }}
+          </slot>
         </component>
       </tr>
     </tbody>

@@ -1,4 +1,4 @@
-import type { Role as IRole, Org as IOrg } from 'reschume'
+import type { Role as IRole, Org as IOrg, RoleType } from 'reschume'
 
 import type { Epic } from '@/models/project'
 import { ResumeItem } from '@/models/resume'
@@ -58,4 +58,12 @@ export class Role extends ResumeItem {
   associateEpic(epic: Epic) {
     this.epics.push(epic)
   }
+}
+
+export const roleTypes: Record<RoleType, string> = {
+  'foss-contributor': 'FOSS',
+  'part-timer': 'Part-timer',
+  'full-timer': 'Full-timer',
+  intern: 'Intern',
+  contractor: 'Contractor',
 }
