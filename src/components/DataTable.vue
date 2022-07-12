@@ -75,8 +75,8 @@ separators between row groups.
       <tr
         v-for="(row, rowIndex) in rows"
         :key="rowIndex"
-        class="transition-colors duration-200 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
-        :class="{'border-b border-neutral-200 dark:border-neutral-900': row.isLast }">
+        class="border-b transition-colors duration-200 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
+        :class="row.isLast ? 'border-neutral-200 dark:border-neutral-900' : 'border-white dark:border-black'">
         <component
           :is="index === 0 ? 'th' : 'td'"
           v-for="(column, index) in columns"
