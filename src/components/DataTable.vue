@@ -64,6 +64,7 @@ separators between row groups.
           :key="column.code"
           :class="[column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : '', ...(column.classes ?? [])]"
           :aria-label="column.display"
+          scope="col"
           class="first-of-type:pl-page last-of-type:pr-page box-content border-y border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
           {{ column.display }}
         </th>
@@ -76,11 +77,13 @@ separators between row groups.
         :key="rowIndex"
         class="transition-colors duration-200 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
         :class="{'border-b border-neutral-200 dark:border-neutral-900': row.isLast }">
-        <td
-          v-for="column in columns"
+        <component
+          :is="index === 0 ? 'th' : 'td'"
+          v-for="(column, index) in columns"
           :key="column.code"
+          :scope="index === 0 ? 'row' : undefined"
           :class="getColumnVisibilityClasses(column.breakpoint)"
-          class="first-of-type:pl-page last-of-type:pr-page p-1">
+          class="first:pl-page last:pr-page p-1 text-left font-normal">
           <component
             :is="components[column.componentName]"
             v-if="column.componentName"
@@ -88,7 +91,7 @@ separators between row groups.
           <template v-else>
             {{ row.data[column.code] }}
           </template>
-        </td>
+        </component>
       </tr>
     </tbody>
   </table>
