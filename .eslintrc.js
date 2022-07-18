@@ -62,6 +62,12 @@ module.exports = {
         'max-classes-per-file': ['error', 2],
       },
     },
+    {
+      files: ['components.d.ts'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
   ],
   settings: {
     'import/resolver': { typescript: {} },
