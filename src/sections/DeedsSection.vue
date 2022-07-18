@@ -62,7 +62,7 @@ Displays a list of what I do and can do.
           :index="index + 1" />
         <span
           class="gradient-text hover:text-tx"
-          :class="[deed.gradients, {'text-tx': index === activeDeed}]">
+          :class="[deed.gradients, { 'text-tx': index === activeDeed }]">
           {{ deed.text }}
         </span>
         <span v-if="index < deeds.length - 2">; </span>
