@@ -19,7 +19,7 @@ Renders a funny, witty remark about me, as a person, or my profession, as a deve
 </script>
 
 <template>
-  <p class="mb-6 text-sm leading-snug">
+  <p class="mb-6 text-sm">
     <span class="text-red-500">*</span>
     <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
     <span v-html="subtitle" />

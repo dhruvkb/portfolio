@@ -20,7 +20,7 @@ Renders the site-title and the kaomoji.
 
     <SiteTitle class="text-3xl sm:text-4xl lg:text-5xl" />
 
-    <p class="mb-6 max-w-screen-lg text-2xl leading-snug sm:text-3xl md:text-4xl">
+    <p class="body-text mb-6 max-w-screen-lg">
       <strong>software developer</strong> and
       <strong>open-source maintainer</strong>
       <span class="text-red-500">*</span>

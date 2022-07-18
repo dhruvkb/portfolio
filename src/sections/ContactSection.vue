@@ -4,11 +4,11 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
-  import { useContacts } from '@/composables/contacts'
-  import { useIcon } from '@/composables/icon'
-
   import Icon from '@/components/Icon.vue'
   import Link from '@/components/Link.vue'
+
+  import { useContacts } from '@/composables/contacts'
+  import { useIcon } from '@/composables/icon'
 
   const { getIconPaths } = useIcon()
   const { contactMedia } = useContacts()
@@ -20,7 +20,7 @@ hyperlinks, where appropriate.
       Contact
     </h2>
 
-    <p class="mb-12 text-2xl leading-snug sm:text-3xl lg:text-4xl">
+    <p class="body-text mb-12">
       Let's get in touch.
     </p>
 

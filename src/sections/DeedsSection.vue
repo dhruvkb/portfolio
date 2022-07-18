@@ -52,7 +52,7 @@ Displays a list of what I do and can do.
       What do I do?
     </h2>
 
-    <p class="mb-6 max-w-screen-lg text-2xl leading-snug sm:text-3xl md:text-4xl">
+    <p class="body-text mb-6 max-w-screen-lg">
       I
       <template
         v-for="(deed, index) in deeds"
@@ -71,7 +71,7 @@ Displays a list of what I do and can do.
       </template>
     </p>
 
-    <p class="text-sm leading-snug">
+    <p class="text-sm">
       <span
         class="inline-block -translate-y-1/2 align-top text-xs"
         aria-hidden="true">
