@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import type { RowData } from '@/models/data_table'
 import { roleTypes } from '@/models/role'
+
 import { useResume } from '@/stores/resume'
 
 export const useRoleTable = () => {

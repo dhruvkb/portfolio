@@ -2,6 +2,7 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 
 import type { RowData } from '@/models/data_table'
+
 import { useResume } from '@/stores/resume'
 
 export const useProjectTable = () => {

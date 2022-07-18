@@ -25,16 +25,21 @@ module.exports = {
       alphabetize: { order: 'asc', caseInsensitive: true },
       pathGroups: [
         { pattern: '{vue,vite,iles,pinia}', group: 'builtin' }, // base frameworks
+        // TypeScript
+        { pattern: '@/models/**', group: 'internal', position: 'after' },
+        { pattern: '@/stores/**', group: 'internal', position: 'after' },
+        { pattern: '@/composables/**', group: 'internal', position: 'after' },
+        { pattern: '@/utils/**', group: 'internal', position: 'after' },
         // Vue components
-        { pattern: '@/cells/**', group: 'internal', position: 'after' },
         { pattern: '@/components/**', group: 'internal', position: 'after' },
+        { pattern: '@/cells/**', group: 'internal', position: 'after' },
+        { pattern: '@/cards/**', group: 'internal', position: 'after' },
         { pattern: '@/sections/**', group: 'internal', position: 'after' },
-        { pattern: '@/pages/**', group: 'internal', position: 'after' },
+        // CSS
+        { pattern: '@/styles/**', group: 'internal', position: 'after' },
         // Static assets
         { pattern: '@/assets/**', group: 'internal', position: 'after' },
         { pattern: '@/data/**', group: 'internal', position: 'after' },
-        // Anything else
-        { pattern: '@/**', group: 'internal' },
       ],
       pathGroupsExcludedImportTypes: [],
     }],

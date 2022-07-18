@@ -9,12 +9,12 @@ Uses data from the 'resume' store in Pinia.
   import { useProjectTable } from '@/composables/projects_table'
   import { useRoleTable } from '@/composables/roles_table'
 
+  import DataTable from '@/components/DataTable.vue'
+  import Link from '@/components/Link.vue'
+
   import BrandCell from '@/cells/BrandCell.vue'
   import PeriodCell from '@/cells/PeriodCell.vue'
   import TechStackCell from '@/cells/TechStackCell.vue'
-
-  import DataTable from '@/components/DataTable.vue'
-  import Link from '@/components/Link.vue'
 
   const { columns: roleColumns, data: roleData } = useRoleTable()
   const { columns: projectColumns, data: projectData } = useProjectTable()

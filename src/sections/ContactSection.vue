@@ -4,11 +4,11 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
-  import Icon from '@/components/Icon.vue'
-  import Link from '@/components/Link.vue'
-
   import { useContacts } from '@/composables/contacts'
   import { useIcon } from '@/composables/icon'
+
+  import Icon from '@/components/Icon.vue'
+  import Link from '@/components/Link.vue'
 
   const { getIconPaths } = useIcon()
   const { contactMedia } = useContacts()
