@@ -35,8 +35,6 @@ export class Epic extends ResumeItem {
 }
 
 export class Project extends ResumeItem {
-  isFirst: boolean
-  isLast: boolean
   epic: Epic
   urlLabel: string
 
@@ -48,9 +46,5 @@ export class Project extends ResumeItem {
     this.technologies = projectJson.technologies
 
     this.epic = epic
-
-    const siblings = epic.children
-    this.isFirst = siblings.indexOf(projectJson) === 0
-    this.isLast = siblings.indexOf(projectJson) === siblings.length - 1
   }
 }

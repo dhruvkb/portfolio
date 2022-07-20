@@ -29,8 +29,6 @@ export class Org extends ResumeItem {
 }
 
 export class Role extends ResumeItem {
-  isFirst: boolean
-  isLast: boolean
   org!: Org
   epicSlugs: string[]
   epics: Epic[]
@@ -43,10 +41,6 @@ export class Role extends ResumeItem {
     this.epicSlugs = Array.isArray(roleJson.epicSlugs) ? roleJson.epicSlugs : []
 
     this.org = org
-
-    const siblings = org.children
-    this.isFirst = siblings.indexOf(roleJson) === 0
-    this.isLast = siblings.indexOf(roleJson) === siblings.length - 1
 
     this.epics = [] // populated in `associateEpic`
   }
