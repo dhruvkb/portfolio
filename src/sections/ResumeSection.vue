@@ -9,12 +9,11 @@ Uses data from the 'resume' store in Pinia.
   import { useProjectTable } from '@/composables/projects_table'
   import { useRoleTable } from '@/composables/roles_table'
 
+  import Brand from '@/components/Brand.vue'
   import DataTable from '@/components/DataTable.vue'
   import Link from '@/components/Link.vue'
-
-  import BrandCell from '@/cells/BrandCell.vue'
-  import PeriodCell from '@/cells/PeriodCell.vue'
-  import TechStackCell from '@/cells/TechStackCell.vue'
+  import Period from '@/components/Period.vue'
+  import TechStack from '@/components/TechStack.vue'
 
   const { columns: roleColumns, data: roleData } = useRoleTable()
   const { columns: projectColumns, data: projectData } = useProjectTable()
@@ -49,19 +48,19 @@ Uses data from the 'resume' store in Pinia.
         v-bind="table">
         <!-- Some of these templates will be unused, depending on the columns in the table. -->
         <template #org="{ data: org }">
-          <BrandCell v-bind="org" />
+          <Brand v-bind="org" />
         </template>
         <template #epic="{ data: epic }">
-          <BrandCell v-bind="epic" />
+          <Brand v-bind="epic" />
         </template>
         <template #link="{ data: link }">
           <Link v-bind="link" />
         </template>
         <template #period="{ data: period }">
-          <PeriodCell v-bind="period" />
+          <Period v-bind="period" />
         </template>
         <template #technologies="{ data: technologies }">
-          <TechStackCell v-bind="technologies" />
+          <TechStack v-bind="technologies" />
         </template>
       </DataTable>
     </div>
