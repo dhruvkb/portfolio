@@ -17,9 +17,6 @@ export interface ColumnSpec {
   componentName?: string
 }
 
-export interface RowData<T extends string = string> {
-  // whether to draw a separator below the row
-  isLast: boolean
-  // the mapping of column codes to cell content values
-  data: { [code in T]: unknown }
+export type RowData<T extends string = string> = {
+  [code in T]: unknown
 }

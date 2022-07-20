@@ -1,14 +1,10 @@
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 
 import type { RowData } from '@/models/data_table'
+import type { Epic } from '@/models/project'
 
-import { useResume } from '@/stores/resume'
-
-export const useProjectTable = () => {
-  const resumeStore = useResume()
-  const { projects } = storeToRefs(resumeStore)
-
+export const useProjectTable = (_epics: Record<string, Epic> | Ref<Record<string, Epic>>) => {
+  const epics = ref(_epics)
   const columns = [
     {
       code: 'epic',
@@ -40,16 +36,15 @@ export const useProjectTable = () => {
   ] as const
   type ProjectData = RowData<typeof columns[number]['code']>
 
-  const data = computed(() => projects.value.map((project): ProjectData => ({
-    isLast: project.isLast,
-    data: {
-      epic: (({ id, name }) => ({ id, name }))(project.epic),
-      name: project.name,
-      org: (({ id, name, shortName }) => ({ id, name, shortName }))(project.epic.role?.org ?? {}),
-      technologies: { technologies: project.technologies ?? [] },
-      link: { dest: project.url, label: project.urlLabel, variant: 'plain' },
-    },
-  })))
+  const data = computed<ProjectData[][]>(() => Object.values(epics.value)
+    .map((epic) => Object.values(epic.projects)
+      .map((project) => ({
+        epic: (({ id, name }) => ({ id, name }))(project.epic),
+        name: project.name,
+        org: (({ id, name, shortName }) => ({ id, name, shortName }))(project.epic.role?.org ?? {}),
+        technologies: { technologies: project.technologies ?? [] },
+        link: { dest: project.url, label: project.urlLabel, variant: 'plain' },
+      }))))
 
   return {
     columns,

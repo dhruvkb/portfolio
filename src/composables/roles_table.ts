@@ -1,15 +1,10 @@
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 
 import type { RowData } from '@/models/data_table'
-import { roleTypes } from '@/models/role'
+import { type Org, roleTypes } from '@/models/role'
 
-import { useResume } from '@/stores/resume'
-
-export const useRoleTable = () => {
-  const resumeStore = useResume()
-  const { roles } = storeToRefs(resumeStore)
-
+export const useRoleTable = (_orgs: Record<string, Org> | Ref<Record<string, Org>>) => {
+  const orgs = ref(_orgs)
   const columns = [
     {
       code: 'org',
@@ -48,17 +43,16 @@ export const useRoleTable = () => {
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>
 
-  const data = computed(() => roles.value.map((role): RoleData => ({
-    isLast: role.isLast,
-    data: {
-      org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
-      name: role.name,
-      type: role.type ? roleTypes[role.type] : '',
-      epic: (({ id, name }) => ({ id, name }))(role.epics[0] ?? {}),
-      period: role.period,
-      link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, variant: 'plain' },
-    },
-  })))
+  const data = computed<RoleData[][]>(() => Object.values(orgs.value)
+    .map((org) => Object.values(org.roles)
+      .map((role) => ({
+        org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
+        name: role.name,
+        type: role.type ? roleTypes[role.type] : '',
+        epic: (({ id, name }) => ({ id, name }))(role.epics[0] ?? {}),
+        period: role.period,
+        link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, variant: 'plain' },
+      }))))
 
   return {
     columns,

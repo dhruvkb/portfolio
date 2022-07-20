@@ -11,7 +11,7 @@ separators between row groups.
   interface Props {
     title?: string
     columns: Readonly<ColumnSpec[]>
-    rows: RowData[]
+    groups: RowData[][]
   }
   defineProps<Props>()
 
@@ -33,7 +33,7 @@ separators between row groups.
 
 <template>
   <table
-    class="w-full border-collapse"
+    class="w-full border-collapse transition-colors hover:text-neutral-400 dark:hover:text-neutral-600"
     :aria-label="title">
     <caption
       v-if="title"
@@ -55,12 +55,14 @@ separators between row groups.
       </tr>
     </thead>
 
-    <tbody class="text-lg transition-colors duration-200 hover:text-neutral-400 dark:hover:text-neutral-600">
+    <tbody
+      v-for="(group, groupIndex) in groups"
+      :key="groupIndex"
+      class="border-b border-neutral-200 text-lg duration-200 dark:border-neutral-900">
       <tr
-        v-for="(row, rowIndex) in rows"
+        v-for="(row, rowIndex) in group"
         :key="rowIndex"
-        class="border-b transition-colors duration-200 hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-neutral-200"
-        :class="row.isLast ? 'border-neutral-200 dark:border-neutral-900' : 'border-white dark:border-black'">
+        class="hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-neutral-200">
         <component
           :is="index === 0 ? 'th' : 'td'"
           v-for="(column, index) in columns"
@@ -70,8 +72,8 @@ separators between row groups.
           class="first:pl-page last:pr-page p-1 text-left font-normal">
           <slot
             :name="column.code"
-            :data="row.data[column.code]">
-            {{ typeof row.data[column.code] === 'object' ? 'object' : row.data[column.code] }}
+            :data="row[column.code]">
+            {{ typeof row[column.code] === 'object' ? 'object' : row[column.code] }}
           </slot>
         </component>
       </tr>

@@ -6,6 +6,8 @@ Uses data from the 'resume' store in Pinia.
 <script setup lang="ts">
   import { computed } from 'vue'
 
+  import { useResume } from '@/stores/resume'
+
   import { useProjectTable } from '@/composables/projects_table'
   import { useRoleTable } from '@/composables/roles_table'
 
@@ -15,19 +17,20 @@ Uses data from the 'resume' store in Pinia.
   import Period from '@/components/Period.vue'
   import TechStack from '@/components/TechStack.vue'
 
-  const { columns: roleColumns, data: roleData } = useRoleTable()
-  const { columns: projectColumns, data: projectData } = useProjectTable()
+  const { orgs, epics } = useResume()
+  const { columns: roleColumns, data: roleData } = useRoleTable(orgs)
+  const { columns: projectColumns, data: projectData } = useProjectTable(epics)
 
   const tables = computed(() => [
     {
       title: 'Roles',
       columns: roleColumns,
-      rows: roleData.value,
+      groups: roleData.value,
     },
     {
       title: 'Projects',
       columns: projectColumns,
-      rows: projectData.value,
+      groups: projectData.value,
     },
   ])
 </script>
