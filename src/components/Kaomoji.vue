@@ -7,51 +7,20 @@ Draws a face to the screen consisting of CJK characters.
 
   import { sample } from '@/utils/random'
 
-  interface Props {
-    mood?: 'happy' | 'confused'
-  }
-  const props = withDefaults(defineProps<Props>(), {
-    mood: 'happy',
-  })
-
   const edgePairs: [string, string][] = [
     ['(', ')'],
     ['[', ']'],
   ]
-  let eyePairs: [string, string][]
-  let mouths: string[]
-  let hands: string[]
-
-  switch (props.mood) {
-    case 'happy':
-      eyePairs = [
-        ['ˇ', 'ˇ'],
-        ['❛', '❛'],
-        ['^', '^'],
-        ['＾', '＾'],
-        ['´•', '•`'],
-        ['◕', '◕'],
-      ]
-      mouths = ['◡', 'ᴗ', '▽', 'ヮ']
-      hands = ['ﾉ', 'ノ', 'ﾉﾟ', '◞*']
-      break
-    case 'confused':
-      eyePairs = [
-        ['・', '・'],
-        ['-', '-'],
-        ['｀', '´'],
-        ['৺ੋ', '৺ੋ'],
-        ['-᷅', '-᷄๑'],
-        ['﹒︠', '﹒︡'],
-      ]
-      mouths = ['_', 'д', '∧', '௦', '₋']
-      hands = ['ヾ', 'ゞ゛', 'ゞ']
-      break
-    default:
-      eyePairs = []
-      mouths = []
-      hands = []
-  }
+  const eyePairs: [string, string][] = [
+    ['ˇ', 'ˇ'],
+    ['❛', '❛'],
+    ['^', '^'],
+    ['＾', '＾'],
+    ['´•', '•`'],
+    ['◕', '◕'],
+  ]
+  const mouths: string[] = ['◡', 'ᴗ', '▽', 'ヮ']
+  const hands: string[] = ['ﾉ', 'ノ', 'ﾉﾟ', '◞*']
 
   const face = computed(() => {
     const [edgeLeft, edgeRight] = sample(edgePairs) ?? ['', '']
