@@ -52,7 +52,7 @@ Displays a list of what I do and can do.
       What do I do?
     </h2>
 
-    <p class="body-text mb-6 max-w-screen-lg">
+    <p class="body-text max-w-screen-lg mb-6">
       I
       <template
         v-for="(deed, index) in deeds"
