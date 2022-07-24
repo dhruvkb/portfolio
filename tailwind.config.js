@@ -89,5 +89,8 @@ module.exports = {
         },
       )
     }),
+    plugin(({ addVariant }) => {
+      addVariant('printing', '.print &')
+    }),
   ],
 }
