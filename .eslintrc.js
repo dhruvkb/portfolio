@@ -38,7 +38,8 @@ module.exports = {
         // CSS
         { pattern: '@/styles/**', group: 'internal', position: 'after' },
         // Static assets
-        { pattern: '@/assets/**', group: 'internal', position: 'after' },
+        { pattern: '@/assets/icons/**', group: 'internal', position: 'after' },
+        { pattern: '@/assets/logos/**', group: 'internal', position: 'after' },
         { pattern: '@/data/**', group: 'internal', position: 'after' },
       ],
       pathGroupsExcludedImportTypes: [],

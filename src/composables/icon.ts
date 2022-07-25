@@ -28,15 +28,16 @@ import {
 
 import type { Icon as IconType, Path } from '@/models/icon'
 
-import _2fac from '@/assets/icons/2fac.json'
-import browserstack from '@/assets/icons/browserstack.json'
-import center_of_ci from '@/assets/icons/center_of_ci.json' // eslint-disable-line camelcase
 import email from '@/assets/icons/email.json'
-import img from '@/assets/icons/img.json'
-import pls from '@/assets/icons/pls.json'
-import portfolio from '@/assets/icons/portfolio.json'
-import reschume from '@/assets/icons/reschume.json'
-import seeelaye from '@/assets/icons/seeelaye.json'
+
+import _2fac from '@/assets/logos/2fac.json'
+import browserstack from '@/assets/logos/browserstack.json'
+import center_of_ci from '@/assets/logos/center_of_ci.json' // eslint-disable-line camelcase
+import img from '@/assets/logos/img.json'
+import pls from '@/assets/logos/pls.json'
+import portfolio from '@/assets/logos/portfolio.json'
+import reschume from '@/assets/logos/reschume.json'
+import seeelaye from '@/assets/logos/seeelaye.json'
 
 const simpleIcons: Record<string, SimpleIcon> = {
   // Organisations
@@ -72,6 +73,7 @@ const simpleIcons: Record<string, SimpleIcon> = {
   linkedin: siLinkedin,
   instagram: siInstagram,
 }
+
 const customIcons: Record<string, IconType> = {
   // Organisations
   center_of_ci, // eslint-disable-line camelcase
