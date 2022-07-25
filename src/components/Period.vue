@@ -48,11 +48,11 @@ is still active.
 </script>
 
 <template>
-  <span class="flex flex-row items-center justify-center md:justify-between">
+  <span class="flex flex-row items-center justify-center gap-2 md:justify-between">
     <span class="sr-only">{{ descText }}</span>
 
     <span
-      class="hidden font-mono tracking-tighter md:inline"
+      class="hidden font-mono tracking-tighter printing:inline md:inline"
       aria-hidden="true">
       <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
       <span
@@ -63,6 +63,9 @@ is still active.
         v-if="end"
         :title="audibleDate(end)"
         v-html="readableDate(end)" />
+      <span
+        v-else
+        class="hidden printing:inline">Present</span>
       <!-- eslint-enable vue/no-v-html -->
     </span>
 

@@ -31,6 +31,8 @@ in a new tab without a referrer.
   const isNav = computed(() => props.title !== undefined)
   const isActive = computed(() => frontmatter.title === props.title)
 
+  const displayLink = computed(() => (isExternal.value ? props.dest.replace(/https?:\/\/(www.)?/g, '') : props.dest))
+
   const params = computed(() => (isExternal.value
     ? { target: '_blank', rel: 'noreferrer' }
     : { }))
@@ -48,12 +50,13 @@ in a new tab without a referrer.
       :href="dest"
       :aria-label="label">
       <slot>
-        Link
+        <span class="printing:hidden">Link</span>
+        <code class="hidden printing:inline">{{ displayLink }}</code>
       </slot>
     </a>
     <span
       v-if="variant !== 'base'"
-      class="text-base font-semibold text-red-500 transition-transform duration-100 group-hover:translate-x-1"
+      class="text-base font-semibold text-red-500 transition-transform duration-100 group-hover:translate-x-1 printing:hidden"
       :class="{ 'group-hover:-translate-y-1': isExternal }"
       aria-hidden="true">
       {{ isExternal ? '↗' : '→' }}

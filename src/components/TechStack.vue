@@ -25,7 +25,7 @@ icons and logos.
       :key="technology.name"
       class="inline-flex flex-row items-center gap-2 border-neutral-200 px-2 first:pl-0 last:pr-0 dark:border-neutral-900">
       <Icon :paths="getIconPaths(technology.id)" />
-      <span class="sr-only md:not-sr-only">{{ technology.name }}</span>
+      <span class="sr-only printing:not-sr-only md:not-sr-only">{{ technology.name }}</span>
     </span>
   </span>
 </template>
