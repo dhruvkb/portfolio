@@ -24,9 +24,13 @@ module.exports = {
       cursor: {
         help: 'help',
       },
-      fontSize: {
-        mono: ['0.875rem', '1.2'],
-      },
+      // same font sizes as Tailwind but with `em` instead of `rem` (and a copy of `sm` in `rem`s)
+      fontSize: Object.fromEntries([
+        ...Object
+          .entries(defaultTheme.fontSize)
+          .map(([name, [size, options]]) => [name, [size.replace('rem', 'em'), options]]),
+        ['cite', defaultTheme.fontSize.sm],
+      ]),
       colors: {
         in: colors.inherit,
         curr: colors.current,
