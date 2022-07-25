@@ -3,34 +3,34 @@ import type { Role as IRole, Org as IOrg, RoleType } from 'reschume'
 import type { Epic } from '@/models/project'
 import { ResumeItem } from '@/models/resume'
 
+import type { Overwrite } from '@/utils/types'
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Role extends IRole {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Org extends IOrg {}
+export interface Org extends Overwrite<IOrg, {roles: Role[]}> {}
 
 export class Org extends ResumeItem {
-  roles: Record<string, Role>
-
   constructor(orgJson: IOrg) {
     super(orgJson)
 
     this.shortName = orgJson.shortName
     this.url = orgJson.url
 
-    this.children = orgJson.children
-    this.roles = Object.fromEntries(
-      this.children.map((roleJson) => {
-        const role = new Role(roleJson, this)
-        return [role.id, role]
-      }),
-    )
+    this.summary = orgJson.summary
+
+    this.roles = orgJson.roles.map((roleJson) => new Role(roleJson, this))
+  }
+
+  get featuredRoles(): Role[] {
+    return Object.values(this.roles).filter((role) => role.isFeatured)
   }
 }
 
 export class Role extends ResumeItem {
   org!: Org
-  epicSlugs: string[]
+  epicIds: string[]
   epics: Epic[]
 
   constructor(roleJson: IRole, org: Org) {
@@ -38,7 +38,11 @@ export class Role extends ResumeItem {
 
     this.type = roleJson.type
     this.period = roleJson.period
-    this.epicSlugs = Array.isArray(roleJson.epicSlugs) ? roleJson.epicSlugs : []
+    this.epicIds = Array.isArray(roleJson.epicIds) ? roleJson.epicIds : []
+
+    this.isFeatured = typeof roleJson.isFeatured === 'boolean' ? roleJson.isFeatured : false
+    this.summary = roleJson.summary
+    this.highlights = roleJson.highlights
 
     this.org = org
 

@@ -3,7 +3,7 @@ import { computed, ref, type Ref } from 'vue'
 import type { RowData } from '@/models/data_table'
 import { type Org, roleTypes } from '@/models/role'
 
-export const useRoleTable = (_orgs: Record<string, Org> | Ref<Record<string, Org>>) => {
+export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
   const orgs = ref(_orgs)
   const columns = [
     {
@@ -43,8 +43,8 @@ export const useRoleTable = (_orgs: Record<string, Org> | Ref<Record<string, Org
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>
 
-  const data = computed<RoleData[][]>(() => Object.values(orgs.value)
-    .map((org) => Object.values(org.roles)
+  const data = computed<RoleData[][]>(() => orgs.value
+    .map((org) => org.roles
       .map((role) => ({
         org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
         name: role.name,
