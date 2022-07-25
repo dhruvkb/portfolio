@@ -20,16 +20,16 @@ hyperlinks, where appropriate.
       Contact
     </h2>
 
-    <p class="body-text mb-12">
+    <p class="body-text mb-12 printing:mb-1 printing:text-base printing:leading-normal">
       Let's get in touch.
     </p>
 
-    <div class="grid grid-cols-1 gap-y-4 text-lg sm:grid-cols-3 lg:grid-cols-4">
+    <div class="grid grid-cols-1 gap-y-4 text-lg printing:grid-cols-2 printing:gap-y-0 printing:text-base printing:leading-normal sm:grid-cols-3 lg:grid-cols-4">
       <div
         v-for="medium in contactMedia"
         :key="medium.id"
-        class="sm:last-of-type:col-span-3 lg:last-of-type:col-span-1">
-        <h3 class="font-medium">
+        class="printing:last-of-type:col-span-1 sm:last-of-type:col-span-3 lg:last-of-type:col-span-1">
+        <h3 class="font-medium printing:hidden">
           {{ medium.name }}
         </h3>
         <div>

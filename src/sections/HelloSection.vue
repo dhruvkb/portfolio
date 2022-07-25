@@ -18,14 +18,16 @@ Renders the site-title and the kaomoji.
       <span class="sr-only">Hello</span>
     </h2>
 
-    <SiteTitle class="text-3xl sm:text-4xl lg:text-5xl" />
+    <SiteTitle class="text-3xl printing:text-2xl printing:leading-snug sm:text-4xl lg:text-5xl" />
 
-    <p class="body-text mb-6 max-w-screen-lg">
+    <p class="body-text max-w-screen-lg mb-6 printing:mb-0 printing:text-xl">
       <strong>software developer</strong> and
       <strong>open-source maintainer</strong>
-      <span class="text-red-500">*</span>
+      <span class="text-red-500 printing:hidden">*</span>
     </p>
 
-    <Subtitle client:load />
+    <Subtitle
+      client:load
+      class="printing:hidden" />
   </section>
 </template>
