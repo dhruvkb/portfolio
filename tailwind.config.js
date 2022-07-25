@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
@@ -8,6 +9,12 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
+    // same breakpoints as Tailwind but with an additional `screen` condition
+    screens: Object.fromEntries(
+      Object
+        .entries(defaultTheme.screens)
+        .map(([name, size]) => [name, { raw: `screen and (min-width: ${size})` }]),
+    ),
     extend: {
       spacing: {
         ch: '1ch',
