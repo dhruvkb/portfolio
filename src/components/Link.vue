@@ -8,20 +8,39 @@ in a new tab without a referrer.
   import { usePage } from 'iles'
   import { computed } from 'vue'
 
+  const arrows = {
+    e: {
+      glyph: '→',
+      classes: ['group-hover:translate-x-1'],
+    },
+    ne: {
+      glyph: '↗',
+      classes: ['group-hover:translate-x-1', 'group-hover:-translate-y-1'],
+    },
+    s: {
+      glyph: '↓',
+      classes: ['group-hover:translate-y-1'],
+    },
+    none: undefined,
+  } as const
+  type ArrowStyle = keyof typeof arrows
+
   interface Props {
     dest: string
     label: string
     /**
-     * the styling of the link; this can be one of three options:
-     * - regular: font style and arrow
-     * - plain: only arrow
-     * - base: no style
+     * whether to not apply the font styling in terms of size, weight and case
      */
-    variant?: 'regular' | 'plain' | 'base'
+    isPlain?: boolean
+    /**
+     * that direction of the arrow to display; useful if you want to change the depicted arrow or
+     * remove it entirely
+     */
+    arrowStyle?: ArrowStyle
     title?: string
   }
   const props = withDefaults(defineProps<Props>(), {
-    variant: 'regular',
+    arrowStyle: undefined,
     title: undefined,
   })
 
@@ -36,6 +55,11 @@ in a new tab without a referrer.
   const params = computed(() => (isExternal.value
     ? { target: '_blank', rel: 'noreferrer' }
     : { }))
+
+  const arrow = computed(() => {
+    if (props.arrowStyle) return arrows[props.arrowStyle]
+    return isExternal.value ? arrows.ne : arrows.e
+  })
 </script>
 
 <template>
@@ -43,7 +67,7 @@ in a new tab without a referrer.
     <a
       class="hover:underline"
       :class="{
-        'text-xs font-semibold uppercase': variant === 'regular',
+        'text-xs font-semibold uppercase': !isPlain,
         'text-neutral-400 dark:text-neutral-600 underline hover:text-curr': isNav && isActive,
       }"
       v-bind="params"
@@ -55,11 +79,11 @@ in a new tab without a referrer.
       </slot>
     </a>
     <span
-      v-if="variant !== 'base'"
-      class="text-base font-semibold text-red-500 transition-transform duration-100 group-hover:translate-x-1 printing:hidden"
-      :class="{ 'group-hover:-translate-y-1': isExternal }"
+      v-if="arrow"
+      class="font-semibold text-red-500 transition-transform duration-100 printing:hidden"
+      :class="arrow.classes"
       aria-hidden="true">
-      {{ isExternal ? '↗' : '→' }}
+      {{ arrow.glyph }}
     </span>
   </span>
 </template>

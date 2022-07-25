@@ -51,7 +51,7 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
         type: role.type ? roleTypes[role.type] : '',
         epic: (({ id, name }) => ({ id, name }))(role.epics[0] ?? {}),
         period: role.period,
-        link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, variant: 'plain' },
+        link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, isPlain: true },
       }))))
 
   return {

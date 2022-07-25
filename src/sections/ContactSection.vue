@@ -38,9 +38,9 @@ hyperlinks, where appropriate.
             :paths="getIconPaths(medium.id)" />
           <component
             :is="medium.url ? Link : 'span'"
-            :label="`${medium.name} profile`"
             :dest="medium.url"
-            variant="plain">
+            :label="`${medium.name} profile`"
+            is-plain>
             {{ medium.username }}
           </component>
         </div>

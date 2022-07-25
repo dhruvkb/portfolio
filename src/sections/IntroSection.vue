@@ -27,9 +27,9 @@
         All the code I write for myself, and most of what I write at work, is
         <strong>open-source</strong>. You can see all of it on
         <Link
-          variant="base"
+          dest="https://github.com/dhruvkb/"
           label="GitHub profile"
-          dest="https://github.com/dhruvkb/">
+          is-plain>
           my GitHub profile
         </Link>.
         <ReferenceIndex
@@ -39,10 +39,9 @@
       <p class="note-para mb-12">
         <ReferenceIndex :index="2" />
         If you see something you like (<Link
-          class="italic"
-          variant="base"
           dest="https://github.com/dhruvkb/portfolio"
-          label="Source code for this website">
+          label="Source code for this website"
+          is-plain>
           including this site
         </Link>), I encourage you to fork it.
       </p>

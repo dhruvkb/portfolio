@@ -26,9 +26,10 @@
 <template>
   <header class="px-page flex flex-row items-center justify-between">
     <Link
-      variant="base"
       :dest="home.dest"
-      :label="`${home.name} page`">
+      :label="`${home.name} page`"
+      arrow-style="none"
+      is-plain>
       <h1 class="text-xl sm:text-2xl">
         <SiteTitle
           :class="{ 'hidden': isHome }"
@@ -44,10 +45,11 @@
           :key="link.name">
           <Link
             class="text-xl font-medium lowercase sm:text-2xl"
-            variant="base"
             :title="link.name"
+            :dest="link.dest"
             :label="`${link.name} page`"
-            :dest="link.dest">
+            arrow-style="none"
+            is-plain>
             {{ link.name }}
           </Link>
         </li>
