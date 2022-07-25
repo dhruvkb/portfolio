@@ -15,6 +15,7 @@ import {
   siMarkdown,
   siNodedotjs,
   siNuxtdotjs,
+  siOpenverse,
   siPython,
   siReadthedocs,
   siTailwindcss,
@@ -32,7 +33,6 @@ import browserstack from '@/assets/icons/browserstack.json'
 import center_of_ci from '@/assets/icons/center_of_ci.json' // eslint-disable-line camelcase
 import email from '@/assets/icons/email.json'
 import img from '@/assets/icons/img.json'
-import openverse from '@/assets/icons/openverse.json'
 import pls from '@/assets/icons/pls.json'
 import portfolio from '@/assets/icons/portfolio.json'
 import reschume from '@/assets/icons/reschume.json'
@@ -57,6 +57,7 @@ const simpleIcons: Record<string, SimpleIcon> = {
   markdown: siMarkdown,
   nodedotjs: siNodedotjs,
   nuxtdotjs: siNuxtdotjs,
+  openverse: siOpenverse,
   python: siPython,
   readthedocs: siReadthedocs,
   tailwindcss: siTailwindcss,
@@ -80,7 +81,6 @@ const customIcons: Record<string, IconType> = {
   // Projects
   '2fac': _2fac,
   omniport: img,
-  openverse, // TODO: Replace with icon imported from Simple Icons
   pls,
   portfolio,
   reschume,
