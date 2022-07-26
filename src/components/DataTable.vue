@@ -29,6 +29,10 @@ separators between row groups.
     classes.push(breakpointClasses[breakpoint])
     return classes
   }
+
+  const isSimple = (val: unknown): val is string | number | boolean => typeof val === 'string'
+    || typeof val === 'number'
+    || typeof val === 'boolean'
 </script>
 
 <template>
@@ -73,7 +77,7 @@ separators between row groups.
           <slot
             :name="column.code"
             :data="row[column.code]">
-            {{ typeof row[column.code] === 'object' ? 'object' : row[column.code] }}
+            {{ isSimple(row[column.code]) ? row[column.code] : typeof row[column.code] }}
           </slot>
         </component>
       </tr>
