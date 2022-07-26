@@ -1,7 +1,6 @@
 <!--
-Renders a link as a simple HTML anchor tag `<a>` with attributes based on
-whether it points to an external resource or a router path. External links open
-in a new tab without a referrer.
+Renders a link as a simple HTML anchor tag `<a>` with attributes based on whether it points to an
+external resource or a router path. External links open in a new tab without a referrer.
 -->
 
 <script setup lang="ts">
