@@ -3,22 +3,20 @@
 </script>
 
 <template>
-  <section
-    class=""
-    aria-label="Introduction">
+  <section aria-label="Introduction">
     <h2 aria-label="Bio">
       Bio
     </h2>
 
     <div class="max-w-screen-lg">
       <p class="body-text mb-6">
-        I <strong>write code</strong> as a hobby and also as a full-time job. Getting paid to do what
-        I love feels pretty awesome.
+        I <strong>write code</strong> as a hobby and also as a full-time job. Getting paid to do
+        what I love feels pretty awesome.
         <ReferenceIndex
           class="align-top"
           :index="1" />
       </p>
-      <p class="note-para mb-12">
+      <p class="mb-12 text-sm">
         <ReferenceIndex :index="1" />
         💯 Would definitely recommend.
       </p>
@@ -36,7 +34,7 @@
           class="align-top"
           :index="2" />
       </p>
-      <p class="note-para mb-12">
+      <p class="mb-12 text-sm">
         <ReferenceIndex :index="2" />
         If you see something you like (<Link
           dest="https://github.com/dhruvkb/portfolio"
@@ -54,21 +52,15 @@
           class="align-top"
           :index="3" />
       </p>
-      <p class="note-para mb-12">
+      <p class="mb-12 text-sm">
         <ReferenceIndex :index="3" />
         Judge for yourself, I designed this site.
       </p>
 
       <p class="body-text">
-        I'm always open to collaborating on new and exciting ideas. If you have one, let's connect. My
-        name is <strong>Dhruv Bhanushali</strong>.
+        I'm always open to collaborating on new and exciting ideas. If you have one, let's connect.
+        My name is <strong>Dhruv Bhanushali</strong>.
       </p>
     </div>
   </section>
 </template>
-
-<style lang="css">
-  .note-para {
-    @apply text-sm;
-  }
-</style>
