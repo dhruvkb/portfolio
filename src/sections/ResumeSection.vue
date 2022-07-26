@@ -4,6 +4,7 @@ Uses data from the 'resume' store in Pinia.
 -->
 
 <script setup lang="ts">
+  import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
 
   import { useResume } from '@/stores/resume'
@@ -17,20 +18,28 @@ Uses data from the 'resume' store in Pinia.
   import Period from '@/components/Period.vue'
   import TechStack from '@/components/TechStack.vue'
 
-  const { orgs, epics } = useResume()
+  import EpicCard from '@/cards/EpicCard.vue'
+  import OrgCard from '@/cards/OrgCard.vue'
+
+  const resumeStore = useResume()
+  const { epics, orgs } = storeToRefs(resumeStore)
   const { columns: roleColumns, data: roleData } = useRoleTable(orgs)
   const { columns: projectColumns, data: projectData } = useProjectTable(epics)
 
-  const tables = computed(() => [
+  const sections = computed(() => [
     {
+      code: 'role',
       title: 'Roles',
       columns: roleColumns,
       groups: roleData.value,
+      items: Object.values(orgs.value),
     },
     {
+      code: 'project',
       title: 'Projects',
       columns: projectColumns,
       groups: projectData.value,
+      items: Object.values(epics.value),
     },
   ])
 </script>
@@ -43,12 +52,12 @@ Uses data from the 'resume' store in Pinia.
       </h2>
     </div>
 
-    <!-- TODO: Revisit the idea of both tables being side by side. -->
-    <div class="mb-12 grid grid-cols-1 gap-12">
+    <template
+      v-for="(section, sectionIndex) in sections"
+      :key="sectionIndex">
       <DataTable
-        v-for="(table, tableIndex) in tables"
-        :key="tableIndex"
-        v-bind="table">
+        class="mb-6 hidden sm:table"
+        v-bind="section">
         <!-- Some of these templates will be unused, depending on the columns in the table. -->
         <template #org="{ data: org }">
           <Brand v-bind="org" />
@@ -66,14 +75,17 @@ Uses data from the 'resume' store in Pinia.
           <TechStack v-bind="technologies" />
         </template>
       </DataTable>
-    </div>
 
-    <div class="px-page">
-      <Link
-        label="Résumé as PDF"
-        dest="https://dhruvkb.github.io/resume/">
-        Résumé
-      </Link>
-    </div>
+      <DataDeck
+        class="mb-6 sm:hidden"
+        v-bind="section">
+        <template #project="{ item: epic }">
+          <EpicCard :epic="epic" />
+        </template>
+        <template #role="{ item: org }">
+          <OrgCard :org="org" />
+        </template>
+      </DataDeck>
+    </template>
   </section>
 </template>
