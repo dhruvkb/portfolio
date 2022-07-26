@@ -45,10 +45,10 @@ Uses data from the 'resume' store in Pinia.
 </script>
 
 <template>
-  <section aria-label="Résumé">
+  <section aria-label="Works">
     <div class="px-page mb-6">
-      <h2 aria-label="Résumé">
-        Résumé
+      <h2 aria-label="Works">
+        Works
       </h2>
     </div>
 

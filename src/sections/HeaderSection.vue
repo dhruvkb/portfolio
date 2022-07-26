@@ -10,12 +10,12 @@
   }
   const navLinks = [
     {
-      name: 'Résumé',
-      dest: 'resume',
-    },
-    {
       name: 'About',
       dest: 'about',
+    },
+    {
+      name: 'Works',
+      dest: 'works',
     },
   ]
 

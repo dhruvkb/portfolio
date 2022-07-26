@@ -1,14 +1,14 @@
 <page>
-  title: Résumé
+  title: Works
 </page>
 
 <script setup lang="ts">
-  import ResumeSection from '@/sections/ResumeSection.vue'
+  import WorksSection from '@/sections/WorksSection.vue'
 </script>
 
 <template>
   <!-- `px-page` class not applied so that tables can span full width. -->
   <main class="py-page">
-    <ResumeSection />
+    <WorksSection />
   </main>
 </template>
