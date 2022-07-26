@@ -29,6 +29,7 @@ import {
 import type { Icon as IconType, Path } from '@/models/icon'
 
 import email from '@/assets/icons/email.json'
+import print from '@/assets/icons/print.json'
 
 import _2fac from '@/assets/logos/2fac.json'
 import browserstack from '@/assets/logos/browserstack.json'
@@ -88,8 +89,9 @@ const customIcons: Record<string, IconType> = {
   reschume,
   seeelaye: seeelaye as IconType,
 
-  // Contacts
+  // Icons
   email,
+  print,
 }
 
 export const useIcon = () => {
