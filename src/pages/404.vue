@@ -9,7 +9,10 @@
 
 <template>
   <main class="px-page py-page flex flex-col gap-6">
-    <div class="relative z-10">
+    <section aria-label="Error">
+      <h2 aria-label="404 Not Found">
+        404 Not Found
+      </h2>
       <p class="body-text mb-6">
         There's nothing here. You seem <strong>lost</strong>.
       </p>
@@ -18,7 +21,7 @@
         dest="/">
         Home
       </Link>
-    </div>
+    </section>
 
     <div class="relative grow">
       <GameOfLife
