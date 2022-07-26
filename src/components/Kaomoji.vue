@@ -33,5 +33,5 @@ Draws a face to the screen consisting of CJK characters.
 </script>
 
 <template>
-  <span>{{ face }}</span>
+  <span aria-hidden="true">{{ face }}</span>
 </template>

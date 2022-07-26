@@ -12,9 +12,7 @@ Renders the site-title and the kaomoji.
   <section aria-label="Hello">
     <!-- Using `h-5` to prevent layout shift when `Kaomoji` is loaded on the client. -->
     <h2 class="h-5 normal-case">
-      <Kaomoji
-        client:load
-        aria-hidden="true" />
+      <Kaomoji client:load />
       <span class="sr-only">Hello</span>
     </h2>
 
