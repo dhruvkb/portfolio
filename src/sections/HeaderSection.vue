@@ -17,6 +17,10 @@
       name: 'Works',
       dest: 'works',
     },
+    {
+      name: 'Résumé',
+      dest: 'resume',
+    },
   ]
 
   const { frontmatter } = usePage()
