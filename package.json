@@ -1,5 +1,6 @@
 {
   "name": "portfolio-brut",
+  "description": "My portfolio is my small personal slice of the Internet.",
   "private": true,
   "version": "0.0.0",
   "scripts": {
