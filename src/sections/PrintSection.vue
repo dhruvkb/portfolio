@@ -1,11 +1,5 @@
 <script setup lang="ts">
-  import { useIcon } from '@/composables/icon'
-
-  const print = () => {
-    if (window) window.print()
-  }
-
-  const { getIconPaths } = useIcon()
+  import PrintButton from '@/components/PrintButton.vue'
 </script>
 
 <template>
@@ -21,23 +15,16 @@
       For best results, use <strong>A4-sized</strong> paper and remove your custom margins.
     </p>
 
-    <button
-      class="group mr-4 inline-flex flex-row gap-1 hover:underline"
-      @click="print">
-      <span class="text-xs font-semibold uppercase">
-        Print
-      </span>
-      <Icon
-        class="inline text-red-500 transition-transform duration-100 group-hover:-translate-y-1"
-        :paths="getIconPaths('print')" />
-    </button>
+    <div class="flex flex-row items-center gap-4">
+      <PrintButton client:load />
 
-    <Link
-      arrow="down"
-      label="Résumé as PDF"
-      dest="https://dhruvkb.dev/resume.pdf"
-      arrow-style="s">
-      Download PDF
-    </Link>
+      <Link
+        arrow="down"
+        label="Résumé as PDF"
+        dest="https://dhruvkb.dev/resume.pdf"
+        arrow-style="s">
+        Download PDF
+      </Link>
+    </div>
   </section>
 </template>
