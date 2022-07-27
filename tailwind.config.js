@@ -31,6 +31,9 @@ module.exports = {
           .map(([name, [size, options]]) => [name, [size.replace('rem', 'em'), options]]),
         ['cite', defaultTheme.fontSize.sm],
       ]),
+      maxWidth: {
+        text: '1024px', // same as `screen-lg`
+      },
       colors: {
         in: colors.inherit,
         curr: colors.current,

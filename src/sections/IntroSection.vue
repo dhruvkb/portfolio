@@ -8,7 +8,7 @@
       Bio
     </h2>
 
-    <div class="max-w-screen-lg">
+    <div class="max-w-text">
       <p class="body-text mb-6">
         I <strong>write code</strong> as a hobby and also as a full-time job. Getting paid to do
         what I love feels pretty awesome.
