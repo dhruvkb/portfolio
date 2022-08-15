@@ -14,25 +14,26 @@ export const useResume = defineStore('resume', () => {
   const bio = computed(() => resume.value?.bio)
 
   // Parse creations data from JSON.
-  const idEpicMap = ref<Record<string, Epic>>({})
-  const epics = computed<Epic[]>(() => {
+  const epics = ref<Epic[]>([])
+  const populateEpics = () => {
     const creations = resume.value?.creations ?? []
-    return creations.map((epicJson) => {
+    creations.forEach((epicJson) => {
       const epic = new Epic(epicJson)
-      idEpicMap.value[epicJson.id] = epic
-      return epic
+      epics.value.push(epic)
     })
-  })
+  }
 
   // Parse role data from JSON.
-  const orgs = computed<Org[]>(() => {
+  const orgs = ref<Org[]>([])
+  const populateOrgs = () => {
     const work = resume.value?.work ?? []
-    return work.map((orgJson) => new Org(orgJson))
-  })
+    work.forEach((orgJson) => {
+      const org = new Org(orgJson)
+      orgs.value.push(org)
+    })
+  }
 
-  const initResume = (data: Resume) => {
-    resume.value = data
-
+  const mapRelations = () => {
     // Establish role-epic associations.
     orgs.value.forEach((org) => {
       org.roles.forEach((role) => {
@@ -45,6 +46,13 @@ export const useResume = defineStore('resume', () => {
         })
       })
     })
+  }
+
+  const initResume = (data: Resume) => {
+    resume.value = data
+    populateEpics()
+    populateOrgs()
+    mapRelations()
   }
 
   const loadResume = async (url: string) => {
