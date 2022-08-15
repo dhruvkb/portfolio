@@ -41,7 +41,9 @@ export const useProjectTable = (_epics: Epic[] | Ref<Epic[]>) => {
       .map((project) => ({
         epic: (({ id, name }) => ({ id, name }))(project.epic),
         name: project.name,
-        org: (({ id, name, shortName }) => ({ id, name, shortName }))(project.epic.role?.org ?? {}),
+        org: project.epic.role?.org
+          ? (({ id, name, shortName }) => ({ id, name, shortName }))(project.epic.role.org)
+          : undefined,
         technologies: { technologies: project.technologies ?? [] },
         link: { dest: project.url, label: project.urlLabel, isPlain: true },
       }))))

@@ -30,7 +30,8 @@ separators between row groups.
     return classes
   }
 
-  const isSimple = (val: unknown): val is string | number | boolean => typeof val === 'string'
+  const isSimple = (val: unknown): val is string | number | boolean => typeof val === 'undefined'
+    || typeof val === 'string'
     || typeof val === 'number'
     || typeof val === 'boolean'
 </script>

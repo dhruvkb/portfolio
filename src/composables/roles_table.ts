@@ -49,7 +49,9 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
         org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
         name: role.name,
         type: role.type ? roleTypes[role.type] : '',
-        epic: (({ id, name }) => ({ id, name }))(role.epics[0] ?? {}),
+        epic: role.epics.length
+          ? (({ id, name }) => ({ id, name }))(role.epics[0])
+          : undefined,
         period: role.period,
         link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, isPlain: true },
       }))))
