@@ -6,7 +6,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./src/*"]
-    }
+    },
+    "lib": ["esnext", "dom"]
   },
 
   "references": [
