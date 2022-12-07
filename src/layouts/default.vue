@@ -22,4 +22,10 @@
   <slot />
 
   <FooterSection class="py-page border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
+
+  <component
+    :is="'script'"
+    src="//gc.zgo.at/count.js"
+    data-goatcounter="https://dhruvkb.goatcounter.com/count"
+    async />
 </template>
