@@ -20,10 +20,11 @@
     "axios": "^1.2.2",
     "pinia": "^2.0.28",
     "reschume": "^0.0.0-alpha.3",
-    "simple-icons": "^8.2.0",
     "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@iconify-json/simple-icons": "^1.1.40",
+    "@islands/icons": "^0.8.0",
     "@rushstack/eslint-patch": "^1.2.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/tsconfig": "^0.1.3",

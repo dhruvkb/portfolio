@@ -7,7 +7,8 @@
       "@/*": ["./src/*"],
       "~/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "types": ["unplugin-icons/types/vue"]
   },
 
   "references": [
