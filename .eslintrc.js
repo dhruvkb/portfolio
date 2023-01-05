@@ -13,10 +13,9 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:vuejs-accessibility/recommended',
     'plugin:tailwindcss/recommended',
+    'prettier',
   ],
   rules: {
-    semi: ['error', 'never', { beforeStatementContinuationChars: 'always' }],
-
     'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }], // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js#L139
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/order': ['error', {
@@ -50,15 +49,10 @@ module.exports = {
     {
       files: ['*.vue'],
       rules: {
-        'max-len': 'off',
-        indent: 'off', // superseded by vue/script-indent
-
         'tailwindcss/no-custom-classname': 'off', // custom classes are useful
 
         'vue/block-lang': ['error', { script: { lang: 'ts' } }],
-        'vue/html-closing-bracket-newline': ['error', { singleline: 'never', multiline: 'never' }],
         'vue/multi-word-component-names': 'off',
-        'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }],
       },
     },
     {
