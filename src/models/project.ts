@@ -9,7 +9,7 @@ import type { Overwrite } from '@/utils/types'
 export interface Project extends IProject {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Epic extends Overwrite<IEpic, {projects: Project[]}> {}
+export interface Epic extends Overwrite<IEpic, { projects: Project[] }> {}
 
 export class Epic extends ResumeItem {
   role!: Role // populated in `associateRole`
@@ -19,7 +19,9 @@ export class Epic extends ResumeItem {
 
     this.summary = epicJson.summary
 
-    this.projects = epicJson.projects.map((projectJson) => new Project(projectJson, this))
+    this.projects = epicJson.projects.map(
+      (projectJson) => new Project(projectJson, this)
+    )
   }
 
   get featuredProjects(): Project[] {
@@ -44,10 +46,14 @@ export class Project extends ResumeItem {
     super(projectJson)
 
     this.url = projectJson.url
-    this.urlLabel = typeof projectJson.urlLabel === 'string' ? projectJson.urlLabel : ''
+    this.urlLabel =
+      typeof projectJson.urlLabel === 'string' ? projectJson.urlLabel : ''
     this.technologies = projectJson.technologies
 
-    this.isFeatured = typeof projectJson.isFeatured === 'boolean' ? projectJson.isFeatured : false
+    this.isFeatured =
+      typeof projectJson.isFeatured === 'boolean'
+        ? projectJson.isFeatured
+        : false
     this.summary = projectJson.summary
     this.highlights = projectJson.highlights
 

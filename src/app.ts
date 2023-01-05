@@ -36,11 +36,12 @@ export default defineApp({
         content: '#ffffff',
         media: '(prefers-color-scheme: light)',
       },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover' },
+      {
+        name: 'viewport',
+        content:
+          'width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover',
+      },
       { property: 'author', content: site.author },
-
-      // Google
-      { name: 'google-site-verification', content: 'rDaR4bofozdONdJoKYHh4JKPdCXaVt9QpLiZEcqbr7I' },
 
       // Open-graph
       { property: 'og:image', content: 'https://dhruvkb.dev/og-image.png' },

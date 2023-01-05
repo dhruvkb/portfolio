@@ -30,10 +30,11 @@ separators between row groups.
     return classes
   }
 
-  const isSimple = (val: unknown): val is string | number | boolean => typeof val === 'undefined'
-    || typeof val === 'string'
-    || typeof val === 'number'
-    || typeof val === 'boolean'
+  const isSimple = (val: unknown): val is string | number | boolean =>
+    typeof val === 'undefined' ||
+    typeof val === 'string' ||
+    typeof val === 'number' ||
+    typeof val === 'boolean'
 </script>
 
 <template>
@@ -43,7 +44,9 @@ separators between row groups.
     <caption
       v-if="title"
       class="px-page py-1 text-left text-xs font-semibold uppercase text-neutral-400 dark:text-neutral-600">
-      {{ title }}
+      {{
+        title
+      }}
     </caption>
 
     <thead>
@@ -51,7 +54,10 @@ separators between row groups.
         <th
           v-for="column in columns"
           :key="column.code"
-          :class="[column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : '', ...(column.classes ?? [])]"
+          :class="[
+            column.breakpoint ? `hidden ${column.breakpoint}:table-cell` : '',
+            ...(column.classes ?? []),
+          ]"
           :aria-label="column.display"
           scope="col"
           class="first-of-type:pl-page last-of-type:pr-page box-content border-y border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
@@ -78,7 +84,11 @@ separators between row groups.
           <slot
             :name="column.code"
             :data="row[column.code]">
-            {{ isSimple(row[column.code]) ? row[column.code] : typeof row[column.code] }}
+            {{
+              isSimple(row[column.code])
+                ? row[column.code]
+                : typeof row[column.code]
+            }}
           </slot>
         </component>
       </tr>

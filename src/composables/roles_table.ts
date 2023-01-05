@@ -43,9 +43,9 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>
 
-  const data = computed<RoleData[][]>(() => orgs.value
-    .map((org) => org.roles
-      .map((role) => ({
+  const data = computed<RoleData[][]>(() =>
+    orgs.value.map((org) =>
+      org.roles.map((role) => ({
         org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
         name: role.name,
         type: role.type ? roleTypes[role.type] : '',
@@ -53,8 +53,14 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
           ? (({ id, name }) => ({ id, name }))(role.epics[0])
           : undefined,
         period: role.period,
-        link: { dest: role.org.url, label: `Homepage for ${role.org.name}`, isPlain: true },
-      }))))
+        link: {
+          dest: role.org.url,
+          label: `Homepage for ${role.org.name}`,
+          isPlain: true,
+        },
+      }))
+    )
+  )
 
   return {
     columns,

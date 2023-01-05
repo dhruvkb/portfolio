@@ -16,34 +16,41 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }], // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js#L139
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      { js: 'never', ts: 'never' },
+    ], // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js#L139
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-unresolved': ['error', { ignore: ['^virtual:'] }],
-    'import/order': ['error', {
-      'newlines-between': 'always',
-      groups: ['builtin', 'external', 'internal'],
-      alphabetize: { order: 'asc', caseInsensitive: true },
-      pathGroups: [
-        { pattern: '{vue,vite,iles,pinia}', group: 'builtin' }, // base frameworks
-        // Virtual packages
-        { pattern: 'virtual:icons/**', group: 'external', position: 'after' },
-        // TypeScript
-        { pattern: '@/models/**', group: 'internal', position: 'after' },
-        { pattern: '@/stores/**', group: 'internal', position: 'after' },
-        { pattern: '@/composables/**', group: 'internal', position: 'after' },
-        { pattern: '@/utils/**', group: 'internal', position: 'after' },
-        // Vue components
-        { pattern: '@/components/**', group: 'internal', position: 'after' },
-        { pattern: '@/cells/**', group: 'internal', position: 'after' },
-        { pattern: '@/cards/**', group: 'internal', position: 'after' },
-        { pattern: '@/sections/**', group: 'internal', position: 'after' },
-        // CSS
-        { pattern: '@/styles/**', group: 'internal', position: 'after' },
-        // Static assets
-        { pattern: '@/data/**', group: 'internal', position: 'after' },
-      ],
-      pathGroupsExcludedImportTypes: [],
-    }],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        groups: ['builtin', 'external', 'internal'],
+        alphabetize: { order: 'asc', caseInsensitive: true },
+        pathGroups: [
+          { pattern: '{vue,vite,iles,pinia}', group: 'builtin' }, // base frameworks
+          // Virtual packages
+          { pattern: 'virtual:icons/**', group: 'external', position: 'after' },
+          // TypeScript
+          { pattern: '@/models/**', group: 'internal', position: 'after' },
+          { pattern: '@/stores/**', group: 'internal', position: 'after' },
+          { pattern: '@/composables/**', group: 'internal', position: 'after' },
+          { pattern: '@/utils/**', group: 'internal', position: 'after' },
+          // Vue components
+          { pattern: '@/components/**', group: 'internal', position: 'after' },
+          { pattern: '@/cells/**', group: 'internal', position: 'after' },
+          { pattern: '@/cards/**', group: 'internal', position: 'after' },
+          { pattern: '@/sections/**', group: 'internal', position: 'after' },
+          // CSS
+          { pattern: '@/styles/**', group: 'internal', position: 'after' },
+          // Static assets
+          { pattern: '@/data/**', group: 'internal', position: 'after' },
+        ],
+        pathGroupsExcludedImportTypes: [],
+      },
+    ],
     'import/prefer-default-export': 'off',
   },
   overrides: [
@@ -59,7 +66,11 @@ module.exports = {
     {
       files: ['*.ts'],
       rules: {
-        'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+        'lines-between-class-members': [
+          'error',
+          'always',
+          { exceptAfterSingleLine: true },
+        ],
         'max-classes-per-file': ['error', 2],
       },
     },
@@ -75,7 +86,13 @@ module.exports = {
 
     tailwindcss: {
       officialSorting: true,
-      cssFiles: ['**/*.pcss', '!**/node_modules', '!**/.*', '!**/dist', '!**/build'],
+      cssFiles: [
+        '**/*.pcss',
+        '!**/node_modules',
+        '!**/.*',
+        '!**/dist',
+        '!**/build',
+      ],
     },
   },
 }

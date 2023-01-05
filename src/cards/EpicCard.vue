@@ -15,7 +15,11 @@
     showFeaturedOnly: false,
   })
 
-  const projects = computed(() => (props.showFeaturedOnly ? props.epic.featuredProjects : Object.values(props.epic.projects)))
+  const projects = computed(() =>
+    props.showFeaturedOnly
+      ? props.epic.featuredProjects
+      : Object.values(props.epic.projects)
+  )
 </script>
 
 <template>
@@ -46,8 +50,11 @@
         v-for="(project, projectIndex) in projects"
         :key="projectIndex"
         class="flex flex-col gap-1 printing:my-2 printing:first-of-type:mt-0 printing:last-of-type:mb-0">
-        <div class="flex flex-row items-center gap-4 printing:flex-wrap printing:gap-0">
-          <span class="text-lg printing:font-medium printing:leading-normal">{{ project.name }}</span>
+        <div
+          class="flex flex-row items-center gap-4 printing:flex-wrap printing:gap-0">
+          <span class="text-lg printing:font-medium printing:leading-normal">{{
+            project.name
+          }}</span>
           <TechStack
             class="ml-auto text-neutral-400 dark:text-neutral-600"
             :technologies="project.technologies ?? []" />
@@ -55,8 +62,7 @@
             v-if="project.url"
             class="text-neutral-400 printing:w-full dark:text-neutral-600"
             :dest="project.url"
-            :label="project.urlLabel"
-            is-plain />
+            :label="project.urlLabel" />
         </div>
 
         <!-- Project description -->

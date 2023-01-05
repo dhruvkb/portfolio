@@ -4,9 +4,7 @@
 
 <template>
   <section aria-label="Print">
-    <h2 aria-label="Résumé">
-      Résumé
-    </h2>
+    <h2 aria-label="Résumé">Résumé</h2>
 
     <p class="body-text mb-6">
       To get a copy of my résumé, you can print this page.

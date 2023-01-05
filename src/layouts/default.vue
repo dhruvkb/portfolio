@@ -21,7 +21,8 @@
   <!-- Page content goes here -->
   <slot />
 
-  <FooterSection class="py-page border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
+  <FooterSection
+    class="py-page border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
 
   <component
     :is="'script'"

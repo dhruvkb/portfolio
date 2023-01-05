@@ -37,9 +37,7 @@ Renders the footer with some important links and a 'Thank you' note.
         </span>
       </template>
 
-      <template v-if="isProd">
-        Thanks for visiting!
-      </template>
+      <template v-if="isProd">Thanks for visiting!</template>
     </div>
 
     <Link

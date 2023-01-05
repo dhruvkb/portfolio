@@ -36,17 +36,21 @@ export const useProjectTable = (_epics: Epic[] | Ref<Epic[]>) => {
   ] as const
   type ProjectData = RowData<typeof columns[number]['code']>
 
-  const data = computed<ProjectData[][]>(() => epics.value
-    .map((epic) => epic.projects
-      .map((project) => ({
+  const data = computed<ProjectData[][]>(() =>
+    epics.value.map((epic) =>
+      epic.projects.map((project) => ({
         epic: (({ id, name }) => ({ id, name }))(project.epic),
         name: project.name,
         org: project.epic.role?.org
-          ? (({ id, name, shortName }) => ({ id, name, shortName }))(project.epic.role.org)
+          ? (({ id, name, shortName }) => ({ id, name, shortName }))(
+              project.epic.role.org
+            )
           : undefined,
         technologies: { technologies: project.technologies ?? [] },
         link: { dest: project.url, label: project.urlLabel, isPlain: true },
-      }))))
+      }))
+    )
+  )
 
   return {
     columns,

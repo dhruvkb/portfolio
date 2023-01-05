@@ -28,7 +28,8 @@ Hopefully the user navigates away from it by that point.
     rows.value = Math.floor(height / 16)
   })
 
-  const cellValue = (column: number, row: number): boolean => !!(board.value && board.value[column][row])
+  const cellValue = (column: number, row: number): boolean =>
+    !!(board.value && board.value[column][row])
 </script>
 
 <template>
@@ -45,7 +46,11 @@ Hopefully the user navigates away from it by that point.
         v-for="column in columns"
         :key="column"
         class="inline-block h-4 w-4 border border-white text-xs dark:border-black"
-        :class="cellValue(column - 1, row - 1) ? 'bg-neutral-400 dark:bg-neutral-600' : 'bg-tx'"
+        :class="
+          cellValue(column - 1, row - 1)
+            ? 'bg-neutral-400 dark:bg-neutral-600'
+            : 'bg-tx'
+        "
         :data-cell="`${column}-${row}`" />
     </div>
   </div>

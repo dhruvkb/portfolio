@@ -36,7 +36,7 @@
       is-plain>
       <h1 class="text-xl sm:text-2xl">
         <SiteTitle
-          :class="{ 'hidden': isHome }"
+          :class="{ hidden: isHome }"
           aria-hidden="true" />
         <span class="sr-only">Dhruv Bhanushali</span>
       </h1>

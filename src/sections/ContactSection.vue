@@ -16,9 +16,7 @@ hyperlinks, where appropriate.
 
 <template>
   <section aria-label="Contact">
-    <h2 aria-label="Contact">
-      Contact
-    </h2>
+    <h2 aria-label="Contact">Contact</h2>
 
     <p class="body-text mb-12 printing:mb-1 printing:text-base printing:leading-normal">
       Let's get in touch.

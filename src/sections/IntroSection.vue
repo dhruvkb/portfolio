@@ -4,9 +4,7 @@
 
 <template>
   <section aria-label="Introduction">
-    <h2 aria-label="Bio">
-      Bio
-    </h2>
+    <h2 aria-label="Bio">Bio</h2>
 
     <div class="max-w-text">
       <p class="body-text mb-6">

@@ -16,7 +16,11 @@
     showFeaturedOnly: false,
   })
 
-  const roles = computed(() => (props.showFeaturedOnly ? props.org.featuredRoles : Object.values(props.org.roles)))
+  const roles = computed(() =>
+    props.showFeaturedOnly
+      ? props.org.featuredRoles
+      : Object.values(props.org.roles)
+  )
 </script>
 
 <template>
@@ -30,8 +34,7 @@
         v-if="org.url"
         class="text-neutral-400 dark:text-neutral-600"
         :dest="org.url"
-        :label="`Homepage for ${org.name}`"
-        is-plain />
+        :label="`Homepage for ${org.name}`" />
     </div>
 
     <!-- Org description -->
@@ -55,9 +58,15 @@
               v-if="role.period"
               class="h-[1em] w-[1em] printing:hidden"
               v-bind="role.period" />
-            <span class="text-lg printing:font-medium printing:leading-normal">{{ role.name }}</span>
+            <span
+              class="text-lg printing:font-medium printing:leading-normal"
+              >{{ role.name }}</span
+            >
           </span>
-          <span class="ml-auto text-neutral-400 printing:hidden dark:text-neutral-600">{{ role.type ? roleTypes[role.type] : '' }}</span>
+          <span
+            class="ml-auto text-neutral-400 printing:hidden dark:text-neutral-600"
+            >{{ role.type ? roleTypes[role.type] : '' }}</span
+          >
           <Period
             v-if="role.period"
             class="ml-auto hidden text-neutral-400 printing:flex dark:text-neutral-600"

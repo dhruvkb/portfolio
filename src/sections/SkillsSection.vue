@@ -16,7 +16,9 @@ Displays the list of skills, automatically expanding nested skills in parenthese
 
   const skillDisplay = (skill: Skill): string => {
     if (typeof skill === 'string') return skill
-    return `${skill.name} (+${skill.subskills?.map((subskill) => skillDisplay(subskill)).join(', ')})`
+    return `${skill.name} (+${skill.subskills
+      ?.map((subskill) => skillDisplay(subskill))
+      .join(', ')})`
   }
 </script>
 <template>

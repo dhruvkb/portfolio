@@ -9,7 +9,7 @@ import type { Overwrite } from '@/utils/types'
 export interface Role extends IRole {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Org extends Overwrite<IOrg, {roles: Role[]}> {}
+export interface Org extends Overwrite<IOrg, { roles: Role[] }> {}
 
 export class Org extends ResumeItem {
   constructor(orgJson: IOrg) {
@@ -40,7 +40,8 @@ export class Role extends ResumeItem {
     this.period = roleJson.period
     this.epicIds = Array.isArray(roleJson.epicIds) ? roleJson.epicIds : []
 
-    this.isFeatured = typeof roleJson.isFeatured === 'boolean' ? roleJson.isFeatured : false
+    this.isFeatured =
+      typeof roleJson.isFeatured === 'boolean' ? roleJson.isFeatured : false
     this.summary = roleJson.summary
     this.highlights = roleJson.highlights
 

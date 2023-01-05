@@ -13,12 +13,15 @@ export type Point = [number, number]
  */
 const getNeigbourCount = (matrix: boolean[][], point: Point): number => {
   const [column, row] = point
-  const columns = matrix.length
-  const rows = matrix[0].length
+
+  const cll = Math.max(0, column - 1)
+  const cul = Math.min(matrix.length - 1, column + 1)
+  const rll = Math.max(0, row - 1)
+  const rul = Math.min(matrix[0].length - 1, row + 1)
 
   const neighbours: boolean[] = []
-  for (let i = Math.max(0, column - 1); i <= Math.min(columns - 1, column + 1); i += 1) {
-    for (let j = Math.max(0, row - 1); j <= Math.min(rows - 1, row + 1); j += 1) {
+  for (let i = cll; i <= cul; i += 1) {
+    for (let j = rll; j <= rul; j += 1) {
       if (i !== column || j !== row) neighbours.push(matrix[i][j])
     }
   }
@@ -62,7 +65,7 @@ const generateBoard = (columns: number, rows: number): boolean[][] | null => {
   if (columns < small.columns || rows < small.rows) return null
 
   const array = Array.from(Array(columns), () => new Array(rows))
-  const dataSet = (columns >= big.columns && rows >= big.rows) ? big : small
+  const dataSet = columns >= big.columns && rows >= big.rows ? big : small
   const xOffset = Math.floor((columns - dataSet.columns) / 2)
   const yOffset = Math.floor((rows - dataSet.rows) / 2)
   dataSet.points.forEach(([i, j]) => {
@@ -72,7 +75,10 @@ const generateBoard = (columns: number, rows: number): boolean[][] | null => {
   return array
 }
 
-export const useGameOfLife = (columns: Ref<number> | number, rows: Ref<number> | number) => {
+export const useGameOfLife = (
+  columns: Ref<number> | number,
+  rows: Ref<number> | number
+) => {
   const columnCount = ref(columns)
   const rowCount = ref(rows)
 
@@ -84,10 +90,11 @@ export const useGameOfLife = (columns: Ref<number> | number, rows: Ref<number> |
   const updateBoard = () => {
     if (board.value) board.value = getNextState(board.value)
   }
-  const updateLoop = () => setTimeout(() => {
-    updateBoard()
-    updateLoop()
-  }, 500)
+  const updateLoop = () =>
+    setTimeout(() => {
+      updateBoard()
+      updateLoop()
+    }, 500)
 
   return {
     board,

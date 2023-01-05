@@ -11,11 +11,12 @@ export const useContacts = () => {
 
   const contactMedia = computed(() => {
     const social = bio.value?.social ?? []
-    const emails: Profile[] = bio.value?.contact?.emails.map((email) => ({
-      id: 'email',
-      name: 'Email',
-      username: email,
-    })) ?? []
+    const emails: Profile[] =
+      bio.value?.contact?.emails.map((email) => ({
+        id: 'email',
+        name: 'Email',
+        username: email,
+      })) ?? []
 
     return [...social, ...emails]
   })
