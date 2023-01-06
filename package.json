@@ -25,6 +25,7 @@
   "devDependencies": {
     "@iconify-json/simple-icons": "^1.1.40",
     "@islands/icons": "^0.8.0",
+    "@prettier/plugin-xml": "^2.2.0",
     "@rushstack/eslint-patch": "^1.2.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/tsconfig": "^0.1.3",

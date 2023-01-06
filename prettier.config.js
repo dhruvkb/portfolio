@@ -5,4 +5,12 @@ module.exports = {
   vueIndentScriptAndStyle: true,
   bracketSameLine: true,
   singleAttributePerLine: true,
+  overrides: [
+    {
+      files: ['*.svg'], // ``unplugin-icons`` requires trailing space in ``<svg ``
+      options: {
+        singleAttributePerLine: false,
+      },
+    },
+  ],
 }
