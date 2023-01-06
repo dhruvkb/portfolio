@@ -1,12 +1,10 @@
 <script setup lang="ts">
   import { useIcon } from '@/composables/icon'
 
-  import Icon from '@/components/Icon.vue'
-
   const print = () => {
     if (window) window.print()
   }
-  const { getIconPaths } = useIcon()
+  const { getIcon } = useIcon()
 </script>
 
 <template>
@@ -16,8 +14,8 @@
     <span class="text-xs font-semibold uppercase">
       Print
     </span>
-    <Icon
-      class="inline text-red-500 transition-transform duration-100 group-hover:-translate-y-1"
-      :paths="getIconPaths('print')" />
+    <component
+      :is="getIcon('print')"
+      class="inline text-red-500 transition-transform duration-100 group-hover:-translate-y-1" />
   </button>
 </template>

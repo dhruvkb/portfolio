@@ -7,10 +7,9 @@ hyperlinks, where appropriate.
   import { useContacts } from '@/composables/contacts'
   import { useIcon } from '@/composables/icon'
 
-  import Icon from '@/components/Icon.vue'
   import Link from '@/components/Link.vue'
 
-  const { getIconPaths } = useIcon()
+  const { getIcon } = useIcon()
   const { contactMedia } = useContacts()
 </script>
 
@@ -31,9 +30,9 @@ hyperlinks, where appropriate.
           {{ medium.name }}
         </h3>
         <div>
-          <Icon
-            class="mr-2 inline-block"
-            :paths="getIconPaths(medium.id)" />
+          <component
+            :is="getIcon(medium.id)"
+            class="mr-2 inline-block" />
           <component
             :is="medium.url ? Link : 'span'"
             :dest="medium.url"

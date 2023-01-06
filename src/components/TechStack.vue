@@ -8,14 +8,12 @@ icons and logos.
 
   import { useIcon } from '@/composables/icon'
 
-  import Icon from '@/components/Icon.vue'
-
   interface Props {
     technologies: Technology[]
   }
   defineProps<Props>()
 
-  const { getIconPaths } = useIcon()
+  const { getIcon } = useIcon()
 </script>
 
 <template>
@@ -24,7 +22,9 @@ icons and logos.
       v-for="technology in technologies"
       :key="technology.name"
       class="inline-flex flex-row items-center gap-2 border-neutral-200 px-2 first:pl-0 last:pr-0 dark:border-neutral-900">
-      <Icon :paths="getIconPaths(technology.id)" />
+      <component
+        :is="getIcon(technology.id)"
+        v-if="technology.id" />
       <span class="sr-only printing:not-sr-only md:not-sr-only">{{
         technology.name
       }}</span>

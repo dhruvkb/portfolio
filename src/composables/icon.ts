@@ -1,52 +1,52 @@
-import type { SimpleIcon } from 'simple-icons'
-import {
-  siAutomattic,
-  siCreativecommons,
-  siFampay,
-  siHackerearth,
-  siWordpress,
-  siDjango,
-  siDocker,
-  siGnubash,
-  siIonic,
-  siJavascript,
-  siJson,
-  siLatex,
-  siMarkdown,
-  siNodedotjs,
-  siNuxtdotjs,
-  siOpenverse,
-  siPython,
-  siReadthedocs,
-  siTailwindcss,
-  siTypescript,
-  siVuedotjs,
-  siGithub,
-  siInstagram,
-  siLinkedin,
-} from 'simple-icons/icons'
+import type { defineComponent } from 'vue'
 
-import type { Icon as IconType, Path } from '@/models/icon'
+import iconEmail from 'virtual:icons/icons/email'
+import iconPrint from 'virtual:icons/icons/print'
+import logo2Fac from 'virtual:icons/logos/2fac'
+import logoBrowserstack from 'virtual:icons/logos/browserstack'
+import logoCenterofci from 'virtual:icons/logos/centerofci'
+import logoImg from 'virtual:icons/logos/img'
+import logoPls from 'virtual:icons/logos/pls'
+import logoPortfolio from 'virtual:icons/logos/portfolio'
+import logoReschume from 'virtual:icons/logos/reschume'
+import logoSeeelaye from 'virtual:icons/logos/seeelaye'
+import siAutomattic from 'virtual:icons/simple-icons/automattic'
+import siCreativecommons from 'virtual:icons/simple-icons/creativecommons'
+import siDjango from 'virtual:icons/simple-icons/django'
+import siDocker from 'virtual:icons/simple-icons/docker'
+import siFampay from 'virtual:icons/simple-icons/fampay'
+import siGithub from 'virtual:icons/simple-icons/github'
+import siGnubash from 'virtual:icons/simple-icons/gnubash'
+import siHackerearth from 'virtual:icons/simple-icons/hackerearth'
+import siInstagram from 'virtual:icons/simple-icons/instagram'
+import siIonic from 'virtual:icons/simple-icons/ionic'
+import siJavascript from 'virtual:icons/simple-icons/javascript'
+import siJson from 'virtual:icons/simple-icons/json'
+import siLatex from 'virtual:icons/simple-icons/latex'
+import siLinkedin from 'virtual:icons/simple-icons/linkedin'
+import siMarkdown from 'virtual:icons/simple-icons/markdown'
+import siNodedotjs from 'virtual:icons/simple-icons/nodedotjs'
+import siNuxtdotjs from 'virtual:icons/simple-icons/nuxtdotjs'
+import siOpenverse from 'virtual:icons/simple-icons/openverse'
+import siPython from 'virtual:icons/simple-icons/python'
+import siReadthedocs from 'virtual:icons/simple-icons/readthedocs'
+import siTailwindcss from 'virtual:icons/simple-icons/tailwindcss'
+import siTypescript from 'virtual:icons/simple-icons/typescript'
+import siVuedotjs from 'virtual:icons/simple-icons/vuedotjs'
+import siWordpress from 'virtual:icons/simple-icons/wordpress'
 
-import email from '@/assets/icons/email.json'
-import print from '@/assets/icons/print.json'
+type ComponentDefinition = ReturnType<typeof defineComponent>
 
-import _2fac from '@/assets/logos/2fac.json'
-import browserstack from '@/assets/logos/browserstack.json'
-import center_of_ci from '@/assets/logos/center_of_ci.json' // eslint-disable-line camelcase
-import img from '@/assets/logos/img.json'
-import pls from '@/assets/logos/pls.json'
-import portfolio from '@/assets/logos/portfolio.json'
-import reschume from '@/assets/logos/reschume.json'
-import seeelaye from '@/assets/logos/seeelaye.json'
-
-const simpleIcons: Record<string, SimpleIcon> = {
+export const icons: Record<string, ComponentDefinition> = {
   // Organisations
   automattic: siAutomattic,
   creative_commons: siCreativecommons,
   fampay: siFampay,
   hackerearth: siHackerearth,
   wordpress: siWordpress,
+  center_of_ci: logoCenterofci,
+  browserstack: logoBrowserstack,
+  img: logoImg,
 
   // Technologies
   django: siDjango,
@@ -68,45 +68,30 @@ const simpleIcons: Record<string, SimpleIcon> = {
 
   // Projects
   vocabulary: siCreativecommons,
+  '2fac': logo2Fac,
+  omniport: logoImg,
+  pls: logoPls,
+  portfolio: logoPortfolio,
+  reschume: logoReschume,
+  seeelaye: logoSeeelaye,
 
   // Contacts
   github: siGithub,
   linkedin: siLinkedin,
   instagram: siInstagram,
-}
+  email: iconEmail,
 
-const customIcons: Record<string, IconType> = {
-  // Organisations
-  center_of_ci, // eslint-disable-line camelcase
-  browserstack: browserstack as IconType,
-  img,
-
-  // Projects
-  '2fac': _2fac,
-  omniport: img,
-  pls,
-  portfolio,
-  reschume,
-  seeelaye: seeelaye as IconType,
-
-  // Icons
-  email,
-  print,
+  // Other
+  print: iconPrint,
 }
 
 export const useIcon = () => {
-  const getIconPaths = (slug: string): Path[] => {
-    if (slug in customIcons) return customIcons[slug].paths
-    if (slug in simpleIcons) {
-      return [{
-        d: simpleIcons[slug].path,
-        'fill-rule': 'nonzero',
-      }]
-    }
-    return []
+  const getIcon = (slug: string): ComponentDefinition | undefined => {
+    if (slug in icons) return icons[slug]
+    return undefined
   }
 
   return {
-    getIconPaths,
+    getIcon,
   }
 }
