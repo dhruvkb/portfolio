@@ -3,8 +3,6 @@
 
   import { useResume } from '@/stores/resume'
 
-  import AsciiArt from '@/components/AsciiArt.vue'
-
   import FooterSection from '@/sections/FooterSection.vue'
   import HeaderSection from '@/sections/HeaderSection.vue'
 
@@ -14,8 +12,6 @@
 </script>
 
 <template>
-  <AsciiArt />
-
   <HeaderSection class="py-page print:hidden" />
 
   <!-- Page content goes here -->

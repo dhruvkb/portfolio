@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AsciiArt: typeof import('./src/components/AsciiArt.vue')['default']
     Brand: typeof import('./src/components/Brand.vue')['default']
     DataDeck: typeof import('./src/components/DataDeck.vue')['default']
     DataTable: typeof import('./src/components/DataTable.vue')['default']
