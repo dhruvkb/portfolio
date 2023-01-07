@@ -1,14 +1,44 @@
-<script setup lang="ts">
-  interface Props {
-    code: string
-    title?: string
-    items: unknown[] // can be any list
-  }
-  defineProps<Props>()
+<script lang="ts">
+  import { defineComponent, type PropType } from 'vue'
 
-  const hasName = (val: unknown): val is { name: string } => typeof val === 'object'
-    && val !== null
-    && 'name' in val
+  class DataDeckFactory<T = unknown> {
+    // eslint-disable-next-line class-methods-use-this
+    define() {
+      return defineComponent({
+        name: 'DataDeck',
+        props: {
+          code: {
+            type: String,
+            required: true,
+          },
+          title: {
+            type: String,
+            default: undefined,
+          },
+          items: {
+            type: Array as PropType<T[]>,
+            default: () => [],
+          },
+        },
+        setup() {
+          const hasName = (val: unknown): val is { name: string } =>
+            typeof val === 'object' && val !== null && 'name' in val
+
+          return {
+            hasName,
+          }
+        },
+      })
+    }
+  }
+
+  const main = new DataDeckFactory().define()
+
+  export function GenericDataDeck<T>() {
+    return main as ReturnType<DataDeckFactory<T>['define']>
+  }
+
+  export default main
 </script>
 
 <template>
