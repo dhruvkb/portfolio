@@ -38,6 +38,15 @@ module.exports = {
       maxWidth: {
         text: '1024px', // same as `screen-lg`
       },
+      backgroundImage: {
+        'gradient-radial':
+          'radial-gradient(' +
+          'var(--gradient-shape, ellipse) ' +
+          'var(--gradient-size, farthest-corner) ' +
+          'at var(--gradient-pos, center), ' +
+          'var(--tw-gradient-stops)' +
+          ')',
+      },
       colors: {
         in: colors.inherit,
         curr: colors.current,
