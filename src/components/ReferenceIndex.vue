@@ -11,6 +11,8 @@ Renders a de-emphasised number enclosed in square brackets.
 
 <template>
   <span
-    class="font-mono text-cite font-semibold text-neutral-400 dark:text-neutral-600"
-    aria-hidden="true">[{{ index }}]</span>
+    class="text-neutral-400 before:content-['['] after:content-[']'] dark:text-neutral-600"
+    aria-hidden="true"
+    >{{ index }}</span
+  >
 </template>
