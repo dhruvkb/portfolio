@@ -15,6 +15,7 @@ Renders a funny, witty remark about me, as a person, or my profession, as a deve
     'Has talked to computers for over half his life.',
     'Writes code; <em>sometimes</em> gets paid for it.',
     'Knows how to exit vim.',
+    'Occasionally finishes a side-project.',
   ]
   const subtitle = computed(() => sample(subtitles))
 </script>
