@@ -58,8 +58,13 @@ export default defineApp({
        - sitemap
        */
 
-      // Inter font
-      { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' },
+      // Inter and JetBrains Mono fonts
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Inter:wght@400..900&display=swap',
+      },
 
       // Favicon
       { rel: 'icon', href: '/favicon.png' },
