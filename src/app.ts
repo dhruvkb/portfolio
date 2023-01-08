@@ -44,6 +44,7 @@ export default defineApp({
       { property: 'author', content: site.author },
 
       // Open-graph
+      // TODO: Implement `@vercel/og`
       { property: 'og:image', content: 'https://dhruvkb.dev/og-image.png' },
       { property: 'og:type', content: 'website' },
 
