@@ -115,6 +115,7 @@ module.exports = {
     }),
     plugin(({ addVariant }) => {
       addVariant('printing', '.print &')
+      addVariant('not-printing', '&:not(.print *)')
     }),
   ],
 }

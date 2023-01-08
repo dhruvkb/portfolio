@@ -77,19 +77,19 @@ external resource or a router path. External links open in a new tab without a r
 
 <template>
   <a
-    class="group lowercase underline hover:text-neutral-900 printing:no-underline printing:hover:text-curr dark:hover:text-neutral-200"
+    class="group lowercase not-printing:underline not-printing:hover:text-neutral-900 dark:not-printing:hover:text-neutral-200"
     :class="{
       // Active link is dimmed in the nav bar.
       'text-neutral-400 dark:text-neutral-600': isNav && isActive,
       // Allow opting-out of italics-on-hover.
-      'hover:italic printing:hover:not-italic': features.includes('italics'),
+      'not-printing:hover:italic': features.includes('italics'),
     }"
     v-bind="params"
     :href="dest"
     :aria-label="label">
     <slot>
       <span class="printing:hidden">Link</span>
-      <code class="hidden printing:inline">{{ displayLink }}</code>
+      <code class="not-printing:hidden">{{ displayLink }}</code>
     </slot>
     <span
       v-if="arrow"
