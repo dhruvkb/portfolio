@@ -50,7 +50,7 @@
             :page-title="link.name"
             :dest="link.dest"
             :label="`${link.name} page`"
-            :features="['italics']">
+            :features="['lowercase', 'italics']">
             {{ link.name }}
           </Link>
         </li>
