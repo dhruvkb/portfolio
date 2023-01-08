@@ -16,7 +16,11 @@ Renders the site-title and the kaomoji.
       <span class="sr-only">Hello</span>
     </h2>
 
-    <SiteTitle class="text-3xl printing:text-2xl printing:leading-snug sm:text-4xl lg:text-5xl" />
+    <SiteTitle
+      class="mb-ln printing:mb-1 printing:text-2xl printing:leading-none"
+      is-ascii
+      changes-color
+      client:load />
 
     <p class="body-text mb-6 max-w-text printing:mb-0 printing:text-xl">
       <strong>software developer</strong> and
