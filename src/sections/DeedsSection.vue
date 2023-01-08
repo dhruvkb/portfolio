@@ -5,34 +5,23 @@ Displays a list of what I do and can do.
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
 
+  import { usePalette } from '@/composables/palette'
+
   import ReferenceIndex from '@/components/ReferenceIndex.vue'
 
+  const { getPaletteClasses } = usePalette()
+
   const deeds = [
-    {
-      text: 'write elegant code',
-      gradients: ['from-violet-500', 'to-blue-500'],
-    },
-    {
-      text: 'design accessible interfaces',
-      gradients: ['from-blue-500', 'to-cyan-500'],
-    },
-    {
-      text: 'deploy scalable apps',
-      gradients: ['from-cyan-500', 'to-lime-500'],
-    },
-    {
-      text: 'author helpful documentation',
-      gradients: ['from-lime-500', 'to-yellow-500'],
-    },
-    {
-      text: 'nurture FOSS communities',
-      gradients: ['from-yellow-500', 'to-orange-500'],
-    },
-    {
-      text: 'sneak easter eggs',
-      gradients: ['from-orange-500', 'to-red-500'],
-    },
-  ]
+    'write elegant code',
+    'design accessible interfaces',
+    'deploy scalable apps',
+    'author helpful documentation',
+    'nurture FOSS communities',
+    'sneak easter eggs',
+  ].map((deed, index) => ({
+    text: deed,
+    gradients: getPaletteClasses(index + 1),
+  }))
 
   /* Animation logic */
 
