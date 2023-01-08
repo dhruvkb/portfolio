@@ -22,7 +22,11 @@ Renders a funny, witty remark about me, as a person, or my profession, as a deve
 
 <template>
   <p>
-    <span class="text-red-500">*</span>
+    <span
+      class="text-red-500"
+      aria-hidden="true"
+      >*</span
+    >
     <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
     <span v-html="subtitle" />
     <!-- eslint-enable vue/no-v-html -->

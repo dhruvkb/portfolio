@@ -16,16 +16,26 @@ Renders the site-title and the kaomoji.
       <span class="sr-only">Hello</span>
     </h2>
 
-    <SiteTitle
-      class="mb-ln printing:mb-1 printing:text-2xl printing:leading-none"
-      is-ascii
-      changes-color
-      client:load />
+    <div class="mb-ln flex flex-row items-start printing:mb-1">
+      <SiteTitle
+        class="printing:text-2xl printing:leading-none"
+        is-ascii
+        changes-color
+        client:load />
+      <!-- reference to the `<Subtitle>` component -->
+      <span
+        class="text-red-500 printing:hidden"
+        aria-hidden="true"
+        >*</span
+      >
+    </div>
 
-    <p class="body-text mb-6 max-w-text printing:mb-0 printing:text-xl">
-      <strong>software developer</strong> and
-      <strong>open-source maintainer</strong>
-      <span class="text-red-500 printing:hidden">*</span>
+    <p class="mb-ln max-w-text printing:mb-0 printing:text-xl">
+      <strong class="not-printing:hover:font-black">software developer</strong>
+      and
+      <strong class="not-printing:hover:font-black"
+        >open-source maintainer</strong
+      >
     </p>
 
     <Subtitle
