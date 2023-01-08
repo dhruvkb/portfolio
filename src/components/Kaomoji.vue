@@ -33,5 +33,9 @@ Draws a face to the screen consisting of CJK characters.
 </script>
 
 <template>
-  <span aria-hidden="true">{{ face }}</span>
+  <span aria-hidden="true">
+    <span class="printing:hidden">{{ face }}</span>
+    <!-- Lock down the face printed on the resume. -->
+    <span class="hidden printing:inline">(´•ヮ•`)ノ</span>
+  </span>
 </template>
