@@ -12,13 +12,13 @@
 </script>
 
 <template>
-  <HeaderSection class="py-page print:hidden" />
+  <HeaderSection class="mb-ln print:hidden" />
 
   <!-- Page content goes here -->
   <slot />
 
   <FooterSection
-    class="py-page border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
+    class="mt-ln border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
 
   <component
     :is="'script'"
