@@ -28,12 +28,12 @@
 </script>
 
 <template>
-  <header class="px-page flex flex-row items-center justify-between">
+  <header class="flex flex-row items-center justify-between">
     <Link
       :dest="home.dest"
       :label="`${home.name} page`"
       :features="[]">
-      <h1 class="text-xl sm:text-2xl">
+      <h1>
         <SiteTitle
           :class="{ hidden: isHome }"
           aria-hidden="true" />
