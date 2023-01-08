@@ -36,7 +36,7 @@ module.exports = {
         ['cite', defaultTheme.fontSize.sm],
       ]),
       maxWidth: {
-        text: '1024px', // same as `screen-lg`
+        text: '88ch', // Line length prescribed by Black
       },
       backgroundImage: {
         'gradient-radial':
