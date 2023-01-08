@@ -7,82 +7,96 @@ external resource or a router path. External links open in a new tab without a r
   import { usePage } from 'iles'
   import { computed } from 'vue'
 
-  const arrows = {
-    e: {
-      glyph: '→',
-      classes: ['group-hover:translate-x-1'],
-    },
-    ne: {
+  const ARROWS = {
+    NORTHEAST: {
       glyph: '↗',
       classes: ['group-hover:translate-x-1', 'group-hover:-translate-y-1'],
     },
-    s: {
+    EAST: {
+      glyph: '→',
+      classes: ['group-hover:translate-x-1'],
+    },
+    SOUTH: {
       glyph: '↓',
       classes: ['group-hover:translate-y-1'],
     },
-    none: undefined,
   } as const
-  type ArrowStyle = keyof typeof arrows
 
   interface Props {
+    /**
+     * the actual target to which the link points, analogous to the `href`
+     * attribute on the anchor tag `<a>`
+     */
     dest: string
     label: string
     /**
-     * whether to not apply the font styling in terms of size, weight and case
+     * the title of the page as per the frontmatter, used by internal links to
+     * identify the active page
      */
-    isPlain?: boolean
+    pageTitle?: string | undefined
     /**
-     * that direction of the arrow to display; useful if you want to change the depicted arrow or
-     * remove it entirely
+     * selectively enable features provided by this component; The available
+     * features are
+     * - italics: italicise text on hover
+     * - arrow: show an arrow after the link
      */
-    arrowStyle?: ArrowStyle
-    title?: string
+    features?: string[]
   }
   const props = withDefaults(defineProps<Props>(), {
-    arrowStyle: undefined,
-    title: undefined,
+    pageTitle: undefined,
+    features: () => ['italics', 'arrow'],
   })
 
   const isExternal = computed(() => props.dest.startsWith('http'))
+  const isFile = computed(() => props.dest.endsWith('.pdf'))
+  const arrow = computed(() => {
+    if (!props.features.includes('arrow')) return undefined
+    if (isFile.value) return ARROWS.SOUTH
+    if (isExternal.value) return ARROWS.NORTHEAST
+    return ARROWS.EAST
+  })
 
   const { frontmatter } = usePage()
-  const isNav = computed(() => props.title !== undefined)
-  const isActive = computed(() => frontmatter.title === props.title)
+  const isNav = computed(() => props.pageTitle !== undefined)
+  const isActive = computed(() => props.pageTitle === frontmatter.title)
 
-  const displayLink = computed(() => (isExternal.value ? props.dest.replace(/https?:\/\/(www.)?/g, '') : props.dest))
+  /**
+   * the actual URL, with the initial `https://www.` part, and variations
+   * thereof, stripped out
+   */
+  const displayLink = computed(() =>
+    isExternal.value
+      ? props.dest.replace(/https?:\/\/(www.)?/g, '')
+      : props.dest
+  )
 
-  const params = computed(() => (isExternal.value
-    ? { target: '_blank', rel: 'noreferrer' }
-    : { }))
-
-  const arrow = computed(() => {
-    if (props.arrowStyle) return arrows[props.arrowStyle]
-    return isExternal.value ? arrows.ne : arrows.e
-  })
+  const params = computed(() =>
+    isExternal.value ? { target: '_blank', rel: 'noreferrer' } : {}
+  )
 </script>
 
 <template>
-  <span class="group inline-flex flex-row items-center gap-1">
-    <a
-      class="hover:underline"
-      :class="{
-        'text-xs font-semibold uppercase': !isPlain,
-        'text-neutral-400 dark:text-neutral-600 underline hover:text-curr': isNav && isActive,
-      }"
-      v-bind="params"
-      :href="dest"
-      :aria-label="label">
-      <slot>
-        <span class="printing:hidden">Link</span>
-        <code class="hidden printing:inline">{{ displayLink }}</code>
-      </slot>
-    </a>
+  <a
+    class="group lowercase underline hover:text-neutral-900 printing:no-underline printing:hover:text-curr dark:hover:text-neutral-200"
+    :class="{
+      // Active link is dimmed in the nav bar.
+      'text-neutral-400 dark:text-neutral-600': isNav && isActive,
+      // Allow opting-out of italics-on-hover.
+      'hover:italic printing:hover:not-italic': features.includes('italics'),
+    }"
+    v-bind="params"
+    :href="dest"
+    :aria-label="label">
+    <slot>
+      <span class="printing:hidden">Link</span>
+      <code class="hidden printing:inline">{{ displayLink }}</code>
+    </slot>
     <span
       v-if="arrow"
-      class="font-semibold text-red-500 transition-transform duration-100 printing:hidden"
+      class="ml-1 inline-block font-semibold text-red-500 transition-transform duration-100 printing:hidden"
       :class="arrow.classes"
       aria-hidden="true">
       {{ arrow.glyph }}
     </span>
-  </span>
+  </a>
 </template>

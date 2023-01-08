@@ -42,8 +42,8 @@ Renders the footer with some important links and a 'Thank you' note.
 
     <Link
       label="Source code for this website"
-      dest="https://github.com/dhruvkb/portfolio">
-      Source code
-    </Link>
+      dest="https://github.com/dhruvkb/portfolio"
+      >Source code</Link
+    >
   </footer>
 </template>

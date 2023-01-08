@@ -17,12 +17,10 @@
       <PrintButton client:load />
 
       <Link
-        arrow="down"
         label="Résumé as PDF"
         dest="https://dhruvkb.dev/resume.pdf"
-        arrow-style="s">
-        Download PDF
-      </Link>
+        >Download PDF</Link
+      >
     </div>
   </section>
 </template>

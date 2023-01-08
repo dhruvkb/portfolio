@@ -32,8 +32,7 @@
     <Link
       :dest="home.dest"
       :label="`${home.name} page`"
-      arrow-style="none"
-      is-plain>
+      :features="[]">
       <h1 class="text-xl sm:text-2xl">
         <SiteTitle
           :class="{ hidden: isHome }"
@@ -48,12 +47,10 @@
           v-for="link in navLinks"
           :key="link.name">
           <Link
-            class="text-xl font-medium lowercase sm:text-2xl"
-            :title="link.name"
+            :page-title="link.name"
             :dest="link.dest"
             :label="`${link.name} page`"
-            arrow-style="none"
-            is-plain>
+            :features="['italics']">
             {{ link.name }}
           </Link>
         </li>

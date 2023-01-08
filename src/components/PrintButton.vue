@@ -9,13 +9,12 @@
 
 <template>
   <button
-    class="group inline-flex flex-row gap-1 hover:underline"
+    class="group lowercase underline hover:italic hover:text-neutral-900 dark:hover:text-neutral-200"
+    aria-label="Print this page"
     @click="print">
-    <span class="text-xs font-semibold uppercase">
-      Print
-    </span>
+    <span>Print</span>
     <component
       :is="getIcon('print')"
-      class="inline text-red-500 transition-transform duration-100 group-hover:-translate-y-1" />
+      class="ml-1 inline-block text-red-500 transition-transform duration-100 group-hover:-translate-y-1" />
   </button>
 </template>

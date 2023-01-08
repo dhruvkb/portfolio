@@ -31,14 +31,13 @@ hyperlinks, where appropriate.
         </h3>
         <div>
           <component
-            :is="getIcon(medium.id)"
-            class="mr-2 inline-block" />
-          <component
             :is="medium.url ? Link : 'span'"
             :dest="medium.url"
-            :label="`${medium.name} profile`"
-            is-plain>
-            {{ medium.username }}
+            :label="`${medium.name} profile`">
+            <component
+              :is="getIcon(medium.id)"
+              class="mr-ch inline-block" />
+            <span>{{ medium.username }}</span>
           </component>
         </div>
       </div>
