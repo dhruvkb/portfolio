@@ -17,27 +17,25 @@ hyperlinks, where appropriate.
   <section aria-label="Contact">
     <h2 aria-label="Contact">Contact</h2>
 
-    <p class="body-text mb-12 printing:mb-1 printing:text-base printing:leading-normal">
-      Let's get in touch.
+    <p class="mb-ln printing:hidden">
+      I'm always open to collaborating on new and exciting ideas. If you have
+      one, drop me and line and we will connect.
     </p>
+    <p class="mb-1 not-printing:hidden">Let's connect.</p>
 
-    <div class="grid grid-cols-1 gap-y-4 text-lg printing:grid-cols-2 printing:gap-y-0 printing:text-base printing:leading-normal sm:grid-cols-3 lg:grid-cols-4">
+    <div class="printing:grid printing:grid-cols-2">
       <div
         v-for="medium in contactMedia"
-        :key="medium.id"
-        class="printing:last-of-type:col-span-1 sm:last-of-type:col-span-3 lg:last-of-type:col-span-1">
-        <h3 class="font-medium printing:hidden">
-          {{ medium.name }}
-        </h3>
+        :key="medium.id">
         <div>
           <component
             :is="medium.url ? Link : 'span'"
-            :dest="medium.url"
-            :label="`${medium.name} profile`">
+            :dest="medium.url">
             <component
               :is="getIcon(medium.id)"
               class="mr-ch inline-block"
               aria-hidden="true" />
+            <span class="sr-only">{{ medium.name }} profile:</span>
             <span>{{ medium.username }}</span>
           </component>
         </div>
