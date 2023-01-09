@@ -3,14 +3,14 @@
 </page>
 
 <script setup lang="ts">
-  import PrintSection from '@/sections/PrintSection.vue'
+  import ObtainSection from '@/sections/ObtainSection.vue'
   import ResumeSection from '@/sections/ResumeSection.vue'
 </script>
 
 <template>
   <!-- TODO: Merge into 'Works' page. -->
-  <main class="flex flex-col gap-16 lg:gap-24">
-    <PrintSection class="print:hidden" />
+  <main>
+    <ObtainSection class="mb-para print:hidden" />
     <ResumeSection />
   </main>
 </template>
