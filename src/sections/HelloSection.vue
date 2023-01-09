@@ -16,9 +16,8 @@ Renders the site-title and the kaomoji.
       <span class="sr-only">Hello</span>
     </h2>
 
-    <div class="mb-ln flex flex-row items-start printing:mb-1">
+    <div class="mb-ln flex flex-row items-start printing:mb-0">
       <SiteTitle
-        class="printing:text-2xl printing:leading-none"
         is-ascii
         changes-color
         client:load />

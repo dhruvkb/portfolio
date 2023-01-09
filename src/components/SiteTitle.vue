@@ -88,7 +88,8 @@
       <span>kb</span>
     </span>
 
-    <span class="sr-only text-black printing:not-sr-only dark:text-white">
+    <span
+      class="sr-only text-black printing:not-sr-only printing:text-2xl dark:text-white">
       <span class="font-black">Dhruv</span>
       <span> Bhanushali</span>
     </span>
