@@ -7,8 +7,6 @@ Displays a list of what I do and can do.
 
   import { usePalette } from '@/composables/palette'
 
-  import ReferenceIndex from '@/components/ReferenceIndex.vue'
-
   const { getPaletteClasses } = usePalette()
 
   const deeds = [
@@ -41,31 +39,51 @@ Displays a list of what I do and can do.
       What do <span class="normal-case">I</span> do?
     </h2>
 
-    <p class="body-text mb-6 max-w-text">
+    <div class="body-text mb-ln">
       I
-      <template
-        v-for="(deed, index) in deeds"
-        :key="index">
-        <ReferenceIndex
-          class="align-top"
-          :index="index + 1" />
-        <span
-          class="gradient-text hover:text-tx"
-          :class="[deed.gradients, { 'text-tx': index === activeDeed }]">
-          {{ deed.text }}
-        </span>
-        <span v-if="index < deeds.length - 2">; </span>
-        <span v-else-if="index === deeds.length - 2"> and </span>
-        <span v-else>.</span>
-      </template>
-    </p>
+      <ul
+        class="inline text-neutral-900 transition-colors hover:text-neutral-400 dark:text-neutral-200 dark:hover:text-neutral-600">
+        <li
+          v-for="(deed, index) in deeds"
+          :key="index"
+          class="group inline">
+          <span
+            class="text-neutral-400 transition-colors before:content-['['] after:content-[']'] group-hover:text-neutral-700 dark:text-neutral-600 dark:group-hover:text-neutral-400"
+            aria-hidden="true"
+            >{{ index + 1 }}</span
+          >
+          <span
+            class="text-grad-lin transition-[color] group-hover:text-tx"
+            :class="deed.gradients">
+            {{ deed.text }}
+          </span>
+          <span
+            v-if="index < deeds.length - 2"
+            class="text-neutral-700 dark:text-neutral-400"
+            >;
+          </span>
+          <span
+            v-else-if="index === deeds.length - 2"
+            class="text-neutral-700 dark:text-neutral-400">
+            and
+          </span>
+          <span
+            v-else
+            class="text-neutral-700 dark:text-neutral-400"
+            >.</span
+          >
+        </li>
+      </ul>
+    </div>
 
-    <p class="text-sm">
+    <p>
+      I, much like this site, am a
       <span
-        class="inline-block -translate-y-1/2 align-top text-xs"
-        aria-hidden="true">
-        🚧
-      </span>This site, like myself, is a work in progress.
+        class="text-neutral-400 before:content-['['] after:content-[']'] dark:text-neutral-600"
+        aria-hidden="true"
+        >🚧</span
+      >
+      work in progress.
     </p>
   </section>
 </template>
