@@ -24,7 +24,8 @@ icons and logos.
       class="inline-flex flex-row items-center gap-2 border-neutral-200 px-2 first:pl-0 last:pr-0 dark:border-neutral-900">
       <component
         :is="getIcon(technology.id)"
-        v-if="technology.id" />
+        v-if="technology.id"
+        aria-hidden="true" />
       <span class="sr-only printing:not-sr-only md:not-sr-only">{{
         technology.name
       }}</span>

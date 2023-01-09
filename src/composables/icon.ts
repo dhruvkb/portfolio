@@ -85,6 +85,8 @@ export const icons: Record<string, ComponentDefinition> = {
   print: iconPrint,
 }
 
+// TODO: Replace individual aria-hidden attributes with an SVG transform
+// https://github.com/antfu/unplugin-icons#global-custom-icon-transformation
 export const useIcon = () => {
   const getIcon = (slug: string): ComponentDefinition | undefined => {
     if (slug in icons) return icons[slug]

@@ -36,7 +36,8 @@ hyperlinks, where appropriate.
             :label="`${medium.name} profile`">
             <component
               :is="getIcon(medium.id)"
-              class="mr-ch inline-block" />
+              class="mr-ch inline-block"
+              aria-hidden="true" />
             <span>{{ medium.username }}</span>
           </component>
         </div>
