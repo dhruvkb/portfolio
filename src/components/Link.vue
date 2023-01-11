@@ -95,7 +95,7 @@ external resource or a router path. External links open in a new tab without a r
     </slot>
     <span
       v-if="arrow"
-      class="ml-1 inline-block font-semibold text-red-500 transition-transform duration-100 printing:hidden"
+      class="ml-1 inline-block font-sans font-semibold not-italic text-red-500 transition-transform duration-100 printing:hidden"
       :class="arrow.classes"
       aria-hidden="true">
       {{ arrow.glyph }}
