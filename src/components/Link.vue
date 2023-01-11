@@ -77,10 +77,10 @@ external resource or a router path. External links open in a new tab without a r
 
 <template>
   <a
-    class="group not-printing:underline not-printing:hover:text-neutral-900 dark:not-printing:hover:text-neutral-200"
+    class="group not-printing:underline not-printing:hover:text-imp"
     :class="{
       // Active link is dimmed in the nav bar.
-      'text-neutral-400 dark:text-neutral-600': isNav && isActive,
+      'text-low': isNav && isActive,
       // Allow opting-out of lowercase text.
       lowercase: features.includes('lowercase'),
       // Allow opting-out of italics-on-hover.
