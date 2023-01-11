@@ -52,24 +52,12 @@ module.exports = {
         curr: colors.current,
         tx: colors.transparent,
 
-        /*
-         Theme guide
-         ===========
+        bg: 'var(--color-bg)', // background
+        hl: 'var(--color-hl)', // emphasised background
 
-         Light theme:
-         - background:            white
-         - emphasised background: 200
-         - de-emphasised text:    400
-         - regular text:          700
-         - emphasised text:       900
-
-         Dark theme:
-         - background:            black
-         - emphasised background: 900
-         - de-emphasised text:    600
-         - regular text:          400
-         - emphasised text:       200
-         */
+        low: 'var(--color-low)', // de-emphasised text
+        reg: 'var(--color-reg)', // regular text
+        imp: 'var(--color-imp)', // emphasised text
       },
     },
     fontFamily: {

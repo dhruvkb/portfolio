@@ -5,6 +5,24 @@
 @layer base {
   html {
     @apply flex min-h-full bg-white text-neutral-700 dark:bg-black dark:text-neutral-400;
+
+    --color-bg: theme(colors.white);
+    --color-hl: theme(colors.neutral.200);
+
+    --color-low: theme(colors.neutral.400);
+    --color-reg: theme(colors.neutral.700);
+    --color-imp: theme(colors.neutral.900);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      --color-bg: theme(colors.black);
+      --color-hl: theme(colors.neutral.900);
+
+      --color-low: theme(colors.neutral.600);
+      --color-reg: theme(colors.neutral.400);
+      --color-imp: theme(colors.neutral.200);
+    }
   }
 
   body {
