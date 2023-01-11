@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     Link: typeof import('./src/components/Link.vue')['default']
     Period: typeof import('./src/components/Period.vue')['default']
     PrintButton: typeof import('./src/components/PrintButton.vue')['default']
+    ProdPercent: typeof import('./src/components/ProdPercent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SiteTitle: typeof import('./src/components/SiteTitle.vue')['default']
