@@ -18,9 +18,9 @@
       </p>
       <Link
         label="Homepage"
-        dest="/">
-        Home
-      </Link>
+        dest="/"
+        >Home</Link
+      >
     </section>
 
     <div class="relative grow">
