@@ -10,7 +10,7 @@
 <template>
   <!-- TODO: Merge into 'Works' page. -->
   <main>
-    <ObtainSection class="mb-para print:hidden" />
+    <ObtainSection class="mx-auto mb-para w-full max-w-text print:hidden" />
     <ResumeSection />
   </main>
 </template>

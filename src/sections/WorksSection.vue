@@ -46,7 +46,7 @@ Uses data from the 'resume' store in Pinia.
 
 <template>
   <section aria-label="Works">
-    <div class="mb-6">
+    <div class="mx-auto mb-6 max-w-text">
       <h2 aria-label="Works">Works</h2>
     </div>
 

@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <main>
+  <main class="mx-auto w-full max-w-text">
     <DeedsSection class="mb-para" />
     <IntroSection class="mb-para" />
     <ContactSection />

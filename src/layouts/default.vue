@@ -12,13 +12,13 @@
 </script>
 
 <template>
-  <HeaderSection class="mb-ln print:hidden" />
+  <HeaderSection class="mx-auto mb-ln w-full max-w-text print:hidden" />
 
   <!-- Page content goes here -->
   <slot />
 
   <FooterSection
-    class="mt-ln border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
+    class="mx-auto mt-ln w-full max-w-text border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
 
   <component
     :is="'script'"

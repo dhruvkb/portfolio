@@ -7,8 +7,8 @@
 </script>
 
 <template>
-  <!-- `px-page` class not applied so that tables can span full width. -->
-  <main class="py-page">
+  <!-- Classes `mx-auto`, `w-full` and `max-w-text` not applied so that tables can span full width. -->
+  <main>
     <WorksSection />
   </main>
 </template>
