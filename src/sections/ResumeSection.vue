@@ -39,7 +39,7 @@ Renders the résumé in a page-like layout using the dimensions of an A4 page.
     class="hidden font-sans print:block lg:block"
     aria-label="Preview">
     <div
-      class="print mx-auto flex h-[297mm] w-[210mm] items-center justify-center border border-neutral-200 bg-white text-[12px] shadow-lg dark:border-neutral-600 dark:bg-black print:m-0 print:border-none print:shadow-none">
+      class="print mx-auto flex h-[297mm] w-[210mm] items-center justify-center border border-neutral-200 bg-white text-resume shadow-lg dark:border-neutral-600 dark:bg-black print:m-0 print:border-none print:shadow-none">
       <!-- Page content -->
       <div class="mx-6 box-content grid w-full grid-cols-2 gap-x-4 gap-y-2">
         <HelloSection />

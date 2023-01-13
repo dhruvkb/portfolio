@@ -13,6 +13,12 @@ module.exports = {
       md: { raw: 'screen and (min-width: 768px)' },
       lg: { raw: 'screen and (min-width: 1024px)' },
     },
+    fontSize: {
+      base: '1rem',
+      lg: '1.25em',
+      xl: '1.5em',
+      resume: '12px',
+    },
     extend: {
       spacing: {
         ch: '1ch',
@@ -24,16 +30,6 @@ module.exports = {
       cursor: {
         help: 'help',
       },
-      // same font sizes as Tailwind but with `em` instead of `rem` (and a copy of `sm` in `rem`s)
-      fontSize: Object.fromEntries([
-        ...Object.entries(defaultTheme.fontSize).map(
-          ([name, [size, options]]) => [
-            name,
-            [size.replace('rem', 'em'), options],
-          ]
-        ),
-        ['cite', defaultTheme.fontSize.sm],
-      ]),
       maxWidth: {
         text: '88ch', // line length prescribed by Black
         'screen-lg': '1024px', // not generated automatically because of raw media-query

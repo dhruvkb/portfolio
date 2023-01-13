@@ -29,7 +29,7 @@ Renders the site-title and the kaomoji.
       >
     </div>
 
-    <p class="mb-ln max-w-text printing:mb-0 printing:text-xl">
+    <p class="mb-ln max-w-text printing:mb-0 printing:text-lg">
       <strong class="not-printing:hover:font-black">software developer</strong>
       and
       <strong class="not-printing:hover:font-black"

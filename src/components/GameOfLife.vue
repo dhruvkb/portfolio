@@ -45,7 +45,7 @@ Hopefully the user navigates away from it by that point.
       <div
         v-for="column in columns"
         :key="column"
-        class="inline-block h-4 w-4 border border-white text-xs dark:border-black"
+        class="inline-block h-4 w-4 border border-white dark:border-black"
         :class="
           cellValue(column - 1, row - 1)
             ? 'bg-neutral-400 dark:bg-neutral-600'
