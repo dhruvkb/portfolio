@@ -28,18 +28,26 @@ Uses data from the 'resume' store in Pinia.
 
   const sections = computed(() => [
     {
-      code: 'role',
       title: 'Roles',
-      columns: roleColumns,
-      groups: roleData.value,
-      items: Object.values(orgs.value),
+      deck: {
+        code: 'role',
+        items: Object.values(orgs.value),
+      },
+      table: {
+        columns: roleColumns,
+        groups: roleData.value,
+      },
     },
     {
-      code: 'project',
       title: 'Projects',
-      columns: projectColumns,
-      groups: projectData.value,
-      items: Object.values(epics.value),
+      deck: {
+        code: 'project',
+        items: Object.values(epics.value),
+      },
+      table: {
+        columns: projectColumns,
+        groups: projectData.value,
+      },
     },
   ])
 </script>
@@ -55,7 +63,8 @@ Uses data from the 'resume' store in Pinia.
       :key="sectionIndex">
       <DataTable
         class="mb-6 hidden sm:table"
-        v-bind="section">
+        :title="section.title"
+        v-bind="section.table">
         <!-- Some of these templates will be unused, depending on the columns in the table. -->
         <template #org="{ data: org }">
           <Brand v-bind="org" />
@@ -76,7 +85,8 @@ Uses data from the 'resume' store in Pinia.
 
       <DataDeck
         class="mb-6 sm:hidden"
-        v-bind="section">
+        :title="section.title"
+        v-bind="section.deck">
         <template #project="{ item: epic }">
           <EpicCard :epic="epic" />
         </template>
