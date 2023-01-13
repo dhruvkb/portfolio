@@ -9,13 +9,12 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
     {
       code: 'org',
       display: 'Org',
-      classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
+      classes: ['w-[19ch]'] as string[],
     },
     {
       code: 'link',
       display: 'Link',
-      breakpoint: 'lg',
-      classes: ['w-[5rem]'] as string[],
+      classes: ['w-[6ch]'] as string[],
     },
     {
       // Infinite expansion column
@@ -26,19 +25,19 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
       code: 'epic',
       display: 'Epic',
       breakpoint: 'lg', // same as breakpoint of Org in `projectsColumns`
-      classes: ['w-[13rem]'] as string[],
+      classes: ['w-[13ch]'] as string[],
     },
     {
       code: 'type',
       display: 'Type',
-      breakpoint: 'xl',
-      classes: ['w-[7rem]'] as string[],
+      breakpoint: 'lg',
+      classes: ['w-[10ch]'] as string[],
     },
     {
       code: 'period',
       display: 'Period',
       breakpoint: 'sm',
-      classes: ['w-[3rem]', 'md:w-[11rem]'] as string[],
+      classes: ['w-[6ch]', 'md:w-[17ch]'] as string[],
     },
   ] as const
   type RoleData = RowData<typeof columns[number]['code']>

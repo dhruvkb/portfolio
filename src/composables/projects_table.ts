@@ -9,24 +9,23 @@ export const useProjectTable = (_epics: Epic[] | Ref<Epic[]>) => {
     {
       code: 'epic',
       display: 'Epic',
-      classes: ['w-[9rem]', 'sm:w-[13rem]'] as string[],
+      classes: ['w-[13ch]'] as string[],
     },
     {
       code: 'name',
       display: 'Project',
-      classes: ['w-[10rem]'] as string[],
+      classes: ['w-[15ch]'] as string[],
     },
     {
       code: 'org',
       display: 'Org',
       breakpoint: 'lg', // same as breakpoint of Epic in `rolesColumns`
-      classes: ['w-[13rem]'] as string[],
+      classes: ['w-[19ch]'] as string[],
     },
     {
       code: 'link',
       display: 'Link',
-      breakpoint: 'lg',
-      classes: ['w-[5rem]'] as string[],
+      classes: ['w-[6ch]'] as string[],
     },
     {
       // Infinite expansion column
