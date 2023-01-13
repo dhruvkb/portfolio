@@ -82,20 +82,14 @@ module.exports = {
   plugins: [
     plugin(({ matchUtilities, theme }) => {
       matchUtilities(
-        {
-          pls: (value) => ({
-            paddingLeft: `max(${value}, env(safe-area-inset-left))`,
-          }),
-          prs: (value) => ({
-            paddingRight: `max(${value}, env(safe-area-inset-right))`,
-          }),
-          pts: (value) => ({
-            paddingTop: `max(${value}, env(safe-area-inset-top))`,
-          }),
-          pbs: (value) => ({
-            paddingBottom: `max(${value}, env(safe-area-inset-bottom))`,
-          }),
-        },
+        Object.fromEntries(
+          ['top', 'right', 'bottom', 'left'].map((dir) => [
+            `p${dir[0]}s`,
+            (val) => ({
+              [`padding-${dir}`]: `max(${val}, env(safe-area-inset-${dir}))`,
+            }),
+          ])
+        ),
         {
           values: theme('spacing'),
         }
