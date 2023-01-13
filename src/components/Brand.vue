@@ -28,7 +28,7 @@ Renders the name of a brand alongside its logo.
     <component
       :is="getIcon(id)"
       v-if="id"
-      width="2ch"
+      class="w-[2ch]"
       aria-hidden="true" />
 
     <!-- Short name for small screens -->
