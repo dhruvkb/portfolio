@@ -6,7 +6,7 @@ import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 export default defineConfig({
   siteUrl: 'https://dhruvkb.dev',
-  // TODO: turbo: true,
+  turbo: true,
   modules: [
     // https://github.com/ElMassimo/iles/blob/main/packages/icons/src/icons.ts
     icons({
