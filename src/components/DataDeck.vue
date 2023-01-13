@@ -1,3 +1,7 @@
+<!--
+Renders a list of card components.
+-->
+
 <script lang="ts">
   import { defineComponent, type PropType } from 'vue'
 
@@ -7,13 +11,13 @@
       return defineComponent({
         name: 'DataDeck',
         props: {
-          code: {
-            type: String,
-            required: true,
-          },
           title: {
             type: String,
             default: undefined,
+          },
+          code: {
+            type: String,
+            required: true,
           },
           items: {
             type: Array as PropType<T[]>,
@@ -42,18 +46,18 @@
 </script>
 
 <template>
-  <figure>
+  <figure class="h-full">
     <figcaption
       v-if="title"
-      class="px-page border-b border-neutral-400 py-2 text-xs font-semibold uppercase text-neutral-400 printing:px-0 dark:border-neutral-600 dark:text-neutral-600">
+      class="border-b border-low font-semibold lowercase text-low">
       {{ title }}
     </figcaption>
 
-    <ul class="divide-y divide-neutral-200 dark:divide-neutral-900">
+    <ul class="divide-y divide-hl">
       <li
         v-for="(item, itemIndex) in items"
         :key="itemIndex"
-        class="py-1.5 printing:first:pt-0 printing:last:pb-0">
+        class="mt-1 pt-1 printing:mt-2 printing:pt-2 printing:first:mt-0 printing:first:pt-0">
         <slot
           :name="code"
           :item="item">

@@ -37,11 +37,11 @@ separators between row groups.
 
 <template>
   <table
-    class="w-full border-collapse transition-colors hover:text-neutral-400 dark:hover:text-neutral-600"
+    class="w-full border-collapse transition-colors hover:text-low"
     :aria-label="title">
     <caption
       v-if="title"
-      class="px-page py-1 text-left text-xs font-semibold uppercase text-neutral-400 dark:text-neutral-600">
+      class="text-left font-semibold lowercase text-low">
       {{
         title
       }}
@@ -58,7 +58,7 @@ separators between row groups.
           ]"
           :aria-label="column.display"
           scope="col"
-          class="first-of-type:pl-page last-of-type:pr-page box-content border-y border-neutral-400 px-1 py-2 text-left text-xs font-semibold uppercase text-neutral-400 dark:border-neutral-600 dark:text-neutral-600">
+          class="box-content border-y border-low px-ch text-left font-semibold lowercase text-low first-of-type:pl-0 last-of-type:pr-0">
           {{ column.display }}
         </th>
       </tr>
@@ -67,18 +67,18 @@ separators between row groups.
     <tbody
       v-for="(group, groupIndex) in groups"
       :key="groupIndex"
-      class="border-b border-neutral-200 text-lg duration-200 dark:border-neutral-900">
+      class="border-b border-hl duration-200">
       <tr
         v-for="(row, rowIndex) in group"
         :key="rowIndex"
-        class="hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-900 dark:hover:text-neutral-200">
+        class="hover:bg-hl hover:text-imp">
         <component
           :is="index === 0 ? 'th' : 'td'"
           v-for="(column, index) in columns"
           :key="column.code"
           :scope="index === 0 ? 'row' : undefined"
           :class="getColumnVisibilityClasses(column.breakpoint)"
-          class="first:pl-page last:pr-page p-1 text-left font-normal">
+          class="px-ch py-1 text-left font-normal first:pl-0 last:pr-0">
           <slot
             :name="column.code"
             :data="row[column.code]">
