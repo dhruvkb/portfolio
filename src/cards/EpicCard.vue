@@ -23,44 +23,44 @@
 </script>
 
 <template>
-  <div class="px-page flex flex-col gap-1 printing:px-0">
-    <div class="flex flex-row items-center justify-between">
+  <div>
+    <div class="flex flex-row items-center justify-between printing:mb-1">
       <Brand
         :id="epic.id"
-        class="text-lg font-medium text-neutral-900 printing:leading-snug dark:text-neutral-200"
+        class="font-medium text-imp"
         :name="epic.name" />
       <Brand
         v-if="epic.role?.org"
         :id="epic.role.org.id"
-        class="text-neutral-400 dark:text-neutral-600"
+        class="text-low"
         :name="epic.role.org.name" />
     </div>
 
     <!-- Epic description -->
     <p
       v-if="epic.summary"
-      class="hidden printing:block">
+      class="mb-2 not-printing:hidden">
       {{ epic.summary }}
     </p>
 
     <!-- Projects -->
     <!-- Padding to align with the roles in `OrgCard`. -->
-    <ul class="pl-[1.875em] printing:pl-0">
+    <ul class="pl-[3ch] printing:pl-0">
       <li
         v-for="(project, projectIndex) in projects"
         :key="projectIndex"
-        class="flex flex-col gap-1 printing:my-2 printing:first-of-type:mt-0 printing:last-of-type:mb-0">
+        class="mt-1 flex flex-col gap-1 printing:mt-2">
         <div
-          class="flex flex-row items-center gap-4 printing:flex-wrap printing:gap-0">
-          <span class="text-lg printing:font-medium printing:leading-normal">{{
+          class="flex flex-row items-center gap-indent printing:flex-wrap printing:gap-0">
+          <span class="printing:font-medium printing:leading-normal">{{
             project.name
           }}</span>
           <TechStack
-            class="ml-auto text-neutral-400 dark:text-neutral-600"
+            class="ml-auto text-low"
             :technologies="project.technologies ?? []" />
           <Link
             v-if="project.url"
-            class="text-neutral-400 printing:w-full dark:text-neutral-600"
+            class="text-low printing:w-full"
             :dest="project.url"
             :label="project.urlLabel" />
         </div>
@@ -68,12 +68,13 @@
         <!-- Project description -->
         <p
           v-if="project.summary"
-          class="hidden printing:block">
+          class="not-printing:hidden">
           {{ project.summary }}
         </p>
 
         <!-- Highlights -->
-        <ul class="hidden list-disc pl-4 printing:block">
+        <ul
+          class="flex list-disc flex-col pl-indent printing:gap-0.5 not-printing:hidden">
           <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
           <li
             v-for="(highlight, highlightIndex) in project.highlights"

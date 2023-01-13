@@ -24,15 +24,15 @@
 </script>
 
 <template>
-  <div class="px-page flex flex-col gap-1 printing:px-0">
-    <div class="flex flex-row items-center justify-between">
+  <div>
+    <div class="mb-1 flex flex-row items-center justify-between">
       <Brand
         :id="org.id"
-        class="text-lg font-medium text-neutral-900 printing:leading-snug dark:text-neutral-200"
+        class="font-medium text-imp"
         :name="org.name" />
       <Link
         v-if="org.url"
-        class="text-neutral-400 dark:text-neutral-600"
+        class="text-low"
         :dest="org.url"
         :label="`Homepage for ${org.name}`" />
     </div>
@@ -40,48 +40,44 @@
     <!-- Org description -->
     <p
       v-if="org.summary"
-      class="hidden printing:block">
+      class="mb-1 not-printing:hidden">
       {{ org.summary }}
     </p>
 
     <!-- Roles -->
-    <ul class="pl-2 printing:pl-0">
+    <ul>
       <li
         v-for="(role, roleIndex) in roles"
         :key="roleIndex"
-        class="flex flex-col gap-1 printing:my-2 printing:first-of-type:mt-0 printing:last-of-type:mb-0">
-        <div class="flex flex-row items-center gap-4">
-          <!-- `PeriodCell` matches the classes on `Icon` in `BrandCell`. -->
-          <span class="flex flex-row items-center gap-2">
+        class="mt-1 flex flex-col gap-1 printing:mt-2">
+        <div class="flex flex-row items-center gap-ch">
+          <span class="flex flex-row items-center gap-ch">
             <!-- Just shows the red dot. -->
             <Period
               v-if="role.period"
-              class="h-[1em] w-[1em] printing:hidden"
+              class="printing:hidden"
               v-bind="role.period" />
-            <span
-              class="text-lg printing:font-medium printing:leading-normal"
-              >{{ role.name }}</span
-            >
+            <span class="printing:font-medium">{{ role.name }}</span>
           </span>
-          <span
-            class="ml-auto text-neutral-400 printing:hidden dark:text-neutral-600"
-            >{{ role.type ? roleTypes[role.type] : '' }}</span
-          >
+          <span class="ml-auto text-low printing:hidden">{{
+            role.type ? roleTypes[role.type] : ''
+          }}</span>
           <Period
             v-if="role.period"
-            class="ml-auto hidden text-neutral-400 printing:flex dark:text-neutral-600"
+            class="ml-auto text-low not-printing:hidden"
             v-bind="role.period" />
         </div>
 
         <!-- Role description -->
         <p
           v-if="role.summary"
-          class="hidden printing:block">
+          class="not-printing:hidden">
           {{ role.summary }}
         </p>
 
         <!-- Highlights -->
-        <ul class="hidden list-disc pl-4 printing:block">
+        <ul
+          class="flex list-disc flex-col pl-indent printing:gap-0.5 not-printing:hidden">
           <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
           <li
             v-for="(highlight, highlightIndex) in role.highlights"
