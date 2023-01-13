@@ -23,8 +23,6 @@ separators between row groups.
       sm: 'sm:table-cell',
       md: 'md:table-cell',
       lg: 'lg:table-cell',
-      xl: 'xl:table-cell',
-      '2xl': '2xl:table-cell',
     }
     classes.push(breakpointClasses[breakpoint])
     return classes

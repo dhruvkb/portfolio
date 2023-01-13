@@ -8,12 +8,11 @@ module.exports = {
   darkMode: 'media',
   theme: {
     // same breakpoints as Tailwind but with an additional `screen` condition
-    screens: Object.fromEntries(
-      Object.entries(defaultTheme.screens).map(([name, size]) => [
-        name,
-        { raw: `screen and (min-width: ${size})` },
-      ])
-    ),
+    screens: {
+      sm: { raw: 'screen and (min-width: 640px)' },
+      md: { raw: 'screen and (min-width: 768px)' },
+      lg: { raw: 'screen and (min-width: 1024px)' },
+    },
     extend: {
       spacing: {
         ch: '1ch',
@@ -36,7 +35,8 @@ module.exports = {
         ['cite', defaultTheme.fontSize.sm],
       ]),
       maxWidth: {
-        text: '88ch', // Line length prescribed by Black
+        text: '88ch', // line length prescribed by Black
+        'screen-lg': '1024px', // not generated automatically because of raw media-query
       },
       backgroundImage: {
         'gradient-radial':

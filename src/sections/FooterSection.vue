@@ -15,9 +15,7 @@ Renders the footer with some important links and a 'Thank you' note.
     mob: 'sm:hidden',
     sm: 'hidden sm:inline md:hidden',
     md: 'hidden md:inline lg:hidden',
-    lg: 'hidden lg:inline xl:hidden',
-    xl: 'hidden xl:inline 2xl:hidden',
-    '2xl': 'hidden 2xl:inline',
+    lg: 'hidden lg:inline',
   }
 
   const isDev = import.meta.env.DEV
