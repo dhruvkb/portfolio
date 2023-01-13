@@ -62,7 +62,7 @@ Uses data from the 'resume' store in Pinia.
       v-for="(section, sectionIndex) in sections"
       :key="sectionIndex">
       <DataTable
-        class="mb-6 hidden sm:table"
+        class="mx-auto mb-6 hidden w-full max-w-screen-lg sm:table"
         :title="section.title"
         v-bind="section.table">
         <!-- Some of these templates will be unused, depending on the columns in the table. -->
