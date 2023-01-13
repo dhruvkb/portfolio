@@ -23,7 +23,7 @@ hyperlinks, where appropriate.
     </p>
     <p class="mb-1 not-printing:hidden">Let's connect.</p>
 
-    <div class="printing:grid printing:grid-cols-2">
+    <div class="printing:grid printing:grid-cols-2 printing:gap-y-1">
       <div
         v-for="medium in contactMedia"
         :key="medium.id">
