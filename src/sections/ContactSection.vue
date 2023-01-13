@@ -30,12 +30,12 @@ hyperlinks, where appropriate.
         <div>
           <component
             :is="medium.url ? Link : 'span'"
-            :dest="medium.url">
+            :dest="medium.url"
+            :label="`${medium.name} profile`">
             <component
               :is="getIcon(medium.id)"
               class="mr-ch inline-block"
               aria-hidden="true" />
-            <span class="sr-only">{{ medium.name }} profile:</span>
             <span>{{ medium.username }}</span>
           </component>
         </div>
