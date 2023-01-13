@@ -23,7 +23,7 @@ Displays the list of skills, automatically expanding nested skills in parenthese
 </script>
 <template>
   <div>
-    <h2>Other skills</h2>
+    <h2 aria-label="Other skills">Other skills</h2>
     <p>
       <template
         v-for="(skill, skillIndex) in skills"
