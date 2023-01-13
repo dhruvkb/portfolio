@@ -22,12 +22,13 @@ Renders the name of a brand alongside its logo.
 <template>
   <span
     v-if="isVisible"
-    class="flex flex-row items-center gap-2">
+    class="flex flex-row items-center gap-ch">
     <span class="sr-only">{{ name }}</span>
 
     <component
       :is="getIcon(id)"
       v-if="id"
+      width="2ch"
       aria-hidden="true" />
 
     <!-- Short name for small screens -->

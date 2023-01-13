@@ -56,7 +56,7 @@ is still active.
 
 <template>
   <span
-    class="flex flex-row items-center justify-center gap-2 md:justify-between">
+    class="flex flex-row items-center justify-center gap-ch md:justify-between">
     <span class="sr-only">{{ descText }}</span>
 
     <span
@@ -66,7 +66,7 @@ is still active.
       <span
         :title="audibleDate(start)"
         v-html="readableDate(start)" />
-      <span class="m-1 text-neutral-400 dark:text-neutral-600">&ndash;</span>
+      <span class="m-ch text-neutral-400 dark:text-neutral-600">&ndash;</span>
       <span
         v-if="end"
         :title="audibleDate(end)"
@@ -80,11 +80,11 @@ is still active.
     </span>
 
     <span
-      class="block h-2 w-2"
+      class="flex w-[2ch] items-center justify-center"
       :title="description"
       aria-hidden="true">
       <span
-        class="block h-full w-full rounded-full border border-curr"
+        class="block h-2 w-2 rounded-full border border-curr"
         :class="{ 'bg-curr text-red-500': isActive }"
         aria-hidden="true" />
       <span class="sr-only">{{ description }}</span>
