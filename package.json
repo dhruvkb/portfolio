@@ -23,6 +23,7 @@
     "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@iconify-json/heroicons-outline": "^1.1.5",
     "@iconify-json/simple-icons": "^1.1.40",
     "@islands/icons": "^0.8.0",
     "@prettier/plugin-xml": "^2.2.0",

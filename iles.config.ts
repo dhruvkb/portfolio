@@ -16,7 +16,6 @@ export default defineConfig({
         customCollections: ['icons', 'logos'],
       },
       customCollections: {
-        icons: FileSystemIconLoader('./src/assets/icons'),
         logos: FileSystemIconLoader('./src/assets/logos'),
       },
     }),

@@ -1,7 +1,7 @@
 import type { defineComponent } from 'vue'
 
-import iconEmail from 'virtual:icons/icons/email'
-import iconPrint from 'virtual:icons/icons/print'
+import heroMail from 'virtual:icons/heroicons-outline/mail'
+import heroPrinter from 'virtual:icons/heroicons-outline/printer'
 import logo2Fac from 'virtual:icons/logos/2fac'
 import logoBrowserstack from 'virtual:icons/logos/browserstack'
 import logoCenterofci from 'virtual:icons/logos/centerofci'
@@ -79,10 +79,10 @@ export const icons: Record<string, ComponentDefinition> = {
   github: siGithub,
   linkedin: siLinkedin,
   instagram: siInstagram,
-  email: iconEmail,
+  email: heroMail,
 
   // Other
-  print: iconPrint,
+  print: heroPrinter,
 }
 
 // TODO: Replace individual aria-hidden attributes with an SVG transform
