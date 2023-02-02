@@ -18,7 +18,7 @@
       </p>
       <Link
         label="Homepage"
-        dest="/"
+        :dest="{ name: 'index' }"
         >Home</Link
       >
     </section>

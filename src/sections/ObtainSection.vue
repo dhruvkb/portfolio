@@ -18,7 +18,7 @@
       <Link
         label="Résumé as PDF"
         dest="https://dhruvkb.dev/resume.pdf"
-        :features="['italics', 'underline', 'arrow']"
+        :is-lowercase="false"
         >download the PDF</Link
       >, which is definitely the easier option.
     </p>

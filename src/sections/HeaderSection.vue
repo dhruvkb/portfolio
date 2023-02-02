@@ -1,7 +1,4 @@
 <script setup lang="ts">
-  import { usePage } from 'iles'
-  import { computed } from 'vue'
-
   import Link from '@/components/Link.vue'
 
   const home = {
@@ -11,46 +8,40 @@
   const navLinks = [
     {
       name: 'About',
-      dest: 'about',
+      dest: { name: 'about' },
     },
     {
       name: 'Works',
-      dest: 'works',
+      dest: { name: 'works' },
     },
     {
       name: 'Résumé',
-      dest: 'resume',
+      dest: { name: 'resume' },
     },
   ]
-
-  const { frontmatter } = usePage()
-  const isHome = computed(() => frontmatter.title === 'Home')
 </script>
 
 <template>
-  <header class="flex flex-row items-center justify-between">
+  <header class="flex flex-row items-center">
     <Link
       :dest="home.dest"
       :label="`${home.name} page`"
-      :features="[]">
-      <h1>
-        <SiteTitle
-          :class="{ hidden: isHome }"
-          aria-hidden="true" />
-        <span class="sr-only">Dhruv Bhanushali</span>
-      </h1>
+      exact-active-class="sr-only"
+      :arrow="null"
+      :is-italicised="false">
+      <SiteTitle />
     </Link>
 
-    <nav>
+    <nav class="ml-auto">
       <ul class="flex flex-row items-center gap-4">
         <li
           v-for="link in navLinks"
           :key="link.name">
           <Link
-            :page-title="link.name"
+            active-class="text-low"
             :dest="link.dest"
-            :label="`${link.name} page`"
-            :features="['lowercase', 'italics']">
+            :label="`Go to the '${link.name}' page`"
+            :arrow="null">
             {{ link.name }}
           </Link>
         </li>

@@ -4,8 +4,8 @@ external resource or a router path. External links open in a new tab without a r
 -->
 
 <script setup lang="ts">
-  import { usePage } from 'iles'
   import { computed } from 'vue'
+  import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
   const ARROWS = {
     NORTHEAST: {
@@ -20,85 +20,114 @@ external resource or a router path. External links open in a new tab without a r
       glyph: '↓',
       classes: ['group-hover:translate-y-1'],
     },
+    WEST: {
+      glyph: '←',
+      classes: ['group-hover:-translate-x-1'],
+    },
   } as const
+  type Arrow = keyof typeof ARROWS
 
   interface Props {
     /**
-     * the actual target to which the link points, analogous to the `href`
-     * attribute on the anchor tag `<a>`
+     * the actual target to which the link points, maps to the `href` attribute
+     * on the anchor tag `<a>` or the `to` prop of a `RouterLink`
      */
-    dest: string
+    dest: RouteLocationRaw
     label: string
     /**
-     * the title of the page as per the frontmatter, used by internal links to
-     * identify the active page
+     * whether to lowercase the textual content of the link
      */
-    pageTitle?: string | undefined
+    isLowercase?: boolean
     /**
-     * selectively enable features provided by this component; The available
-     * features are
-     * - italics: italicise text on hover
-     * - arrow: show an arrow after the link
+     * whether to display the textual content of the link in italic type when
+     * hovered with a mouse
      */
-    features?: string[]
+    isItalicised?: boolean
+    /**
+     * the name of the arrow to render
+     * - NORTHEAST: used for external links
+     * - EAST: used for internal links and for next items such as blog post
+     * - SOUTH: used for files that can be downloaded
+     * - WEST: used for going back and for previous items such as blog post
+     * - `null`: used to hide the arrow
+     * - `undefined`: used to automatically determine an arrow based on the usage
+     */
+    arrow?: Arrow | null
   }
   const props = withDefaults(defineProps<Props>(), {
-    pageTitle: undefined,
-    features: () => ['lowercase', 'italics', 'arrow'],
+    isLowercase: true,
+    isItalicised: true,
+    arrow: undefined,
   })
 
-  const isExternal = computed(() => props.dest.startsWith('http'))
-  const isFile = computed(() => props.dest.endsWith('.pdf'))
+  // If the link points to an external link or a file, use a regular anchor tag.
+  const isExternal = computed(
+    () => typeof props.dest === 'string' && props.dest.startsWith('http')
+  )
+  const isFile = computed(
+    () => typeof props.dest === 'string' && props.dest.endsWith('.pdf')
+  )
+
+  const params = computed(() =>
+    isExternal.value || isFile.value
+      ? { href: props.dest, target: '_blank', rel: 'noreferrer' }
+      : { to: props.dest }
+  )
+
   const arrow = computed(() => {
-    if (!props.features.includes('arrow')) return undefined
+    if (props.arrow === null) return undefined
+    if (props.arrow !== undefined) return ARROWS[props.arrow]
     if (isFile.value) return ARROWS.SOUTH
     if (isExternal.value) return ARROWS.NORTHEAST
     return ARROWS.EAST
   })
-
-  const { frontmatter } = usePage()
-  const isNav = computed(() => props.pageTitle !== undefined)
-  const isActive = computed(() => props.pageTitle === frontmatter.title)
 
   /**
    * the actual URL, with the initial `https://www.` part, and variations
    * thereof, stripped out
    */
   const displayLink = computed(() =>
-    isExternal.value
+    typeof props.dest === 'string'
       ? props.dest.replace(/https?:\/\/(www.)?/g, '')
-      : props.dest
-  )
-
-  const params = computed(() =>
-    isExternal.value ? { target: '_blank', rel: 'noreferrer' } : {}
+      : String(props.dest)
   )
 </script>
 
 <template>
-  <a
+  <component
+    :is="isExternal || isFile ? 'a' : RouterLink"
     class="group not-printing:underline not-printing:hover:text-imp"
     :class="{
-      // Active link is dimmed in the nav bar.
-      'text-low': isNav && isActive,
-      // Allow opting-out of lowercase text.
-      lowercase: features.includes('lowercase'),
-      // Allow opting-out of italics-on-hover.
-      'not-printing:hover:italic': features.includes('italics'),
+      lowercase: isLowercase,
+      'not-printing:hover:italic': isItalicised,
     }"
     v-bind="params"
-    :href="dest"
     :aria-label="label">
-    <slot>
-      <span class="printing:hidden">Link</span>
-      <code class="not-printing:hidden">{{ displayLink }}</code>
-    </slot>
     <span
-      v-if="arrow"
-      class="ml-1 inline-block font-sans font-semibold not-italic text-red-500 transition-transform duration-100 printing:hidden"
+      v-if="arrow === ARROWS.WEST"
+      class="link-arrow mr-1"
       :class="arrow.classes"
       aria-hidden="true">
       {{ arrow.glyph }}
     </span>
-  </a>
+
+    <slot>
+      <span class="printing:hidden">Link</span>
+      <code class="not-printing:hidden">{{ displayLink }}</code>
+    </slot>
+
+    <span
+      v-if="arrow && arrow !== ARROWS.WEST"
+      class="link-arrow ml-1"
+      :class="arrow.classes"
+      aria-hidden="true">
+      {{ arrow.glyph }}
+    </span>
+  </component>
 </template>
+
+<style>
+  .link-arrow {
+    @apply inline-block font-sans font-semibold not-italic text-red-500 transition-transform duration-100 printing:hidden;
+  }
+</style>

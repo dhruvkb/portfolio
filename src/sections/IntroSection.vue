@@ -15,7 +15,7 @@
       <Link
         dest="https://github.com/dhruvkb/"
         label="GitHub profile"
-        :features="['italics', 'arrow']"
+        :is-lowercase="false"
         >my GitHub profile</Link
       >. If you see something you like (<Link
         dest="https://github.com/dhruvkb/portfolio"
