@@ -19,7 +19,6 @@ Renders the footer with some important links and a 'Thank you' note.
   }
 
   const isDev = import.meta.env.DEV
-  const isProd = import.meta.env.PROD
 </script>
 
 <template>
@@ -35,7 +34,7 @@ Renders the footer with some important links and a 'Thank you' note.
         </span>
       </template>
 
-      <template v-if="isProd">Thanks for visiting!</template>
+      <template v-else>Thanks for visiting!</template>
     </div>
 
     <Link
