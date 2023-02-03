@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply flex min-h-full bg-bg font-mono leading-snug text-reg print:h-full print:w-full;
+    @apply flex min-h-full bg-bg font-mono leading-snug text-reg underline-offset-2 print:h-full print:w-full;
 
     --color-bg: theme(colors.white);
     --color-hl: theme(colors.neutral.200);
@@ -17,7 +17,7 @@
   @media (prefers-color-scheme: dark) {
     html {
       --color-bg: theme(colors.black);
-      --color-hl: theme(colors.neutral.900);
+      --color-hl: theme(colors.neutral.800);
 
       --color-low: theme(colors.neutral.600);
       --color-reg: theme(colors.neutral.400);
@@ -31,10 +31,10 @@
   }
 
   h2 {
-    @apply mb-ln flex flex-row items-center gap-2 font-semibold lowercase printing:mb-2;
+    @apply mb-ln flex flex-row items-center font-semibold lowercase printing:mb-2;
 
     &::after {
-      @apply block h-px grow bg-hl content-[''];
+      @apply ml-ch block h-px grow bg-hl content-[''];
     }
   }
 
