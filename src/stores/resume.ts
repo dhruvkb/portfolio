@@ -16,6 +16,7 @@ export const useResume = defineStore('resume', () => {
   // Parse creations data from JSON.
   const epics = ref<Epic[]>([])
   const populateEpics = () => {
+    epics.value = []
     const creations = resume.value?.creations ?? []
     creations.forEach((epicJson) => {
       const epic = new Epic(epicJson)
@@ -26,6 +27,7 @@ export const useResume = defineStore('resume', () => {
   // Parse role data from JSON.
   const orgs = ref<Org[]>([])
   const populateOrgs = () => {
+    orgs.value = []
     const work = resume.value?.work ?? []
     work.forEach((orgJson) => {
       const org = new Org(orgJson)
