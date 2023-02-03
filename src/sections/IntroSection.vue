@@ -2,13 +2,13 @@
   <section aria-label="Introduction">
     <h2 aria-label="Bio">Bio</h2>
 
-    <p class="body-text mb-para">
+    <p class="mb-ln">
       I write code as a hobby and also as a full-time job. Getting paid to do
       what I love feels pretty awesome. 10/10 would
       <em>definitely recommend</em>.
     </p>
 
-    <p class="body-text mb-para">
+    <p class="mb-ln">
       All the code I write for joy,
       <em>and most of what I write at work</em>, is
       <strong>open-source</strong>. It's all there on
@@ -25,7 +25,7 @@
       something you don't like very much, consider filing an issue.
     </p>
 
-    <p>
+    <p class="mb-ln">
       For <ProdPercent client:load />, I've worked on all aspects of software
       development, from planning to deployment, from backend to frontend, and
       everything in between. I've even dabbled a little bit in UX/UI design and

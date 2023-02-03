@@ -36,10 +36,10 @@ Displays a list of what I do and can do.
 <template>
   <section aria-label="Deeds">
     <h2 aria-label="What do I do?">
-      What do <span class="normal-case">I</span> do?
+      What do <span class="mx-ch normal-case">I</span> do?
     </h2>
 
-    <div class="body-text mb-ln">
+    <div class="mb-ln">
       I
       <ul
         class="inline text-neutral-900 transition-colors hover:text-neutral-400 dark:text-neutral-200 dark:hover:text-neutral-600">

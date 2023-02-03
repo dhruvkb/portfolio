@@ -8,14 +8,12 @@
 </script>
 
 <template>
-  <main class="flex flex-col gap-6">
+  <main class="flex flex-col gap-para">
     <section
       class="mx-auto w-full max-w-text"
       aria-label="Error">
       <h2 aria-label="404 Not Found">404 Not Found</h2>
-      <p class="body-text mb-6">
-        There's nothing here. You seem <strong>lost</strong>.
-      </p>
+      <p class="mb-ln">There's nothing here. You seem <strong>lost</strong>.</p>
       <Link
         label="Homepage"
         :dest="{ name: 'index' }"
