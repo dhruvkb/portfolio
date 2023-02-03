@@ -44,6 +44,15 @@ external resource or a router path. External links open in a new tab without a r
      */
     isItalicised?: boolean
     /**
+     * whether to underline the textual content of the link
+     */
+    isUnderlined?: boolean
+    /**
+     * whether to emphasise the text on hover by increasing the contrast of the
+     * text color with the background
+     */
+    isEmphasised?: boolean
+    /**
      * the name of the arrow to render
      * - NORTHEAST: used for external links
      * - EAST: used for internal links and for next items such as blog post
@@ -57,6 +66,8 @@ external resource or a router path. External links open in a new tab without a r
   const props = withDefaults(defineProps<Props>(), {
     isLowercase: true,
     isItalicised: true,
+    isUnderlined: true,
+    isEmphasised: true,
     arrow: undefined,
   })
 
@@ -96,10 +107,12 @@ external resource or a router path. External links open in a new tab without a r
 <template>
   <component
     :is="isExternal || isFile ? 'a' : RouterLink"
-    class="group not-printing:underline not-printing:hover:text-imp"
+    class="group"
     :class="{
       lowercase: isLowercase,
       'not-printing:hover:italic': isItalicised,
+      'not-printing:underline': isUnderlined,
+      'not-printing:hover:text-imp': isEmphasised,
     }"
     v-bind="params"
     :aria-label="label">
