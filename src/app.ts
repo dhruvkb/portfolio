@@ -1,12 +1,10 @@
 import { defineApp } from 'iles'
 import { createPinia } from 'pinia'
-import { computed } from 'vue'
 
 import '@/styles/index.pcss'
 
 export default defineApp({
-  head: ({ frontmatter, site }) => ({
-    title: computed(() => `${frontmatter.title} · ${site.title}`),
+  head: ({ site }) => ({
     meta: [
       /*
        Automatically generated meta tags:
