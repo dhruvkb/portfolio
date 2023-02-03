@@ -58,7 +58,7 @@ separators between row groups.
           ]"
           :aria-label="column.display"
           scope="col"
-          class="box-content border-y border-low px-ch text-left font-semibold lowercase text-low first-of-type:pl-0 last-of-type:pr-0">
+          class="box-content border-y border-low px-ch text-left font-semibold lowercase text-low first-of-type:pl-1 last-of-type:pr-1">
           {{ column.display }}
         </th>
       </tr>
@@ -67,7 +67,7 @@ separators between row groups.
     <tbody
       v-for="(group, groupIndex) in groups"
       :key="groupIndex"
-      class="border-b border-hl duration-200">
+      class="border-b border-hl">
       <tr
         v-for="(row, rowIndex) in group"
         :key="rowIndex"
@@ -78,7 +78,7 @@ separators between row groups.
           :key="column.code"
           :scope="index === 0 ? 'row' : undefined"
           :class="getColumnVisibilityClasses(column.breakpoint)"
-          class="px-ch py-1 text-left font-normal first:pl-0 last:pr-0">
+          class="px-ch py-1 text-left font-normal first:pl-1 last:pr-1">
           <slot
             :name="column.code"
             :data="row[column.code]">
