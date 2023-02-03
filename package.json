@@ -25,6 +25,9 @@
   "devDependencies": {
     "@iconify-json/heroicons-outline": "^1.1.5",
     "@iconify-json/simple-icons": "^1.1.40",
+    "@islands/excerpt": "^0.9.0",
+    "@islands/feed": "^0.8.1",
+    "@islands/headings": "^0.8.2",
     "@islands/icons": "^0.8.0",
     "@prettier/plugin-xml": "^2.2.0",
     "@rushstack/eslint-patch": "^1.2.0",
