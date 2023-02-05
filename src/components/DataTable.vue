@@ -37,7 +37,7 @@ separators between row groups.
 
 <template>
   <table
-    class="w-full border-collapse transition-colors hover:text-low"
+    class="border-collapse transition-colors hover:text-low"
     :aria-label="title">
     <caption
       v-if="title"
