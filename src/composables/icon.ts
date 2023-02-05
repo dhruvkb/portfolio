@@ -2,6 +2,8 @@ import type { defineComponent } from 'vue'
 
 import heroMail from 'virtual:icons/heroicons-outline/mail'
 import heroPrinter from 'virtual:icons/heroicons-outline/printer'
+import heroRss from 'virtual:icons/heroicons-outline/rss'
+import heroStar from 'virtual:icons/heroicons-outline/star'
 import logo2Fac from 'virtual:icons/logos/2fac'
 import logoBrowserstack from 'virtual:icons/logos/browserstack'
 import logoCenterofci from 'virtual:icons/logos/centerofci'
@@ -81,7 +83,11 @@ export const icons: Record<string, ComponentDefinition> = {
   instagram: siInstagram,
   email: heroMail,
 
-  // Other
+  // Blog
+  star: heroStar,
+  rss: heroRss,
+
+  // Résumé
   print: heroPrinter,
 }
 

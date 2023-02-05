@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     ContentsTable: typeof import('./src/components/ContentsTable.vue')['default']
     DataDeck: typeof import('./src/components/DataDeck.vue')['default']
     DataTable: typeof import('./src/components/DataTable.vue')['default']
+    DefaultLayout: typeof import('./src/layouts/default.vue')['default']
     GameOfLife: typeof import('./src/components/GameOfLife.vue')['default']
     Island: typeof import('./node_modules/iles/dist/client/app/components/Island.vue')['default']
     Kaomoji: typeof import('./src/components/Kaomoji.vue')['default']

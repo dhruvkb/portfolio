@@ -11,6 +11,10 @@
       dest: { name: 'about' },
     },
     {
+      name: 'Blog',
+      dest: { name: 'blog' },
+    },
+    {
       name: 'Works',
       dest: { name: 'works' },
     },

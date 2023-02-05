@@ -34,6 +34,8 @@ export default defineConfig({
   },
   extendFrontmatter(modFrontmatter, filename) {
     if (filename.includes('/posts/')) {
+      // Use 'post' layout.
+      modFrontmatter.layout ||= 'post'
       // Inject `index` field.
       modFrontmatter.index ||= parseInt(
         filename.split('/').at(-1)?.substring(0, 4) ?? '-1',
