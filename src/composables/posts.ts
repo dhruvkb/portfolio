@@ -5,6 +5,11 @@ export interface Post extends PageComponent {
   title: string
   date: Date
   isFeatured: boolean
+  /**
+   * the serial index of the post; This is deduced from the first 4 digits in
+   * the file name and injected automatically.
+   */
+  index: number
 }
 
 export const usePosts = () => {
