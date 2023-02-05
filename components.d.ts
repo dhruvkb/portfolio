@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Brand: typeof import('./src/components/Brand.vue')['default']
+    ContentsTable: typeof import('./src/components/ContentsTable.vue')['default']
     DataDeck: typeof import('./src/components/DataDeck.vue')['default']
     DataTable: typeof import('./src/components/DataTable.vue')['default']
     GameOfLife: typeof import('./src/components/GameOfLife.vue')['default']
@@ -15,6 +16,7 @@ declare module '@vue/runtime-core' {
     Kaomoji: typeof import('./src/components/Kaomoji.vue')['default']
     Link: typeof import('./src/components/Link.vue')['default']
     Period: typeof import('./src/components/Period.vue')['default']
+    PostCard: typeof import('./src/components/PostCard.vue')['default']
     PrintButton: typeof import('./src/components/PrintButton.vue')['default']
     ProdPercent: typeof import('./src/components/ProdPercent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
