@@ -4,7 +4,7 @@ external resource or a router path. External links open in a new tab without a r
 -->
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, useSlots } from 'vue'
   import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
   const ARROWS = {
@@ -61,7 +61,7 @@ external resource or a router path. External links open in a new tab without a r
      * - `null`: used to hide the arrow
      * - `undefined`: used to automatically determine an arrow based on the usage
      */
-    arrow?: Arrow | null
+    arrow?: Arrow | null | undefined
   }
   const props = withDefaults(defineProps<Props>(), {
     isLowercase: true,
@@ -85,7 +85,9 @@ external resource or a router path. External links open in a new tab without a r
       : { to: props.dest }
   )
 
+  const slots = useSlots()
   const arrow = computed(() => {
+    if (slots.end) return undefined
     if (props.arrow === null) return undefined
     if (props.arrow !== undefined) return ARROWS[props.arrow]
     if (isFile.value) return ARROWS.SOUTH
@@ -129,13 +131,15 @@ external resource or a router path. External links open in a new tab without a r
       <code class="not-printing:hidden">{{ displayLink }}</code>
     </slot>
 
-    <span
-      v-if="arrow && arrow !== ARROWS.WEST"
-      class="link-arrow ml-1"
-      :class="arrow.classes"
-      aria-hidden="true">
-      {{ arrow.glyph }}
-    </span>
+    <slot name="end">
+      <span
+        v-if="arrow && arrow !== ARROWS.WEST"
+        class="link-arrow ml-1"
+        :class="arrow.classes"
+        aria-hidden="true">
+        {{ arrow.glyph }}
+      </span>
+    </slot>
   </component>
 </template>
 
