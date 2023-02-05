@@ -2,6 +2,7 @@ import { defineApp } from 'iles'
 import { createPinia } from 'pinia'
 
 import '@/styles/index.pcss'
+import '@/styles/blog.pcss'
 
 export default defineApp({
   head: ({ site }) => ({

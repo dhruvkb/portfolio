@@ -1,0 +1,59 @@
+.blog {
+  /*
+    Blogs cannot contain `<h1>` in the content.
+
+    | Level | mb-ln | font-semibold | text-imp | divider |
+    |-------|-------|---------------|----------|---------|
+    | 2     | ✓     | ✓             | ✓        | ✓       |
+    | 3     | ✓     | ✓             | ✓        |         |
+    | 4     | ✓     | ✓             |          |         |
+    | 5     | ✓     |               |          |         |
+    | 6     |       |               |          |         |
+   */
+
+  h1 {
+    @apply bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text font-bold text-tx;
+  }
+
+  h2 {
+    @apply normal-case; /* Override `index.pcss`. */
+
+    @apply mb-ln font-semibold text-imp; /* Divider is defined in `index.pcss` */
+    --heading-hashes: '##';
+  }
+
+  h3 {
+    @apply mb-ln font-semibold text-imp;
+    --heading-hashes: '###';
+  }
+
+  h4 {
+    @apply mb-ln font-semibold;
+    --heading-hashes: '####';
+  }
+
+  h5 {
+    @apply mb-ln;
+    --heading-hashes: '#####';
+  }
+
+  h6 {
+    --heading-hashes: '######';
+  }
+
+  .heading a {
+    @apply pr-ch text-low before:h-ln before:content-[var(--heading-hashes)] hover:underline lg:absolute lg:-translate-x-full;
+  }
+
+  hr {
+    @apply border-t border-hl;
+  }
+
+  p {
+    @apply not-printing:my-ln;
+  }
+
+  blockquote {
+    @apply border-l-2 border-low pl-ch italic;
+  }
+}
