@@ -1,5 +1,7 @@
 import { ref, watchEffect, type Ref } from 'vue'
 
+import { areEqual } from '@/utils/array'
+
 import seeds from '@/data/game_of_life_seeds.json'
 
 export type Point = [number, number]
@@ -10,6 +12,7 @@ export type Point = [number, number]
  *
  * @param matrix - the current state of the board
  * @param point - the column, row indices of the cell
+ * @return the number of neighbours of the given point
  */
 const getNeigbourCount = (matrix: boolean[][], point: Point): number => {
   const [column, row] = point
@@ -35,7 +38,7 @@ const getNeigbourCount = (matrix: boolean[][], point: Point): number => {
  * @param matrix - the current state of the board
  * @return the board as it would look after one tick
  */
-const getNextState = (matrix: boolean[][]) => {
+const getNextState = (matrix: boolean[][]): boolean[][] => {
   const columns = matrix.length
   const rows = matrix[0].length
   const board = Array.from(Array(columns), () => new Array(rows))
@@ -43,9 +46,8 @@ const getNextState = (matrix: boolean[][]) => {
   for (let i = 0; i < columns; i += 1) {
     for (let j = 0; j < rows; j += 1) {
       const neighbourCount = getNeigbourCount(matrix, [i, j])
-      if (neighbourCount === 3) board[i][j] = true
-      else if (matrix[i][j] && neighbourCount === 2) board[i][j] = true
-      else board[i][j] = false
+      board[i][j] =
+        neighbourCount === 3 || (matrix[i][j] && neighbourCount === 2)
     }
   }
 
@@ -53,7 +55,8 @@ const getNextState = (matrix: boolean[][]) => {
 }
 
 /**
- * Generate a game of life board with the given dimensions.
+ * Generate a game of life board with the given dimensions. Returns `null` if
+ * the number of columns or rows is insufficient to show 404.
  *
  * @param columns - the number of horizontal cells that can be accommodated
  * @param rows - the number of vertical cells that can be accommodated
@@ -87,13 +90,21 @@ export const useGameOfLife = (
     board.value = generateBoard(columnCount.value, rowCount.value)
   })
 
-  const updateBoard = () => {
-    if (board.value) board.value = getNextState(board.value)
+  let lastBoard: boolean[][] | undefined
+  const updateBoard = (): boolean => {
+    if (board.value) {
+      const nextBoard = getNextState(board.value)
+      if (areEqual(board.value, nextBoard) || areEqual(lastBoard, nextBoard))
+        return false // Since the board is repeating with period of 2, stop the loop.
+      lastBoard = board.value
+      board.value = nextBoard
+    }
+    return true
   }
   const updateLoop = () =>
     setTimeout(() => {
-      updateBoard()
-      updateLoop()
+      const isUpdated = updateBoard()
+      if (isUpdated) updateLoop()
     }, 500)
 
   return {
