@@ -11,33 +11,12 @@ export const GRADIENT_PALETTES: [string, string][] = [
 ]
 
 export const usePalette = () => {
-  const $idx = ref(0)
-
-  /**
-   * Map any given integer to a number between 0 and the length of the gradient
-   * palette list (exclusive).
-   *
-   * @param index - any integer given as the input number
-   * @return a valid index in the `GRADIENT_PALETTES` list
-   */
-  const normaliseIndex = (index: number): number => {
-    let normIdx = index
-    if (normIdx < 0) normIdx += GRADIENT_PALETTES.length
-    else normIdx %= GRADIENT_PALETTES.length
-    return normIdx
-  }
-
-  const idx = computed({
-    get: () => $idx.value,
-    set: (val) => {
-      $idx.value = normaliseIndex(val)
-    },
-  })
-
   const getPaletteClasses = (index: number) =>
-    GRADIENT_PALETTES[normaliseIndex(index)]
+    GRADIENT_PALETTES.at(index % GRADIENT_PALETTES.length) ??
+    GRADIENT_PALETTES[0]
 
-  const paletteClasses = computed(() => GRADIENT_PALETTES[idx.value])
+  const idx = ref(0)
+  const paletteClasses = computed(() => getPaletteClasses(idx.value))
 
   return {
     idx,
