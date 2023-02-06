@@ -8,14 +8,11 @@ Renders the résumé in a page-like layout using the dimensions of an A4 page.
 
   import type { Epic } from '@/models/project'
   import type { Org } from '@/models/role'
-
   import { useResume } from '@/stores/resume'
-
-  import { GenericDataDeck } from '@/components/DataDeck.vue'
 
   import EpicCard from '@/cards/EpicCard.vue'
   import OrgCard from '@/cards/OrgCard.vue'
-
+  import { GenericDataDeck } from '@/components/DataDeck.vue'
   import ContactSection from '@/sections/ContactSection.vue'
   import HelloSection from '@/sections/HelloSection.vue'
   import SkillsSection from '@/sections/SkillsSection.vue'

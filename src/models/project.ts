@@ -2,7 +2,6 @@ import type { Project as IProject, Epic as IEpic } from 'reschume'
 
 import { ResumeItem } from '@/models/resume'
 import type { Role } from '@/models/role'
-
 import type { Overwrite } from '@/utils/types'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

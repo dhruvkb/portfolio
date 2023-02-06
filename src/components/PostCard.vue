@@ -8,7 +8,6 @@ an excerpt from the content.
 
   import { useIcon } from '@/composables/icon'
   import type { Post } from '@/composables/posts'
-
   import { formatDate } from '@/utils/date'
 
   interface Props {

@@ -16,11 +16,12 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js
     'import/extensions': [
       'error',
       'ignorePackages',
       { js: 'never', ts: 'never' },
-    ], // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js#L139
+    ],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-unresolved': ['error', { ignore: ['^virtual:'] }],
     'import/order': [
@@ -30,22 +31,13 @@ module.exports = {
         groups: ['builtin', 'external', 'internal'],
         alphabetize: { order: 'asc', caseInsensitive: true },
         pathGroups: [
-          { pattern: '{vue,vite,iles,pinia}', group: 'builtin' }, // base frameworks
-          // Virtual packages
+          { pattern: '{iles,pinia,vue,vue-router}', group: 'builtin' }, // base frameworks
+
+          { pattern: '@islands/**', group: 'external', position: 'before' },
           { pattern: 'virtual:icons/**', group: 'external', position: 'after' },
-          // TypeScript
-          { pattern: '@/models/**', group: 'internal', position: 'after' },
-          { pattern: '@/stores/**', group: 'internal', position: 'after' },
-          { pattern: '@/composables/**', group: 'internal', position: 'after' },
-          { pattern: '@/utils/**', group: 'internal', position: 'after' },
-          // Vue components
-          { pattern: '@/components/**', group: 'internal', position: 'after' },
-          { pattern: '@/cells/**', group: 'internal', position: 'after' },
-          { pattern: '@/cards/**', group: 'internal', position: 'after' },
-          { pattern: '@/sections/**', group: 'internal', position: 'after' },
-          // CSS
-          { pattern: '@/styles/**', group: 'internal', position: 'after' },
-          // Static assets
+
+          { pattern: '@/**/*.vue', group: 'internal', position: 'after' },
+          { pattern: '@/**/*.pcss', group: 'internal', position: 'after' },
           { pattern: '@/data/**', group: 'internal', position: 'after' },
         ],
         pathGroupsExcludedImportTypes: [],
@@ -82,6 +74,7 @@ module.exports = {
     },
   ],
   settings: {
+    'import/internal-regex': '^@/',
     'import/resolver': { typescript: {} },
 
     tailwindcss: {

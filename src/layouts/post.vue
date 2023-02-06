@@ -6,10 +6,8 @@ Renders a single post. This layout nests inside the default layout.
   import { usePage } from 'iles'
   import { computed } from 'vue'
 
-  import type { Arrow } from '@/constants/arrows'
-
   import { usePosts, type Post } from '@/composables/posts'
-
+  import type { Arrow } from '@/constants/arrows'
   import { formatDate } from '@/utils/date'
 
   const frontmatter = usePage().frontmatter as Post

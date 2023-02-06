@@ -9,7 +9,6 @@ Displays the list of skills, automatically expanding nested skills in parenthese
   import type { Skill } from 'reschume/lib/bio'
 
   import { useResume } from '@/stores/resume'
-
   import { stringifyList } from '@/utils/string'
 
   const resumeStore = useResume()
