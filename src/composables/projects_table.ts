@@ -33,7 +33,7 @@ export const useProjectTable = (_epics: Epic[] | Ref<Epic[]>) => {
       display: 'Tech',
     },
   ] as const
-  type ProjectData = RowData<typeof columns[number]['code']>
+  type ProjectData = RowData<(typeof columns)[number]['code']>
 
   const data = computed<ProjectData[][]>(() =>
     epics.value.map((epic) =>

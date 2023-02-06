@@ -40,7 +40,7 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
       classes: ['w-[6ch]', 'md:w-[17ch]'] as string[],
     },
   ] as const
-  type RoleData = RowData<typeof columns[number]['code']>
+  type RoleData = RowData<(typeof columns)[number]['code']>
 
   const data = computed<RoleData[][]>(() =>
     orgs.value.map((org) =>
