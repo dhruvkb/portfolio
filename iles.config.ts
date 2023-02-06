@@ -27,17 +27,17 @@ export default defineConfig({
       },
     }),
   ],
-  extendRoute(modRoute) {
-    if (modRoute.path.includes('/posts/'))
+  extendRoute(route) {
+    if (route.path.includes('/posts/'))
       // Remove post index.
-      modRoute.path = modRoute.path.replace(/\d{4}_/, '')
+      route.path = route.path.replace(/\d{4}_/, '')
   },
-  extendFrontmatter(modFrontmatter, filename) {
+  extendFrontmatter(frontmatter, filename) {
     if (filename.includes('/posts/')) {
       // Use 'post' layout.
-      modFrontmatter.layout ||= 'post'
+      frontmatter.layout ||= 'post'
       // Inject `index` field.
-      modFrontmatter.index ||= parseInt(
+      frontmatter.index ||= parseInt(
         filename.split('/').at(-1)?.substring(0, 4) ?? '-1',
         10
       )

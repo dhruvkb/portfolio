@@ -16,6 +16,8 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    'no-param-reassign': ['error', { props: false }],
+
     // https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js
     'import/extensions': [
       'error',
