@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     PostCard: typeof import('./src/components/PostCard.vue')['default']
     PrintButton: typeof import('./src/components/PrintButton.vue')['default']
     ProdPercent: typeof import('./src/components/ProdPercent.vue')['default']
+    RenderFeed: typeof import('./node_modules/@islands/feed/dist/render-feed')['RenderFeed']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SiteTitle: typeof import('./src/components/SiteTitle.vue')['default']
