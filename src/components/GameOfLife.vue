@@ -37,21 +37,19 @@ Hopefully the user navigates away from it by that point.
     ref="boardEl"
     class="flex touch-none flex-col items-center justify-center"
     aria-hidden="true">
-    <div
-      v-for="row in rows"
-      :key="row"
-      :data-row="row"
-      class="flex flex-row items-center">
+    <div class="bg-gradient-to-r from-red-500 to-fuchsia-500">
       <div
-        v-for="column in columns"
-        :key="column"
-        class="inline-block h-4 w-4 border border-white dark:border-black"
-        :class="
-          cellValue(column - 1, row - 1)
-            ? 'bg-neutral-400 dark:bg-neutral-600'
-            : 'bg-tx'
-        "
-        :data-cell="`${column}-${row}`" />
+        v-for="row in rows"
+        :key="row"
+        :data-row="row"
+        class="flex flex-row items-center">
+        <div
+          v-for="column in columns"
+          :key="column"
+          class="inline-block h-4 w-4 border border-bg"
+          :class="cellValue(column - 1, row - 1) ? 'bg-tx' : 'bg-bg'"
+          :data-cell="`${column}-${row}`" />
+      </div>
     </div>
   </div>
 </template>
