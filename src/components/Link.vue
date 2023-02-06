@@ -5,7 +5,7 @@ external resource or a router path. External links open in a new tab without a r
 
 <script setup lang="ts">
   import { computed, useSlots } from 'vue'
-  import { RouterLink, type RouteLocationRaw } from 'vue-router'
+  import type { RouteLocationRaw } from 'vue-router'
 
   import { ARROWS, type Arrow } from '@/constants/arrows'
 
@@ -90,7 +90,7 @@ external resource or a router path. External links open in a new tab without a r
 
 <template>
   <component
-    :is="isExternal || isFile ? 'a' : RouterLink"
+    :is="isExternal || isFile ? 'a' : 'RouterLink'"
     class="group"
     :class="{
       lowercase: isLowercase,
