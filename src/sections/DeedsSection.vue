@@ -41,14 +41,13 @@ Displays a list of what I do and can do.
 
     <div class="mb-ln">
       I
-      <ul
-        class="inline text-neutral-900 transition-colors hover:text-neutral-400 dark:text-neutral-200 dark:hover:text-neutral-600">
+      <ul class="inline text-imp transition-colors hover:text-low">
         <li
           v-for="(deed, index) in deeds"
           :key="index"
           class="group inline">
           <span
-            class="text-neutral-400 transition-colors before:content-['['] after:content-[']'] group-hover:text-neutral-700 dark:text-neutral-600 dark:group-hover:text-neutral-400"
+            class="text-low transition-colors before:content-['['] after:content-[']'] group-hover:text-reg"
             aria-hidden="true"
             >{{ index + 1 }}</span
           >
@@ -59,17 +58,17 @@ Displays a list of what I do and can do.
           </span>
           <span
             v-if="index < deeds.length - 2"
-            class="text-neutral-700 dark:text-neutral-400"
+            class="text-low"
             >;
           </span>
           <span
             v-else-if="index === deeds.length - 2"
-            class="text-neutral-700 dark:text-neutral-400">
+            class="text-low">
             and
           </span>
           <span
             v-else
-            class="text-neutral-700 dark:text-neutral-400"
+            class="text-low"
             >.</span
           >
         </li>
@@ -79,7 +78,7 @@ Displays a list of what I do and can do.
     <p>
       I, much like this site, am a
       <span
-        class="text-neutral-400 before:content-['['] after:content-[']'] dark:text-neutral-600"
+        class="text-low before:content-['['] after:content-[']']"
         aria-hidden="true"
         >🚧</span
       >

@@ -21,7 +21,7 @@ icons and logos.
     <span
       v-for="technology in technologies"
       :key="technology.name"
-      class="inline-flex flex-row items-center gap-ch border-neutral-200 px-ch first:pl-0 last:pr-0 dark:border-neutral-900">
+      class="inline-flex flex-row items-center gap-ch border-hl px-ch first:pl-0 last:pr-0">
       <component
         :is="getIcon(technology.id)"
         v-if="technology.id"

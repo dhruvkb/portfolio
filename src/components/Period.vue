@@ -40,9 +40,7 @@ is still active.
     if (mm) dateText.push(monthNames[mm - 1])
     if (dd) dateText.push(dd)
 
-    return dateText
-      .reverse()
-      .join('<span class="text-neutral-400 dark:text-neutral-600">.</span>')
+    return dateText.reverse().join('<span class="text-low">.</span>')
   }
 
   const descText = computed(() => {
@@ -66,7 +64,7 @@ is still active.
       <span
         :title="audibleDate(start)"
         v-html="readableDate(start)" />
-      <span class="m-ch text-neutral-400 dark:text-neutral-600">&ndash;</span>
+      <span class="m-ch text-low">&ndash;</span>
       <span
         v-if="end"
         :title="audibleDate(end)"

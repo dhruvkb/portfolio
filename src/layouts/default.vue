@@ -18,7 +18,7 @@
   <slot />
 
   <FooterSection
-    class="mx-auto mt-ln w-full max-w-text border-t border-neutral-200 dark:border-neutral-900 print:hidden" />
+    class="mx-auto mt-ln w-full max-w-text border-t border-hl print:hidden" />
 
   <component
     :is="'script'"

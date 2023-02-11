@@ -9,7 +9,7 @@
 
 <template>
   <button
-    class="group lowercase underline hover:italic hover:text-neutral-900 dark:hover:text-neutral-200"
+    class="group lowercase underline hover:italic hover:text-imp"
     aria-label="Print this page"
     @click="print">
     <span>Print</span>

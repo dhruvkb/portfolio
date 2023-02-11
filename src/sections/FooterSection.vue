@@ -24,7 +24,7 @@ Renders the footer with some important links and a 'Thank you' note.
 <template>
   <footer class="flex flex-row items-center justify-between pt-ln">
     <!-- Using italics so that the font is already loaded. -->
-    <div class="italic text-neutral-400 dark:text-neutral-600">
+    <div class="italic text-low">
       <template v-if="isDev">
         <span
           v-for="(classes, breakpoint) in breakpointClasses"
