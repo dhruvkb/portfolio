@@ -8,7 +8,7 @@ an excerpt from the content.
 
   import { useIcon } from '@/composables/icon'
   import type { Post } from '@/composables/posts'
-  import { formatDate } from '@/utils/date'
+  import { audibleDate, readableDate } from '@/utils/date'
 
   interface Props {
     doc: Document<Post>
@@ -51,7 +51,11 @@ an excerpt from the content.
       >
 
       <div class="ml-auto flex flex-row items-center">
-        <span class="text-low">{{ formatDate(doc.date) }}</span>
+        <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
+        <span
+          :title="audibleDate(doc.date)"
+          v-html="readableDate(doc.date)" />
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
 

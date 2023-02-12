@@ -8,6 +8,8 @@ is still active.
 
   import type { Date as DateType } from 'reschume'
 
+  import { audibleDate, readableDate } from '@/utils/date'
+
   interface Props {
     start: DateType
     end?: DateType
@@ -18,30 +20,6 @@ is still active.
   const description = computed(() =>
     isActive.value ? 'Active role' : 'Past role'
   )
-
-  const audibleDate = (period: DateType) => {
-    const [yyyy, mm = 1, dd = 1] = period
-
-    const options: Intl.DateTimeFormatOptions = {}
-    if (period.length >= 1) options.year = 'numeric'
-    if (period.length >= 2) options.month = 'long'
-    if (period.length >= 3) options.day = 'numeric'
-
-    return new Date(yyyy, mm - 1, dd).toLocaleString('default', options)
-  }
-
-  const readableDate = (period: DateType) => {
-    const monthNames = Array.from({ length: 12 }, (_, i) =>
-      new Date(0, i + 1, 0).toLocaleDateString('en', { month: 'short' })
-    )
-
-    const [yyyy, mm = undefined, dd = undefined] = period
-    const dateText: (string | number)[] = [yyyy % 100]
-    if (mm) dateText.push(monthNames[mm - 1])
-    if (dd) dateText.push(dd)
-
-    return dateText.reverse().join('<span class="text-low">.</span>')
-  }
 
   const descText = computed(() => {
     let period
