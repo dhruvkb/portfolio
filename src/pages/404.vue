@@ -12,7 +12,11 @@
     <section
       class="mx-auto w-full max-w-text"
       aria-label="Error">
-      <h2 aria-label="404 Not Found">404 Not Found</h2>
+      <h2
+        class="section-heading"
+        aria-label="404 Not Found">
+        404 Not Found
+      </h2>
       <p class="mb-ln">There's nothing here. You seem <strong>lost</strong>.</p>
       <Link
         label="Homepage"

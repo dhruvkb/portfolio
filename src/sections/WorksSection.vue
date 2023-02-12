@@ -53,7 +53,11 @@ Uses data from the 'resume' store in Pinia.
 <template>
   <section aria-label="Works">
     <div class="mx-auto mb-6 max-w-text">
-      <h2 aria-label="Works">Works</h2>
+      <h2
+        class="section-heading"
+        aria-label="Works">
+        Works
+      </h2>
     </div>
 
     <template

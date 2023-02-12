@@ -6,7 +6,11 @@
 
 <template>
   <section aria-label="Blog">
-    <h2 aria-label="Blog">Blog</h2>
+    <h2
+      class="section-heading"
+      aria-label="Blog">
+      Blog
+    </h2>
 
     <p class="mb-ln">
       I don't write much so I started this blog with the express goal of

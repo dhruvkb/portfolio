@@ -34,18 +34,12 @@
     /* Base text size not set on `html` to use 16px scale for spacing. */
     @apply flex flex-1 flex-col font-mono text-[14px] pls-ch prs-ch pts-ln pbs-ln print:h-full print:w-full print:p-0;
   }
-
-  /* TODO: Disconnect from tag name */
-  h2 {
-    @apply mb-ln flex flex-row items-center font-semibold lowercase printing:mb-2;
-
-    &::after {
-      @apply ml-ch block h-px grow bg-hl content-[''];
-    }
-  }
 }
 
 @layer components {
+  .section-heading {
+    @apply mb-ln flex flex-row items-center font-semibold lowercase after:ml-ch after:block after:h-px after:grow after:bg-hl after:content-[''] printing:mb-2;
+  }
 }
 
 #app {

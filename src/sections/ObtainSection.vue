@@ -4,7 +4,11 @@
 
 <template>
   <section aria-label="Download">
-    <h2 aria-label="Résumé">Résumé</h2>
+    <h2
+      class="section-heading"
+      aria-label="Résumé">
+      Résumé
+    </h2>
 
     <p class="hidden lg:block">
       Did you know you can <PrintButton client:load /> this webpage page as my

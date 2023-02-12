@@ -11,7 +11,7 @@ Renders the site-title and the kaomoji.
 <template>
   <section aria-label="Hello">
     <!-- Using `h-5` to prevent layout shift when `Kaomoji` is loaded on the client. -->
-    <h2 class="h-5 normal-case">
+    <h2 class="section-heading h-5 normal-case">
       <Kaomoji client:load />
       <span class="sr-only">Hello</span>
     </h2>

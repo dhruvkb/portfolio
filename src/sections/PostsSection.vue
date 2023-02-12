@@ -46,7 +46,9 @@ Renders a list of posts, either all of them or only the featured ones.
   <section
     v-if="docs.length"
     :aria-label="title">
-    <h2 :aria-label="title">
+    <h2
+      class="section-heading"
+      :aria-label="title">
       {{ title }}
     </h2>
 

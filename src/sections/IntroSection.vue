@@ -1,6 +1,10 @@
 <template>
   <section aria-label="Introduction">
-    <h2 aria-label="Bio">Bio</h2>
+    <h2
+      class="section-heading"
+      aria-label="Bio">
+      Bio
+    </h2>
 
     <p class="mb-ln">
       I write code as a hobby and also as a full-time job. Getting paid to do

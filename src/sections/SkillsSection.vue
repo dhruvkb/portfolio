@@ -34,7 +34,11 @@ Displays the list of skills, automatically expanding nested skills in parenthese
 </script>
 <template>
   <div v-if="skillsText">
-    <h2 aria-label="Other skills">Other skills</h2>
+    <h2
+      class="section-heading"
+      aria-label="Other skills">
+      Other skills
+    </h2>
 
     <p>{{ skillsText }}</p>
   </div>

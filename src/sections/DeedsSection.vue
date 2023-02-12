@@ -35,7 +35,9 @@ Displays a list of what I do and can do.
 
 <template>
   <section aria-label="Deeds">
-    <h2 aria-label="What do I do?">
+    <h2
+      class="section-heading"
+      aria-label="What do I do?">
       What do <span class="mx-ch normal-case">I</span> do?
     </h2>
 

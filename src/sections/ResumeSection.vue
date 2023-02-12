@@ -46,7 +46,11 @@ Renders the résumé in a page-like layout using the dimensions of an A4 page.
         <!-- Left pane -->
         <div class="flex h-full flex-col justify-between gap-1">
           <div>
-            <h2>Projects</h2>
+            <h2
+              class="section-heading"
+              aria-label="Projects">
+              Projects
+            </h2>
             <EpicDeck
               code="project"
               :items="epicList">
@@ -63,7 +67,11 @@ Renders the résumé in a page-like layout using the dimensions of an A4 page.
 
         <!-- Right pane -->
         <div>
-          <h2>Roles</h2>
+          <h2
+            class="section-heading"
+            aria-label="Roles">
+            Roles
+          </h2>
           <OrgDeck
             code="role"
             :items="orgList">

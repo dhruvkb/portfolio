@@ -15,7 +15,12 @@ hyperlinks, where appropriate.
 
 <template>
   <section aria-label="Contact">
-    <h2 aria-label="Contact">Contact</h2>
+    <h2
+      id="contact"
+      class="section-heading"
+      aria-label="Contact">
+      Contact
+    </h2>
 
     <p class="mb-ln printing:hidden">
       I'm always open to collaborating on new and exciting ideas. If you have
