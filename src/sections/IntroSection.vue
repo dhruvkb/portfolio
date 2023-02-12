@@ -10,8 +10,8 @@
 
     <p class="mb-ln">
       All the code I write for joy,
-      <em>and most of what I write at work</em>, is
-      <strong>open-source</strong>. It's all there on
+      <em>and most of what I write at work</em>, is open-source. It's all there
+      on
       <Link
         dest="https://github.com/dhruvkb/"
         label="GitHub profile"
