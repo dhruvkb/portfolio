@@ -14,7 +14,3 @@
     <ResumeSection />
   </main>
 </template>
-
-<style>
-  @import '@/styles/print.pcss';
-</style>

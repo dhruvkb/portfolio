@@ -2,6 +2,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
 @layer base {
   html {
     @apply flex min-h-full bg-bg font-mono leading-snug text-reg underline-offset-2 selection:bg-hl selection:text-imp print:h-full print:w-full;
