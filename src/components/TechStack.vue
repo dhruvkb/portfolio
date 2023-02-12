@@ -17,7 +17,7 @@ icons and logos.
 </script>
 
 <template>
-  <span class="divide-x leading-none">
+  <span class="divide-x">
     <span
       v-for="technology in technologies"
       :key="technology.name"

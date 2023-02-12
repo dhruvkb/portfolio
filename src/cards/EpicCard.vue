@@ -52,9 +52,7 @@
         class="mt-1 flex flex-col gap-1 printing:mt-2">
         <div
           class="flex flex-row items-center gap-indent printing:flex-wrap printing:gap-0">
-          <span class="printing:font-medium printing:leading-normal">{{
-            project.name
-          }}</span>
+          <span class="printing:font-medium">{{ project.name }}</span>
           <TechStack
             class="ml-auto text-low"
             :technologies="project.technologies ?? []" />
