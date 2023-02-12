@@ -52,7 +52,7 @@ Displays a list of what I do and can do.
             >{{ index + 1 }}</span
           >
           <span
-            class="text-grad-lin transition-[color] group-hover:text-tx"
+            class="bg-gradient-to-r box-decoration-clone bg-clip-text transition-[color] group-hover:text-tx"
             :class="deed.gradients">
             {{ deed.text }}
           </span>
