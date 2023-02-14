@@ -8,9 +8,11 @@ import logoPls from 'virtual:icons/app/pls'
 import logoPortfolio from 'virtual:icons/app/portfolio'
 import logoReschume from 'virtual:icons/app/reschume'
 import logoSeeelaye from 'virtual:icons/app/seeelaye'
+import heroCheck from 'virtual:icons/heroicons-outline/check'
 import heroMail from 'virtual:icons/heroicons-outline/mail'
 import heroPrinter from 'virtual:icons/heroicons-outline/printer'
 import heroRss from 'virtual:icons/heroicons-outline/rss'
+import heroShare from 'virtual:icons/heroicons-outline/share'
 import heroStar from 'virtual:icons/heroicons-outline/star'
 import siAutomattic from 'virtual:icons/simple-icons/automattic'
 import siCreativecommons from 'virtual:icons/simple-icons/creativecommons'
@@ -84,6 +86,8 @@ export const icons: Record<string, ComponentDefinition> = {
   email: heroMail,
 
   // Blog
+  check: heroCheck,
+  share: heroShare,
   star: heroStar,
   rss: heroRss,
 

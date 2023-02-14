@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Brand: typeof import('./src/components/Brand.vue')['default']
     ContentsTable: typeof import('./src/components/ContentsTable.vue')['default']
+    CopyLinkButton: typeof import('./src/components/CopyLinkButton.vue')['default']
     DataDeck: typeof import('./src/components/DataDeck.vue')['default']
     DataTable: typeof import('./src/components/DataTable.vue')['default']
     DefaultLayout: typeof import('./src/layouts/default.vue')['default']
