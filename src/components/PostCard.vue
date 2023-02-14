@@ -10,20 +10,27 @@ an excerpt from the content.
   import type { Post } from '@/composables/posts'
   import { audibleDate, readableDate } from '@/utils/date'
 
+  import Link from '@/components/Link.vue'
+
   interface Props {
     doc: Document<Post>
+    isLink?: boolean
     showIndex?: boolean
+    showFeatured?: boolean
   }
   withDefaults(defineProps<Props>(), {
+    isLink: true,
     showIndex: true,
+    showFeatured: true,
   })
 
   const { getIcon } = useIcon()
 </script>
 
 <template>
-  <Link
-    class="block"
+  <component
+    :is="isLink ? Link : 'div'"
+    class="block p-1"
     :dest="doc.href"
     :label="`Read post '${doc.title}'`"
     :is-italicised="false"
@@ -33,22 +40,30 @@ an excerpt from the content.
     :arrow="null">
     <div class="flex flex-row items-center group-hover:text-imp">
       <!-- Post index or featured star icon -->
-      <div v-if="showIndex">{{ doc.index }}<span class="text-low">.</span></div>
-      <div
-        v-else-if="doc.isFeatured"
-        class="w-[2ch]">
-        <component
-          :is="getIcon('star')"
-          aria-hidden="true" />
-      </div>
+      <slot name="start">
+        <div v-if="showIndex">
+          {{ doc.index }}<span class="text-low">.</span>
+        </div>
+        <div
+          v-if="showFeatured && doc.isFeatured"
+          class="w-[2ch]">
+          <component
+            :is="getIcon('star')"
+            aria-hidden="true" />
+        </div>
+      </slot>
 
       <span class="ml-ch font-semibold underline group-hover:text-imp">
         {{ doc.title }}
       </span>
-      <span
-        class="inline-block translate-x-0 font-sans font-semibold text-red-500 opacity-0 transition-[opacity,transform] duration-100 group-hover:translate-x-1 group-hover:opacity-100"
-        >→</span
-      >
+
+      <slot name="end">
+        <!-- This is automatically invisible when the root element is not `<Link>`. -->
+        <span
+          class="inline-block translate-x-0 font-sans font-semibold text-red-500 opacity-0 transition-[opacity,transform] duration-100 group-hover:translate-x-1 group-hover:opacity-100"
+          >→</span
+        >
+      </slot>
 
       <div class="ml-auto flex flex-row items-center">
         <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
@@ -59,9 +74,11 @@ an excerpt from the content.
       </div>
     </div>
 
-    <component
-      :is="doc"
-      class="not-printing:my-0"
-      excerpt />
-  </Link>
+    <slot name="excerpt">
+      <component
+        :is="doc"
+        class="not-printing:my-0"
+        excerpt />
+    </slot>
+  </component>
 </template>

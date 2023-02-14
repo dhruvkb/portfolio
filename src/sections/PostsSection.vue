@@ -52,16 +52,19 @@ Renders a list of posts, either all of them or only the featured ones.
       {{ title }}
     </h2>
 
-    <ul class="transition-colors hover:text-low">
+    <component
+      :is="showsFeatured ? 'ul' : 'ol'"
+      class="transition-colors hover:text-low">
       <li
         v-for="(doc, docIndex) of docs"
         :key="doc.index">
         <PostCard
-          class="p-1 hover:bg-hl hover:text-reg"
+          class="hover:bg-hl hover:text-reg"
           :class="[isYearBoundary(docIndex) ? 'border-t border-hl' : '']"
           :doc="doc"
-          :show-index="!showsFeatured" />
+          :show-index="!showsFeatured"
+          :show-featured="showsFeatured" />
       </li>
-    </ul>
+    </component>
   </section>
 </template>
