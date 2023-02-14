@@ -13,6 +13,6 @@
     <PostsSection
       class="mb-para"
       shows-featured />
-    <PostsSection class="mb-para" />
+    <PostsSection />
   </main>
 </template>
