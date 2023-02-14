@@ -61,6 +61,7 @@ an excerpt from the content.
         <!-- This is automatically invisible when the root element is not `<Link>`. -->
         <span
           class="inline-block translate-x-0 font-sans font-semibold text-red-500 opacity-0 transition-[opacity,transform] duration-100 group-hover:translate-x-1 group-hover:opacity-100"
+          aria-hidden="true"
           >→</span
         >
       </slot>
