@@ -17,12 +17,15 @@
         aria-label="404 Not Found">
         404 Not Found
       </h2>
-      <p class="mb-ln">There's nothing here. You seem <strong>lost</strong>.</p>
-      <Link
-        label="Homepage"
-        :dest="{ name: 'index' }"
-        >Home</Link
-      >
+      <p class="mb-ln">
+        There's nothing here. You are lost and should head
+        <Link
+          label="Go to the home page"
+          :dest="{ name: 'index' }"
+          :arrow="null"
+          >home</Link
+        >.
+      </p>
     </section>
 
     <div class="relative grow">
