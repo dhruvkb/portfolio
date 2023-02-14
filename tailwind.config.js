@@ -25,7 +25,7 @@ module.exports = {
         indent: '2ch',
         ln: '2ex',
         para: '4ex',
-        ex: 'ex',
+        ex: '1ex',
       },
       cursor: {
         help: 'help',
