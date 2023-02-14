@@ -53,7 +53,9 @@ an excerpt from the content.
         </div>
       </slot>
 
-      <span class="ml-ch font-semibold underline group-hover:text-imp">
+      <span
+        class="ml-ch font-semibold group-hover:text-imp"
+        :class="{ underline: isLink }">
         {{ doc.title }}
       </span>
 
