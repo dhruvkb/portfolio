@@ -23,7 +23,7 @@ part of the page.
   type Shape = keyof typeof SHAPES
 
   interface Props {
-    headings?: NestedHeading[]
+    headings?: NestedHeading[] | undefined
     preShapes?: Shape[]
   }
   const props = withDefaults(defineProps<Props>(), {
@@ -64,6 +64,7 @@ part of the page.
   const headings = computed(
     () => props.headings ?? nestHeadings(meta.headings ?? [])
   )
+  const isTopLevel = computed(() => props.headings === undefined)
 
   /**
    * Create the tree lines using Unicode box-drawing characters, based on the
@@ -88,7 +89,9 @@ part of the page.
 </script>
 
 <template>
-  <ol v-if="headings">
+  <ol
+    v-if="headings"
+    :aria-label="isTopLevel ? 'Table of contents' : undefined">
     <li
       v-for="(heading, headingIndex) in headings"
       :key="heading.slug">
