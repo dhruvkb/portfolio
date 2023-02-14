@@ -30,7 +30,7 @@
         <template #end>
           <component
             :is="getIcon('rss')"
-            class="inline-block text-red-500 transition-transform duration-100 group-hover:translate-x-1 group-hover:-translate-y-1"
+            class="ml-1 inline-block text-red-500 transition-transform duration-100 group-hover:translate-x-1 group-hover:-translate-y-1"
             aria-hidden="true" />
         </template> </Link
       >.
