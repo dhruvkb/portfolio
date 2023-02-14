@@ -81,3 +81,7 @@ Renders a single post. This layout nests inside the default layout.
     </div>
   </main>
 </template>
+
+<style>
+  @import '@/styles/blog.pcss';
+</style>
