@@ -14,8 +14,10 @@ Renders a funny, witty remark about me, as a person, or my profession, as a deve
     'Crafts new and innovative <s>apps</s> bugs.',
     'Has talked to computers for over half his life.',
     'Writes code; <em>sometimes</em> gets paid for it.',
-    'Knows how to exit vim.',
+    'Knows how to exit <code>vim</code>.',
     'Occasionally finishes a side-project.',
+    'Is a <em>real programmer™️</em>.',
+    'Is a nut for public transit.',
   ]
   const subtitle = computed(() => sample(subtitles))
 </script>
