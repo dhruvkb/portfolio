@@ -14,6 +14,7 @@ import heroPrinter from 'virtual:icons/heroicons-outline/printer'
 import heroRss from 'virtual:icons/heroicons-outline/rss'
 import heroShare from 'virtual:icons/heroicons-outline/share'
 import heroStar from 'virtual:icons/heroicons-outline/star'
+import siAstro from 'virtual:icons/simple-icons/astro'
 import siAutomattic from 'virtual:icons/simple-icons/automattic'
 import siCreativecommons from 'virtual:icons/simple-icons/creativecommons'
 import siDjango from 'virtual:icons/simple-icons/django'
@@ -29,11 +30,13 @@ import siJson from 'virtual:icons/simple-icons/json'
 import siLatex from 'virtual:icons/simple-icons/latex'
 import siLinkedin from 'virtual:icons/simple-icons/linkedin'
 import siMarkdown from 'virtual:icons/simple-icons/markdown'
+import siMdx from 'virtual:icons/simple-icons/mdx'
 import siNodedotjs from 'virtual:icons/simple-icons/nodedotjs'
 import siNuxtdotjs from 'virtual:icons/simple-icons/nuxtdotjs'
 import siOpenverse from 'virtual:icons/simple-icons/openverse'
 import siPython from 'virtual:icons/simple-icons/python'
 import siReadthedocs from 'virtual:icons/simple-icons/readthedocs'
+import siRust from 'virtual:icons/simple-icons/rust'
 import siTailwindcss from 'virtual:icons/simple-icons/tailwindcss'
 import siTypescript from 'virtual:icons/simple-icons/typescript'
 import siVuedotjs from 'virtual:icons/simple-icons/vuedotjs'
@@ -53,6 +56,7 @@ export const icons: Record<string, ComponentDefinition> = {
   img: logoImg,
 
   // Technologies
+  astro: siAstro,
   django: siDjango,
   docker: siDocker,
   gnubash: siGnubash,
@@ -61,11 +65,13 @@ export const icons: Record<string, ComponentDefinition> = {
   json: siJson,
   latex: siLatex,
   markdown: siMarkdown,
+  mdx: siMdx,
   nodedotjs: siNodedotjs,
   nuxtdotjs: siNuxtdotjs,
   openverse: siOpenverse,
   python: siPython,
   readthedocs: siReadthedocs,
+  rust: siRust,
   tailwindcss: siTailwindcss,
   typescript: siTypescript,
   vuedotjs: siVuedotjs,
