@@ -4,6 +4,7 @@
     "env.d.ts",
     "components.d.ts",
     "composables.d.ts",
+    "iles.config.ts",
     "src/**/*",
     "src/**/*.vue"
   ],
