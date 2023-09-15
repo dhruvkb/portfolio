@@ -8,7 +8,7 @@ Renders a single post. This layout nests inside the default layout.
 
   import { usePosts, type Post } from '@/composables/posts'
   import type { Arrow } from '@/constants/arrows'
-  import { formatDate } from '@/utils/date'
+  import { readableDate } from '@/utils/date'
 
   const frontmatter = usePage().frontmatter as Post
 
@@ -52,7 +52,7 @@ Renders a single post. This layout nests inside the default layout.
         <!-- Date of publishing -->
         <div class="ml-auto">
           <span class="text-low">Date:</span>
-          {{ formatDate(frontmatter.date) }}
+          {{ readableDate(frontmatter.date) }}
         </div>
       </div>
 
