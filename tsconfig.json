@@ -5,6 +5,7 @@
     "components.d.ts",
     "composables.d.ts",
     "iles.config.ts",
+    "tailwind.config.ts",
     "src/**/*",
     "src/**/*.vue"
   ],

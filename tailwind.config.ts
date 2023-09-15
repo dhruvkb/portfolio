@@ -1,9 +1,9 @@
-const colors = require('tailwindcss/colors')
-const defaultTheme = require('tailwindcss/defaultTheme')
-const plugin = require('tailwindcss/plugin')
+import type { Config } from 'tailwindcss'
+import colors from 'tailwindcss/colors'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./src/**/*.{pcss,vue,js,ts,astro}'],
   darkMode: 'media',
   theme: {
@@ -54,6 +54,25 @@ module.exports = {
         low: 'var(--color-low)', // de-emphasised text
         reg: 'var(--color-reg)', // regular text
         imp: 'var(--color-imp)', // emphasised text
+
+        sol: {
+          '03': '#002b36',
+          '02': '#073642',
+          '01': '#586e75',
+          '00': '#657b83',
+          0: '#839496',
+          1: '#93a1a1',
+          2: '#eee8d5',
+          3: '#fdf6e3',
+          yellow: '#b58900',
+          orange: '#cb4b16',
+          red: '#dc322f',
+          magenta: '#d33682',
+          violet: '#6c71c4',
+          blue: '#268bd2',
+          cyan: '#2aa198',
+          green: '#859900',
+        },
       },
     },
     fontFamily: {
@@ -82,4 +101,4 @@ module.exports = {
       addVariant('not-printing', '&:not(.print *)')
     }),
   ],
-}
+} satisfies Config
