@@ -18,6 +18,7 @@ Renders a funny, witty remark about me, as a person, or my profession, as a deve
     'Occasionally finishes a side-project.',
     'Is a <em>real programmer™️</em>.',
     'Is a nut for public transit.',
+    'Rewrites it in Rust.',
   ]
   const subtitle = computed(() => sample(subtitles))
 </script>
