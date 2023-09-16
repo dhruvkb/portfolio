@@ -43,7 +43,8 @@ Displays a list of what I do and can do.
 
     <div class="mb-ln">
       I
-      <ul class="inline text-imp transition-colors hover:text-low">
+      <ul
+        class="inline text-imp transition-colors selection:text-reg hover:text-low">
         <li
           v-for="(deed, index) in deeds"
           :key="index"
@@ -54,7 +55,7 @@ Displays a list of what I do and can do.
             >{{ index + 1 }}</span
           >
           <span
-            class="bg-gradient-to-r box-decoration-clone bg-clip-text transition-[color] group-hover:text-tx"
+            class="bg-gradient-to-r box-decoration-clone bg-clip-text transition-[color] selection:text-imp group-hover:text-tx"
             :class="deed.gradients">
             {{ deed.text }}
           </span>

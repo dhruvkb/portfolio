@@ -64,7 +64,7 @@
   <div :class="paletteClasses">
     <pre
       v-if="isAscii"
-      class="-mt-ln inline-block cursor-crosshair bg-gradient-radial box-decoration-clone bg-clip-text text-tx printing:hidden"
+      class="-mt-ln inline-block cursor-crosshair bg-gradient-radial box-decoration-clone bg-clip-text text-tx selection:text-imp printing:hidden"
       :style="backgroundStyles"
       aria-hidden="true"
       @mousemove="handleMouseMove"><code class="hidden sm:inline-block">
@@ -82,7 +82,7 @@
 
     <span
       v-else
-      class="inline-block bg-gradient-to-r box-decoration-clone bg-clip-text font-sans text-tx printing:hidden"
+      class="inline-block bg-gradient-to-r box-decoration-clone bg-clip-text font-sans text-tx selection:text-imp printing:hidden"
       aria-hidden="true">
       <span class="font-black">dhruv</span>
       <span>kb</span>
