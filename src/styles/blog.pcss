@@ -1,59 +1,79 @@
-.blog {
-  /*
-    Blogs cannot contain `<h1>` in the content.
+.blog-content {
+  /* Blogs cannot contain `<h1>` in the content. */
 
-    | Level | mb-ln | font-semibold | text-imp | divider |
-    |-------|-------|---------------|----------|---------|
-    | 2     | ✓     | ✓             | ✓        | ✓       |
-    | 3     | ✓     | ✓             | ✓        |         |
-    | 4     | ✓     | ✓             |          |         |
-    | 5     | ✓     |               |          |         |
-    | 6     |       |               |          |         |
+  /**
+   * H2: imp color, equals underline
+   * H3: imp color, tildes underline
+   * H4: imp color, dashes underline
+   * H5: imp color
+   * H6: no styles
    */
 
-  h1 {
-    @apply bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text font-bold text-tx;
+  .heading {
+    @apply relative
+      font-semibold text-imp
+      mb-ln;
+
+    &::after {
+      @apply absolute
+        top-full left-0 -right-px
+        font-normal text-low whitespace-nowrap
+        overflow-hidden;
+    }
   }
 
-  h2 {
-    @apply normal-case; /* Override `index.pcss`. */
-
-    @apply mb-ln font-semibold text-imp; /* Divider is defined in `index.pcss` */
+  h2.heading {
+    @apply inline-block after:content-[--equals];
     --heading-hashes: '##';
   }
 
-  h3 {
-    @apply mb-ln font-semibold text-imp;
+  h3.heading {
+    @apply inline-block after:content-[--tildes];
     --heading-hashes: '###';
   }
 
-  h4 {
-    @apply mb-ln font-semibold;
+  h4.heading {
+    @apply inline-block after:content-[--dashes];
     --heading-hashes: '####';
   }
 
-  h5 {
-    @apply mb-ln;
+  h5.heading {
+    @apply after:content-[''];
     --heading-hashes: '#####';
   }
 
-  h6 {
+  h6.heading {
+    @apply text-reg after:content-[''];
     --heading-hashes: '######';
   }
 
   .heading a {
-    @apply pr-ch text-low before:h-ln before:content-[var(--heading-hashes)] hover:underline lg:absolute lg:-translate-x-full;
+    @apply pr-ch text-low no-underline before:h-ln before:content-[--heading-hashes] hover:underline lg:absolute lg:-translate-x-full;
+    font-variant-ligatures: none;
   }
 
-  hr {
-    @apply border-t border-hl;
-  }
+  a {
+    @apply after:inline-block underline after:font-sans after:font-semibold after:text-red-500 after:transition-transform after:duration-100 hover:italic hover:text-imp hover:after:translate-x-1 hover:after:-translate-y-1;
 
-  p {
-    @apply not-printing:my-ln;
+    &[href^='http']::after {
+      @apply content-['↗'];
+    }
   }
 
   blockquote {
-    @apply border-l-2 border-low pl-ch italic;
+    @apply hidden; /* Remove excerpt from main post. */
+  }
+
+  p {
+    @apply my-ln;
+  }
+
+  strong,
+  b {
+    @apply font-medium text-imp;
+  }
+
+  :not(pre) > code {
+    @apply bg-hl py-0.5 px-0.5 rounded-sm;
   }
 }
