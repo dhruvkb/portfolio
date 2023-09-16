@@ -44,7 +44,11 @@
 
 @layer components {
   .section-heading {
-    @apply mb-ln flex flex-row items-center font-semibold lowercase after:ml-ch after:block after:h-px after:grow after:bg-hl after:content-[''] printing:mb-2;
+    @apply mb-ln flex flex-row items-center font-semibold lowercase printing:mb-2;
+
+    &::after {
+      @apply content-[''] ml-ch block h-px grow bg-hl;
+    }
   }
 }
 
