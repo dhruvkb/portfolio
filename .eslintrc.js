@@ -66,6 +66,8 @@ module.exports = {
           { exceptAfterSingleLine: true },
         ],
         'max-classes-per-file': ['error', 2],
+
+        '@typescript-eslint/no-unsafe-declaration-merging': 'off',
       },
     },
     {
