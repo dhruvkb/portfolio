@@ -1,5 +1,7 @@
 <!--
 Renders a list of posts, either all of them or only the featured ones.
+
+See also `@/sections/PostMoreSection.vue`.
 -->
 
 <script setup lang="ts">
@@ -17,11 +19,12 @@ Renders a list of posts, either all of them or only the featured ones.
     showsFeatured: false,
   })
 
+  const { sortedPostDocs, featuredPostDocs } = usePosts()
+
   const title = computed(() =>
     props.showsFeatured ? 'Featured posts' : 'All posts'
   )
 
-  const { sortedPostDocs, featuredPostDocs } = usePosts()
   const docs = computed(() =>
     props.showsFeatured ? featuredPostDocs.value : sortedPostDocs.value
   )
