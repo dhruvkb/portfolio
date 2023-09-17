@@ -1,0 +1,82 @@
+div[class*='language-'] {
+  @apply relative;
+
+  /* Language name */
+
+  &::before {
+    @apply content-[attr(data-lang)] absolute end-ch top-ex p-0.5 border border-curr rounded text-sol-base-1 dark:text-sol-base-01;
+  }
+
+  /* Code area */
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    @apply my-ln
+      rounded
+      overflow-auto
+      text-sol-base-00 dark:text-sol-base-0
+      whitespace-pre hyphens-none break-normal
+      bg-sol-base-3 dark:bg-sol-base-03
+      px-ch py-ex;
+    tab-size: 4;
+  }
+
+  /* Code highlighting */
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    @apply text-sol-base-1 dark:text-sol-base-01;
+  }
+
+  .token.punctuation {
+    @apply text-sol-base-01 dark:text-sol-base-1;
+  }
+
+  .token.namespace {
+    @apply opacity-70;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    @apply text-sol-blue;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.url,
+  .token.inserted {
+    @apply text-sol-cyan;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    @apply text-sol-green;
+  }
+
+  .token.function,
+  .token.class-name {
+    @apply text-sol-yellow;
+  }
+
+  .token.regex,
+  .token.important,
+  .token.variable {
+    @apply text-sol-orange;
+  }
+
+  .token.important,
+  .token.bold {
+    @apply font-bold;
+  }
+}

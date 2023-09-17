@@ -40,4 +40,5 @@ Renders a single post. This layout nests inside the default layout.
 
 <style>
   @import '@/styles/blog.pcss';
+  @import '@/styles/prism.pcss';
 </style>

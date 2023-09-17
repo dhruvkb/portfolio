@@ -4,6 +4,7 @@ import excerpt from '@islands/excerpt'
 import feed from '@islands/feed'
 import headings from '@islands/headings'
 import icons from '@islands/icons'
+import prism from '@islands/prism'
 
 export default defineConfig({
   siteUrl: 'https://dhruvkb.dev',
@@ -16,6 +17,7 @@ export default defineConfig({
     icons({
       scale: 1,
     }),
+    prism(),
   ],
   extendRoute(route) {
     if (route.path.includes('/posts/'))
