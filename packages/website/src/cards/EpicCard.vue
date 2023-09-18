@@ -1,11 +1,10 @@
 <script setup lang="ts">
   import { computed } from 'vue'
 
-  import type { Epic } from '@/models/project'
-
   import Brand from '@/components/Brand.vue'
   import Link from '@/components/Link.vue'
   import TechStack from '@/components/TechStack.vue'
+  import type { Epic } from '@/models/project'
 
   interface Props {
     epic: Epic

@@ -24,6 +24,7 @@
 
 <template>
   <button
+    type="button"
     class="group underline hover:italic hover:text-imp"
     aria-label="Share post URL"
     @click="copy">

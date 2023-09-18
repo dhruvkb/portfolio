@@ -19,17 +19,17 @@ export default defineConfig({
     }),
     prism(),
   ],
-  extendRoute(route) {
-    if (route.path.includes('/posts/'))
+  extendRoute(route_) {
+    if (route_.path.includes('/posts/'))
       // Remove post index.
-      route.path = route.path.replace(/\d{4}_/, '')
+      route_.path = route_.path.replace(/\d{4}_/, '')
   },
-  extendFrontmatter(frontmatter, filename) {
+  extendFrontmatter(frontmatter_, filename) {
     if (filename.includes('/posts/')) {
       // Use 'post' layout.
-      frontmatter.layout ||= 'post'
+      frontmatter_.layout ||= 'post'
       // Inject `index` field.
-      frontmatter.index ||= parseInt(
+      frontmatter_.index ||= parseInt(
         filename.split('/').at(-1)?.substring(0, 4) ?? '-1',
         10
       )

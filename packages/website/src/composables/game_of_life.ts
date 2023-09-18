@@ -1,8 +1,7 @@
 import { ref, watchEffect, type Ref } from 'vue'
 
-import { areEqual } from '@/utils/array'
-
 import seeds from '@/data/game_of_life_seeds.json'
+import { areEqual } from '@/utils/array'
 
 export type Point = [number, number]
 

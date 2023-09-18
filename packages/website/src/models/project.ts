@@ -38,7 +38,9 @@ export class Epic extends ResumeItem {
 
 export class Project extends ResumeItem {
   epic: Epic
+
   urlLabel: string
+
   isFeatured: boolean
 
   constructor(projectJson: IProject, epic: Epic) {

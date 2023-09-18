@@ -4,7 +4,12 @@ div[class*='language-'] {
   /* Language name */
 
   &::before {
-    @apply content-[attr(data-lang)] absolute end-ch top-ex p-0.5 border border-curr rounded text-sol-base-1 dark:text-sol-base-01;
+    @apply absolute end-ch top-ex
+      rounded border border-curr
+      p-0.5
+      text-sol-base-1
+      content-[attr(data-lang)]
+      dark:text-sol-base-01;
   }
 
   /* Code area */
@@ -12,12 +17,14 @@ div[class*='language-'] {
   code[class*='language-'],
   pre[class*='language-'] {
     @apply my-ln
-      rounded
       overflow-auto
-      text-sol-base-00 dark:text-sol-base-0
-      whitespace-pre hyphens-none break-normal
-      bg-sol-base-3 dark:bg-sol-base-03
-      px-ch py-ex;
+      hyphens-none whitespace-pre break-normal
+      rounded
+      bg-sol-base-3
+      px-ch py-ex
+      text-sol-base-00
+      dark:bg-sol-base-03
+      dark:text-sol-base-0;
     tab-size: 4;
   }
 

@@ -4,4 +4,4 @@
 npx lint-staged
 
 # Check Typescript
-npm run types
+npm run types --workspaces --if-present

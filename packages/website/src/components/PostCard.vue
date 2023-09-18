@@ -6,11 +6,10 @@ an excerpt from the content.
 <script setup lang="ts">
   import type { Document } from 'iles'
 
+  import Link from '@/components/Link.vue'
   import { useIcon } from '@/composables/icon'
   import type { Post } from '@/composables/posts'
   import { audibleDate, readableDate } from '@/utils/date'
-
-  import Link from '@/components/Link.vue'
 
   interface Props {
     doc: Document<Post>

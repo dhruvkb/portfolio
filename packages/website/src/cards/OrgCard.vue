@@ -1,12 +1,11 @@
 <script setup lang="ts">
   import { computed } from 'vue'
 
-  import type { Org } from '@/models/role'
-  import { roleTypes } from '@/models/role'
-
   import Brand from '@/components/Brand.vue'
   import Link from '@/components/Link.vue'
   import Period from '@/components/Period.vue'
+  import { roleTypes } from '@/models/role'
+  import type { Org } from '@/models/role'
 
   interface Props {
     org: Org

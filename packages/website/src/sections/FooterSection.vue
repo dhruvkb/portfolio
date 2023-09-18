@@ -3,9 +3,8 @@ Renders the footer with some important links and a 'Thank you' note.
 -->
 
 <script setup lang="ts">
-  import type { Breakpoint } from '@/models/breakpoints'
-
   import Link from '@/components/Link.vue'
+  import type { Breakpoint } from '@/models/breakpoints'
 
   const breakpointClasses: Record<Breakpoint | 'mob', string> = {
     /*

@@ -29,7 +29,9 @@ export class Org extends ResumeItem {
 
 export class Role extends ResumeItem {
   org!: Org
+
   epicIds: string[]
+
   epics: Epic[]
 
   constructor(roleJson: IRole, org: Org) {

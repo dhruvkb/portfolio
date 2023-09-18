@@ -1,5 +1,6 @@
 export class ResumeItem {
   id: string
+
   name: string
 
   constructor(resumeItemJson: { id: string; name: string }) {

@@ -7,10 +7,6 @@ Uses data from the 'resume' store in Pinia.
   import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
 
-  import { useProjectTable } from '@/composables/projects_table'
-  import { useRoleTable } from '@/composables/roles_table'
-  import { useResume } from '@/stores/resume'
-
   import EpicCard from '@/cards/EpicCard.vue'
   import OrgCard from '@/cards/OrgCard.vue'
   import Brand from '@/components/Brand.vue'
@@ -18,6 +14,9 @@ Uses data from the 'resume' store in Pinia.
   import Link from '@/components/Link.vue'
   import Period from '@/components/Period.vue'
   import TechStack from '@/components/TechStack.vue'
+  import { useProjectTable } from '@/composables/projects_table'
+  import { useRoleTable } from '@/composables/roles_table'
+  import { useResume } from '@/stores/resume'
 
   const resumeStore = useResume()
   const { epics, orgs } = storeToRefs(resumeStore)

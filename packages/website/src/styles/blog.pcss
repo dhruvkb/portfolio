@@ -1,7 +1,6 @@
 .blog-content {
-  /* Blogs cannot contain `<h1>` in the content. */
-
   /**
+   * H1: not applicable: Blogs cannot contain H1 in the content.
    * H2: imp color, equals underline
    * H3: imp color, tildes underline
    * H4: imp color, dashes underline
@@ -11,14 +10,15 @@
 
   .heading {
     @apply relative
-      font-semibold text-imp
-      mb-ln;
+      mb-ln
+      font-semibold
+      text-imp;
 
     &::after {
-      @apply absolute
-        top-full left-0 -right-px
-        font-normal text-low whitespace-nowrap
-        overflow-hidden;
+      @apply absolute -right-px left-0 top-full
+        overflow-hidden
+        whitespace-nowrap
+        font-normal text-low;
     }
   }
 
@@ -48,12 +48,26 @@
   }
 
   .heading a {
-    @apply pr-ch text-low no-underline before:h-ln before:content-[--heading-hashes] hover:underline lg:absolute lg:-translate-x-full;
+    @apply pr-ch
+      text-low
+      no-underline
+      before:h-ln
+      before:content-[--heading-hashes]
+      hover:underline
+      lg:absolute
+      lg:-translate-x-full;
     font-variant-ligatures: none;
   }
 
   a {
-    @apply after:inline-block underline after:font-sans after:font-semibold after:text-red-500 after:transition-transform after:duration-100 hover:italic hover:text-imp hover:after:translate-x-1 hover:after:-translate-y-1;
+    @apply underline
+      after:inline-block
+      after:font-sans after:font-semibold
+      after:text-red-500
+      after:transition-transform after:duration-100
+      hover:italic
+      hover:text-imp
+      hover:after:-translate-y-1 hover:after:translate-x-1;
 
     &[href^='http']::after {
       @apply content-['↗'];
@@ -74,6 +88,6 @@
   }
 
   :not(pre) > code {
-    @apply bg-hl py-0.5 px-0.5 rounded-sm;
+    @apply rounded-sm bg-hl px-0.5 py-0.5;
   }
 }
