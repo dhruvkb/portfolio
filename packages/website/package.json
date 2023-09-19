@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "description": "My portfolio website is the core of my virtual presence.",
+  "description": "My website contains my homepage, interactive résumé and blog.",
   "private": true,
   "version": "0.0.0",
   "scripts": {
