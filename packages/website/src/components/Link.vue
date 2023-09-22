@@ -9,13 +9,15 @@ external resource or a router path. External links open in a new tab without a r
 
   import { ARROWS, type Arrow } from '@/constants/arrows'
 
+  type LinkUrl = { dest: RouteLocationRaw; label: string }
+
   interface Props {
     /**
-     * the actual target to which the link points, maps to the `href` attribute
-     * on the anchor tag `<a>` or the `to` prop of a `RouterLink`
+     * the combination of destination and label; Based on whether the target is
+     * internal or external, the destination maps to the `href` attribute on the
+     * anchor tag `<a>` or the `to` prop on the `RouterLink` component.
      */
-    dest: RouteLocationRaw
-    label: string
+    url: LinkUrl
     /**
      * whether to lowercase the textual content of the link
      */
@@ -53,18 +55,25 @@ external resource or a router path. External links open in a new tab without a r
     arrow: undefined,
   })
 
+  const dest = computed(() =>
+    typeof props.url === 'string' ? props.url : props.url.dest
+  )
+  const label = computed(() =>
+    typeof props.url === 'string' ? `Link to ${props.url}` : props.url.label
+  )
+
   // If the link points to an external link or a file, use a regular anchor tag.
   const isExternal = computed(
-    () => typeof props.dest === 'string' && props.dest.startsWith('http')
+    () => typeof dest.value === 'string' && dest.value.startsWith('http')
   )
   const isFile = computed(
-    () => typeof props.dest === 'string' && props.dest.endsWith('.pdf')
+    () => typeof dest.value === 'string' && dest.value.endsWith('.pdf')
   )
 
   const params = computed(() =>
     isExternal.value || isFile.value
-      ? { href: props.dest, target: '_blank', rel: 'noreferrer' }
-      : { to: props.dest }
+      ? { href: dest.value, target: '_blank', rel: 'noreferrer' }
+      : { to: dest.value }
   )
 
   const slots = useSlots()
@@ -82,9 +91,9 @@ external resource or a router path. External links open in a new tab without a r
    * thereof, stripped out
    */
   const displayLink = computed(() =>
-    typeof props.dest === 'string'
-      ? props.dest.replace(/https?:\/\/(www.)?/g, '')
-      : String(props.dest)
+    typeof dest.value === 'string'
+      ? dest.value.replace(/https?:\/\/(www.)?/g, '')
+      : String(dest.value)
   )
 </script>
 

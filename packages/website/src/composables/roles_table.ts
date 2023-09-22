@@ -52,11 +52,7 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
           ? (({ id, name }) => ({ id, name }))(role.epics[0])
           : undefined,
         period: role.period,
-        link: {
-          dest: role.org.url,
-          label: `Homepage for ${role.org.name}`,
-          isPlain: true,
-        },
+        link: { url: role.org.url, isPlain: true },
       }))
     )
   )

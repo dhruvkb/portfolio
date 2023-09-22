@@ -46,7 +46,7 @@ export const useProjectTable = (_epics: Epic[] | Ref<Epic[]>) => {
             )
           : undefined,
         technologies: { technologies: project.technologies ?? [] },
-        link: { dest: project.url, label: project.urlLabel, isPlain: true },
+        link: { url: project.url, isPlain: true },
       }))
     )
   )

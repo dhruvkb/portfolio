@@ -30,8 +30,10 @@ an excerpt from the content.
   <component
     :is="isLink ? Link : 'div'"
     class="block p-1"
-    :dest="doc.href"
-    :label="`Read post '${doc.title}'`"
+    :url="{
+      dest: doc.href,
+      label: `Read post '${doc.title}'`,
+    }"
     :is-italicised="false"
     :is-lowercase="false"
     :is-underlined="false"

@@ -102,8 +102,10 @@ part of the page.
       </span>
       <Link
         :arrow="null"
-        :dest="{ hash: `#${heading.slug}` }"
-        :label="`Read section '${heading.title}'`"
+        :url="{
+          dest: { hash: `#${heading.slug}` },
+          label: `Read section '${heading.title}'`,
+        }"
         :is-lowercase="false">
         {{ heading.title }}
       </Link>

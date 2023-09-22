@@ -20,8 +20,7 @@
       <p class="mb-ln">
         There's nothing here. You are lost and should head
         <Link
-          label="Go to the home page"
-          :dest="{ name: 'index' }"
+          :url="{ dest: { name: 'index' }, label: 'Go to the home page' }"
           :arrow="null"
           >home</Link
         >.

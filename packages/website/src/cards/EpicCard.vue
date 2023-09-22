@@ -58,8 +58,7 @@
           <Link
             v-if="project.url"
             class="text-low printing:w-full"
-            :dest="project.url"
-            :label="project.urlLabel" />
+            :url="project.url" />
         </div>
 
         <!-- Project description -->

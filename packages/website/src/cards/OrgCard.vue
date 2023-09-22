@@ -32,8 +32,7 @@
       <Link
         v-if="org.url"
         class="text-low"
-        :dest="org.url"
-        :label="`Homepage for ${org.name}`" />
+        :url="org.url" />
     </div>
 
     <!-- Org description -->
