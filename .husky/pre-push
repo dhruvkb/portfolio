@@ -2,7 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # Strict lint
-npm run lint -- --max-warnings 0
+pnpm lint --max-warnings 0
 
 # Check Typescript
-npm run types --workspaces --if-present
+pnpm run --recursive types

@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@iconify-json/heroicons-outline": "^1.1.7",
-    "@iconify-json/simple-icons": "^1.1.70",
+    "@iconify-json/simple-icons": "^1.1.71",
     "@islands/excerpt": "^0.9.0",
     "@islands/feed": "^0.8.1",
     "@islands/headings": "^0.8.2",
