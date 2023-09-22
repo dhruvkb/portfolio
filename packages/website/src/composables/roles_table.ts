@@ -1,7 +1,8 @@
 import { computed, ref, type Ref } from 'vue'
 
 import type { RowData } from '@/models/data_table'
-import { type Org, roleTypes } from '@/models/role'
+import type { Org } from '@/models/role'
+import { ROLE_TYPES } from '@/constants/role_types'
 
 export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
   const orgs = ref(_orgs)
@@ -47,7 +48,7 @@ export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
       org.roles.map((role) => ({
         org: (({ id, name, shortName }) => ({ id, name, shortName }))(role.org),
         name: role.name,
-        type: role.type ? roleTypes[role.type] : '',
+        type: role.type ? ROLE_TYPES[role.type] : '',
         epic: role.epics.length
           ? (({ id, name }) => ({ id, name }))(role.epics[0])
           : undefined,

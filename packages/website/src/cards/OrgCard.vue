@@ -4,7 +4,7 @@
   import Brand from '@/components/Brand.vue'
   import Link from '@/components/Link.vue'
   import Period from '@/components/Period.vue'
-  import { roleTypes } from '@/models/role'
+  import { ROLE_TYPES } from '@/constants/role_types'
   import type { Org } from '@/models/role'
 
   interface Props {
@@ -58,7 +58,7 @@
             <span class="printing:font-medium">{{ role.name }}</span>
           </span>
           <span class="ml-auto text-low printing:hidden">{{
-            role.type ? roleTypes[role.type] : ''
+            role.type ? ROLE_TYPES[role.type] : ''
           }}</span>
           <Period
             v-if="role.period"
