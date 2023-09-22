@@ -21,6 +21,8 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     // Named exports are more consistent that default.
     'import/prefer-default-export': 'off',
+
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
   overrides: [
     {
