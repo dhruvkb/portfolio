@@ -7,7 +7,7 @@
 
   const { site } = usePage()
   const resumeStore = useResume()
-  await resumeStore.loadResume(site.resumeUrl)
+  resumeStore.loadResume()
 </script>
 
 <template>

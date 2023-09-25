@@ -1,0 +1,15 @@
+{
+  "work": {
+    "automattic": ["code_wrangler"],
+    "browserstack": ["software_engineer"],
+    "creative_commons": ["foss_community_coordinator", "internship_mentor"],
+    "fampay": ["software_engineer"],
+    "hackerearth": ["infrastructure_engineer"]
+  },
+  "creations": {
+    "pls": ["cli_application"],
+    "openverse": ["search_engine", "api"],
+    "vocabulary": ["ui_components"],
+    "omniport": ["infrastructure", "backend"]
+  }
+}

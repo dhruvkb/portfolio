@@ -1,46 +1,37 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-import axios from 'axios'
-import type { Resume } from 'reschume'
+import type { Resume } from 'recivi'
 
-import { Epic } from '@/models/project'
-import { Org } from '@/models/role'
+import { Epic } from '@/resume/epic'
+import { Org } from '@/resume/org'
+import type { Featured } from '@/resume/featured'
+
+import resumeJson from '@/data/recivi.json'
+import featuredJson from '@/data/featured.json'
 
 export const useResume = defineStore('resume', () => {
-  const resume = ref<Resume | null>(null)
+  const resume = ref<Resume>(resumeJson as Resume)
 
   // Parse bio data from JSON
   const bio = computed(() => resume.value?.bio)
+  const creations = ref<Epic[]>([])
+  const work = ref<Org[]>([])
+  const education = computed(() => resume.value?.education)
 
-  // Parse creations data from JSON.
-  const epics = ref<Epic[]>([])
-  const populateEpics = () => {
-    epics.value = []
-    const creations = resume.value?.creations ?? []
-    creations.forEach((epicJson) => {
-      const epic = new Epic(epicJson)
-      epics.value.push(epic)
-    })
-  }
+  const featured = ref<Featured>(featuredJson as Featured)
 
-  // Parse role data from JSON.
-  const orgs = ref<Org[]>([])
-  const populateOrgs = () => {
-    orgs.value = []
-    const work = resume.value?.work ?? []
-    work.forEach((orgJson) => {
-      const org = new Org(orgJson)
-      orgs.value.push(org)
-    })
-  }
+  const loadResume = () => {
+    creations.value =
+      resume.value.creations?.map((epic) => new Epic(epic, featured.value)) ??
+      []
+    work.value =
+      resume.value.work?.map((org) => new Org(org, featured.value)) ?? []
 
-  const mapRelations = () => {
-    // Establish role-epic associations.
-    orgs.value.forEach((org) => {
+    work.value.forEach((org) => {
       org.roles.forEach((role) => {
         role.epicIds?.forEach((epicId) => {
-          const epic = epics.value.find((item) => item.id === epicId)
+          const epic = creations.value.find((item) => item.id === epicId)
           if (epic) {
             role.associateEpic(epic)
             epic.associateRole(role)
@@ -50,26 +41,16 @@ export const useResume = defineStore('resume', () => {
     })
   }
 
-  const initResume = (data: Resume) => {
-    resume.value = data
-    populateEpics()
-    populateOrgs()
-    mapRelations()
-  }
-
-  const loadResume = async (url: string) => {
-    const response = await axios.get(url)
-    initResume(response.data)
-  }
-
   return {
-    initResume,
     loadResume,
 
     resume,
 
     bio,
-    epics,
-    orgs,
+    epics: creations,
+    orgs: work,
+    education,
+
+    featured,
   }
 })

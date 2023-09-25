@@ -1,0 +1,840 @@
+{
+  "bio": {
+    "name": "Dhruv Bhanushali",
+    "fullName": "Dhruv Bhanushali",
+    "summary": "Software engineer @ WordPress/Openverse • IIT-R '19",
+    "label": "Software developer and open-source maintainer",
+    "aliases": ["dhruvkb"],
+    "contact": {
+      "emails": ["hi@dhruvkb.dev"],
+      "phones": [
+        {
+          "countryCode": 91,
+          "number": "8171615670"
+        }
+      ]
+    },
+    "image": "https://www.gravatar.com/avatar/0eab64adad056cff2492e7c407a9aa21?s=256",
+    "profiles": [
+      {
+        "site": {
+          "id": "github",
+          "name": "GitHub"
+        },
+        "url": "https://github.com/dhruvkb",
+        "username": "dhruvkb"
+      },
+      {
+        "site": {
+          "id": "linkedin",
+          "name": "LinkedIn"
+        },
+        "url": "https://www.linkedin.com/in/dhruvkb",
+        "username": "dhruvkb"
+      },
+      {
+        "site": {
+          "id": "instagram",
+          "name": "Instagram"
+        },
+        "url": "https://www.instagram.com/dhruvkb_",
+        "username": "dhruvkb_"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Java",
+        "subSkills": ["Swing", "Spring"]
+      },
+      {
+        "name": "Kotlin",
+        "subSkills": ["Android"]
+      },
+      {
+        "name": "Ruby",
+        "subSkills": ["Rails"]
+      },
+      {
+        "name": "Web",
+        "subSkills": ["HTML", "CSS", "JS"]
+      },
+      "Golang",
+      "PHP",
+      "Shell"
+    ]
+  },
+  "education": [
+    {
+      "id": "iit_r",
+      "name": "Indian Institute of Technology, Roorkee",
+      "shortName": "IIT-R",
+      "url": {
+        "dest": "https://iitr.ac.in/",
+        "label": "IIT Roorkee homepage"
+      },
+      "address": {
+        "city": "Roorkee",
+        "state": "Uttarakhand",
+        "countryCode": "IN",
+        "postalCode": 247667
+      },
+      "certs": [
+        {
+          "id": "b_tech",
+          "name": "Bachelor of Technology",
+          "shortName": "B. Tech.",
+          "period": {
+            "start": [2015],
+            "end": [2019]
+          },
+          "score": "7.286",
+          "maxScore": "10.000",
+          "field": "Engineering Physics"
+        }
+      ]
+    }
+  ],
+  "work": [
+    {
+      "id": "automattic",
+      "name": "Automattic",
+      "shortName": "A8C",
+      "url": {
+        "dest": "https://automattic.com",
+        "label": "Automattic homepage"
+      },
+      "address": {
+        "city": "San Francisco",
+        "state": "California",
+        "countryCode": "US"
+      },
+      "summary": "The people behind <a href=\"https://wordpress.com\">WP.com</a>, <a href=\"https://woocommerce.com/\">Woo</a>, <a href=\"https://jetpack.com/\">Jetpack</a>, <a href=\"https://gravatar.com/\">Gravatar</a> & <a href=\"https://www.tumblr.com/\">Tumblr</a>.",
+      "roles": [
+        {
+          "id": "code_wrangler",
+          "name": "Code wrangler",
+          "period": {
+            "start": [2021, 4]
+          },
+          "type": "full-time",
+          "location": "remote",
+          "highlights": [
+            "Developed the <a href=\"https://wordpress.org/openverse\">Openverse</a> media search engine.",
+            "Worked on features with the WordPress FOSS community.",
+            "Onboarded & mentored new open source contributors."
+          ],
+          "epicIds": ["openverse"]
+        }
+      ]
+    },
+    {
+      "id": "wordpress",
+      "name": "WordPress",
+      "shortName": "WP",
+      "url": {
+        "dest": "https://wordpress.org",
+        "label": "WordPress homepage"
+      },
+      "summary": "The open-source CMS that powers over 40% of the web.",
+      "roles": [
+        {
+          "id": "project_maintainer",
+          "name": "Project maintainer",
+          "period": {
+            "start": [2021, 4]
+          },
+          "type": "foss",
+          "location": "remote",
+          "highlights": [
+            "Developed the <a href=\"https://wordpress.org/openverse\">Openverse</a> media search engine.",
+            "Worked on features with the WordPress FOSS community.",
+            "Onboarded & mentored new open source contributors."
+          ],
+          "epicIds": ["openverse"]
+        }
+      ]
+    },
+    {
+      "id": "browserstack",
+      "name": "BrowserStack",
+      "shortName": "BS",
+      "url": {
+        "dest": "https://browserstack.com",
+        "label": "BrowserStack homepage"
+      },
+      "summary": "A cloud platform for testing on real browsers & mobiles.",
+      "roles": [
+        {
+          "id": "software_engineer",
+          "name": "Software engineer",
+          "period": {
+            "start": [2020, 2],
+            "end": [2021, 3]
+          },
+          "type": "full-time",
+          "location": "onsite",
+          "highlights": [
+            "Identified & fixed systemic issues to prevent GDPR breaches.",
+            "Integrated all email providers with the Central Email System.",
+            "Created system to track & visualise email engagement.",
+            "Set up systems to improve email deliverability & reputation."
+          ],
+          "epicIds": ["central_email_system"]
+        }
+      ]
+    },
+    {
+      "id": "creative_commons",
+      "name": "Creative Commons",
+      "shortName": "CC",
+      "url": {
+        "dest": "https://opensource.creativecommons.org",
+        "label": "Creative Commons Open Source homepage"
+      },
+      "summary": "Non-profit promoting public domain & openly-licensed media.",
+      "roles": [
+        {
+          "id": "project_maintainer",
+          "name": "Project maintainer",
+          "period": {
+            "start": [2019, 9]
+          },
+          "type": "foss",
+          "location": "remote",
+          "highlights": [
+            "Developed the <a href=\"https://github.com/creativecommons/vocabulary\">Vocabulary</a> design system.",
+            "Worked on features with the CC FOSS community."
+          ],
+          "epicIds": ["vocabulary"]
+        },
+        {
+          "id": "foss_community_coordinator",
+          "name": "FOSS community coordinator",
+          "period": {
+            "start": [2020, 7],
+            "end": [2020, 12]
+          },
+          "type": "contract",
+          "location": "remote",
+          "highlights": [
+            "Identified, organised & triaged issues & reviewed PRs.",
+            "Onboarded & mentored new open source contributors.",
+            "Maintained the <a href=\"https://github.com/creativecommons/creativecommons.github.io-source/\">open-source site</a> and <a href=\"https://github.com/creativecommons/ccos-scripts/\">automation workflows</a>.",
+            "Increased activity, reach & engagement on <a href=\"https://twitter.com/cc_opensource\">Twitter (now 𝕏)</a>."
+          ]
+        },
+        {
+          "id": "internship_mentor",
+          "name": "Internship mentor",
+          "period": {
+            "start": [2019, 12],
+            "end": [2020, 12]
+          },
+          "type": "foss",
+          "location": "remote",
+          "highlights": [
+            "Onboarded & guided applicants through the processes.",
+            "Reviewed, scored & ranked proposals from candidates.",
+            "Mentored <b>Google Season of Docs</b> in 2020.",
+            "Mentored <b>Outreachy</b> in winter 2019-20 & summer 2020."
+          ]
+        },
+        {
+          "id": "gsoc_engineer",
+          "name": "GSoC engineer",
+          "period": {
+            "start": [2019, 5],
+            "end": [2019, 8]
+          },
+          "type": "internship",
+          "location": "remote",
+          "highlights": [
+            "Conceived, designed & developed Vocabulary from scratch.",
+            "Initiated & supported Vocabulary integration with CC sites."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fampay",
+      "name": "FamPay (now Fam)",
+      "shortName": "Fam",
+      "url": {
+        "dest": "https://famapp.in",
+        "label": "FamApp homepage"
+      },
+      "address": {
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "countryCode": "IN"
+      },
+      "summary": "A neobank for teenagers to manage their pocket money.",
+      "roles": [
+        {
+          "id": "software_engineer",
+          "name": "Software engineer",
+          "period": {
+            "start": [2019, 11],
+            "end": [2019, 12]
+          },
+          "type": "part-time",
+          "location": "onsite",
+          "highlights": [
+            "Developed the end-to-end payment flow for the application.",
+            "Integrated payment gateways Razorpay & Cashfree."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hackerearth",
+      "name": "HackerEarth",
+      "shortName": "HE",
+      "url": {
+        "dest": "https://hackerearth.com",
+        "label": "HackerEarth homepage"
+      },
+      "address": {
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "countryCode": "IN"
+      },
+      "summary": "A platform for hosting hackathons and coding challenges.",
+      "roles": [
+        {
+          "id": "infrastructure_engineer",
+          "name": "Infrastructure engineer",
+          "period": {
+            "start": [2018, 5],
+            "end": [2018, 7]
+          },
+          "type": "internship",
+          "location": "onsite",
+          "highlights": [
+            "Wrote the IaC for the entire production architecture.",
+            "Created tooling to deploy the IaC in an alternate AWS AZ.",
+            "Developed scripts to launch and terminate EC2 instances.",
+            "Isolated staging env from production in a separate VPC.",
+            "Enabled one‑click provisioning of staging environments."
+          ]
+        },
+        {
+          "id": "software_engineer",
+          "name": "Software engineer",
+          "period": {
+            "start": [2017, 5],
+            "end": [2017, 7]
+          },
+          "type": "internship",
+          "location": "onsite",
+          "highlights": [
+            "Wrote a code‑evaluation engine to evaluate Java projects.",
+            "Created tooling to automatically build and execute projects.",
+            "Wrapped Ant in an async message‑based Python evaluator.",
+            "Developed the scaffolding architecture using RabbitMQ.",
+            "Added provider‑agnostic database connectivity using JDBC.",
+            "Installed security policies such as memory and I/O limits."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "img",
+      "name": "IMG IIT Roorkee",
+      "shortName": "IMG IIT-R",
+      "url": {
+        "dest": "https://img.channeli.in",
+        "label": "IMG homepage"
+      },
+      "summary": "The student body behind the IIT-R website & intranet portal.",
+      "roles": [
+        {
+          "id": "chief_coordinator_tech",
+          "name": "Chief coordinator (tech)",
+          "period": {
+            "start": [2016, 1],
+            "end": [2019, 4]
+          },
+          "type": "part-time",
+          "location": "onsite",
+          "highlights": [
+            "Pivoted IMG as a group from app to platform development.",
+            "Upgraded the legacy portal, tech stack & apps to <a href=\"https://omniport.readthedocs.io/\">Omniport</a>.",
+            "Containerised, decoupled & stabilised dev processes.",
+            "Halved timelines by revamping the development paradigm.",
+            "Mentored a team of over 50 developers and designers.",
+            "Fostered <a href=\"https://github.com/IMGIITRoorkee/\">OSS culture</a> by open-sourcing 40+ repos.",
+            "Led IMG to 10 and 13 GSoC selections in 2018 and 2019.",
+            "Reinvigorated IMG's popular image on various <a href=\"https://facebook.com/IMGIITRoorkee\">social media</a>."
+          ],
+          "epicIds": ["omniport"]
+        }
+      ]
+    }
+  ],
+  "creations": [
+    {
+      "id": "pls",
+      "name": "pls",
+      "url": {
+        "dest": "https://pls-rs.github.io/pls/",
+        "label": "`pls` homepage"
+      },
+      "summary": "A prettier and powerful <code>ls(1)</code> for the pros.",
+      "projects": [
+        {
+          "id": "cli_application",
+          "name": "CLI application",
+          "url": {
+            "dest": "https://github.com/pls-rs/pls",
+            "label": "GitHub repo for `pls`"
+          },
+          "role": "Creator",
+          "highlights": [
+            "Designed the command-line API & developed the app.",
+            "Enabled endless customisation using YAML config files.",
+            "Added features for tech-savvy users like Git integration."
+          ],
+          "technologies": [
+            {
+              "id": "rust",
+              "name": "Rust"
+            },
+            {
+              "id": "yaml",
+              "name": "YAML"
+            }
+          ]
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "url": {
+            "dest": "https://pls-rs.github.io/pls",
+            "label": "`pls` user documentation"
+          },
+          "role": "Author",
+          "summary": "Thorough end-user documentation for all features.",
+          "highlights": [
+            "Deployed as a static site with an automated CI + CD pipeline.",
+            "Created a pipeline to generate examples for every release."
+          ],
+          "technologies": [
+            {
+              "id": "python",
+              "name": "Python"
+            },
+            {
+              "id": "mdx",
+              "name": "MDX"
+            },
+            {
+              "id": "typescript",
+              "name": "TypeScript",
+              "shortName": "TS"
+            },
+            {
+              "id": "astro",
+              "name": "Astro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openverse",
+      "name": "Openverse",
+      "url": {
+        "dest": "https://openverse.org",
+        "label": "Openverse homepage"
+      },
+      "summary": "An open-source search engine for openly-licensed media.",
+      "projects": [
+        {
+          "id": "search_engine",
+          "name": "Openverse.org",
+          "url": {
+            "dest": "https://github.com/WordPress/openverse",
+            "label": "Openverse search engine"
+          },
+          "role": "Maintainer",
+          "summary": "The primary channel to search across 700M+ creative works.",
+          "highlights": [
+            "Migrated the codebase to a monorepo; updated CI and docs.",
+            "Added privacy-friendly analytics for general usage metrics.",
+            "Added safety features to prevent sensitive content exposure."
+          ],
+          "technologies": [
+            {
+              "id": "typescript",
+              "name": "TypeScript",
+              "shortName": "TS"
+            },
+            {
+              "id": "nuxtdotjs",
+              "name": "Nuxt"
+            },
+            {
+              "id": "tailwindcss",
+              "name": "Tailwind"
+            }
+          ]
+        },
+        {
+          "id": "api",
+          "name": "API",
+          "url": {
+            "dest": "https://api.openverse.org",
+            "label": "Openverse API"
+          },
+          "role": "Maintainer",
+          "summary": "Provides catalogue access to integrations via a RESTful API.",
+          "highlights": [
+            "Refactored to use Django REST framework best practices.",
+            "Generalised to support new media types, such as audio."
+          ],
+          "technologies": [
+            {
+              "id": "python",
+              "name": "Python"
+            },
+            {
+              "id": "django",
+              "name": "Django"
+            },
+            {
+              "id": "postgresql",
+              "name": "PostgreSQL",
+              "shortName": "PSQL"
+            },
+            {
+              "id": "elasticsearch",
+              "name": "Elasticsearch",
+              "shortName": "ES"
+            }
+          ]
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "url": {
+            "dest": "https://docs.openverse.org",
+            "label": "Openverse documentation"
+          },
+          "role": "Author",
+          "summary": "The primary source of information for developers.",
+          "highlights": [
+            "Conceived and initialised the documentation site.",
+            "Authored the setup, quickstart and maintenance guides.",
+            "Created workflows to deploy the main and preview doc sites."
+          ],
+          "technologies": [
+            {
+              "id": "sphinx",
+              "name": "Sphinx"
+            },
+            {
+              "id": "markdown",
+              "name": "Markdown",
+              "shortName": "MD"
+            }
+          ]
+        },
+        {
+          "id": "raycast_ext",
+          "name": "Raycast plugin",
+          "url": {
+            "dest": "https://www.raycast.com/openverse/openverse",
+            "label": "Openverse in the Raycast Store"
+          },
+          "role": "Creator",
+          "summary": "Enables searching the Openverse catalogue from the desktop.",
+          "highlights": [
+            "Developed the plugin using Raycast APIs.",
+            "Provides image search, download, attribution and reporting."
+          ],
+          "technologies": [
+            {
+              "id": "typescript",
+              "name": "TypeScript",
+              "shortName": "TS"
+            },
+            {
+              "id": "raycast",
+              "name": "Raycast"
+            },
+            {
+              "id": "react",
+              "name": "React"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "central_email_system",
+      "name": "CES",
+      "summary": "Centralised email system for high uptime and sender reputation.",
+      "projects": [
+        {
+          "id": "infrastructure",
+          "name": "Infrastructure",
+          "role": "Creator",
+          "highlights": [
+            "Integrated all email providers (Mailgun, SES, Mailchimp).",
+            "Synced email subscription preferences across all providers.",
+            "Built audit logs to prevent, detect & alert for GDPR breaches.",
+            "Implemented SPF, DKIM, DMARC for safety and deliverability."
+          ],
+          "technologies": [
+            {
+              "id": "ruby",
+              "name": "Ruby"
+            },
+            {
+              "id": "rails",
+              "name": "Rails"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vocabulary",
+      "name": "Vocabulary",
+      "url": {
+        "dest": "https://cc-vocabulary.netlify.app/",
+        "label": "Vocabulary homepage"
+      },
+      "summary": "A design system & component library for CC's web properties.",
+      "projects": [
+        {
+          "id": "ui_components",
+          "name": "UI components",
+          "url": {
+            "dest": "https://github.com/creativecommons/vocabulary",
+            "label": "GitHub repo for Vocabulary"
+          },
+          "role": "Creator",
+          "highlights": [
+            "Developed a system of design tokens and Vue components.",
+            "Documented UI patterns using an interactive Storybook."
+          ],
+          "technologies": [
+            {
+              "id": "javascript",
+              "name": "JavaScript"
+            },
+            {
+              "id": "vuedotjs",
+              "name": "Vue"
+            },
+            {
+              "id": "storybook",
+              "name": "Storybook"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "omniport",
+      "name": "Omniport",
+      "summary": "End‑to‑end platform & app ecosystem for institute web portals.",
+      "projects": [
+        {
+          "id": "infrastructure",
+          "name": "Infrastructure",
+          "url": {
+            "dest": "https://github.com/IMGIITRoorkee/omniport-docker",
+            "label": "GitHub repo for Omniport infrastructure"
+          },
+          "role": "Creator",
+          "highlights": [
+            "Designed architecture to be cloud-native and scalable.",
+            "Deployed as micro-services with Docker (+Compose)."
+          ],
+          "technologies": [
+            {
+              "id": "docker",
+              "name": "Docker"
+            },
+            {
+              "id": "gnubash",
+              "name": "Bash"
+            }
+          ]
+        },
+        {
+          "id": "backend",
+          "name": "Backend",
+          "url": {
+            "dest": "https://github.com/IMGIITRoorkee/omniport-backend",
+            "label": "GitHub repo for Omniport backend"
+          },
+          "role": "Creator",
+          "highlights": [
+            "Designed to be unopinionated, flexible & customisable.",
+            "Developed plug-&-play system for Django-based apps.",
+            "Added WebSockets support for real-time interactive apps."
+          ],
+          "technologies": [
+            {
+              "id": "python",
+              "name": "Python"
+            },
+            {
+              "id": "django",
+              "name": "Django"
+            },
+            {
+              "id": "postgresql",
+              "name": "PostgreSQL",
+              "shortName": "PSQL"
+            },
+            {
+              "id": "redis",
+              "name": "Redis"
+            }
+          ]
+        },
+        {
+          "id": "documentation",
+          "name": "Documentation",
+          "url": {
+            "dest": "https://omniport.readthedocs.io",
+            "label": "Developer documentation for Omniport"
+          },
+          "role": "Author",
+          "summary": "The primary source of information for developers.",
+          "highlights": [
+            "Conceived and initialised the documentation site.",
+            "Authored <a href=\"https://documentation.divio.com/\">all 4 types</a> of documentation for the project.",
+            "Created the <a href=\"https://www.youtube.com/watch?v=jU7c4N0R3Vc\">Omniport launch video</a>."
+          ],
+          "technologies": [
+            {
+              "id": "sphinx",
+              "name": "Sphinx"
+            },
+            {
+              "id": "readthedocs",
+              "name": "reStructuredText",
+              "shortName": "reST"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2fac",
+      "name": "2Fac",
+      "url": {
+        "dest": "https://2fac.vercel.app",
+        "label": "2Fac homepage"
+      },
+      "summary": "An open-source web-based 2FA app that syncs via GitHub.",
+      "projects": [
+        {
+          "id": "app",
+          "name": "Progressive web app",
+          "url": {
+            "dest": "https://github.com/dhruvkb/2fac",
+            "label": "GitHub repo for 2Fac"
+          },
+          "role": "Creator",
+          "summary": "Time-based one-time password generator with clean UI.",
+          "highlights": [
+            "Used native UI elements for iOS and Android for cohesive UX.",
+            "Added data back up and sync via a private GitHub repo.",
+            "Provided offline functionality and data import/export."
+          ],
+          "technologies": [
+            {
+              "id": "typescript",
+              "name": "TypeScript"
+            },
+            {
+              "id": "ionic",
+              "name": "Ionic"
+            },
+            {
+              "id": "vuedotjs",
+              "name": "Vue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "name": "Portfolio",
+      "url": {
+        "dest": "https://dhruvkb.dev",
+        "label": "Dhruv's portfolio site"
+      },
+      "summary": "My small personal slice of the Internet.",
+      "projects": [
+        {
+          "id": "website",
+          "name": "Website",
+          "url": {
+            "dest": "https://github.com/dhruvkb/portfolio",
+            "label": "Dhruv's portfolio site"
+          },
+          "role": "Creator",
+          "summary": "Contains my homepage, interactive résumé and blog.",
+          "highlights": [
+            "Deployed as a static site with an automated CI + CD pipeline.",
+            "Built using cutting-edge frontend tech to ship negligible JS.",
+            "Renders a printer-friendly version as the main résumé."
+          ],
+          "technologies": [
+            {
+              "id": "typescript",
+              "name": "TypeScript",
+              "shortName": "TS"
+            },
+            {
+              "id": "vuedotjs",
+              "name": "Vue"
+            },
+            {
+              "id": "tailwindcss",
+              "name": "Tailwind"
+            },
+            {
+              "id": "recivi",
+              "name": "Récivi"
+            }
+          ]
+        },
+        {
+          "id": "recivi",
+          "name": "Récivi",
+          "url": {
+            "dest": "https://recivi.vercel.app",
+            "label": "Récivi homepage"
+          },
+          "role": "Creator",
+          "summary": "A comprehensive schema for documenting résumés.",
+          "highlights": [
+            "Developed the JSON schema and TypeScript interfaces.",
+            "Integrated with portfolio site as a proof-of-concept."
+          ],
+          "technologies": [
+            {
+              "id": "typescript",
+              "name": "TypeScript",
+              "shortName": "TS"
+            },
+            {
+              "id": "json",
+              "name": "JSON"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
