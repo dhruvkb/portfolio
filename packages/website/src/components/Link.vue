@@ -7,9 +7,11 @@ external resource or a router path. External links open in a new tab without a r
   import { computed, useSlots } from 'vue'
   import type { RouteLocationRaw } from 'vue-router'
 
+  import type { Url } from 'recivi'
+
   import { ARROWS, type Arrow } from '@/constants/arrows'
 
-  type LinkUrl = { dest: RouteLocationRaw; label: string }
+  type LinkUrl = Url | { dest: RouteLocationRaw; label: string }
 
   interface Props {
     /**
