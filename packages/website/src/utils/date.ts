@@ -1,4 +1,4 @@
-import type { Date as DateType } from 'reschume'
+import type { Date as RcvDate, Y, YM, YMD } from 'recivi'
 
 /**
  * Split the date into three components, namely the year, the month and the
@@ -14,6 +14,20 @@ const splitDate = (date: Date): [number, number, number] => [
 ]
 
 /**
+ * Convert a date into a tuple. If the date is already a tuple, it will be
+ * returned as-is.
+ *
+ * @param date - the Récivi date to convert into a tuple
+ * @return an array with 1-3 elements, namely the year, the month and the date
+ */
+const tuplifyDate = (date: RcvDate): Y | YM | YMD => {
+  if (Array.isArray(date)) {
+    return date
+  }
+  return [date.year, date.month, date.day]
+}
+
+/**
  * Convert the date into a human-audible format. Depending on the known
  * components, the date will contain the numeric date, full month name and the
  * numeric year.
@@ -21,8 +35,8 @@ const splitDate = (date: Date): [number, number, number] => [
  * @param date - the date components to format
  * @return the date formatted to be heard
  */
-export const audibleDate = (date: DateType | Date) => {
-  const components = date instanceof Date ? splitDate(date) : date
+export const audibleDate = (date: RcvDate | Date) => {
+  const components = date instanceof Date ? splitDate(date) : tuplifyDate(date)
 
   const [yyyy, mm = 1, dd = 1] = components
 
@@ -36,7 +50,7 @@ export const audibleDate = (date: DateType | Date) => {
 
 /**
  * Convert the date into a human-readable format. Depending on the known
- * components, the format can be one the following:
+ * components, the format can be one of the following:
  * - `%Y` (e.g. 2023)
  * - `%b.%y` (e.g. Jan.23)
  * - `%d.%b.%Y` (e.g. 01.Jan.2023)
@@ -45,8 +59,8 @@ export const audibleDate = (date: DateType | Date) => {
  * @param date - the date components to format
  * @return the date formatted to be read
  */
-export const readableDate = (date: DateType | Date) => {
-  const components = date instanceof Date ? splitDate(date) : date
+export const readableDate = (date: RcvDate | Date) => {
+  const components = date instanceof Date ? splitDate(date) : tuplifyDate(date)
 
   const monthNames = Array.from({ length: 12 }, (_, i) =>
     new Date(0, i + 1, 0).toLocaleDateString('en', { month: 'short' })

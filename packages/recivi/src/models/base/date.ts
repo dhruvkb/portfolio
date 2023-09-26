@@ -23,9 +23,9 @@ interface FormalDate {
   year: Year
 }
 
-type Y = [Year]
-type YM = [Year, Month]
-type YMD = [Year, Month, Day]
+export type Y = [Year]
+export type YM = [Year, Month]
+export type YMD = [Year, Month, Day]
 
 /**
  * a combination of year, month and day; This date can optionally skip the day
