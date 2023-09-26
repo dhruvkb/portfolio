@@ -20,8 +20,10 @@
       >, enable printing backgrounds and set all custom margins to zero. Or you
       can just
       <Link
-        label="Résumé as PDF"
-        dest="https://dhruvkb.dev/resume.pdf"
+        :url="{
+          dest: 'https://dhruvkb.dev/resume.pdf',
+          label: 'Résumé as PDF',
+        }"
         :is-lowercase="false"
         >download the PDF</Link
       >, which is definitely the easier option.
@@ -30,8 +32,10 @@
     <p class="lg:hidden">
       You can
       <Link
-        label="Résumé as PDF"
-        dest="https://dhruvkb.dev/resume.pdf"
+        :url="{
+          dest: 'https://dhruvkb.dev/resume.pdf',
+          label: 'Résumé as PDF',
+        }"
         >download my résumé</Link
       >
       as a PDF. Visit from a desktop to see the live-preview.

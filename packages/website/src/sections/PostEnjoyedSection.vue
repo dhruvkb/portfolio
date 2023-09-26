@@ -18,8 +18,10 @@
       <CopyLinkButton client:load /> and
       <Link
         class="ml-auto"
-        dest="/blog/feed.rss"
-        label="Get RSS feed"
+        :url="{
+          dest: '/blog/feed.rss',
+          label: 'Get RSS feed',
+        }"
         :is-lowercase="false">
         <template #default>subscribe to RSS</template>
         <template #end>
@@ -30,8 +32,10 @@
         </template> </Link
       >. You can also read more such articles from my
       <Link
-        :dest="{ name: 'blog' }"
-        label="Go to the 'Blog' page"
+        :url="{
+          dest: { name: 'blog' },
+          label: 'Go to the \'Blog\' page',
+        }"
         :arrow="null"
         >blog</Link
       >.

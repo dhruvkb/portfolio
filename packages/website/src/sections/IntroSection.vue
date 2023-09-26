@@ -17,13 +17,17 @@
       <em>and most of what I write at work</em>, is open-source. It's all there
       on
       <Link
-        dest="https://github.com/dhruvkb/"
-        label="GitHub profile"
+        :url="{
+          dest: 'https://github.com/dhruvkb/',
+          label: 'GitHub profile',
+        }"
         :is-lowercase="false"
         >my GitHub profile</Link
       >. If you see something you like (<Link
-        dest="https://github.com/dhruvkb/portfolio"
-        label="Source code for this website"
+        :url="{
+          dest: 'https://github.com/dhruvkb/portfolio',
+          label: 'Source code for this website',
+        }"
         >including this site</Link
       >), consider starring. I'd appreciate that sweet dopamine. If you see
       something you don't like very much, consider filing an issue.

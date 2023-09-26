@@ -23,8 +23,10 @@
       If you're into any of those things, you might enjoy my blog. If you do,
       consider subscribing to
       <Link
-        dest="/blog/feed.rss"
-        label="Get RSS feed"
+        :url="{
+          dest: '/blog/feed.rss',
+          label: 'Get RSS feed',
+        }"
         :is-lowercase="false">
         <template #default>my RSS feed</template>
         <template #end>

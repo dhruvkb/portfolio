@@ -37,8 +37,10 @@ Renders the footer with some important links and a 'Thank you' note.
     </div>
 
     <Link
-      label="Source code for this website"
-      dest="https://github.com/dhruvkb/portfolio"
+      :url="{
+        label: 'Source code for this website',
+        dest: 'https://github.com/dhruvkb/portfolio',
+      }"
       >Source code</Link
     >
   </footer>

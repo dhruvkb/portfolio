@@ -11,9 +11,11 @@
   <header>
     <Link
       class="mb-para block"
-      :dest="{ name: 'blog' }"
+      :url="{
+        dest: { name: 'blog' },
+        label: 'Go to the blog page',
+      }"
       arrow="WEST"
-      label="Go to the 'Blog' page"
       >all posts</Link
     >
 
