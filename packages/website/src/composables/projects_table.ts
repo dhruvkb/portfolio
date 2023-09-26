@@ -1,7 +1,7 @@
 import { computed, ref, type Ref } from 'vue'
 
 import type { RowData } from '@/models/data_table'
-import type { Epic } from '@/models/project'
+import type { Epic } from '@/resume/epic'
 
 export const useProjectTable = (_epics: Epic[] | Ref<Epic[]>) => {
   const epics = ref(_epics)

@@ -1,7 +1,7 @@
 import { computed, ref, type Ref } from 'vue'
 
 import type { RowData } from '@/models/data_table'
-import type { Org } from '@/models/role'
+import type { Org } from '@/resume/org'
 import { ROLE_TYPES } from '@/constants/role_types'
 
 export const useRoleTable = (_orgs: Org[] | Ref<Org[]>) => {
