@@ -4,16 +4,20 @@ icons and logos.
 -->
 
 <script setup lang="ts">
-  import type { Technology } from 'reschume'
+  import type { Tech } from 'recivi'
 
   import { useIcon } from '@/composables/icon'
 
   interface Props {
-    technologies: Technology[]
+    technologies: Tech[]
+    isShort?: boolean
   }
-  defineProps<Props>()
+  const props = defineProps<Props>()
 
   const { getIcon } = useIcon()
+
+  const getName = (tech: Tech): string =>
+    props.isShort && tech.shortName ? tech.shortName : tech.name
 </script>
 
 <template>
@@ -27,7 +31,7 @@ icons and logos.
         v-if="technology.id"
         aria-hidden="true" />
       <span class="sr-only printing:not-sr-only md:not-sr-only">{{
-        technology.name
+        getName(technology)
       }}</span>
     </span>
   </span>

@@ -3,10 +3,10 @@ Displays the list of skills, automatically expanding nested skills in parenthese
 -->
 
 <script setup lang="ts">
-  import { storeToRefs } from 'pinia'
   import { computed } from 'vue'
+  import { storeToRefs } from 'pinia'
 
-  import type { Skill } from 'reschume/lib/bio'
+  import type { Skill } from 'recivi'
 
   import { useResume } from '@/stores/resume'
   import { stringifyList } from '@/utils/string'
@@ -17,11 +17,8 @@ Displays the list of skills, automatically expanding nested skills in parenthese
   const skillDisplay = (skill: Skill): string => {
     if (typeof skill === 'string') return skill
 
-    if (skill.subskills === undefined || skill.subskills.length === 0)
-      return skill.name
-
     const subskillsText = stringifyList(
-      skill.subskills.map((subskill) => skillDisplay(subskill))
+      skill.subSkills.map((subSkill) => skillDisplay(subSkill))
     )
     return `${skill.name} (+${subskillsText})`
   }

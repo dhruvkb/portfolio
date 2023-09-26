@@ -6,13 +6,13 @@ is still active.
 <script setup lang="ts">
   import { computed } from 'vue'
 
-  import type { Date as DateType } from 'reschume'
+  import type { Date } from 'recivi'
 
   import { audibleDate, readableDate } from '@/utils/date'
 
   interface Props {
-    start: DateType
-    end?: DateType
+    start: Date
+    end?: Date
   }
   const props = defineProps<Props>()
 

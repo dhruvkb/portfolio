@@ -4,12 +4,20 @@ hyperlinks, where appropriate.
 -->
 
 <script setup lang="ts">
-  import Link from '@/components/Link.vue'
+  import type { Profile, Url } from 'recivi'
+
   import { useContacts } from '@/composables/contacts'
   import { useIcon } from '@/composables/icon'
 
+  import Link from '@/components/Link.vue'
+
   const { getIcon } = useIcon()
   const { contactMedia } = useContacts()
+
+  const getUrl = (profile: Profile): Url | undefined =>
+    'url' in profile ? profile.url : undefined
+  const getUsername = (profile: Profile): string =>
+    'username' in profile ? profile.username : profile.site.name
 </script>
 
 <template>
@@ -30,17 +38,16 @@ hyperlinks, where appropriate.
     <div class="printing:grid printing:grid-cols-2 printing:gap-y-1">
       <div
         v-for="medium in contactMedia"
-        :key="medium.id">
+        :key="medium.site.id">
         <div>
           <component
-            :is="medium.url ? Link : 'span'"
-            :dest="medium.url"
-            :label="`${medium.name} profile`">
+            :is="getUrl(medium) ? Link : 'span'"
+            :url="getUrl(medium)">
             <component
-              :is="getIcon(medium.id)"
+              :is="getIcon(medium.site.id)"
               class="mr-ch inline-block"
               aria-hidden="true" />
-            <span>{{ medium.username }}</span>
+            <span>{{ getUsername(medium) }}</span>
           </component>
         </div>
       </div>
