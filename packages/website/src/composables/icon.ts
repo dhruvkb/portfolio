@@ -2,12 +2,10 @@ import type { defineComponent } from 'vue'
 
 import logo2Fac from 'virtual:icons/app/2fac'
 import logoBrowserstack from 'virtual:icons/app/browserstack'
-import logoCenterofci from 'virtual:icons/app/centerofci'
 import logoImg from 'virtual:icons/app/img'
 import logoPls from 'virtual:icons/app/pls'
 import logoPortfolio from 'virtual:icons/app/portfolio'
-import logoReschume from 'virtual:icons/app/reschume'
-import logoSeeelaye from 'virtual:icons/app/seeelaye'
+import logoRecivi from 'virtual:icons/app/recivi'
 import heroCheck from 'virtual:icons/heroicons-outline/check'
 import heroMail from 'virtual:icons/heroicons-outline/mail'
 import heroPrinter from 'virtual:icons/heroicons-outline/printer'
@@ -19,6 +17,7 @@ import siAutomattic from 'virtual:icons/simple-icons/automattic'
 import siCreativecommons from 'virtual:icons/simple-icons/creativecommons'
 import siDjango from 'virtual:icons/simple-icons/django'
 import siDocker from 'virtual:icons/simple-icons/docker'
+import siElasticsearch from 'virtual:icons/simple-icons/elasticsearch'
 import siFampay from 'virtual:icons/simple-icons/fampay'
 import siGithub from 'virtual:icons/simple-icons/github'
 import siGnubash from 'virtual:icons/simple-icons/gnubash'
@@ -27,20 +26,26 @@ import siInstagram from 'virtual:icons/simple-icons/instagram'
 import siIonic from 'virtual:icons/simple-icons/ionic'
 import siJavascript from 'virtual:icons/simple-icons/javascript'
 import siJson from 'virtual:icons/simple-icons/json'
-import siLatex from 'virtual:icons/simple-icons/latex'
 import siLinkedin from 'virtual:icons/simple-icons/linkedin'
 import siMarkdown from 'virtual:icons/simple-icons/markdown'
 import siMdx from 'virtual:icons/simple-icons/mdx'
-import siNodedotjs from 'virtual:icons/simple-icons/nodedotjs'
 import siNuxtdotjs from 'virtual:icons/simple-icons/nuxtdotjs'
 import siOpenverse from 'virtual:icons/simple-icons/openverse'
+import siPostresql from 'virtual:icons/simple-icons/postgresql'
 import siPython from 'virtual:icons/simple-icons/python'
+import siReact from 'virtual:icons/simple-icons/react'
 import siReadthedocs from 'virtual:icons/simple-icons/readthedocs'
+import siRedis from 'virtual:icons/simple-icons/redis'
+import siRuby from 'virtual:icons/simple-icons/ruby'
+import siRubyonrails from 'virtual:icons/simple-icons/rubyonrails'
 import siRust from 'virtual:icons/simple-icons/rust'
+import siSphinx from 'virtual:icons/simple-icons/sphinx'
+import siStorybook from 'virtual:icons/simple-icons/storybook'
 import siTailwindcss from 'virtual:icons/simple-icons/tailwindcss'
 import siTypescript from 'virtual:icons/simple-icons/typescript'
 import siVuedotjs from 'virtual:icons/simple-icons/vuedotjs'
 import siWordpress from 'virtual:icons/simple-icons/wordpress'
+import siYaml from 'virtual:icons/simple-icons/yaml'
 
 type ComponentDefinition = ReturnType<typeof defineComponent>
 
@@ -51,7 +56,6 @@ export const icons: Record<string, ComponentDefinition> = {
   fampay: siFampay,
   hackerearth: siHackerearth,
   wordpress: siWordpress,
-  center_of_ci: logoCenterofci,
   browserstack: logoBrowserstack,
   img: logoImg,
 
@@ -59,31 +63,38 @@ export const icons: Record<string, ComponentDefinition> = {
   astro: siAstro,
   django: siDjango,
   docker: siDocker,
+  elasticsearch: siElasticsearch,
   gnubash: siGnubash,
   ionic: siIonic,
   javascript: siJavascript,
   json: siJson,
-  latex: siLatex,
   markdown: siMarkdown,
   mdx: siMdx,
-  nodedotjs: siNodedotjs,
   nuxtdotjs: siNuxtdotjs,
   openverse: siOpenverse,
+  postgresql: siPostresql,
   python: siPython,
+  react: siReact,
   readthedocs: siReadthedocs,
+  redis: siRedis,
+  ruby: siRuby,
+  rails: siRubyonrails,
   rust: siRust,
+  sphinx: siSphinx,
+  storybook: siStorybook,
   tailwindcss: siTailwindcss,
   typescript: siTypescript,
   vuedotjs: siVuedotjs,
+  yaml: siYaml,
 
   // Projects
+  central_email_system: logoBrowserstack,
   vocabulary: siCreativecommons,
   '2fac': logo2Fac,
   omniport: logoImg,
   pls: logoPls,
   portfolio: logoPortfolio,
-  reschume: logoReschume,
-  seeelaye: logoSeeelaye,
+  recivi: logoRecivi,
 
   // Contacts
   github: siGithub,
