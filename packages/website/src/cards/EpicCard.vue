@@ -4,7 +4,7 @@
   import Brand from '@/components/Brand.vue'
   import Link from '@/components/Link.vue'
   import TechStack from '@/components/TechStack.vue'
-  import type { Epic } from '@/models/project'
+  import type { Epic } from '@/resume/epic'
 
   interface Props {
     epic: Epic
@@ -14,15 +14,11 @@
     showFeaturedOnly: false,
   })
 
-  const projects = computed(() =>
-    props.showFeaturedOnly
-      ? props.epic.featuredProjects
-      : Object.values(props.epic.projects)
-  )
+  const projects = computed(() => props.epic.projects)
 </script>
 
 <template>
-  <div>
+  <div :class="{ 'printing:hidden': showFeaturedOnly && !epic.someFeatured }">
     <div class="flex flex-row items-center justify-between printing:mb-1">
       <Brand
         :id="epic.id"
@@ -36,11 +32,12 @@
     </div>
 
     <!-- Epic description -->
+    <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
     <p
       v-if="epic.summary"
-      class="mb-2 not-printing:hidden">
-      {{ epic.summary }}
-    </p>
+      class="mb-2 not-printing:hidden"
+      v-html="epic.summary" />
+    <!-- eslint-enable vue/no-v-html -->
 
     <!-- Projects -->
     <!-- Padding to align with the roles in `OrgCard`. -->
@@ -48,12 +45,17 @@
       <li
         v-for="(project, projectIndex) in projects"
         :key="projectIndex"
-        class="mt-1 flex flex-col gap-1 printing:mt-2">
+        class="mt-1 flex flex-col gap-1 printing:mt-2"
+        :class="{ 'printing:hidden': showFeaturedOnly && !project.isFeatured }">
         <div
           class="flex flex-row items-center gap-indent printing:flex-wrap printing:gap-0">
           <span class="printing:font-medium">{{ project.name }}</span>
           <TechStack
-            class="ml-auto text-low"
+            class="ml-auto text-low printing:hidden"
+            :technologies="project.technologies ?? []" />
+          <TechStack
+            class="ml-auto text-low not-printing:hidden"
+            :is-short="true"
             :technologies="project.technologies ?? []" />
           <Link
             v-if="project.url"
@@ -62,11 +64,12 @@
         </div>
 
         <!-- Project description -->
+        <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
         <p
           v-if="project.summary"
-          class="not-printing:hidden">
-          {{ project.summary }}
-        </p>
+          class="not-printing:hidden"
+          v-html="project.summary" />
+        <!-- eslint-enable vue/no-v-html -->
 
         <!-- Highlights -->
         <ul
@@ -82,3 +85,9 @@
     </ul>
   </div>
 </template>
+
+<style lang="postcss">
+  code {
+    @apply rounded bg-hl px-1 py-0.5;
+  }
+</style>

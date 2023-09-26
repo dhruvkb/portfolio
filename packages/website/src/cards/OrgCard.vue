@@ -5,7 +5,7 @@
   import Link from '@/components/Link.vue'
   import Period from '@/components/Period.vue'
   import { ROLE_TYPES } from '@/constants/role_types'
-  import type { Org } from '@/models/role'
+  import type { Org } from '@/resume/org'
 
   interface Props {
     org: Org
@@ -15,15 +15,11 @@
     showFeaturedOnly: false,
   })
 
-  const roles = computed(() =>
-    props.showFeaturedOnly
-      ? props.org.featuredRoles
-      : Object.values(props.org.roles)
-  )
+  const roles = computed(() => props.org.roles)
 </script>
 
 <template>
-  <div>
+  <div :class="{ 'printing:hidden': showFeaturedOnly && !org.someFeatured }">
     <div class="mb-1 flex flex-row items-center justify-between">
       <Brand
         :id="org.id"
@@ -36,18 +32,20 @@
     </div>
 
     <!-- Org description -->
+    <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
     <p
       v-if="org.summary"
-      class="mb-1 not-printing:hidden">
-      {{ org.summary }}
-    </p>
+      class="mb-1 not-printing:hidden"
+      v-html="org.summary" />
+    <!-- eslint-enable vue/no-v-html -->
 
     <!-- Roles -->
     <ul>
       <li
         v-for="(role, roleIndex) in roles"
         :key="roleIndex"
-        class="mt-1 flex flex-col gap-1 printing:mt-2">
+        class="mt-1 flex flex-col gap-1 printing:mt-2"
+        :class="{ 'printing:hidden': showFeaturedOnly && !role.isFeatured }">
         <div class="flex flex-row items-center gap-ch">
           <span class="flex flex-row items-center gap-ch">
             <!-- Just shows the red dot. -->
@@ -67,11 +65,12 @@
         </div>
 
         <!-- Role description -->
+        <!-- eslint-disable vue/no-v-html HTML generated from trusted data -->
         <p
           v-if="role.summary"
-          class="not-printing:hidden">
-          {{ role.summary }}
-        </p>
+          class="not-printing:hidden"
+          v-html="role.summary" />
+        <!-- eslint-enable vue/no-v-html -->
 
         <!-- Highlights -->
         <ul
