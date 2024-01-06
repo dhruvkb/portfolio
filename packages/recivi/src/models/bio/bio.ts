@@ -20,9 +20,9 @@ interface ExtendedBio {
    */
   image: string
   /**
-   * a short label describing the person
+   * a few short labels describing the person
    */
-  label: string
+  labels: string[]
   /**
    * a fairly brief summary of the person
    */
