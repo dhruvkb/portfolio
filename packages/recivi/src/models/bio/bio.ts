@@ -1,6 +1,7 @@
 import type { Skill } from '@/models/bio/skill'
 import type { Profile } from '@/models/bio/profile'
 import type { Contact } from '@/models/base/contact'
+import type { Address } from '@/models/base/address'
 
 interface ExtendedBio {
   /**
@@ -47,6 +48,14 @@ interface ExtendedBio {
    * a list of skills that the person has
    */
   skills: Skill[]
+  /**
+   * current location where the person resides
+   */
+  residence: Address
+  /**
+   * location where the person comes from or holds citizenship of
+   */
+  origin: Address
 }
 
 /**
