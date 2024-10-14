@@ -1,0 +1,38 @@
+import { type CollectionEntry, getCollection } from 'astro:content'
+
+/**
+ * Get the list of pages, excluding the pages that have been marked as a draft
+ * and sorted by their index.
+ *
+ * @returns a collection of pages
+ */
+export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
+  const pages = await getCollection('pages')
+  return pages
+    .filter((item) => import.meta.env.DEV || !item.data.isDraft)
+    .sort((a, b) => a.data.index - b.data.index)
+}
+
+/**
+ * Get the list of posts, excluding the posts that have been marked as a draft.
+ * Posts have numerical prefixes so they are always sorted.
+ *
+ * @returns a collection of posts
+ */
+export async function getPosts(): Promise<CollectionEntry<'posts'>[]> {
+  const posts = await getCollection('posts')
+  return posts.filter((item) => import.meta.env.DEV || !item.data.isDraft)
+}
+
+/**
+ * Get the list of categories, sorted alphabetically. Categories are not a
+ * collection but rather they are obtained by iterating through the collection
+ * of posts.
+ *
+ * @returns a list of categories
+ */
+export async function getCategories(): Promise<string[]> {
+  const posts = await getPosts()
+  const tags = posts.flatMap((post) => post.data.categories)
+  return [...new Set(tags)].sort()
+}
