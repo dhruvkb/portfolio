@@ -1,0 +1,67 @@
+---
+import Link from '@/components/Link.astro'
+
+import { getPages } from '@/utils/collections'
+
+// Links have a trailing slash because each page becomes a directory when built.
+const pages = await getPages()
+const navLinks = pages
+  .filter((page) => page.data.path !== '/' && page.data.isNav)
+  .map((page) => ({
+    text: page.data.title,
+    url: page.data.path,
+  }))
+
+const pathName = new URL(Astro.request.url).pathname
+
+const norm = (path: string): string => {
+  return path.replace(/\/$/, '')
+}
+const isHome = norm(pathName) === ''
+
+const isMatch = (url: string): boolean => {
+  return norm(pathName).startsWith(norm(url))
+}
+const isExactMatch = (url: string): boolean => {
+  return norm(pathName) === norm(url)
+}
+---
+
+<header
+  class="cntnr mb-4 flex flex-col items-start justify-between gap-2 border-b py-4 sm:flex-row sm:items-center">
+  <Link
+    url="/"
+    classes="no-underline block">
+    <!-- Class `inline-block` prevents underline from `Link`. -->
+    <span
+      class="inline-block font-bold hover:underline hover:decoration-wavy"
+      class:list={[{ 'text-red underline decoration-red': isHome }]}>
+      @dhruvkb
+    </span>
+  </Link>
+  <nav>
+    <ul class="my-0 flex list-none items-center">
+      {
+        navLinks.map((link) => (
+          <li class="me-4 last:me-0">
+            <Link
+              url={link.url}
+              classes={[
+                { 'text-red': isMatch(link.url) },
+                isExactMatch(link.url)
+                  ? ['decoration-red', 'visited:decoration-red']
+                  : [
+                      'no-underline',
+                      'hover:underline',
+                      'decoration-curr',
+                      'visited:decoration-curr',
+                    ],
+              ]}>
+              {link.text}
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
