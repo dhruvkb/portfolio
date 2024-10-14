@@ -1,0 +1,33 @@
+<em
+  id="fun-fact"
+  class="text-red"
+  >wears many other hats</em
+><script>
+  /** Randomly display a fun fact about me. */
+
+  const facts = [
+    'is a computer whisperer',
+    'handles tech support for family',
+    'designs his own websites, repeatedly',
+    'crafts new and innovative <del>apps</del> bugs',
+    'occasionally finishes a side-project',
+    'is a real programmer<sup>TM</sup>',
+    'is nuts about good public transit',
+    'rewrites it in Rust',
+    'knows how to exit Vim',
+    'prefers Vim over Emacs',
+    'wakes up each day furious to be laboring under capitalism',
+    'writes code that works on his machine',
+    'reads (and writes) the f&#**^% manual',
+    'tries turning it off and on again',
+    'loves Shrek',
+    'is secretly a dog on the Internet',
+    'is a <del>pythonista</del> <del>pythoneer</del> parselmouth',
+  ]
+  const fact = facts[Math.floor(Math.random() * facts.length)] ?? ''
+
+  const factEl = document.getElementById('fun-fact')
+  if (factEl) {
+    factEl.innerHTML = fact
+  }
+</script>
