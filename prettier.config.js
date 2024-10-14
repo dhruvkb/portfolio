@@ -1,18 +1,20 @@
+/** @type {import("prettier").Config} */
 module.exports = {
   trailingComma: 'es5',
   semi: false,
   singleQuote: true,
-  vueIndentScriptAndStyle: true,
+  astroAllowShorthand: true,
   bracketSameLine: true,
   singleAttributePerLine: true,
   overrides: [
     {
-      files: ['*.svg'], // `unplugin-icons` requires trailing space in `<svg `
+      files: ['*.astro'],
       options: {
-        singleAttributePerLine: false,
+        parser: 'astro',
       },
     },
   ],
+  proseWrap: 'always',
   tailwindConfig: './packages/website/tailwind.config.ts',
-  plugins: ['prettier-plugin-tailwindcss', '@prettier/plugin-xml'],
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
 }
