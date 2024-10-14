@@ -1,0 +1,24 @@
+{
+  "name": "website",
+  "description": "My website contains my homepage, interactive résumé and blog.",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^3.1.8",
+    "@astrojs/rss": "^4.0.8",
+    "@astrojs/tailwind": "^5.1.2",
+    "@types/node": "^18.19.5",
+    "@vercel/og": "^0.6.2",
+    "astro": "^4.16.2",
+    "recivi": "workspace:^",
+    "tailwindcss": "^3.4.0"
+  }
+}
