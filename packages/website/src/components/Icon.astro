@@ -1,0 +1,82 @@
+---
+import _2fac from '@/assets/icons/2fac.svg?raw'
+import browserstack from '@/assets/icons/browserstack.svg?raw'
+import img from '@/assets/icons/img.svg?raw'
+import mathesar from '@/assets/icons/mathesar.svg?raw'
+import pls from '@/assets/icons/pls.svg?raw'
+import portfolio from '@/assets/icons/portfolio.svg?raw'
+import recivi from '@/assets/icons/recivi.svg?raw'
+import skyscraper from '@/assets/icons/skyscraper.svg?raw'
+import starlight from '@/assets/icons/starlight.svg?raw'
+
+interface Props {
+  source?: 'simple_icons' | 'font_awesome'
+  name: string
+}
+let { source = 'simple_icons', name } = Astro.props
+
+const aliases = {
+  vocabulary: 'creativecommons',
+  omniport: 'img',
+  platform: 'browserstack',
+} as Record<string, string>
+const identifier = aliases[name] ?? name
+
+/* Known icons */
+
+const knownIcons = {
+  '2fac': _2fac,
+  browserstack,
+  img,
+  mathesar,
+  pls,
+  portfolio,
+  recivi,
+  skyscraper,
+  starlight,
+} as Record<string, string>
+
+/**
+ * Obtain the SVG source code for the icon. It will use a known icon if
+ * available, otherwise it will fetch the icon from a web source.
+ *
+ * @returns the SVG source code for embedding into the site
+ */
+const getIcon = async (): Promise<string> => {
+  let sourceCode = knownIcons[identifier]
+
+  if (!sourceCode) {
+    let svgUrl: string
+    switch (source) {
+      case 'simple_icons':
+        svgUrl = `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${identifier}.svg`
+        break
+      case 'font_awesome':
+        svgUrl = `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/${identifier}.svg`
+        break
+    }
+
+    try {
+      const response = await fetch(svgUrl)
+      if (response.status === 200) {
+        sourceCode = await response.text()
+      }
+    } catch {
+      console.log('Cannot fetch icon.')
+    }
+  }
+
+  if (sourceCode) {
+    return sourceCode.replace(
+      '<svg',
+      '<svg class="inline align-[-0.1em] size-curr" fill="currentColor"'
+    )
+  }
+
+  return ''
+}
+
+const svg = await getIcon()
+---
+
+<Fragment set:html={svg} />
