@@ -4,6 +4,7 @@ import path from 'path'
 import { ImageResponse } from '@vercel/og'
 import { site } from '@/stores/site'
 import { getHash } from '@/utils/hash'
+import { COLORS } from '@/constants/colors'
 
 export const COLOR_TEXT_ACCENT = '#fab387'
 
@@ -44,22 +45,7 @@ export interface Slots {
  * @returns the accent color
  */
 export function getAccentColor(text: string): string {
-  const accentColors = [
-    '#f5e0dc', // rosewater
-    '#f2cdcd', // flamingo
-    '#f5c2e7', // pink
-    '#cba6f7', // mauve
-    '#f38ba8', // red
-    '#eba0ac', // maroon
-    '#fab387', // peach
-    '#f9e2af', // yellow
-    '#a6e3a1', // green
-    '#94e2d5', // teal
-    '#89dceb', // sky
-    '#74c7ec', // sapphire
-    '#89b4fa', // blue
-    '#b4befe', // lavender
-  ]
+  const accentColors = Object.entries(COLORS).map(([_, v]) => v[1])
   return accentColors[getHash(text, accentColors.length)] ?? '#f5e0dc' // rosewater
 }
 
