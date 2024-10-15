@@ -8,7 +8,6 @@ import { rehypeTailwind } from './src/plugins/rehype_tailwind'
 import { watchPlugins } from './src/integrations/watch_plugins'
 
 import site from './src/data/site.json'
-import flexokiDark from './src/assets/themes/flexoki-dark.json'
 
 // https://astro.build/config
 export default defineConfig({
