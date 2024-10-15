@@ -1,8 +1,14 @@
+import type { Url } from '@/models/base/url'
+
 interface ExtendedTech {
   /**
    * a short informal name for the technology; This can be an abbreviation.
    */
   shortName: string
+  /**
+   * the URL to the website or documentation for the technology
+   */
+  url: Url
 }
 
 /**
@@ -17,6 +23,15 @@ interface ExtendedTech {
  *     "id": "typescript",
  *     "name": "TypeScript",
  *     "shortName": "TS"
+ *   }
+ * @example
+ *   {
+ *     "id": "recivi",
+ *     "name": "Récivi",
+ *     "url": {
+ *       "dest": "https://recivi.vercel.app",
+ *       "label": "Récivi homepage"
+ *     }
  *   }
  */
 export interface Tech extends Partial<ExtendedTech> {
