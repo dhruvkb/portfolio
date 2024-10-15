@@ -12,8 +12,10 @@ import starlight from '@/assets/icons/starlight.svg?raw'
 interface Props {
   source?: 'simple_icons' | 'font_awesome'
   name: string
+  /** text to shown when the icon is hovered over */
+  title?: string
 }
-let { source = 'simple_icons', name } = Astro.props
+let { source = 'simple_icons', name, title } = Astro.props
 
 const aliases = {
   vocabulary: 'creativecommons',
@@ -67,6 +69,10 @@ const getIcon = async (): Promise<string> => {
   }
 
   if (sourceCode) {
+    if (source === 'font_awesome' && title) {
+      // Font Awesome icons do not have a title.
+      sourceCode = sourceCode.replace('-->', `--><title>${title}</title>`)
+    }
     return sourceCode.replace(
       '<svg',
       '<svg class="inline align-[-0.1em] size-curr" fill="currentColor"'
@@ -79,4 +85,7 @@ const getIcon = async (): Promise<string> => {
 const svg = await getIcon()
 ---
 
-<Fragment set:html={svg} />
+<Fragment
+  set:html={svg}
+  aria-hidden="true"
+/>
