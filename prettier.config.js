@@ -13,6 +13,12 @@ module.exports = {
         parser: 'astro',
       },
     },
+    {
+      files: ['*.svg'],
+      options: {
+        parser: 'html',
+      },
+    },
   ],
   proseWrap: 'always',
   tailwindConfig: './packages/website/tailwind.config.ts',
