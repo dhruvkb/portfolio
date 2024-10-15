@@ -1,8 +1,8 @@
 /**
  * Calculate a hash for a string between 0 and `len`.
  *
- * @param text the string to hash
- * @param len the maximum value of the hash (exclusive)
+ * @param text - the string to hash
+ * @param len - the maximum value of the hash (exclusive)
  * @returns the hash as a number
  */
 export function getHash(text: string, len: number): number {

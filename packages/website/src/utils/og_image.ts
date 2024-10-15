@@ -41,8 +41,8 @@ export interface Slots {
  * A hash of the text is used to determine the color so that it is both
  * pseudo-random and deterministic.
  *
- * @param text the text to hash
- * @returns the accent color
+ * @param text - the text to hash
+ * @returns - the accent color
  */
 export function getAccentColor(text: string): string {
   const accentColors = Object.entries(COLORS).map(([_, v]) => v[1])
@@ -53,7 +53,7 @@ export function getAccentColor(text: string): string {
  * Create an image response with the site's title and custom slots.
  * The slots are used to customize the content of the image.
  *
- * @param slots the slots to customize the image
+ * @param slots - the slots to customize the image
  * @returns the image response
  */
 export function getImage(slots: Slots): ImageResponse {
