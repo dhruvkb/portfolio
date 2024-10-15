@@ -1,0 +1,39 @@
+---
+import type { Date } from 'recivi'
+
+import { dateReadable, dateDisplay } from '@/utils/date_fmt'
+
+interface Props {
+  start?: Date
+  end?: Date
+}
+const { start, end } = Astro.props
+
+const startDisplay = start && dateDisplay(start)
+const startReadable = start && dateReadable(start)
+
+const endDisplay = end && dateDisplay(end)
+const endReadable = end && dateReadable(end)
+---
+
+<div class="inline-flex items-center justify-center gap-2">
+  <span class="font-mono">
+    <span
+      set:html={startDisplay}
+      title={startReadable}
+    />
+    &ndash;
+    {
+      end ? (
+        <span
+          set:html={endDisplay}
+          title={endReadable}
+        />
+      ) : (
+        <Fragment>
+          <span class="animate-pulse text-red">&bull;</span>Present
+        </Fragment>
+      )
+    }
+  </span>
+</div>
