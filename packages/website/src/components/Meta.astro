@@ -1,0 +1,118 @@
+---
+import { site } from '@/stores/site'
+import { displayName, recivi } from '@/stores/recivi'
+
+interface Props {
+  title: string
+  description: string
+  image?: string
+  banRobots?: boolean
+}
+const { title, description, image, banRobots = false } = Astro.props
+
+const { pathname } = Astro.url
+const imagePathname = image ?? pathname.replace(/\/$/, '')
+
+const twitterProfile = recivi.bio.profiles?.find(
+  (profile) => profile.site.id === 'twitter' || profile.site.id === 'x'
+)
+let twitterId = undefined
+if (twitterProfile) {
+  if ('username' in twitterProfile) {
+    twitterId = twitterProfile.username
+  } else {
+    let url = twitterProfile.url
+    if (typeof url !== 'string') {
+      url = url.dest
+    }
+    // Remove both Twitter and X origins, leaving only the username.
+    twitterId = url
+      .replace('https://twitter.com/', '')
+      .replace('https://x.com', '')
+  }
+}
+---
+
+<Fragment>
+  <title>{title} - {site.title}</title>
+
+  <meta
+    name="author"
+    content={displayName}
+  />
+  <meta
+    name="description"
+    content={description}
+  />
+
+  <!-- Open Graph -->
+  <meta
+    property="og:site_name"
+    content={site.title}
+  />
+  <meta
+    property="og:url"
+    content={`${site.baseUrl}${pathname}`}
+  />
+  <meta
+    property="og:title"
+    content={`${title} - ${site.title}`}
+  />
+  <meta
+    property="og:description"
+    content={description}
+  />
+  <meta
+    property="og:type"
+    content="article"
+  />
+  <meta
+    property="og:image"
+    content={`${site.baseUrl}/og${imagePathname}.png`}
+  />
+
+  <!-- Twitter -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+  {
+    twitterId && (
+      <Fragment>
+        <meta
+          name="twitter:site"
+          content={`@${twitterId}`}
+        />
+        <meta
+          name="twitter:creator"
+          content={`@${twitterId}`}
+        />
+      </Fragment>
+    )
+  }
+  <meta
+    name="twitter:url"
+    content={`${site.baseUrl}${pathname}`}
+  />
+  <meta
+    name="twitter:title"
+    content={`${title} - ${site.title}`}
+  />
+  <meta
+    name="twitter:description"
+    content={description}
+  />
+  <meta
+    name="twitter:image"
+    content={`${site.baseUrl}/og${imagePathname}.png`}
+  />
+
+  {
+    banRobots && (
+      <meta
+        name="robots"
+        content="noindex"
+      />
+    )
+  }
+</Fragment>
