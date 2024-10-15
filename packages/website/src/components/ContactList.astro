@@ -1,0 +1,55 @@
+---
+import Icon from '@/components/Icon.astro'
+import Link from '@/components/Link.astro'
+
+import { recivi } from '@/stores/recivi'
+
+const { contact: { emails = [], phones = [] } = {}, profiles = [] } = recivi.bio
+
+const items = [
+  emails.map((email) => ({
+    icon: Object.freeze({ name: 'regular/envelope', source: 'font_awesome' }),
+    name: 'Email',
+    url: `mailto:${email}`,
+    text: email,
+  })),
+  phones.map((phone) => ({
+    icon: Object.freeze({ name: 'solid/phone', source: 'font_awesome' }),
+    name: 'Phone',
+    url: `tel:+${phone.countryCode}${phone.number}`,
+    text: `+${phone.countryCode} ${phone.number}`,
+  })),
+  profiles.map((profile) => ({
+    icon: Object.freeze({ name: profile.site.id, source: 'simple_icons' }),
+    name: profile.site.name,
+    url: 'url' in profile ? profile.url : null,
+    text: 'username' in profile ? profile.username : profile.site.name,
+  })),
+].flat()
+---
+
+<ul>
+  {
+    items.map((item) => (
+      <li>
+        <div class="flex items-center gap-2">
+          <Icon
+            source={item.icon.source}
+            name={item.icon.name}
+            title={item.name}
+          />
+          <span class="sr-only">{item.name}</span>
+          {item.url ? (
+            <Link
+              rel="me"
+              url={item.url}>
+              {item.text}
+            </Link>
+          ) : (
+            item.text
+          )}
+        </div>
+      </li>
+    ))
+  }
+</ul>
