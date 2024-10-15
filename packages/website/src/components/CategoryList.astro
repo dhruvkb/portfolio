@@ -1,0 +1,21 @@
+---
+import Link from '@/components/Link.astro'
+
+import { getCategories } from '@/utils/collections'
+
+const categories = await getCategories()
+---
+
+<ul class="inline">
+  {
+    categories.length ? (
+      categories.map((category) => (
+        <li class="me-1 inline-block after:text-subtle after:content-['·'] last:after:content-none">
+          <Link url={`/writings/tags/${category}`}>{category}</Link>
+        </li>
+      ))
+    ) : (
+      <p>There are no tags because there are no posts!</p>
+    )
+  }
+</ul>
