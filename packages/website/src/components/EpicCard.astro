@@ -1,0 +1,50 @@
+---
+import Icon from '@/components/Icon.astro'
+import Link from '@/components/Link.astro'
+import IconName from '@/components/IconName.astro'
+
+import type { Epic } from '@/models/recivi'
+
+interface Props {
+  epic: Epic
+}
+const { epic } = Astro.props
+---
+
+<div class="border-b px-4 py-2">
+  <strong
+    ><IconName
+      {...epic}
+      url={`/resume/epics/${epic.id}`}
+    /></strong
+  >
+
+  <ul class="mt-1">
+    {
+      epic.projects.map((project) => (
+        <li>
+          <div class="flex items-center">
+            <span>{project.name}</span>
+            <span class="ml-auto text-subtle">
+              {project.technologies?.map((technology) => (
+                <span class="me-2 inline-block border-e pe-2 last:me-0 last:border-0 last:pe-0">
+                  <Icon name={technology.id} />
+                </span>
+              ))}
+            </span>
+
+            {/* Hack to preserve alignment when there is no link. */}
+            <div
+              class="ms-2 border-s ps-2"
+              class:list={{
+                'pointer-none invisible border-trans': !project.url,
+              }}
+              aria-hidden={!project.url}>
+              <Link url={project.url || 'https://dhruvkb.dev'}>link</Link>
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>

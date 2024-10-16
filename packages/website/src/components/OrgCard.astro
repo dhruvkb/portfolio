@@ -1,0 +1,39 @@
+---
+import Link from '@/components/Link.astro'
+import IconName from '@/components/IconName.astro'
+import TimePeriod from '@/components/TimePeriod.astro'
+
+import type { Org } from '@/models/recivi'
+
+interface Props {
+  org: Org
+}
+const { org } = Astro.props
+---
+
+<div class="border-b px-4 py-2">
+  <div class="flex items-center justify-between">
+    <strong
+      ><IconName
+        {...org}
+        url={`/resume/orgs/${org.id}`}
+      /></strong
+    >
+    {org.url && <Link url={org.url}>link</Link>}
+  </div>
+
+  <ul class="mt-1">
+    {
+      org.roles.map((role) => (
+        <li>
+          <div class="flex items-center gap-3">
+            <span>{role.name}</span>
+            <span class="ms-auto text-subtle">
+              <TimePeriod {...role.period} />
+            </span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
