@@ -1,0 +1,95 @@
+---
+import type { Tech } from 'recivi'
+
+import Link from '@/components/Link.astro'
+import Icon from '@/components/Icon.astro'
+import IconName from '@/components/IconName.astro'
+import TimePeriod from '@/components/TimePeriod.astro'
+
+import type { ColumnSpec, Row } from '@/models/table'
+
+interface Props {
+  name: 'institute' | 'org' | 'epic'
+  columns: ColumnSpec[]
+  data: Row[]
+}
+const { name, columns, data } = Astro.props
+
+const columnNames: string[] = columns.map((column) => column.name)
+
+const pathName = new URL(Astro.request.url).pathname
+const isCurr = (id: string | undefined): boolean =>
+  Boolean(id) && pathName.includes(`${name}s/${id}`)
+---
+
+<table
+  class="cntnr transition"
+  data-name={name}>
+  <thead class="border-y">
+    <tr class="bg-surface0">
+      {
+        columns.map((column) => (
+          <th
+            scope="col"
+            class="first:pls last:prs px-2 text-left font-medium"
+            class:list={[
+              column.classNames,
+              { 'w-px whitespace-nowrap': !column.isExpanding },
+            ]}>
+            {column.name}
+          </th>
+        ))
+      }
+    </tr>
+  </thead>
+  <tbody>
+    {
+      data.map((row) => (
+        <tr
+          class="relative transition after:absolute after:inset-y-0 after:end-0 after:bg-red hover:bg-surface0 [&[data-is-curr]]:bg-surface0 [&[data-is-curr]]:after:w-0.5"
+          class:list={[{ 'border-b': row.isLastSibling }]}
+          data-epic-id={row.data.epic?.id}
+          data-org-id={row.data.org?.id}
+          data-is-curr={isCurr(row.data[name]?.id)}>
+          {Object.entries(row.data)
+            .filter((entry) => columnNames.includes(entry[0]))
+            .sort(
+              (a, b) => columnNames.indexOf(a[0]) - columnNames.indexOf(b[0])
+            )
+            .map(([key, value], idx) => (
+              <td
+                class="first:pls last:prs px-2 py-0.5"
+                class:list={[
+                  columns[idx]?.classNames,
+                  { 'w-px whitespace-nowrap': !columns[idx]?.isExpanding },
+                ]}>
+                {key === 'epic' || key === 'org' || key === 'institute' ? (
+                  <IconName
+                    {...value}
+                    url={`/resume/${key}s/${value?.id}`}
+                    features={idx === 0 ? ['linkable'] : ['']}
+                  />
+                ) : key === 'link' ? (
+                  value && <Link url={value} />
+                ) : key === 'tech' ? (
+                  <ul>
+                    {value.map((item: Tech) => (
+                      <li
+                        title={item.name}
+                        class="me-2 inline">
+                        <Icon name={item.id} />
+                      </li>
+                    ))}
+                  </ul>
+                ) : key === 'period' ? (
+                  <TimePeriod {...value} />
+                ) : (
+                  value
+                )}
+              </td>
+            ))}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
