@@ -21,10 +21,10 @@ export default defineConfig({
     smartypants: false, // https://daringfireball.net/projects/smartypants/
     shikiConfig: {
       defaultColor: false,
-      themes:  {
+      themes: {
         dark: 'catppuccin-mocha',
         light: 'catppuccin-latte',
-      }
+      },
     },
   },
   devToolbar: {
