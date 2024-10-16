@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import type { YMD } from 'recivi'
+
+import Icon from '@/components/Icon.astro'
+import Link from '@/components/Link.astro'
+
+import { dateReadable, dateDisplay } from '@/utils/date_fmt'
+
+interface Props {
+  post: CollectionEntry<'posts'>
+  symbol?: 'next' | 'prev' | 'feat' | number
+}
+const { post, symbol = 'feat' } = Astro.props
+
+const year = post.data.pubDate.getFullYear()
+const month = post.data.pubDate.getMonth() + 1
+const day = post.data.pubDate.getDate()
+
+const display = dateDisplay([year, month, day] as YMD)
+const readable = dateReadable([year, month, day] as YMD)
+
+const pathName = new URL(Astro.request.url).pathname
+const isCurrent =
+  pathName.replace(/\/$/, '') === `/writings/posts/${post.slug.substring(5)}`
+
+const rel = symbol === 'prev' || symbol === 'next' ? symbol : undefined
+---
+
+<li
+  class="mb-2 sm:mb-0"
+  class:list={{
+    'marker:content-["<-_"]': symbol === 'prev',
+    'marker:content-["->_"]': symbol === 'next',
+  }}>
+  <span
+    class="mr-2 block font-mono sm:inline"
+    set:html={display}
+    title={readable}
+  />
+  <Link
+    url={`/writings/posts/${post.slug.substring(5)}`}
+    {rel}>
+    {post.data.title}
+  </Link>
+  {
+    post.data.isLiving && (
+      <em class="text-green">
+        <span class="sm:hidden">
+          <Icon
+            source="font_awesome"
+            name="solid/leaf"
+          />
+        </span>
+        <span class="hidden sm:inline">- Living document</span>
+      </em>
+    )
+  }
+  {
+    post.data.isFeatured && (
+      <em class="text-yellow">
+        <span class="sm:hidden">
+          <Icon
+            source="font_awesome"
+            name="solid/star"
+          />
+        </span>
+        <span class="hidden sm:inline">- Featured</span>
+      </em>
+    )
+  }
+  {isCurrent && <em class="text-subtle">- You are here!</em>}
+
+  <!-- Draft posts will not appear on the production site. -->
+  {post.data.isDraft && <em class="text-subtle">- Draft</em>}
+</li>
