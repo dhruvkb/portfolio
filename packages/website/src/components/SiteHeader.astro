@@ -1,6 +1,7 @@
 ---
 import Link from '@/components/Link.astro'
 
+import { site } from '@/stores/site'
 import { getPages } from '@/utils/collections'
 
 // Links have a trailing slash because each page becomes a directory when built.
@@ -29,14 +30,12 @@ const isExactMatch = (url: string): boolean => {
 
 <header
   class="cntnr mb-4 flex flex-col items-start justify-between gap-2 border-b py-4 sm:flex-row sm:items-center">
-  <Link
-    url="/"
-    classes="no-underline block">
+  <Link url="/">
     <!-- Class `inline-block` prevents underline from `Link`. -->
     <span
       class="inline-block font-bold hover:underline hover:decoration-wavy"
       class:list={[{ 'text-red underline decoration-red': isHome }]}>
-      @dhruvkb
+      {site.title}
     </span>
   </Link>
   <nav>
@@ -44,20 +43,24 @@ const isExactMatch = (url: string): boolean => {
       {
         navLinks.map((link) => (
           <li class="me-4 last:me-0">
-            <Link
-              url={link.url}
-              classes={[
-                { 'text-red': isMatch(link.url) },
-                isExactMatch(link.url)
-                  ? ['decoration-red', 'visited:decoration-red']
-                  : [
-                      'no-underline',
-                      'hover:underline',
-                      'decoration-curr',
-                      'visited:decoration-curr',
-                    ],
-              ]}>
-              {link.text}
+            <Link url={link.url}>
+              {/* Class `inline-block` prevents underline from `Link`. */}
+              <span
+                class="inline-block"
+                class:list={[
+                  { 'text-red underline': isMatch(link.url) },
+                  isExactMatch(link.url)
+                    ? ['decoration-red', 'visited:decoration-red']
+                    : [
+                        'no-underline',
+                        'hover:underline',
+                        'hover:decoration-wavy',
+                        'decoration-curr',
+                        'visited:decoration-curr',
+                      ],
+                ]}>
+                {link.text}
+              </span>
             </Link>
           </li>
         ))
