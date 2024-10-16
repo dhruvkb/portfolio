@@ -8,9 +8,15 @@ interface ExtendedEpic {
    */
   url: Url
   /**
-   * a short description or introduction of the epic
+   * a short description or introduction of the epic; This is used where space
+   * is limited such as a résumé.
    */
   summary: string
+  /**
+   * long-form description of the epic; This is used where space is not
+   * constrained.
+   */
+  description: string
   /**
    * a list of projects that are part of this epic
    */

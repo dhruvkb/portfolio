@@ -10,9 +10,15 @@ interface ExtendedOrg {
    */
   shortName: string
   /**
-   * a short description or introduction of the organisation
+   * a short description or introduction of the organisation; This is used where
+   * space is limited such as a résumé.
    */
   summary: string
+  /**
+   * long-form description of the organisation; This is used where space is not
+   * constrained.
+   */
+  description: string
   /**
    * the public facing URL to access the organisation website; This should be a
    * place where more information about the organisation can be found.
