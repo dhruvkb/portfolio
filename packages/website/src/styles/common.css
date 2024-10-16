@@ -1,0 +1,73 @@
+/*
+  This sheet defines styles that must apply to the complete site without needing
+  to define them everytime. These classes apply to content inside Markdown and
+  also markup defined in Astro components.
+
+  Imported by `main.astro`.
+ */
+
+a {
+  @apply underline decoration-blue visited:decoration-mauve hover:decoration-wavy;
+}
+
+a[data-rel='parent'] {
+  /* Parent links */
+  @apply before:mx-0.5 before:inline-block before:text-blue before:transition-transform before:content-["←"] visited:before:text-mauve hover:before:-translate-x-1;
+}
+
+a[href$='.pdf'],
+a[href^='http'],
+a[href^='mailto:'],
+a[href^='tel:'] {
+  /* Special links */
+  @apply after:mx-0.5 after:inline-block after:text-blue after:transition-transform visited:after:text-mauve hover:after:transform;
+}
+
+a[href$='.pdf'] {
+  /* Download links */
+  @apply after:content-["↓"] hover:after:translate-y-1;
+}
+
+a[href^='http'] {
+  /* External links */
+  @apply after:content-["↗"] hover:after:-translate-y-1 hover:after:translate-x-1;
+}
+
+a[href^='mailto:'],
+a[href^='tel:'] {
+  /* Non-web links */
+  @apply after:content-["→"] hover:after:translate-x-1;
+}
+
+:not(pre) > code {
+  @apply border bg-surface0 px-1 py-0.5 not-italic;
+}
+
+h1 {
+  @apply mb-2 text-3xl font-bold text-red sm:text-5xl;
+}
+
+hr {
+  @apply my-4 flex h-fit items-center justify-center border-none text-subtle after:content-["*\a0\a0*\a0\a0*"];
+}
+
+kbd {
+  @apply rounded border-b-2 border-b-pink bg-surface0 px-1 pb-0.5 pt-1;
+}
+
+p {
+  @apply my-4;
+}
+
+strong,
+b {
+  @apply font-medium;
+}
+
+blockquote {
+  @apply border-l-2 border-l-red pl-2;
+}
+
+pre {
+  @apply my-4 border p-2;
+}

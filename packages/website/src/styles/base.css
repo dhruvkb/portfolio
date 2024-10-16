@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .cntnr {
+    @apply pls prs w-full max-w-guide;
+  }
+
+  .hdiv {
+    @apply -mx-4 my-4 flex items-center gap-2 font-medium before:h-px before:w-2 before:bg-surface1 after:h-px after:flex-grow after:bg-surface1;
+  }
+
+  .pys {
+    padding-top: max(env(safe-area-inset-top), 0);
+    padding-bottom: max(env(safe-area-inset-bottom), 0);
+  }
+
+  .prs {
+    padding-right: max(env(safe-area-inset-right), 1rem);
+  }
+
+  .pls {
+    padding-left: max(env(safe-area-inset-left), 1rem);
+  }
+}
