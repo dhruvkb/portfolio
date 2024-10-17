@@ -22,18 +22,15 @@ const fonts = (
   ).buffer,
 }))
 
-export interface Element {
-  type: 'div'
-  props: {
-    tw?: string
-    style?: { [key: string]: string | number }
-    children: string | Element | Element[]
-  }
-}
-
-export interface Slots {
-  main: Element
-  right?: Element
+/**
+ * Convert the given text, which may contain HTML markup into plain-text
+ * that can be rendered into the OG image.
+ *
+ * @param html - the HTML markup to convert
+ * @returns the plain-text representation
+ */
+function markupToText(html: string): string {
+  return html.replace(/<\/?code>/g, '`').replace(/<[^>]*>/g, '')
 }
 
 /**
@@ -44,62 +41,99 @@ export interface Slots {
  * @param text - the text to hash
  * @returns - the accent color
  */
-export function getAccentColor(text: string): string {
+function getAccentColor(text: string): string {
   const accentColors = Object.entries(COLORS).map(([_, v]) => v[1])
   return accentColors[getHash(text, accentColors.length)] ?? '#f5e0dc' // rosewater
 }
 
 /**
- * Create an image response with the site's title and custom slots.
- * The slots are used to customize the content of the image.
+ * Create an image response with the given content.
  *
- * @param slots - the slots to customize the image
+ * @param content - the content to render into the image
  * @returns the image response
  */
-export function getImage(slots: Slots): ImageResponse {
-  return new ImageResponse(
-    {
-      type: 'div',
-      props: {
-        tw: 'w-full h-full flex',
-        style: {
-          backgroundImage: 'linear-gradient(to bottom, #1e1e2e, #181825)',
-          color: '#cdd6f4',
-          backgroundSize: '1200px 686px',
-          fontFamily: 'Inter',
-        },
-        children: {
-          type: 'div',
-          props: {
-            tw: 'h-full w-full flex flex-col justify-between p-16',
-            children: [
-              {
-                type: 'div',
-                props: {
-                  tw: 'mb-10 flex flex-row justify-between',
-                  style: { color: '#7f849c' },
-                  children: [
-                    {
-                      type: 'div',
-                      props: {
-                        tw: 'font-bold text-3xl',
-                        children: site.title,
-                      },
+export function getOgImage(content: {
+  title: string
+  description: string
+  left?: string
+  right?: string
+}): ImageResponse {
+  const element = {
+    type: 'div',
+    props: {
+      tw: 'w-full h-full flex',
+      style: {
+        backgroundImage: 'linear-gradient(to bottom, #1e1e2e, #181825)',
+        color: '#cdd6f4',
+        backgroundSize: '1200px 686px',
+        fontFamily: 'Inter',
+      },
+      children: {
+        type: 'div',
+        props: {
+          tw: 'h-full w-full flex flex-col justify-between p-16',
+          children: [
+            {
+              type: 'div',
+              props: {
+                tw: 'mb-10 flex flex-row justify-between text-3xl',
+                style: { color: '#7f849c' },
+                children: [
+                  {
+                    type: 'div',
+                    props: {
+                      tw: 'flex flex-row items-center',
+                      children: [
+                        {
+                          type: 'div',
+                          props: {
+                            tw: 'font-bold',
+                            children: site.title,
+                          },
+                        },
+                        content.left && '/',
+                        content.left,
+                      ],
                     },
-                    slots.right ?? { type: 'div', props: {} },
-                  ],
-                },
+                  },
+                  content.right,
+                ],
               },
-              slots.main,
-            ],
-          },
+            },
+            {
+              type: 'div',
+              props: {
+                tw: 'flex-grow flex flex-col',
+                children: [
+                  {
+                    type: 'div',
+                    props: {
+                      tw: 'mb-6 font-bold text-8xl',
+                      style: {
+                        color: getAccentColor(content.title),
+                      },
+                      children: content.title,
+                    },
+                  },
+                  {
+                    type: 'div',
+                    props: {
+                      tw: 'text-4xl leading-normal',
+                      children: markupToText(content.description),
+                    },
+                  },
+                ],
+              },
+            },
+          ],
         },
       },
     },
-    {
-      width: 1200,
-      height: 600,
-      fonts,
-    }
-  )
+  }
+  const config = {
+    width: 1200,
+    height: 600,
+    fonts,
+  }
+  return new ImageResponse(element, config)
 }
