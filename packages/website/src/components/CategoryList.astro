@@ -3,7 +3,10 @@ import Link from '@/components/Link.astro'
 
 import { getCategories } from '@/utils/collections'
 
-const categories = await getCategories()
+interface Props {
+  categories?: string[]
+}
+let { categories = await getCategories() } = Astro.props
 ---
 
 <ul class="inline">
@@ -15,7 +18,7 @@ const categories = await getCategories()
         </li>
       ))
     ) : (
-      <p>There are no tags because there are no posts!</p>
+      <p>There are no tags to show!</p>
     )
   }
 </ul>
