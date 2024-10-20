@@ -1,11 +1,11 @@
 ---
-import type { Date } from 'recivi'
+import type { Date as RcvDate } from 'recivi'
 
 import { dateReadable, dateDisplay } from '@/utils/date_fmt'
 
 interface Props {
-  start?: Date
-  end?: Date
+  start?: RcvDate
+  end?: RcvDate
 }
 const { start, end } = Astro.props
 
