@@ -1,4 +1,7 @@
 ---
+import { icons as siIcons } from '@iconify-json/simple-icons'
+import { icons as lIcons } from '@iconify-json/lucide'
+
 import _2fac from '@/assets/icons/2fac.svg?raw'
 import browserstack from '@/assets/icons/browserstack.svg?raw'
 import img from '@/assets/icons/img.svg?raw'
@@ -10,7 +13,7 @@ import skyscraper from '@/assets/icons/skyscraper.svg?raw'
 import starlight from '@/assets/icons/starlight.svg?raw'
 
 interface Props {
-  source?: 'simple_icons' | 'font_awesome'
+  source?: 'simple_icons' | 'lucide'
   name: string
   /** text to shown when the icon is hovered over */
   title?: string
@@ -38,54 +41,32 @@ const knownIcons = {
   starlight,
 } as Record<string, string>
 
-/**
- * Obtain the SVG source code for the icon. It will use a known icon if
- * available, otherwise it will fetch the icon from a web source.
- *
- * @returns the SVG source code for embedding into the site
- */
-const getIcon = async (): Promise<string> => {
-  let sourceCode = knownIcons[identifier]
-
-  if (!sourceCode) {
-    let svgUrl: string
-    switch (source) {
-      case 'simple_icons':
-        svgUrl = `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${identifier}.svg`
-        break
-      case 'font_awesome':
-        svgUrl = `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/${identifier}.svg`
-        break
-    }
-
-    try {
-      const response = await fetch(svgUrl)
-      if (response.status === 200) {
-        sourceCode = await response.text()
-      }
-    } catch {
-      console.log('Cannot fetch icon.')
-    }
+function getBody() {
+  const icon = knownIcons[identifier]
+  if (icon) {
+    // Strip the SVG opening and closing tags, including all attributes.
+    return icon.replace(/<\/?svg[^>]*>/g, '')
   }
 
-  if (sourceCode) {
-    if (source === 'font_awesome' && title) {
-      // Font Awesome icons do not have a title.
-      sourceCode = sourceCode.replace('-->', `--><title>${title}</title>`)
-    }
-    return sourceCode.replace(
-      '<svg',
-      '<svg class="inline align-[-0.1em] size-curr" fill="currentColor"'
-    )
+  if (source === 'simple_icons') {
+    return siIcons.icons[identifier]?.body
+  } else if (source === 'lucide') {
+    return lIcons.icons[identifier]?.body
   }
 
-  return ''
+  return undefined
 }
 
-const svg = await getIcon()
+const body = getBody()
 ---
 
-<Fragment
-  set:html={svg}
-  aria-hidden="true"
-/>
+{
+  body && (
+    <svg
+      viewBox="0 0 24 24"
+      class="inline size-curr align-[-0.1em]">
+      {title && <title>{title}</title>}
+      <Fragment set:html={body} />
+    </svg>
+  )
+}

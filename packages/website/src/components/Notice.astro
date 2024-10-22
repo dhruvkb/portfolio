@@ -14,8 +14,8 @@ const isLiving = nature === 'living_doc'
   class:list={isLiving ? 'before:bg-green' : 'before:bg-blue'}>
   <span class:list={isLiving ? 'text-green' : 'text-blue'}>
     <Icon
-      source="font_awesome"
-      name={`solid/${isLiving ? 'leaf' : 'user-check'}`}
+      source="lucide"
+      name={isLiving ? 'leaf' : 'user-check'}
     />
   </span>
   <span>
