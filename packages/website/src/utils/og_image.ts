@@ -78,7 +78,7 @@ export function getOgImage(content: {
       style: {
         backgroundImage: 'linear-gradient(to bottom, #1e1e2e, #181825)',
         color: '#cdd6f4',
-        backgroundSize: '1200px 686px',
+        backgroundSize: '1200px 600px',
         fontFamily: 'Inter',
       },
       children: {
@@ -89,13 +89,13 @@ export function getOgImage(content: {
             {
               type: 'div',
               props: {
-                tw: 'mb-10 flex flex-row justify-between text-3xl',
+                tw: 'mb-10 flex justify-between text-4xl',
                 style: { color: '#7f849c' },
                 children: [
                   {
                     type: 'div',
                     props: {
-                      tw: 'flex flex-row items-center',
+                      tw: 'flex items-center',
                       children: [
                         {
                           type: 'div',
