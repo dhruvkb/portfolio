@@ -24,5 +24,6 @@ export const GET: APIRoute<Props> = async function ({ props: { epic } }) {
     right: 'Epic',
     title: epic.name,
     description,
+    icon: epic.id,
   })
 }

@@ -5,6 +5,7 @@ import { ImageResponse } from '@vercel/og'
 import { site } from '@/stores/site'
 import { getHash } from '@/utils/hash'
 import { COLORS } from '@/constants/colors'
+import { getPaths, getBody } from '@/utils/icon'
 
 export const COLOR_TEXT_ACCENT = '#fab387'
 
@@ -57,6 +58,7 @@ export function getOgImage(content: {
   description: string
   left?: string
   right?: string
+  icon?: string
 }): ImageResponse {
   const element = {
     type: 'div',
@@ -108,11 +110,22 @@ export function getOgImage(content: {
                   {
                     type: 'div',
                     props: {
-                      tw: 'mb-6 font-bold text-8xl',
+                      tw: 'mb-6 flex font-bold text-8xl',
                       style: {
                         color: getAccentColor(content.title),
                       },
-                      children: content.title,
+                      children: [
+                        content.icon && {
+                          type: 'svg',
+                          props: {
+                            viewBox: '0 0 24 24',
+                            tw: 'h-20 w-20 mr-4',
+                            fill: 'currentColor',
+                            children: getPaths(getBody(content.icon) ?? ''),
+                          },
+                        },
+                        content.title,
+                      ],
                     },
                   },
                   {
