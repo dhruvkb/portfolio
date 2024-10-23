@@ -1,16 +1,5 @@
 ---
-import { icons as siIcons } from '@iconify-json/simple-icons'
-import { icons as lIcons } from '@iconify-json/lucide'
-
-import _2fac from '@/assets/icons/2fac.svg?raw'
-import browserstack from '@/assets/icons/browserstack.svg?raw'
-import img from '@/assets/icons/img.svg?raw'
-import mathesar from '@/assets/icons/mathesar.svg?raw'
-import pls from '@/assets/icons/pls.svg?raw'
-import portfolio from '@/assets/icons/portfolio.svg?raw'
-import recivi from '@/assets/icons/recivi.svg?raw'
-import skyscraper from '@/assets/icons/skyscraper.svg?raw'
-import starlight from '@/assets/icons/starlight.svg?raw'
+import { getBody } from '@/utils/icon'
 
 interface Props {
   source?: 'simple_icons' | 'lucide'
@@ -18,46 +7,9 @@ interface Props {
   /** text to shown when the icon is hovered over */
   title?: string
 }
-let { source = 'simple_icons', name, title } = Astro.props
+let { source, name, title } = Astro.props
 
-const aliases = {
-  vocabulary: 'creativecommons',
-  omniport: 'img',
-  platform: 'browserstack',
-} as Record<string, string>
-const identifier = aliases[name] ?? name
-
-/* Known icons */
-
-const knownIcons = {
-  '2fac': _2fac,
-  browserstack,
-  img,
-  mathesar,
-  pls,
-  portfolio,
-  recivi,
-  skyscraper,
-  starlight,
-} as Record<string, string>
-
-function getBody() {
-  const icon = knownIcons[identifier]
-  if (icon) {
-    // Strip the SVG opening and closing tags, including all attributes.
-    return icon.replace(/<\/?svg[^>]*>/g, '')
-  }
-
-  if (source === 'simple_icons') {
-    return siIcons.icons[identifier]?.body
-  } else if (source === 'lucide') {
-    return lIcons.icons[identifier]?.body
-  }
-
-  return undefined
-}
-
-const body = getBody()
+const body = getBody(name, source)
 ---
 
 {
