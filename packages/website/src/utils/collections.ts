@@ -21,7 +21,9 @@ export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
  */
 export async function getPosts(): Promise<CollectionEntry<'posts'>[]> {
   const posts = await getCollection('posts')
-  return posts.filter((item) => import.meta.env.DEV || !item.data.isDraft)
+  return posts
+    .filter((item) => import.meta.env.DEV || !item.data.isDraft)
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()) // sort in reverse order
 }
 
 /**
