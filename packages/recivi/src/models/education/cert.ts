@@ -77,4 +77,8 @@ export interface Cert extends Partial<ExtendedCert> {
    * the period of study for the certificate
    */
   period: Period
+  /**
+   * the date on which the certificate was issued
+   */
+  issue: Date
 }
