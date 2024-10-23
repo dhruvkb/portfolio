@@ -16,24 +16,25 @@ const endDisplay = end && dateDisplay(end)
 const endReadable = end && dateReadable(end)
 ---
 
-<div class="inline-flex items-center justify-center gap-2">
-  <span class="font-mono">
-    <span
-      set:html={startDisplay}
-      title={startReadable}
-    />
-    &ndash;
-    {
-      end ? (
-        <span
-          set:html={endDisplay}
-          title={endReadable}
-        />
-      ) : (
+<span class="font-mono">
+  <span
+    set:html={startDisplay}
+    title={startReadable}
+  />
+  &ndash;
+  {
+    end ? (
+      <span
+        set:html={endDisplay}
+        title={endReadable}
+      />
+    ) : (
+      <Fragment>
+        {/* prettier-ignore */}
         <Fragment>
-          <span class="animate-pulse text-red">&bull;</span>Present
+          <span class="animate-pulse text-red" aria-hidden="true">&bull;</span>Present
         </Fragment>
-      )
-    }
-  </span>
-</div>
+      </Fragment>
+    )
+  }
+</span>
