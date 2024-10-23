@@ -4,7 +4,7 @@
 
 @layer components {
   .cntnr {
-    @apply pls prs w-full max-w-guide;
+    @apply pls prs w-full sm:max-w-screen-sm;
   }
 
   .hdiv {

@@ -76,7 +76,6 @@ export default {
         ],
       },
       spacing: {
-        guide: '720px',
         curr: '1em',
         e1: defaultTheme.spacing[1].replace('rem', 'em'),
       },
