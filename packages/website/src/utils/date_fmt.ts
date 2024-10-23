@@ -5,6 +5,16 @@ const MONTHS = Array.from({ length: 12 }, (_, i) =>
 )
 
 /**
+ * Convert a JS native `Date` object into a Récivi date.
+ *
+ * @param date - the date to convert
+ * @returns the date in Récivi's `YMD` format
+ */
+export function getRcvDate(date: Date): YMD {
+  return [date.getFullYear(), date.getMonth() + 1, date.getDate()]
+}
+
+/**
  * Convert the given date from a Récivi format to an array format with either
  * one, two or three elements.
  *
