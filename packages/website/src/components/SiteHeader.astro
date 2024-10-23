@@ -15,16 +15,16 @@ const navLinks = pages
 
 const pathName = new URL(Astro.request.url).pathname
 
-const norm = (path: string): string => {
+function getNormalised(path: string): string {
   return path.replace(/\/$/, '')
 }
-const isHome = norm(pathName) === ''
+const isHome = getNormalised(pathName) === ''
 
-const isMatch = (url: string): boolean => {
-  return norm(pathName).startsWith(norm(url))
+function getIsMatch(url: string): boolean {
+  return getNormalised(pathName).startsWith(getNormalised(url))
 }
-const isExactMatch = (url: string): boolean => {
-  return norm(pathName) === norm(url)
+function getIsExactMatch(url: string): boolean {
+  return getNormalised(pathName) === getNormalised(url)
 }
 ---
 
@@ -48,8 +48,8 @@ const isExactMatch = (url: string): boolean => {
               <span
                 class="inline-block"
                 class:list={[
-                  { 'text-red underline': isMatch(link.url) },
-                  isExactMatch(link.url)
+                  { 'text-red underline': getIsMatch(link.url) },
+                  getIsExactMatch(link.url)
                     ? ['decoration-red', 'visited:decoration-red']
                     : [
                         'no-underline',

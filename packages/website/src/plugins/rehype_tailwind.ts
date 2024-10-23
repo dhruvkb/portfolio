@@ -57,7 +57,7 @@ function traverse(node: Parent, type: 'page' | 'post') {
  * a rehype plugin to add Tailwind classes to HTML elements to enable styling
  * without running into specificity issues
  */
-export const rehypeTailwind = (): Transformer => {
+export function rehypeTailwind(): Transformer {
   return (tree, file) => {
     const type = file.path.includes('content/posts') ? 'post' : 'page'
     if ('children' in tree) {

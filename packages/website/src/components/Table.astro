@@ -120,7 +120,7 @@ function isCurr(row: Row) {
 <script>
   /** Handle dimming of unrelated rows in a hovered table. */
 
-  const handleHover = (event: MouseEvent) => {
+  function handleHover(event: MouseEvent) {
     if (!(event.target instanceof HTMLTableRowElement)) {
       return
     }
