@@ -52,7 +52,7 @@ hr {
 }
 
 kbd {
-  @apply rounded border-b-2 border-b-pink bg-surface0 px-1 pb-0.5 pt-1;
+  @apply rounded border border-b-2 border-b-red bg-surface0 px-1 pb-0.5 pt-1;
 }
 
 p {
