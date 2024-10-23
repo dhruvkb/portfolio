@@ -26,8 +26,9 @@ function parseRcvDate(date: RcvDate): Y | YM | YMD {
  * - two-digit date, short month name, numeric year (e.g. 06-Jan-2022)
  *
  * @param date - the date as per the Récivi specification
+ * @param useMarkup - whether to wrap the date components in HTML markup
  */
-export function dateDisplay(date: RcvDate): string {
+export function dateDisplay(date: RcvDate, useMarkup: boolean = true): string {
   const [year, month, day] = parseRcvDate(date)
   const dateComponents = []
   if (year) {
@@ -39,7 +40,9 @@ export function dateDisplay(date: RcvDate): string {
   if (day) {
     dateComponents.push(day.toString().padStart(2, '0'))
   }
-  return dateComponents.reverse().join('<span class="text-subtle">-</span>')
+  return dateComponents
+    .reverse()
+    .join(useMarkup ? '<span class="text-subtle">-</span>' : '-')
 }
 
 /**
