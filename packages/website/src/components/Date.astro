@@ -1,0 +1,26 @@
+---
+import type { Date as RcvDate } from 'recivi'
+
+import { getRcvDate, dateReadable, dateDisplay } from '@/utils/date_fmt'
+
+interface Props {
+  date: Date | RcvDate | Promise<Date | RcvDate>
+}
+let { date } = Astro.props
+
+date = await Promise.resolve(date)
+
+function isDate(value: Date | RcvDate): value is Date {
+  return value instanceof Date
+}
+
+let rcvDate: RcvDate = isDate(date) ? getRcvDate(date) : date
+const display = dateDisplay(rcvDate)
+const readable = dateReadable(rcvDate)
+---
+
+<span
+  class="font-mono"
+  set:html={display}
+  title={readable}
+/>
