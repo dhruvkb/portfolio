@@ -9,8 +9,19 @@ import { getPaths, getBody } from '@/utils/icon'
 
 export const COLOR_TEXT_ACCENT = '#fab387'
 
+export type Element =
+  | string
+  | {
+      type: string
+      props: {
+        tw?: string
+        children: Element | Element[]
+      }
+    }
+
 const fonts = (
   [
+    { family: 'JetBrainsMono', variant: 'Regular', weight: 400 },
     { family: 'Inter', variant: 'Regular', weight: 400 },
     { family: 'Inter', variant: 'Bold', weight: 700 },
   ] as const
@@ -56,8 +67,8 @@ function getAccentColor(text: string): string {
 export function getOgImage(content: {
   title: string
   description: string
-  left?: string
-  right?: string
+  left?: Element
+  right?: Element
   icon?: string
 }): ImageResponse {
   const element = {
