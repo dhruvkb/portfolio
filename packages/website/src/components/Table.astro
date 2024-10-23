@@ -5,7 +5,7 @@ import Link from '@/components/Link.astro'
 import Icon from '@/components/Icon.astro'
 import IconName from '@/components/IconName.astro'
 import TimePeriod from '@/components/TimePeriod.astro'
-import Date from '@/components/Date.astro'
+import DateComponent from '@/components/Date.astro'
 
 import type { ColumnSpec, Row } from '@/models/table'
 
@@ -105,7 +105,7 @@ function isCurr(row: Row) {
                 ) : key === 'published' ||
                   key === 'updated' ||
                   key === 'issue' ? (
-                  <Date date={value} />
+                  <DateComponent date={value} />
                 ) : (
                   value
                 )}
