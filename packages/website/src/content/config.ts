@@ -1,5 +1,7 @@
 import { defineCollection, z } from 'astro:content'
 
+// TODO: Update when upgrading to Astro v5
+
 const posts = defineCollection({
   type: 'content',
   schema: z.object({
@@ -11,8 +13,6 @@ const posts = defineCollection({
     // Custom fields
     isFeatured: z.boolean().default(false),
     isDraft: z.boolean().default(false),
-    isLiving: z.boolean().default(false), // digital garden
-    assumedAudience: z.string().optional(),
     image: z
       .object({
         url: z.string(),
@@ -35,6 +35,7 @@ const pages = defineCollection({
     banRobots: z.boolean().default(false),
     og: z
       .object({
+        title: z.string().optional(),
         color: z.string().optional(),
       })
       .optional(),
