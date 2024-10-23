@@ -1,4 +1,11 @@
-import type { RoleLocation, RoleType, Url, Skill, Address } from 'recivi/src'
+import type {
+  RoleLocation,
+  RoleType,
+  Url,
+  Skill,
+  Address,
+  Cert,
+} from 'recivi/src'
 
 const ROLE_TYPE_DISPLAYS: Record<RoleType, string> = {
   contract: 'Contract',
@@ -93,6 +100,22 @@ export function skillDisplay(skill: Skill): string {
   let output = name
   if (subSkills?.length) {
     output = `${output} (${subSkills.map(skillDisplay).join(', ')})`
+  }
+  return output
+}
+
+/**
+ * Convert a certificate into a textual representation consisting of the
+ * certificate's short name (like "B. Tech.") and the field of study (like
+ * "Computer Science").
+ *
+ * @param cert - the certificate to convert to a string
+ * @returns the string representation of the certificate
+ */
+export function certDisplay(cert: Cert): string {
+  let output = cert.shortName
+  if (cert.field) {
+    output = `${output} (${cert.field})`
   }
   return output
 }
