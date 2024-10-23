@@ -5,38 +5,35 @@ import Link from '@/components/Link.astro'
 import Icon from '@/components/Icon.astro'
 import IconName from '@/components/IconName.astro'
 import TimePeriod from '@/components/TimePeriod.astro'
+import Date from '@/components/Date.astro'
 
 import type { ColumnSpec, Row } from '@/models/table'
 
 interface Props {
-  name: 'institute' | 'org' | 'epic'
   columns: ColumnSpec[]
   data: Row[]
 }
-const { name, columns, data } = Astro.props
+const { columns, data } = Astro.props
 
-const columnNames: string[] = columns.map((column) => column.name)
+const columnIds = columns.map((column) => column.id)
 
 const pathName = new URL(Astro.request.url).pathname
-const isCurr = (id: string | undefined): boolean =>
-  Boolean(id) && pathName.includes(`${name}s/${id}`)
+function isCurr(row: Row) {
+  return Boolean(row.url) && pathName.includes(row.url ?? '')
+}
 ---
 
-<table
-  class="cntnr transition"
-  data-name={name}>
+<!-- Not using .cntnr here because individual cells are safe-padded. -->
+<table class="w-full transition sm:max-w-screen-sm">
   <thead class="border-y">
     <tr class="bg-surface0">
       {
-        columns.map((column) => (
+        columns.map((column: ColumnSpec) => (
           <th
             scope="col"
             class="first:pls last:prs px-2 text-left font-medium"
-            class:list={[
-              column.classNames,
-              { 'w-px whitespace-nowrap': !column.isExpanding },
-            ]}>
-            {column.name}
+            class:list={[{ 'w-px whitespace-nowrap': !column.isExpanding }]}>
+            {column.name ?? column.id}
           </th>
         ))
       }
@@ -44,31 +41,53 @@ const isCurr = (id: string | undefined): boolean =>
   </thead>
   <tbody>
     {
-      data.map((row) => (
+      data.map((row, idx) => (
         <tr
-          class="relative transition after:absolute after:inset-y-0 after:end-0 after:bg-red hover:bg-surface0 [&[data-is-curr]]:bg-surface0 [&[data-is-curr]]:after:w-0.5"
+          class="relative transition after:absolute after:inset-y-0 after:start-0 after:bg-red hover:bg-surface0 [&[data-is-curr]]:bg-surface0 [&[data-is-curr]]:after:w-1"
           class:list={[{ 'border-b': row.isLastSibling }]}
-          data-epic-id={row.data.epic?.id}
-          data-org-id={row.data.org?.id}
-          data-is-curr={isCurr(row.data[name]?.id)}>
+          data-group-id={row.groupId ?? idx}
+          data-is-curr={isCurr(row)}>
           {Object.entries(row.data)
-            .filter((entry) => columnNames.includes(entry[0]))
+            .filter(([key]) => columnIds.includes(key as keyof typeof row.data))
             .sort(
-              (a, b) => columnNames.indexOf(a[0]) - columnNames.indexOf(b[0])
+              ([a], [b]) =>
+                columnIds.indexOf(a as keyof typeof row.data) -
+                columnIds.indexOf(b as keyof typeof row.data)
             )
             .map(([key, value], idx) => (
               <td
                 class="first:pls last:prs px-2 py-0.5"
                 class:list={[
-                  columns[idx]?.classNames,
                   { 'w-px whitespace-nowrap': !columns[idx]?.isExpanding },
                 ]}>
                 {key === 'epic' || key === 'org' || key === 'institute' ? (
                   <IconName
                     {...value}
-                    url={`/resume/${key}s/${value?.id}`}
-                    features={idx === 0 ? ['linkable'] : ['']}
+                    url={row.url}
                   />
+                ) : key === 'title' ? (
+                  row.url ? (
+                    <Link url={row.url}>{value}</Link>
+                  ) : (
+                    value
+                  )
+                ) : key === 'post' ? (
+                  <div class="flex flex-col">
+                    {row.url ? (
+                      <Link url={row.url}>{value.data.title}</Link>
+                    ) : (
+                      value.data.title
+                    )}
+                    <ul class="text-subtle">
+                      {value.data.categories.map((category: string) => (
+                        <li
+                          class="inline-block after:mr-1 after:content-['·'] last:after:content-none [&[data-is-highlighted]]:text-red"
+                          data-category={category}>
+                          {category}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ) : key === 'link' ? (
                   value && <Link url={value} />
                 ) : key === 'tech' ? (
@@ -76,13 +95,17 @@ const isCurr = (id: string | undefined): boolean =>
                     {value.map((item: Tech) => (
                       <li
                         title={item.name}
-                        class="me-2 inline">
+                        class="inline-block after:mr-1 after:text-subtle after:content-['·'] last:after:content-none">
                         <Icon name={item.id} />
                       </li>
                     ))}
                   </ul>
                 ) : key === 'period' ? (
                   <TimePeriod {...value} />
+                ) : key === 'published' ||
+                  key === 'updated' ||
+                  key === 'issue' ? (
+                  <Date date={value} />
                 ) : (
                   value
                 )}
@@ -93,3 +116,36 @@ const isCurr = (id: string | undefined): boolean =>
     }
   </tbody>
 </table>
+
+<script>
+  /** Handle dimming of unrelated rows in a hovered table. */
+
+  const handleHover = (event: MouseEvent) => {
+    if (!(event.target instanceof HTMLTableRowElement)) {
+      return
+    }
+
+    const func: 'add' | 'remove' =
+      event.type === 'mouseenter' ? 'add' : 'remove'
+
+    const table = event.target.closest('table')
+    if (!table) {
+      return
+    }
+
+    const allTrs = table.getElementsByTagName('tr')
+
+    for (const tr of allTrs) {
+      if (tr.dataset.groupId === event.target.dataset.groupId) {
+        tr.classList[func]('motion-reduce:bg-surface0')
+      } else {
+        tr.classList[func]('opacity-30', 'motion-reduce:opacity-70')
+      }
+    }
+  }
+
+  document.querySelectorAll('tr').forEach((tr) => {
+    tr.addEventListener('mouseenter', handleHover)
+    tr.addEventListener('mouseleave', handleHover)
+  })
+</script>

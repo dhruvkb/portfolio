@@ -1,103 +1,162 @@
-import type { Period, Tech, Url } from 'recivi'
+import type { CollectionEntry } from 'astro:content'
+
+import type { Period, Tech, Url, Date as RcvDate } from 'recivi'
 
 import type { Epic, Org, Institute } from '@/models/recivi'
-import { roleTypeDisplay } from '@/utils/recivi'
+import { roleTypeDisplay, certDisplay } from '@/utils/recivi'
 import { certs, projects, roles } from '@/stores/recivi'
 
-export type ColumnName =
-  | 'epic'
-  | 'link'
-  | 'name'
-  | 'org'
-  | 'period'
-  | 'tech'
-  | 'type'
-  | 'field'
-  | 'institute'
-
-export interface ColumnSpec {
-  name: ColumnName
-  isExpanding?: boolean
-  classNames?: string[]
+interface PostData {
+  post: CollectionEntry<'posts'>
+  series: string | undefined
+  published: Date
+  updated: Promise<Date>
 }
 
+interface CertData {
+  institute: Institute
+  link: Url | undefined
+  name: string
+  issued: RcvDate
+}
+
+interface RoleData {
+  org: Org
+  name: string
+  epic: Epic | undefined
+  period: Period | undefined
+  type: string | undefined
+}
+
+interface ProjectData {
+  epic: Epic
+  name: string
+  link: Url | undefined
+  org: Org | undefined
+  tech: Tech[]
+}
+
+export type Data = PostData | CertData | RoleData | ProjectData
+
+export type Row = {
+  isLastSibling: boolean
+  url?: string
+  groupId: string | undefined
+} & (
+  | { type: 'post'; data: PostData }
+  | { type: 'cert'; data: CertData }
+  | { type: 'role'; data: RoleData }
+  | { type: 'project'; data: ProjectData }
+)
+
+export type ColumnSpec = {
+  name?: string
+  isExpanding?: boolean
+} & (
+  | { type: 'post'; id: keyof PostData }
+  | { type: 'cert'; id: keyof CertData }
+  | { type: 'role'; id: keyof RoleData }
+  | { type: 'project'; id: keyof ProjectData }
+)
+
+export const postColumns: ColumnSpec[] = [
+  { type: 'post', id: 'post', name: 'post & tags', isExpanding: true },
+  { type: 'post', id: 'series' },
+  { type: 'post', id: 'published' },
+  { type: 'post', id: 'updated' },
+]
+
 export const certColumns: ColumnSpec[] = [
-  { name: 'institute' },
-  { name: 'link' },
-  { name: 'name', isExpanding: true },
-  { name: 'field' },
-  { name: 'period' },
+  { type: 'cert', id: 'institute' },
+  { type: 'cert', id: 'link' },
+  { type: 'cert', id: 'name', isExpanding: true },
+  { type: 'cert', id: 'issued' },
 ]
 
 export const roleColumns: ColumnSpec[] = [
-  { name: 'org' },
-  { name: 'link' },
-  { name: 'name', isExpanding: true },
-  { name: 'epic', classNames: ['hidden', 'md:table-cell'] },
-  { name: 'period' },
+  { type: 'role', id: 'org' },
+  { type: 'role', id: 'name', isExpanding: true },
+  { type: 'role', id: 'epic' },
+  { type: 'role', id: 'period' },
 ]
 
 export const projectColumns: ColumnSpec[] = [
-  { name: 'epic' },
-  { name: 'name' },
-  { name: 'link' },
-  { name: 'org', classNames: ['hidden', 'md:table-cell'] },
-  { name: 'tech', isExpanding: true },
+  { type: 'project', id: 'epic' },
+  { type: 'project', id: 'name' },
+  { type: 'project', id: 'link' },
+  { type: 'project', id: 'org' },
+  { type: 'project', id: 'tech', isExpanding: true },
 ]
 
-export interface Data {
-  epic?: Epic | undefined
-  institute?: Institute
-  org?: Org | undefined
-  link: Url | undefined
-  name: string
-  field?: string
-  type?: string | undefined
-  period?: Period | undefined
-  tech?: Tech[] | undefined
-}
-
-export interface Row {
-  data: Data
-  isLastSibling: boolean
+/**
+ * Get the data for the posts table in a format that can be used by the `Table`
+ * component.
+ *
+ * @param posts - the posts to include in the table
+ * @returns the data for the posts table
+ */
+export function getPostsData(posts: CollectionEntry<'posts'>[]) {
+  return posts.map(
+    (post): Row => ({
+      type: 'post',
+      data: {
+        post,
+        series: post.data.series,
+        published: post.data.pubDate,
+        updated: post
+          .render()
+          .then((rendered) => rendered.remarkPluginFrontmatter.modDate)
+          .then((modDate) => new Date(modDate)),
+      },
+      isLastSibling: true,
+      groupId: post.data.series,
+      url: `/writings/posts/${post.slug.substring(5)}`,
+    })
+  )
 }
 
 export const certData = certs.map(
   (cert, idx): Row => ({
+    type: 'cert',
     data: {
-      name: cert.name,
+      name: certDisplay(cert),
       institute: cert.institute,
       link: cert.institute.url,
-      field: cert.field,
-      period: cert.period,
+      issued: cert.issue,
     },
     isLastSibling: cert.institute !== certs[idx + 1]?.institute,
+    groupId: cert.institute.id,
   })
 )
 
 export const projectData = projects.map(
   (project, idx): Row => ({
+    type: 'project',
     data: {
       name: project.name,
       epic: project.epic,
       org: project.epic.role?.org,
       link: project.url,
-      tech: project.technologies,
+      tech: project.technologies ?? [],
     },
     isLastSibling: project.epic !== projects[idx + 1]?.epic,
+    groupId: project.epic.id,
+    url: `/resume/epics/${project.epic.id}/`,
   })
 )
 
 export const roleData = roles.map(
   (role, idx): Row => ({
+    type: 'role',
     data: {
       name: role.name,
       org: role.org,
-      link: role.org.url,
       epic: role.epics[0],
       type: roleTypeDisplay(role.type),
       period: role.period,
     },
     isLastSibling: role.org !== roles[idx + 1]?.org,
+    groupId: role.org.id,
+    url: `/resume/orgs/${role.org.id}/`,
   })
 )
