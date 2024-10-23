@@ -1,12 +1,17 @@
 interface FormalSkill {
   /**
+   * an identifier for the skill; In implementations, this can be used as a key
+   * to find the logo for the skill.
+   */
+  id: string
+  /**
    * the name of the skill
    */
   name: string
   /**
    * a list of skills that are considered as sub-parts of this one
    */
-  subSkills: Skill[]
+  subSkills?: Skill[]
 }
 
 /**
