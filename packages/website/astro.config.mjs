@@ -2,6 +2,7 @@ import { defineConfig, passthroughImageService } from 'astro/config'
 
 import mdx from '@astrojs/mdx'
 import tailwind from '@astrojs/tailwind'
+import alpinejs from '@astrojs/alpinejs'
 
 import { remarkMtime } from './src/plugins/remark_mtime'
 import { rehypeTailwind } from './src/plugins/rehype_tailwind'
@@ -30,5 +31,10 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  integrations: [tailwind({ applyBaseStyles: false }), mdx(), watchPlugins()],
+  integrations: [
+    tailwind({ applyBaseStyles: false }),
+    mdx(),
+    watchPlugins(),
+    alpinejs({ entrypoint: '/src/entrypoint' })
+  ],
 })

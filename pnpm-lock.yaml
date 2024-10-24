@@ -57,6 +57,9 @@ importers:
 
   packages/website:
     dependencies:
+      '@astrojs/alpinejs':
+        specifier: ^0.4.0
+        version: 0.4.0(@types/alpinejs@3.13.10)(alpinejs@3.14.3)
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.4(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.1.6)
@@ -75,12 +78,18 @@ importers:
       '@iconify-json/simple-icons':
         specifier: ^1.2.9
         version: 1.2.9
+      '@types/alpinejs':
+        specifier: ^3.13.10
+        version: 3.13.10
       '@types/node':
         specifier: ^18.19.5
         version: 18.19.5
       '@vercel/og':
         specifier: ^0.6.2
         version: 0.6.2
+      alpinejs:
+        specifier: ^3.14.3
+        version: 3.14.3
       astro:
         specifier: ^4.16.2
         version: 4.16.2(@types/node@18.19.5)(rollup@4.24.0)(typescript@5.1.6)
@@ -104,6 +113,12 @@ packages:
   '@ampproject/remapping@2.2.1':
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
     engines: {node: '>=6.0.0'}
+
+  '@astrojs/alpinejs@0.4.0':
+    resolution: {integrity: sha512-68BY1CA0XuielLW3WdX2sfh9F4sSTnFqQ//IE9AditbiYJ77HJDb4uZx07pTFDtr1jOMU7lCvH+iS9gmNafM1g==}
+    peerDependencies:
+      '@types/alpinejs': ^3.0.0
+      alpinejs: ^3.0.0
 
   '@astrojs/check@0.9.4':
     resolution: {integrity: sha512-IOheHwCtpUfvogHHsvu0AbeRZEnjJg3MopdLddkJE70mULItS/Vh37BHcI00mcOJcH1vhD3odbpvWokpxam7xA==}
@@ -877,6 +892,9 @@ packages:
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
 
+  '@types/alpinejs@3.13.10':
+    resolution: {integrity: sha512-ah53tF6mWuuwerpDE7EHwbZErNDJQlsLISPqJhYj2RZ9nuTYbRknSkqebUd3igkhLIZKkPa7IiXjSn9qsU9O2w==}
+
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -1037,6 +1055,12 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
+  '@vue/reactivity@3.1.5':
+    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
+
+  '@vue/shared@3.1.5':
+    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
+
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1057,6 +1081,9 @@ packages:
 
   ajv@8.17.1:
     resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
+
+  alpinejs@3.14.3:
+    resolution: {integrity: sha512-cL8JBEDAm4UeVjTN5QnFl8QgMGUwxFn1GvQvu3RtfAHUrAPRahGihrsWpKnEK9L0QMqsAPk/R8MylMWKHaK33A==}
 
   ansi-align@3.0.1:
     resolution: {integrity: sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w==}
@@ -3379,6 +3406,11 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.19
 
+  '@astrojs/alpinejs@0.4.0(@types/alpinejs@3.13.10)(alpinejs@3.14.3)':
+    dependencies:
+      '@types/alpinejs': 3.13.10
+      alpinejs: 3.14.3
+
   '@astrojs/check@0.9.4(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.1.6)':
     dependencies:
       '@astrojs/language-server': 2.15.0(prettier-plugin-astro@0.12.3)(prettier@3.1.1)(typescript@5.1.6)
@@ -4105,6 +4137,8 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.5
 
+  '@types/alpinejs@3.13.10': {}
+
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.23.9
@@ -4324,6 +4358,12 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
+  '@vue/reactivity@3.1.5':
+    dependencies:
+      '@vue/shared': 3.1.5
+
+  '@vue/shared@3.1.5': {}
+
   acorn-jsx@5.3.2(acorn@8.11.3):
     dependencies:
       acorn: 8.11.3
@@ -4349,6 +4389,10 @@ snapshots:
       fast-uri: 3.0.2
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
+
+  alpinejs@3.14.3:
+    dependencies:
+      '@vue/reactivity': 3.1.5
 
   ansi-align@3.0.1:
     dependencies:
