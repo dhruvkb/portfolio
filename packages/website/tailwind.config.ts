@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 import plugin from 'tailwindcss/plugin'
 import type { Config } from 'tailwindcss'
+import tailwindcssSafeArea from 'tailwindcss-safe-area'
 
 export default {
   content: ['./src/**/*.{astro,html,css,js,md,mdx,ts,vue}'],
@@ -101,5 +102,6 @@ export default {
       addVariant('gfm-todo', '&:has(input:not([checked="true"]))')
       addVariant('pdf', ':where(.pdf &)')
     }),
+    tailwindcssSafeArea,
   ],
 } satisfies Config
