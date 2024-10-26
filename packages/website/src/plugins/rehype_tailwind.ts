@@ -1,15 +1,29 @@
-import type { Transformer } from 'unified'
-import type { Parent } from 'unist'
-import type { Element } from 'hast'
+/**
+ * Apply Tailwind utilities to the HTML generated from Markdown/MDX content.
+ *
+ * This is useful for applying styles solely to generated HTML and not to Astro
+ * components.
+ */
+
+import type { Plugin } from 'unified'
+import type { VFile } from 'vfile'
+import type { Element, Node, Root } from 'hast'
+import type { MdxJsxTextElement, MdxJsxFlowElement } from 'mdast-util-mdx'
+import { visit } from 'unist-util-visit'
 
 // We have to use relative imports because this file is used in Astro config.
 import { tw } from '../utils/tailwind'
 
 const TAG_UTIL_MAP = {
   common: {
-    ul: tw`my-4 ml-4 list-disc marker:mr-2`,
+    blockquote: tw`border-l-2 border-l-red pl-2`,
+    code: tw`px-1 py-0.5 not-italic [:not(pre)>&]:border [:not(pre)>&]:bg-surface0`,
+    hr: tw`my-4 flex h-fit items-center justify-center border-none text-subtle after:content-["*\\a0\\a0*\\a0\\a0*"]`,
+    kbd: tw`rounded border border-b-2 border-b-red bg-surface0 px-1 pb-0.5 pt-1`,
     li: tw`marker:text-red gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
-    ol: tw`my-4 ml-4 list-decimal`,
+    ol: tw`ml-4 list-decimal [:not(li)>&]:my-4`,
+    pre: tw`my-4 border p-2`,
+    ul: tw`ml-4 list-disc marker:mr-2 [:not(li)>&]:my-4`,
   } as Record<string, string>,
   page: {
     h2: tw`hdiv my-4 text-red`,
@@ -23,50 +37,84 @@ const TAG_UTIL_MAP = {
   } as Record<string, string>,
 }
 
-function traverse(node: Parent, type: 'page' | 'post') {
-  node.children.forEach((child) => {
-    if (child.type !== 'element') {
-      return
+type SourceType = 'page' | 'post'
+
+function isElement(elem: Node): elem is Element {
+  return elem.type === 'element'
+}
+
+function isMdxJsxTextElement(
+  elem: Node
+): elem is MdxJsxTextElement | MdxJsxFlowElement {
+  return elem.type === 'mdxJsxTextElement' || elem.type === 'mdxJsxFlowElement'
+}
+
+function getVisitor(type: SourceType) {
+  return function visitor(elem: Node) {
+    if (isElement(elem)) {
+      styleElem(type, elem)
+    } else if (isMdxJsxTextElement(elem)) {
+      styleMdxJsxElem(type, elem)
     }
+  }
+}
 
-    const elem = child as Element
+function styleMdxJsxElem(
+  type: SourceType,
+  elem: MdxJsxTextElement | MdxJsxFlowElement
+) {
+  if (!elem.name) {
+    return
+  }
 
-    if (elem.properties.id === 'footnote-label') {
-      // Footnotes are part of the post's MDX content, but they are styled like
-      // headings on pages.
-      elem.properties.className = TAG_UTIL_MAP.page.h2
-      return
-    }
+  const existingClasses = elem.attributes.find(
+    (attr) => attr.type === 'mdxJsxAttribute' && attr.name === 'class'
+  )?.value
+  const value = [
+    existingClasses,
+    TAG_UTIL_MAP[type]?.[elem.name],
+    TAG_UTIL_MAP.common[elem.name],
+  ]
+    .flat()
+    .filter(Boolean)
+    .join(' ')
+  if (value) {
+    elem.attributes.push({ type: 'mdxJsxAttribute', name: 'class', value })
+  }
+}
 
-    const classes = [
-      TAG_UTIL_MAP[type]?.[elem.tagName],
-      TAG_UTIL_MAP['common']?.[elem.tagName],
-    ].filter((item): item is string => item !== undefined)
-    if (classes.length) {
-      const currClasses = Array.isArray(elem.properties.className)
-        ? elem.properties.className.join(' ')
-        : elem.properties.className
-      if (currClasses && typeof currClasses === 'string') {
-        classes.push(currClasses)
-      }
-      elem.properties.className = classes.join(' ')
-    }
+function styleElem(type: SourceType, elem: Element) {
+  if (elem.properties.id === 'footnote-label') {
+    // Despite being part of a post's content, the footnote section heading is
+    // styled like a page heading.
+    elem.properties.className = TAG_UTIL_MAP.page.h2
+    return
+  }
 
-    traverse(elem, type)
-  })
+  const existingClasses = elem.properties.className
+  const className = [
+    existingClasses,
+    TAG_UTIL_MAP[type]?.[elem.tagName],
+    TAG_UTIL_MAP.common[elem.tagName],
+  ]
+    .flat()
+    .filter(Boolean)
+    .join(' ')
+  if (className) {
+    elem.properties.className = className
+  }
 }
 
 /**
  * a rehype plugin to add Tailwind classes to HTML elements to enable styling
  * without running into specificity issues
  */
-export function rehypeTailwind(): Transformer {
-  return (tree, file) => {
-    const type = file.path.includes('content/posts') ? 'post' : 'page'
-    if ('children' in tree) {
-      traverse(tree as Parent, type)
-    } else {
-      console.log('No children')
-    }
+export const rehypeTailwind: Plugin<[], Root> = () => {
+  return (tree: Root, file: VFile) => {
+    const type: SourceType = file.path.includes('content/posts')
+      ? 'post'
+      : 'page'
+
+    visit(tree, getVisitor(type))
   }
 }
