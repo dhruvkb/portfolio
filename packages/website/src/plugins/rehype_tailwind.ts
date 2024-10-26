@@ -5,10 +5,11 @@
  * components.
  */
 
-import type { Plugin } from 'unified'
 import type { VFile } from 'vfile'
 import type { Element, Node, Root } from 'hast'
 import type { MdxJsxTextElement, MdxJsxFlowElement } from 'mdast-util-mdx'
+import type { RehypePlugin } from '@astrojs/markdown-remark'
+
 import { visit } from 'unist-util-visit'
 
 // We have to use relative imports because this file is used in Astro config.
@@ -21,7 +22,7 @@ const TAG_UTIL_MAP = {
     hr: tw`my-4 flex h-fit items-center justify-center border-none text-subtle after:content-["*\\a0\\a0*\\a0\\a0*"]`,
     kbd: tw`rounded border border-b-2 border-b-red bg-surface0 px-1 pb-0.5 pt-1`,
     li: tw`marker:text-red gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
-    ol: tw`ml-4 list-decimal [:not(li)>&]:my-4`,
+    ol: tw`ml-4 list-decimal [:not(li)>&]:my-4 [li>&]:list-lower-roman`,
     pre: tw`my-4 border p-2`,
     ul: tw`ml-4 list-disc marker:mr-2 [:not(li)>&]:my-4`,
   } as Record<string, string>,
@@ -109,7 +110,7 @@ function styleElem(type: SourceType, elem: Element) {
  * a rehype plugin to add Tailwind classes to HTML elements to enable styling
  * without running into specificity issues
  */
-export const rehypeTailwind: Plugin<[], Root> = () => {
+export const rehypeTailwind: RehypePlugin = () => {
   return (tree: Root, file: VFile) => {
     const type: SourceType = file.path.includes('content/posts')
       ? 'post'

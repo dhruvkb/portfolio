@@ -53,6 +53,9 @@ export default {
       borderColor: {
         DEFAULT: 'var(--color-surface1)',
       },
+      listStyleType: {
+        'lower-roman': 'lower-roman',
+      },
       // Make line height `tight` for font sizes `5xl` through `9xl`.
       fontSize: {
         '5xl': [
