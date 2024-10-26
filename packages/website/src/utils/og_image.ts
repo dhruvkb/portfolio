@@ -54,7 +54,7 @@ function markupToText(html: string): string {
  * @returns - the accent color
  */
 function getAccentColor(text: string): string {
-  const accentColors = Object.entries(COLORS).map(([_, v]) => v[1])
+  const accentColors = Object.entries(COLORS).map(([, v]) => v[1])
   return accentColors[getHash(text, accentColors.length)] ?? '#f5e0dc' // rosewater
 }
 

@@ -38,7 +38,7 @@ function parseRcvDate(date: RcvDate): Y | YM | YMD {
  * @param date - the date as per the Récivi specification
  * @param useMarkup - whether to wrap the date components in HTML markup
  */
-export function dateDisplay(date: RcvDate, useMarkup: boolean = true): string {
+export function dateDisplay(date: RcvDate, useMarkup = true): string {
   const [year, month, day] = parseRcvDate(date)
   const dateComponents = []
   if (year) {
