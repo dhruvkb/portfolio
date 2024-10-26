@@ -2,21 +2,24 @@ import type { Transformer } from 'unified'
 import type { Parent } from 'unist'
 import type { Element } from 'hast'
 
+// We have to use relative imports because this file is used in Astro config.
+import { tw } from '../utils/tailwind'
+
 const TAG_UTIL_MAP = {
   common: {
-    ul: 'my-4 list-disc marker:mr-2 ml-4',
-    li: 'marker:text-red gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0',
-    ol: 'my-4 list-decimal ml-4',
+    ul: tw`my-4 ml-4 list-disc marker:mr-2`,
+    li: tw`marker:text-red gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
+    ol: tw`my-4 ml-4 list-decimal`,
   } as Record<string, string>,
   page: {
-    h2: 'hdiv my-4 text-red',
+    h2: tw`hdiv my-4 text-red`,
   } as Record<string, string>,
   post: {
-    h2: 'mb-4 text-2xl',
-    h3: 'mb-4 text-xl',
-    h4: 'mb-4 text-lg',
-    h5: 'mb-4 text-base',
-    h6: 'mb-4 text-sm',
+    h2: tw`mb-4 text-2xl`,
+    h3: tw`mb-4 text-xl`,
+    h4: tw`mb-4 text-lg`,
+    h5: tw`mb-4 text-base`,
+    h6: tw`mb-4 text-sm`,
   } as Record<string, string>,
 }
 
