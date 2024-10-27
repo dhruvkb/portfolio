@@ -66,7 +66,7 @@ export const roles: Role[] = orgs.flatMap((org: Org) => org.roles)
 roles.forEach((role) => {
   epics.forEach((epic) => {
     if (role.epicIds?.includes(epic.id)) {
-      epic.role = role // eslint-disable-line no-param-reassign
+      epic.role = role
       role.epics.push(epic)
     }
   })
