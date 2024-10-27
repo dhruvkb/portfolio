@@ -7,7 +7,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
  * @returns a collection of pages
  */
 export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
-  const pages = await getCollection('pages')
+  const pages: CollectionEntry<'pages'>[] = await getCollection('pages')
   return pages
     .filter((item) => import.meta.env.DEV || !item.data.isDraft)
     .sort((a, b) => a.data.index - b.data.index)
@@ -20,7 +20,7 @@ export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
  * @returns a collection of posts
  */
 export async function getPosts(): Promise<CollectionEntry<'posts'>[]> {
-  const posts = await getCollection('posts')
+  const posts: CollectionEntry<'posts'>[] = await getCollection('posts')
   return posts
     .filter((item) => import.meta.env.DEV || !item.data.isDraft)
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()) // sort in reverse order
