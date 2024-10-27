@@ -1,4 +1,4 @@
-import { readdirSync } from 'fs'
+import { readdirSync } from 'node:fs'
 
 import type { AstroIntegration } from 'astro'
 
