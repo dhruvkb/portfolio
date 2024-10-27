@@ -4,7 +4,6 @@ import mdx from '@astrojs/mdx'
 import tailwind from '@astrojs/tailwind'
 import alpinejs from '@astrojs/alpinejs'
 
-import { remarkMtime } from './src/plugins/remark_mtime'
 import { rehypeTailwind } from './src/plugins/rehype_tailwind'
 import { watchPlugins } from './src/integrations/watch_plugins'
 
@@ -17,7 +16,6 @@ export default defineConfig({
     service: passthroughImageService(),
   },
   markdown: {
-    remarkPlugins: [remarkMtime],
     rehypePlugins: [rehypeTailwind],
     smartypants: false, // https://daringfireball.net/projects/smartypants/
     shikiConfig: {

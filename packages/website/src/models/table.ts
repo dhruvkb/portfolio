@@ -4,13 +4,14 @@ import type { Period, Tech, Url, Date as RcvDate } from 'recivi'
 
 import type { Epic, Org, Institute } from '@/models/recivi'
 import { roleTypeDisplay, certDisplay } from '@/utils/recivi'
+import { getModDate } from '@/utils/mod_date'
 import { certs, projects, roles } from '@/stores/recivi'
 
 interface PostData {
   post: CollectionEntry<'posts'>
   series: string | undefined
   published: Date
-  updated: Promise<Date>
+  updated: Date
 }
 
 interface CertData {
@@ -103,10 +104,7 @@ export function getPostsData(posts: CollectionEntry<'posts'>[]) {
         post,
         series: post.data.series,
         published: post.data.pubDate,
-        updated: post
-          .render()
-          .then((rendered) => rendered.remarkPluginFrontmatter.modDate)
-          .then((modDate) => new Date(modDate)),
+        updated: getModDate(post.slug),
       },
       isLastSibling: true,
       groupId: post.data.series,
