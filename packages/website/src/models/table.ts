@@ -8,10 +8,9 @@ import { getModDate } from '@/utils/mod_date'
 import { certs, projects, roles } from '@/stores/recivi'
 
 interface PostData {
-  post: CollectionEntry<'posts'>
-  series: string | undefined
   published: Date
   updated: Date
+  post: CollectionEntry<'posts'>
 }
 
 interface CertData {
@@ -61,10 +60,9 @@ export type ColumnSpec = {
 )
 
 export const postColumns: ColumnSpec[] = [
-  { type: 'post', id: 'post', name: 'post & tags', isExpanding: true },
-  { type: 'post', id: 'series' },
   { type: 'post', id: 'published' },
   { type: 'post', id: 'updated' },
+  { type: 'post', id: 'post', name: 'post & tags', isExpanding: true },
 ]
 
 export const certColumns: ColumnSpec[] = [
@@ -101,10 +99,9 @@ export function getPostsData(posts: CollectionEntry<'posts'>[]) {
     (post): Row => ({
       type: 'post',
       data: {
-        post,
-        series: post.data.series,
         published: post.data.pubDate,
         updated: getModDate(post.slug),
+        post,
       },
       isLastSibling: true,
       groupId: post.data.series,
