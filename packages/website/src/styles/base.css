@@ -17,17 +17,4 @@
   .hdiv:before {
     width: calc(max(env(safe-area-inset-right), 1rem) - 0.5rem);
   }
-
-  .pys {
-    padding-top: max(env(safe-area-inset-top), 0);
-    padding-bottom: max(env(safe-area-inset-bottom), 0);
-  }
-
-  .prs {
-    padding-right: max(env(safe-area-inset-right), 1rem);
-  }
-
-  .pls {
-    padding-left: max(env(safe-area-inset-left), 1rem);
-  }
 }
