@@ -4,7 +4,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
-const srcDir = path.dirname(path.dirname(__filename))
+const srcDir = import.meta.env.DEV
+  ? path.resolve(__filename, '..')
+  : path.resolve(__filename, '../../../src')
 
 /**
  * Get the modification timestamp of a file from Git. In case this doesn't work,
