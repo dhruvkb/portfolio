@@ -6,7 +6,7 @@ export const recivi = (await import(
   '@/../../examples/recivi.json'
 )) as unknown as Resume
 
-export const displayName = recivi.bio.name || recivi.bio.fullName
+export const displayName = recivi.bio.name
 
 const githubProfile = recivi.bio.profiles?.find(
   (profile) => profile.site.id === 'github'
