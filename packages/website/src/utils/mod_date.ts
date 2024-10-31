@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
 const srcDir = import.meta.env.DEV
-  ? path.resolve(__filename, '..')
+  ? path.resolve(__filename, '../..')
   : path.resolve(__filename, '../../../src')
 
 /**
