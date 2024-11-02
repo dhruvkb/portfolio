@@ -4,17 +4,11 @@
 
 @layer components {
   .cntnr {
-    @apply w-full px-safe sm:max-w-screen-sm;
+    @apply w-full px-4 mx-safe sm:max-w-screen-sm;
   }
 
   .hdiv {
-    @apply my-4 flex items-center gap-2 font-medium before:h-px before:bg-surface1 after:h-px after:flex-grow after:bg-surface1;
-
-    margin-left: calc(-1 * max(env(safe-area-inset-left), 1rem));
-    margin-right: calc(-1 * max(env(safe-area-inset-right), 1rem));
-  }
-
-  .hdiv:before {
-    width: calc(max(env(safe-area-inset-right), 1rem) - 0.5rem);
+    /* Uses `-mx-4` to reverse the `px-4` applied by the container. */
+    @apply -mx-4 my-4 flex items-center gap-2 font-medium before:h-px before:w-2 before:bg-surface1 after:h-px after:flex-grow after:bg-surface1;
   }
 }

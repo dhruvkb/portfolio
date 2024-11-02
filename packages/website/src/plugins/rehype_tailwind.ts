@@ -24,6 +24,7 @@ const TAG_UTIL_MAP = {
     li: tw`marker:text-red gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
     ol: tw`ml-4 list-decimal [:not(li)>&]:my-4 [li>&]:list-lower-roman`,
     pre: tw`my-4 border p-2`,
+    table: tw`border`,
     ul: tw`ml-4 list-disc marker:mr-2 [:not(li)>&]:my-4`,
   } as Record<string, string>,
   page: {

@@ -23,15 +23,14 @@ function isCurr(row: Row) {
 }
 ---
 
-<!-- Not using .cntnr here because individual cells are safe-padded. -->
-<table class="w-full transition sm:max-w-screen-sm">
-  <thead class="border-y">
-    <tr class="bg-surface0">
+<!-- Padding must be removed because cells are padded individually. -->
+<table class="cntnr px-0 transition">
+  <thead class="border-y bg-surface0">
+    <tr>
       {
         columns.map((column: ColumnSpec) => (
           <th
             scope="col"
-            class="px-2 text-left font-medium first:pl-safe last:pr-safe"
             class:list={[{ 'w-px whitespace-nowrap': !column.isExpanding }]}>
             {column.name ?? column.id}
           </th>
@@ -56,7 +55,6 @@ function isCurr(row: Row) {
             )
             .map(([key, value], idx) => (
               <td
-                class="px-2 py-0.5 first:pl-safe last:pr-safe"
                 class:list={[
                   { 'w-px whitespace-nowrap': !columns[idx]?.isExpanding },
                 ]}>

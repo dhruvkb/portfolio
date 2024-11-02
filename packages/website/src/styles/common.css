@@ -53,3 +53,20 @@ strong,
 b {
   @apply font-medium;
 }
+
+table {
+  @apply w-full;
+}
+
+thead {
+  @apply border-y bg-surface0;
+}
+
+th {
+  @apply text-left font-medium;
+}
+
+th,
+td {
+  @apply px-2 py-0.5 first:pl-4 last:pr-4;
+}
