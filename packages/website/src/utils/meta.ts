@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 
-import { displayName, recivi } from '@/stores/recivi'
+import { recivi } from '@/stores/recivi'
 import { site } from '@/stores/site'
 import { urlToDest } from '@/utils/recivi'
 import type { PartialBy } from '@/types/extensions'
@@ -73,7 +73,7 @@ export function getMetadata(
   const twitterId = getTwitterId()
 
   return [
-    { name: 'author', content: displayName },
+    { name: 'author', content: recivi.bio.name },
     { name: 'description', content: description },
     // Open Graph
     { property: 'og:type', content: 'article' },
