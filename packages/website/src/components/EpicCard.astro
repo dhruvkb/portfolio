@@ -23,7 +23,7 @@ const { epic } = Astro.props
     {
       epic.projects.map((project) => (
         <li>
-          <div class="flex items-center">
+          <div class="flex">
             <span>{project.name}</span>
             <span class="ml-auto text-subtle">
               {project.technologies?.map((technology) => (

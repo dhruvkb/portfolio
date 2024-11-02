@@ -12,7 +12,7 @@ const { org } = Astro.props
 ---
 
 <div class="border-b px-4 py-2">
-  <div class="flex items-center justify-between">
+  <div class="flex justify-between">
     <strong
       ><IconName
         {...org}
@@ -26,9 +26,9 @@ const { org } = Astro.props
     {
       org.roles.map((role) => (
         <li>
-          <div class="flex items-center gap-3">
+          <div class="flex justify-between gap-3">
             <span>{role.name}</span>
-            <span class="ms-auto text-subtle">
+            <span class="text-subtle">
               <TimePeriod {...role.period} />
             </span>
           </div>

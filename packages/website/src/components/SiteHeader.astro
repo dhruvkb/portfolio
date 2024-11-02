@@ -29,7 +29,7 @@ function getIsExactMatch(url: string): boolean {
 ---
 
 <header
-  class="cntnr flex flex-col items-start justify-between gap-2 border-b py-4 sm:flex-row sm:items-center">
+  class="cntnr flex flex-col justify-between gap-2 border-b py-4 sm:flex-row">
   <Link url="/">
     <!-- Class `inline-block` prevents underline from `Link`. -->
     <span
@@ -39,7 +39,7 @@ function getIsExactMatch(url: string): boolean {
     </span>
   </Link>
   <nav>
-    <ul class="my-0 flex list-none items-center">
+    <ul class="my-0 flex list-none">
       {
         navLinks.map((link) => (
           <li class="me-4 last:me-0">
