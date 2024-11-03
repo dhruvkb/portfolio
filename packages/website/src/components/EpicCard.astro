@@ -27,7 +27,7 @@ const { epic } = Astro.props
             <span>{project.name}</span>
             <span class="ml-auto text-subtle">
               {project.technologies?.map((technology) => (
-                <span class="me-2 inline-block border-e pe-2 last:me-0 last:border-0 last:pe-0">
+                <span class="inline after:mx-2 after:content-['·'] last:after:content-none">
                   <Icon name={technology.id} />
                 </span>
               ))}
