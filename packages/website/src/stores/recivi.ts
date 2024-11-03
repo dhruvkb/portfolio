@@ -18,7 +18,7 @@ if (githubProfile) {
   }
 }
 
-export const insitutes: Institute[] =
+export const institutes: Institute[] =
   recivi.education?.map((rcvInstitute) => {
     const institute: Institute = {
       ...rcvInstitute,
@@ -29,7 +29,7 @@ export const insitutes: Institute[] =
     return institute
   }) ?? []
 
-export const certs: Cert[] = insitutes.flatMap(
+export const certs: Cert[] = institutes.flatMap(
   (institute: Institute) => institute.certs
 )
 
