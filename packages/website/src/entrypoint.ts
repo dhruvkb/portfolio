@@ -1,24 +1,23 @@
 import type { Alpine } from 'alpinejs'
 
 export interface WritingsStore {
-  activeCategory: string | undefined
-  setActiveCategory(category: string): void
+  activeCategories: string[]
+  isActiveCategoryOverlap(categories: string[]): boolean
 }
 
 export default (Alpine: Alpine) => {
   Alpine.store('writings', {
-    activeCategory: undefined,
+    activeCategories: [],
 
-    /**
-     * Set the given category as the active category. If the category is already
-     * active, clear it.
-     */
-    setActiveCategory(category: string) {
-      if (this.activeCategory === category) {
-        this.activeCategory = undefined
-      } else {
-        this.activeCategory = category
+    isActiveCategoryOverlap(categories: string[]): boolean {
+      if (!this.activeCategories.length) {
+        // If no category is active, show all posts.
+        return true
       }
+
+      return categories.some((category) =>
+        this.activeCategories.includes(category)
+      )
     },
   } satisfies WritingsStore)
 }
