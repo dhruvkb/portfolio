@@ -131,7 +131,8 @@ function isCurr(row: Row) {
       return
     }
 
-    const allTrs = table.getElementsByTagName('tr')
+    const allTrs =
+      table.getElementsByTagName('tbody')[0]?.getElementsByTagName('tr') ?? []
 
     for (const tr of allTrs) {
       if (tr.dataset.groupId === event.target.dataset.groupId) {
