@@ -24,7 +24,9 @@ function isCurr(row: Row) {
 ---
 
 <!-- Padding must be removed because cells are padded individually. -->
-<table class="cntnr px-0 transition">
+<table
+  class="cntnr px-0 transition"
+  x-data={`{ activeGroup: "" }`}>
   <thead class="border-y bg-surface0">
     <tr>
       {
@@ -42,10 +44,15 @@ function isCurr(row: Row) {
     {
       data.map((row, idx) => (
         <tr
+          x-data={JSON.stringify({
+            groupId: row.groupId ?? idx,
+          })}
+          x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
           class="relative transition after:absolute after:inset-y-0 after:start-0 after:bg-red hover:bg-surface0 [&[data-is-curr]]:bg-surface0 [&[data-is-curr]]:after:w-1"
           class:list={[{ 'border-b': row.isLastSibling }]}
-          data-group-id={row.groupId ?? idx}
-          data-is-curr={isCurr(row)}>
+          data-is-curr={isCurr(row)}
+          @mouseenter="activeGroup = groupId"
+          @mouseleave="activeGroup = ''">
           {Object.entries(row.data)
             .filter(([key]) => columnIds.includes(key as keyof typeof row.data))
             .sort(
@@ -114,37 +121,3 @@ function isCurr(row: Row) {
     }
   </tbody>
 </table>
-
-<script>
-  /** Handle dimming of unrelated rows in a hovered table. */
-
-  function handleHover(event: MouseEvent) {
-    if (!(event.target instanceof HTMLTableRowElement)) {
-      return
-    }
-
-    const func: 'add' | 'remove' =
-      event.type === 'mouseenter' ? 'add' : 'remove'
-
-    const table = event.target.closest('table')
-    if (!table) {
-      return
-    }
-
-    const allTrs =
-      table.getElementsByTagName('tbody')[0]?.getElementsByTagName('tr') ?? []
-
-    for (const tr of allTrs) {
-      if (tr.dataset.groupId === event.target.dataset.groupId) {
-        tr.classList[func]('motion-reduce:bg-surface0')
-      } else {
-        tr.classList[func]('opacity-30', 'motion-reduce:opacity-70')
-      }
-    }
-  }
-
-  document.querySelectorAll('tr').forEach((tr) => {
-    tr.addEventListener('mouseenter', handleHover)
-    tr.addEventListener('mouseleave', handleHover)
-  })
-</script>
