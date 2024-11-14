@@ -13,10 +13,13 @@ interface Props {
    */
   url?: Url | undefined
 }
-let { id, name, url = undefined } = Astro.props
+let { id, name, url = undefined, ...attrs } = Astro.props
 ---
 
 <span class="inline-block">
-  <Icon name={id} />
+  <Icon
+    name={id}
+    {...attrs}
+  />
   {url ? <Link {url}>{name}</Link> : <span>{name}</span>}
 </span>

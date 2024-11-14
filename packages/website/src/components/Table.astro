@@ -68,10 +68,15 @@ function isCurr(row: Row) {
                   { 'w-px whitespace-nowrap': !columns[idx]?.isExpanding },
                 ]}>
                 {key === 'epic' || key === 'org' || key === 'institute' ? (
-                  <IconName
-                    {...value}
-                    url={row.url}
-                  />
+                  <Fragment>
+                    {value && (
+                      <IconName
+                        {...value}
+                        url={row.url}
+                        reserveSpace={key !== 'institute'}
+                      />
+                    )}
+                  </Fragment>
                 ) : key === 'title' ? (
                   row.url ? (
                     <Link url={row.url}>{value}</Link>

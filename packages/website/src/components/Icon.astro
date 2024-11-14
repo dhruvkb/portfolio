@@ -6,14 +6,15 @@ interface Props {
   name: string
   /** text to shown when the icon is hovered over */
   title?: string
+  reserveSpace?: boolean
 }
-let { source, name, title } = Astro.props
+let { source, name, title, reserveSpace = false } = Astro.props
 
 const body = getBody(name, source)
 ---
 
 {
-  body && (
+  body ? (
     <svg
       viewBox="0 0 24 24"
       class="inline size-curr align-[-0.1em]"
@@ -22,5 +23,10 @@ const body = getBody(name, source)
       {title && <title>{title}</title>}
       <Fragment set:html={body} />
     </svg>
-  )
+  ) : reserveSpace ? (
+    <div
+      class="inline-block h-4 w-4"
+      aria-hidden="true"
+    />
+  ) : null
 }
