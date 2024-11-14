@@ -85,29 +85,24 @@ function isCurr(row: Row) {
                     ) : (
                       value.data.title
                     )}
+                    {/* prettier-ignore */}
                     <ul class="text-subtle">
                       {value.data.categories.map((category: string) => (
-                        <li
-                          x-data={JSON.stringify({ category })}
-                          x-bind:class="{ 'text-red': $store.writings.activeCategories.includes(category) }"
-                          class="inline-block after:mr-1 after:content-['·'] last:after:content-none">
-                          {category}
-                        </li>
+                        <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-red': $store.writings.activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">{category}</li>
                       ))}
                     </ul>
                   </div>
                 ) : key === 'link' ? (
                   value && <Link url={value} />
                 ) : key === 'tech' ? (
-                  <ul>
-                    {value.map((item: Tech) => (
-                      <li
-                        title={item.name}
-                        class="inline-block after:mr-1 after:text-subtle after:content-['·'] last:after:content-none">
-                        <Icon name={item.id} />
-                      </li>
-                    ))}
-                  </ul>
+                  <Fragment>
+                    {/* prettier-ignore */}
+                    <ul>
+                      {value.map((item: Tech) => (
+                        <li class="inline after:mx-1 after:text-subtle after:content-['·'] last:after:content-none"><Icon name={item.id} title={item.name} /></li>
+                      ))}
+                    </ul>
+                  </Fragment>
                 ) : key === 'period' ? (
                   <TimePeriod {...value} />
                 ) : key === 'published' ||
