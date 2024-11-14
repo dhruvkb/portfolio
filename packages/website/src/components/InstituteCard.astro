@@ -1,0 +1,34 @@
+---
+import Link from '@/components/Link.astro'
+import DateComponent from '@/components/Date.astro'
+
+import { certDisplay } from '@/utils/recivi'
+import type { Institute } from '@/models/recivi'
+
+interface Props {
+  institute: Institute
+}
+const { institute } = Astro.props
+---
+
+<div class="border-b px-4 py-2">
+  <div class="flex justify-between">
+    <strong>{institute.name}</strong>
+    {institute.url && <Link url={institute.url}>link</Link>}
+  </div>
+
+  <ul class="mt-1">
+    {
+      institute.certs.map((cert) => (
+        <li>
+          <div class="flex justify-between gap-3">
+            {certDisplay(cert)}
+            <span class="text-subtle">
+              <DateComponent date={cert.issue} />
+            </span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
