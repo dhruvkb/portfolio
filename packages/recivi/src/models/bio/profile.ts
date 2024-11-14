@@ -32,10 +32,10 @@ type Identity = UsernameIdentity | UrlIdentity | CompleteIdentity
  * @example
  *   {
  *     "site": {
- *       "id": "twitter",
- *       "name": "Twitter",
+ *       "id": "bluesky",
+ *       "name": "Bluesky",
  *     },
- *     "username": "dhruvkb_",
+ *     "username": "dhruvkb.bsky.social",
  *   }
  * @example
  *   {

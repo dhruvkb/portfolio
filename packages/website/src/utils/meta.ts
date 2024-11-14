@@ -2,7 +2,6 @@ import type { CollectionEntry } from 'astro:content'
 
 import { recivi } from '@/stores/recivi'
 import { site } from '@/stores/site'
-import { urlToDest } from '@/utils/recivi'
 import type { PartialBy } from '@/types/extensions'
 
 export type RawMetadata = PartialBy<
@@ -24,21 +23,6 @@ export type MetaTag = { content: string } & (
 
 function isDefined<T>(item: T | boolean): item is T {
   return Boolean(item)
-}
-
-function getTwitterId() {
-  const twitterProfile = recivi.bio.profiles?.find((profile) =>
-    ['twitter', 'x'].includes(profile.site.id)
-  )
-  if (!twitterProfile) {
-    return undefined
-  }
-  if ('username' in twitterProfile) {
-    return twitterProfile.username
-  }
-  return urlToDest(twitterProfile.url)
-    .replace('https://twitter.com/', '')
-    .replace('https://x.com', '')
 }
 
 /**
@@ -70,7 +54,6 @@ export function getMetadata(
   const imageUrl = `${origin}/og${
     path === '/' ? '/index' : path.replace(/\/$/, '')
   }.png`
-  const twitterId = getTwitterId()
 
   return [
     { name: 'author', content: recivi.bio.name },
@@ -82,14 +65,6 @@ export function getMetadata(
     { property: 'og:title', content: pageTitle },
     { property: 'og:description', content: description },
     { property: 'og:image', content: imageUrl },
-    // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
-    Boolean(twitterId) && { name: 'twitter:site', content: `@${twitterId}` },
-    Boolean(twitterId) && { name: 'twitter:creator', content: `@${twitterId}` },
-    { name: 'twitter:url', content: pageUrl },
-    { name: 'twitter:title', content: pageTitle },
-    { name: 'twitter:description', content: description },
-    { name: 'twitter:image', content: imageUrl },
     // Robots
     banRobots && { name: 'robots', content: 'noindex' },
   ].filter(isDefined)
