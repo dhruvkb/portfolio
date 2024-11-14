@@ -27,7 +27,7 @@ const { org } = Astro.props
       org.roles.map((role) => (
         <li>
           <div class="flex justify-between gap-3">
-            <span>{role.name}</span>
+            {role.name}
             <span class="text-subtle">
               <TimePeriod {...role.period} />
             </span>
