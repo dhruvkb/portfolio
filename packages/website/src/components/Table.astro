@@ -46,7 +46,9 @@ function isCurr(row: Row) {
         <tr
           x-data={JSON.stringify({
             groupId: row.groupId ?? idx,
+            categories: 'post' in row.data && row.data.post?.data.categories,
           })}
+          x-show="$store.writings.isActiveCategoryOverlap(categories)"
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
           class="relative transition after:absolute after:inset-y-0 after:start-0 after:bg-red hover:bg-surface0 [&[data-is-curr]]:bg-surface0 [&[data-is-curr]]:after:w-1"
           class:list={[{ 'border-b': row.isLastSibling }]}
@@ -86,8 +88,9 @@ function isCurr(row: Row) {
                     <ul class="text-subtle">
                       {value.data.categories.map((category: string) => (
                         <li
-                          class="inline-block after:mr-1 after:content-['·'] last:after:content-none [&[data-is-highlighted]]:text-red"
-                          data-category={category}>
+                          x-data={JSON.stringify({ category })}
+                          x-bind:class="{ 'text-red': $store.writings.activeCategories.includes(category) }"
+                          class="inline-block after:mr-1 after:content-['·'] last:after:content-none">
                           {category}
                         </li>
                       ))}
