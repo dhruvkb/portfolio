@@ -12,7 +12,7 @@ const isDev = import.meta.env.DEV
       <span class="hidden lg:inline xl:hidden">lg</span>
       <span class="hidden xl:inline 2xl:hidden">xl</span>
       <span class="hidden 2xl:inline">2xl</span>
-      (<span id="width" />)
+      <span id="width" />
     </span>
   )
 }
@@ -26,7 +26,7 @@ const isDev = import.meta.env.DEV
     if (!width) {
       return
     }
-    width.textContent = `${window.innerWidth}px`
+    width.textContent = ` (${window.innerWidth}px)`
   }
   updateWidth()
 
