@@ -1,10 +1,17 @@
 ---
 import Link from '@/components/Link.astro'
 import Breakpoint from '@/components/Breakpoint.astro'
+import Icon from '@/components/Icon.astro'
 ---
 
 <footer class="cntnr flex items-center justify-between border-t py-4">
-  <div class="italic text-subtle">Thanks for visiting!</div>
+  <div class="italic text-subtle">
+    <Icon
+      name="hand-metal"
+      source="lucide"
+    />
+    Thanks for visiting!
+  </div>
   <Breakpoint />
   <div>
     <Link url="https://github.com/dhruvkb/portfolio">Source</Link>
