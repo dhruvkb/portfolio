@@ -85,7 +85,7 @@ function isCurr(row: Row) {
                     value
                   )
                 ) : key === 'post' ? (
-                  <div class="flex flex-col">
+                  <Fragment>
                     {row.url ? (
                       <Link url={row.url}>{value.data.title}</Link>
                     ) : (
@@ -97,7 +97,7 @@ function isCurr(row: Row) {
                         <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-red': $store.writings.activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">{category}</li>
                       ))}
                     </ul>
-                  </div>
+                  </Fragment>
                 ) : key === 'link' ? (
                   value && <Link url={value} />
                 ) : key === 'tech' ? (
