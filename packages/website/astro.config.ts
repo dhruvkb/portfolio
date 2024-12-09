@@ -33,6 +33,6 @@ export default defineConfig({
     tailwind({ applyBaseStyles: false }),
     mdx(),
     watchPlugins(),
-    alpinejs({ entrypoint: '/src/entrypoint' }),
+    alpinejs(),
   ],
 })
