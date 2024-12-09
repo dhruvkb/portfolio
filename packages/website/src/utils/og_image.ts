@@ -31,7 +31,7 @@ const fonts = (
   style: 'normal' as const,
   data: fs.readFileSync(
     path.resolve(`./src/assets/fonts/${family}-${variant}.ttf`)
-  ).buffer,
+  ),
 }))
 
 /**
