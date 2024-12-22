@@ -31,7 +31,7 @@ function getFsMtime(path: string): string {
 }
 
 export function getModDate(slug: string): Date {
-  const filePath = path.resolve(srcDir, 'content', 'posts', `${slug}.mdx`)
+  const filePath = path.resolve(srcDir, 'posts', `${slug}.mdx`)
   const gitTimestamp = getGitMtime(filePath)
   const fsTimestamp = getFsMtime(filePath)
 

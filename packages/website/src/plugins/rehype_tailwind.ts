@@ -113,9 +113,7 @@ function styleElem(type: SourceType, elem: Element) {
  */
 export const rehypeTailwind: RehypePlugin = () => {
   return (tree: Root, file: VFile) => {
-    const type: SourceType = file.path.includes('content/posts')
-      ? 'post'
-      : 'page'
+    const type: SourceType = file.path.includes('/posts') ? 'post' : 'page'
 
     visit(tree, getVisitor(type))
   }

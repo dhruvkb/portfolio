@@ -1,16 +1,8 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 
-/**
- * Get the list of pages, excluding the pages that have been marked as a draft
- * and sorted by their index.
- *
- * @returns a collection of pages
- */
 export async function getPages(): Promise<CollectionEntry<'pages'>[]> {
   const pages: CollectionEntry<'pages'>[] = await getCollection('pages')
   return pages
-    .filter((item) => import.meta.env.DEV || !item.data.isDraft)
-    .sort((a, b) => a.data.index - b.data.index)
 }
 
 /**

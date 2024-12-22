@@ -5,10 +5,10 @@ interface Props {
   data: RawMetadata
 }
 const { data } = Astro.props
-const { origin } = Astro.url
+const { origin, pathname } = Astro.url
 
-const pageTitle = getPageTitle(data)
-const metaTags = getMetadata(data, origin)
+const pageTitle = getPageTitle(data.title)
+const metaTags = getMetadata(data, pathname, origin)
 ---
 
 <Fragment>

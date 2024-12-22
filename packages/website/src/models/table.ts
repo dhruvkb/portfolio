@@ -41,7 +41,7 @@ export type Data = PostData | CertData | RoleData | ProjectData
 export type Row = {
   isLastSibling: boolean
   url?: string
-  groupId: string | undefined
+  groupId: string | number | undefined
 } & (
   | { type: 'post'; data: PostData }
   | { type: 'cert'; data: CertData }
@@ -95,19 +95,20 @@ export const projectColumns: ColumnSpec[] = [
  * @returns the data for the posts table
  */
 export function getPostsData(posts: CollectionEntry<'posts'>[]) {
-  return posts.map(
-    (post): Row => ({
+  return posts.map((post, idx): Row => {
+    const year = post.data.pubDate.getFullYear()
+    return {
       type: 'post',
       data: {
         published: post.data.pubDate,
         updated: getModDate(post.slug),
         post,
       },
-      isLastSibling: true,
-      groupId: post.data.series,
-      url: `/writings/posts/${post.slug.substring(5)}`,
-    })
-  )
+      isLastSibling: year !== posts[idx + 1]?.data.pubDate.getFullYear(),
+      groupId: year,
+      url: `/writings/posts/${post.id.substring(5)}`,
+    }
+  })
 }
 
 export const certData = certs.map(

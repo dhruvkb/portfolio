@@ -7,10 +7,15 @@ import { getPages } from '@/utils/collections'
 // Links have a trailing slash because each page becomes a directory when built.
 const pages = await getPages()
 const navLinks = pages
-  .filter((page) => page.data.path !== '/' && page.data.isNav)
+  .filter(
+    (page): page is typeof page & { data: { index: number } } =>
+      page.id !== 'index' && // Exclude the home page.
+      typeof page.data.index !== 'undefined' // Only include pages with an index.
+  )
+  .sort((a, b) => a.data.index - b.data.index)
   .map((page) => ({
     text: page.data.title,
-    url: page.data.path,
+    url: `/${page.id}`,
   }))
 
 const pathName = new URL(Astro.request.url).pathname

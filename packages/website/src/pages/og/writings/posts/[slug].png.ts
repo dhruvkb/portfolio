@@ -12,7 +12,7 @@ interface Props {
 export async function getStaticPaths() {
   const posts = await getPosts()
   return posts.map((post) => ({
-    params: { slug: post.slug.substring(5) },
+    params: { slug: post.id.substring(5) },
     props: { post },
   }))
 }

@@ -1,16 +1,12 @@
-import type { CollectionEntry } from 'astro:content'
-
 import { recivi } from '@/stores/recivi'
 import { site } from '@/stores/site'
-import type { PartialBy } from '@/types/extensions'
 
-export type RawMetadata = PartialBy<
-  Pick<
-    CollectionEntry<'pages'>['data'],
-    'title' | 'description' | 'banRobots' | 'path'
-  >,
-  'banRobots'
->
+export interface RawMetadata {
+  title: string
+  description: string
+  path: string
+  banRobots?: boolean
+}
 
 /**
  * describes the attributes of a `<meta>` tag; Some `<meta>` tags use a name-content
@@ -32,7 +28,7 @@ function isDefined<T>(item: T | boolean): item is T {
  * @param rawMetadata - page data that is needed to generate the page title
  * @returns the complete of the page
  */
-export function getPageTitle({ title }: { title: string }): string {
+export function getPageTitle(title: string): string {
   return `${title} - ${site.title}`
 }
 
@@ -40,17 +36,19 @@ export function getPageTitle({ title }: { title: string }): string {
  * Get a list of objects to render as `<meta>` tags in the page head.
  *
  * @param rawMetadata - page data that is needed to generate the meta tags
+ * @param path - the path of the page, with a leading slash
  * @param origin - the scheme and domain name of the website, without a trailing slash
  * @returns a list of meta tags to render in the page head
  */
 export function getMetadata(
   rawMetadata: RawMetadata,
+  path: string,
   origin: string
 ): MetaTag[] {
-  const { description, path, banRobots = false } = rawMetadata
+  const { title, description, banRobots = false } = rawMetadata
 
   const pageUrl = `${origin}${path}`
-  const pageTitle = getPageTitle(rawMetadata)
+  const pageTitle = getPageTitle(title)
   const imageUrl = `${origin}/og${
     path === '/' ? '/index' : path.replace(/\/$/, '')
   }.png`

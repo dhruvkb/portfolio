@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 export const GET: APIRoute<Props> = async function ({ props: { page } }) {
   return getOgImage({
-    title: page.data.og?.title ?? page.data.title,
+    title: page.data.ogImage?.title ?? page.data.title,
     description: page.data.description,
   })
 }

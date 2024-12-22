@@ -1,18 +1,18 @@
 import { defineCollection, z } from 'astro:content'
-
-// TODO: Update when upgrading to Astro v5
+import { glob } from 'astro/loaders'
 
 const posts = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '*.mdx', base: './src/posts' }),
   schema: z.object({
-    // RSS fields
     title: z.string(),
     description: z.string(),
+
     pubDate: z.date(),
     categories: z.array(z.string()),
-    // Custom fields
+
     isFeatured: z.boolean().default(false),
     isDraft: z.boolean().default(false),
+
     image: z
       .object({
         url: z.string(),
@@ -24,16 +24,19 @@ const posts = defineCollection({
 })
 
 const pages = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.mdx', base: './src/pages' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    path: z.string(),
-    index: z.number().default(0),
-    isDraft: z.boolean().default(false),
-    isNav: z.boolean().default(true),
+
+    // This field specifies the order in which the page should appear
+    // in the navigation. If not specified, the page will be skipped.
+    index: z.number().optional(),
+
     banRobots: z.boolean().default(false),
-    og: z
+
+    // This field is used for overriding the data in the OG image.
+    ogImage: z
       .object({
         title: z.string().optional(),
         color: z.string().optional(),
@@ -42,7 +45,4 @@ const pages = defineCollection({
   }),
 })
 
-export const collections = {
-  posts,
-  pages,
-}
+export const collections = { posts, pages }
