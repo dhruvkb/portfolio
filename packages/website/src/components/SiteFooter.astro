@@ -2,9 +2,18 @@
 import Link from '@/components/Link.astro'
 import Breakpoint from '@/components/Breakpoint.astro'
 import Icon from '@/components/Icon.astro'
+
+import type { ClassList } from '@/types/class_list'
+
+interface Props {
+  classes?: ClassList
+}
+const { classes = [] } = Astro.props
 ---
 
-<footer class="cntnr flex items-center justify-between border-t py-4">
+<footer
+  class="cntnr flex items-center justify-between border-t py-4"
+  class:list={classes}>
   <div class="italic text-subtle">
     <Icon
       name="hand-metal"

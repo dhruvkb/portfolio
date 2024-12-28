@@ -3,6 +3,12 @@ import Link from '@/components/Link.astro'
 
 import { site } from '@/stores/site'
 import { getPages } from '@/utils/collections'
+import type { ClassList } from '@/types/class_list'
+
+interface Props {
+  classes?: ClassList
+}
+const { classes = [] } = Astro.props
 
 // Links have a trailing slash because each page becomes a directory when built.
 const pages = await getPages()
@@ -34,7 +40,8 @@ function getIsExactMatch(url: string): boolean {
 ---
 
 <header
-  class="cntnr flex flex-col justify-between gap-2 border-b py-4 sm:flex-row">
+  class="cntnr flex flex-col justify-between gap-2 border-b py-4 sm:flex-row"
+  class:list={classes}>
   <Link url="/">
     <!-- Class `inline-block` prevents underline from `Link`. -->
     <span
