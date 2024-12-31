@@ -18,6 +18,13 @@ const { columns, data } = Astro.props
 const columnIds = columns.map((column) => column.id)
 
 const pathName = new URL(Astro.request.url).pathname
+
+/**
+ * Check whether the table entry corresponds to the currently open page.
+ *
+ * @param row - the table entry
+ * @returns whether the current page URL matches the URL of the row
+ */
 function isCurr(row: Row) {
   return Boolean(row.url) && pathName.includes(row.url ?? '')
 }
