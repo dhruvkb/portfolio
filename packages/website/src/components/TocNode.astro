@@ -1,0 +1,43 @@
+---
+import Link from '@/components/Link.astro'
+
+import type { Heading } from '@/utils/toc_tree'
+
+interface Props {
+  heading: Heading
+}
+const { heading } = Astro.props
+---
+
+{
+  heading.children.length ? (
+    <details>
+      <summary class="cursor-pointer rounded hover:bg-surface0">
+        <span
+          class="px-1 py-0.5"
+          class:list={{ 'text-subtle': heading.depth === 0 }}>
+          {heading.slug ? (
+            <Link url={`#${heading.slug}`}>{heading.text}</Link>
+          ) : (
+            heading.text
+          )}
+        </span>
+      </summary>
+      <ul>
+        {heading.children.map((child) => (
+          <li class="relative ml-2 border-s pl-4 before:absolute before:-left-px before:top-0 before:block before:h-4 before:w-4 before:border-b before:border-s last:border-trans">
+            <Astro.self heading={child} />
+          </li>
+        ))}
+      </ul>
+    </details>
+  ) : (
+    <span class="px-1 py-0.5">
+      {heading.slug ? (
+        <Link url={`#${heading.slug}`}>{heading.text}</Link>
+      ) : (
+        heading.text
+      )}
+    </span>
+  )
+}
