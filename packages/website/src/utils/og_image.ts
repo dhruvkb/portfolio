@@ -2,22 +2,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 import { ImageResponse } from '@vercel/og'
+import { html } from 'satori-html'
+
 import { site } from '@/stores/site'
-import { getHash } from '@/utils/hash'
-import { COLORS } from '@/constants/colors'
-import { getPaths, getBody } from '@/utils/icon'
-
-export const COLOR_TEXT_ACCENT = '#fab387'
-
-export type Element =
-  | string
-  | {
-      type: string
-      props: {
-        tw?: string
-        children: Element | Element[]
-      }
-    }
+import { getBody } from '@/utils/icon'
 
 const fonts = (
   [
@@ -46,19 +34,6 @@ function markupToText(html: string): string {
 }
 
 /**
- * Get one of the theme's accent colors to style the heading content.
- * A hash of the text is used to determine the color so that it is both
- * pseudo-random and deterministic.
- *
- * @param text - the text to hash
- * @returns - the accent color
- */
-function getAccentColor(text: string): string {
-  const accentColors = Object.entries(COLORS).map(([, v]) => v[1])
-  return accentColors[getHash(text, accentColors.length)] ?? '#f5e0dc' // rosewater
-}
-
-/**
  * Create an image response with the given content.
  *
  * @param content - the content to render into the image
@@ -67,93 +42,56 @@ function getAccentColor(text: string): string {
 export function getOgImage(content: {
   title: string
   description: string
-  left?: Element
-  right?: Element
+  left?: string
+  right?: string
   icon?: string
 }): ImageResponse {
-  const element = {
-    type: 'div',
-    props: {
-      tw: 'w-full h-full flex',
-      style: {
-        backgroundImage: 'linear-gradient(to bottom, #1e1e2e, #181825)',
-        color: '#cdd6f4',
-        backgroundSize: '1200px 600px',
-        fontFamily: 'Inter',
-      },
-      children: {
-        type: 'div',
-        props: {
-          tw: 'h-full w-full flex flex-col justify-between p-16',
-          children: [
-            {
-              type: 'div',
-              props: {
-                tw: 'mb-10 flex justify-between text-4xl',
-                style: { color: '#7f849c' },
-                children: [
-                  {
-                    type: 'div',
-                    props: {
-                      tw: 'flex items-center',
-                      children: [
-                        {
-                          type: 'div',
-                          props: {
-                            tw: 'font-bold',
-                            children: site.title,
-                          },
-                        },
-                        content.left && '/',
-                        content.left,
-                      ],
-                    },
-                  },
-                  content.right,
-                ],
-              },
-            },
-            {
-              type: 'div',
-              props: {
-                tw: 'flex-grow flex flex-col',
-                children: [
-                  {
-                    type: 'div',
-                    props: {
-                      tw: 'mb-6 flex font-bold text-8xl',
-                      style: {
-                        color: getAccentColor(content.title),
-                      },
-                      children: [
-                        content.icon && {
-                          type: 'svg',
-                          props: {
-                            viewBox: '0 0 24 24',
-                            tw: 'h-20 w-20 mr-4',
-                            fill: 'currentColor',
-                            children: getPaths(getBody(content.icon) ?? ''),
-                          },
-                        },
-                        content.title,
-                      ],
-                    },
-                  },
-                  {
-                    type: 'div',
-                    props: {
-                      tw: 'text-4xl leading-normal',
-                      children: markupToText(content.description),
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    },
-  }
+  const left = content.left ?? ''
+  const right = content.right ?? ''
+  const icon = content.icon ?? ''
+
+  const markup = `
+    <div
+      class="flex h-full w-full flex-col justify-between p-16"
+      style="background-image: linear-gradient(to bottom, #1e1e2e, #181825); background-size: 1200px 600px; color: #cdd6f4; font-family: Inter;">
+      <!-- Header -->
+      <div
+        class="mb-10 flex justify-between text-4xl"
+        style="color: #7f849c;">
+        <div class="flex items-center">
+          <div class="font-bold">${site.title}</div>
+          ${left && '/'}${left}
+        </div>
+        ${right}
+      </div>
+      <!-- Main -->
+      <div class="flex flex-grow flex-col">
+        <!-- Title -->
+        <div
+          class="mb-6 flex items-center text-8xl font-bold"
+          style="color: #eba0ac;">
+          ${
+            icon &&
+            `
+                <svg
+                  viewBox="0 0 24 24"
+                  class="mr-4 h-20 w-20"
+                  fill="currentColor">
+                  ${getBody(icon)}
+                </svg>
+              `
+          }
+          ${content.title}
+        </div>
+        <!-- Description -->
+        <div class="text-4xl leading-normal">
+          ${markupToText(content.description)}
+        </div>
+      </div>
+    </div>
+  `
+  const element = html(markup)
+
   const config = {
     width: 1200,
     height: 600,

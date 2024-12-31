@@ -20,29 +20,13 @@ export async function getStaticPaths() {
 export const GET: APIRoute<Props> = async function ({ props: { post } }) {
   return getOgImage({
     left: 'Writings',
-    right: {
-      type: 'div',
-      props: {
-        tw: 'flex',
-        children: [
-          {
-            type: 'div',
-            props: {
-              tw: 'mr-3',
-              children: 'First published',
-            },
-          },
-          {
-            type: 'div',
-            props: {
-              tw: 'font-mono',
-              children: dateDisplay(getRcvDate(post.data.pubDate), false),
-            },
-          },
-        ],
-      },
-    },
-    title: post.data.title ?? 'Untitled',
+    right: `
+      <div class="flex">
+        <div class="mr-3">First published</div>
+        <div class="font-mono">${dateDisplay(getRcvDate(post.data.pubDate), false)}</div>
+      </div>
+    `,
+    title: post.data.title,
     description: post.data.description,
   })
 }

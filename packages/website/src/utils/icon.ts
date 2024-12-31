@@ -58,27 +58,3 @@ export function getBody(name: string, source: Source = 'simple_icons') {
 
   return undefined
 }
-
-/**
- * Get a list of paths from the given SVG body as objects, where each
- * attribute-value pair becomes a key-value pair in the `props` field.
- *
- * The output format is compatible with the OG image generation pipeline.
- *
- * @param body - the SVG body
- * @returns the path objects
- */
-export function getPaths(body: string) {
-  const paths = body.match(/<path[^>]*>/g) ?? []
-  return paths.map((path) => {
-    const attributes = path.match(/(\w+)="([^"]*)"/g) ?? []
-    const props = Object.fromEntries(
-      attributes.map((attr) => {
-        const [key, value] = attr.split('=', 2)
-        if (!key || !value) return []
-        return [key, value.slice(1, -1)]
-      })
-    )
-    return { type: 'path', props }
-  })
-}
