@@ -85,12 +85,6 @@ function isCurr(row: Row) {
                       />
                     )}
                   </Fragment>
-                ) : key === 'title' ? (
-                  row.url ? (
-                    <Link url={row.url}>{value}</Link>
-                  ) : (
-                    value
-                  )
                 ) : key === 'post' ? (
                   <Fragment>
                     {row.url ? (
@@ -118,9 +112,7 @@ function isCurr(row: Row) {
                   </Fragment>
                 ) : key === 'period' ? (
                   <TimePeriod {...value} />
-                ) : key === 'published' ||
-                  key === 'updated' ||
-                  key === 'issued' ? (
+                ) : key === 'published' || key === 'issued' ? (
                   <DateComponent date={value} />
                 ) : (
                   value

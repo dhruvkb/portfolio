@@ -4,12 +4,10 @@ import type { Period, Tech, Url, Date as RcvDate } from 'recivi'
 
 import type { Epic, Org, Institute } from '@/models/recivi'
 import { roleTypeDisplay, certDisplay } from '@/utils/recivi'
-import { getModDate } from '@/utils/mod_date'
 import { certs, projects, roles } from '@/stores/recivi'
 
 interface PostData {
   published: Date
-  updated: Date
   post: CollectionEntry<'posts'>
 }
 
@@ -61,7 +59,6 @@ export type ColumnSpec = {
 
 export const postColumns: ColumnSpec[] = [
   { type: 'post', id: 'published' },
-  { type: 'post', id: 'updated' },
   { type: 'post', id: 'post', name: 'post & tags', isExpanding: true },
 ]
 
@@ -101,7 +98,6 @@ export function getPostsData(posts: CollectionEntry<'posts'>[]) {
       type: 'post',
       data: {
         published: post.data.pubDate,
-        updated: getModDate(post.slug),
         post,
       },
       isLastSibling: year !== posts[idx + 1]?.data.pubDate.getFullYear(),
