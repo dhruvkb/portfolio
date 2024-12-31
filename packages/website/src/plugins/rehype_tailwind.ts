@@ -31,11 +31,11 @@ const TAG_UTIL_MAP = {
     h2: tw`hdiv my-4 text-red`,
   } as Record<string, string>,
   post: {
-    h2: tw`mb-4 text-2xl`,
-    h3: tw`mb-4 text-xl`,
-    h4: tw`mb-4 text-lg`,
-    h5: tw`mb-4 text-base`,
-    h6: tw`mb-4 text-sm`,
+    h2: tw`mb-4 text-2xl font-bold`,
+    h3: tw`mb-4 text-xl font-bold`,
+    h4: tw`mb-4 text-lg font-bold`,
+    h5: tw`mb-4 text-base font-bold`,
+    h6: tw`mb-4 text-sm font-bold`,
   } as Record<string, string>,
 }
 
