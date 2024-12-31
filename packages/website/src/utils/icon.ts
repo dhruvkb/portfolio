@@ -3,6 +3,7 @@ import { icons as lIcons } from '@iconify-json/lucide'
 
 import _2fac from '@/assets/icons/2fac.svg?raw'
 import browserstack from '@/assets/icons/browserstack.svg?raw'
+import finrep from '@/assets/icons/finrep.svg?raw'
 import img from '@/assets/icons/img.svg?raw'
 import mathesar from '@/assets/icons/mathesar.svg?raw'
 import pls from '@/assets/icons/pls.svg?raw'
@@ -10,10 +11,12 @@ import portfolio from '@/assets/icons/portfolio.svg?raw'
 import recivi from '@/assets/icons/recivi.svg?raw'
 import skyscraper from '@/assets/icons/skyscraper.svg?raw'
 import starlight from '@/assets/icons/starlight.svg?raw'
+import yojak from '@/assets/icons/yojak.svg?raw'
 
 const knownIcons = {
   '2fac': _2fac,
   browserstack,
+  finrep,
   img,
   mathesar,
   pls,
@@ -21,6 +24,7 @@ const knownIcons = {
   recivi,
   skyscraper,
   starlight,
+  yojak,
 } as Record<string, string>
 
 // These are generally epics that don't have their own icon and just use the
