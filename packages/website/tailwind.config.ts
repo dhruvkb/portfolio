@@ -101,8 +101,8 @@ export default {
   plugins: [
     // variants for targeting task lists in GFM
     plugin(function ({ addVariant }) {
-      addVariant('gfm-done', '&:has(input[checked="true"])')
-      addVariant('gfm-todo', '&:has(input:not([checked="true"]))')
+      addVariant('gfm-done', '&:has(input[checked])')
+      addVariant('gfm-todo', '&:has(input:not([checked]))')
       addVariant('pdf', ':where(.pdf &)')
     }),
     tailwindcssSafeArea,
