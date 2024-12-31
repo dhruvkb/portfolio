@@ -12,3 +12,9 @@
     @apply -mx-4 my-4 flex items-center gap-2 font-medium before:h-px before:w-2 before:bg-surface1 after:h-px after:flex-grow after:bg-surface1;
   }
 }
+
+@layer utilities {
+  .clip-0 {
+    clip-path: inset(0);
+  }
+}

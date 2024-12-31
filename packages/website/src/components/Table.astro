@@ -51,6 +51,12 @@ function isCurr(row: Row) {
   <tbody>
     {
       data.map((row, idx) => (
+        /*
+        In the `tr` element, We use `clip-0` and `translate-x-0` because the
+        current row indicator breaks on WebKit. Additionally, we use `::after`
+        instead of `::before` because before breaks the table layout by using up
+        a cell.
+        */
         <tr
           x-data={JSON.stringify({
             groupId: row.groupId ?? idx,
@@ -58,9 +64,11 @@ function isCurr(row: Row) {
           })}
           x-show="!activeCategories.length || activeCategories.some(item => categories.includes(item))"
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
-          class="relative transition after:absolute after:inset-y-0 after:start-0 after:bg-red hover:bg-surface0 [&[data-is-curr]]:bg-surface0 [&[data-is-curr]]:after:w-1"
-          class:list={[{ 'border-b': row.isLastSibling }]}
-          data-is-curr={isCurr(row)}
+          class="clip-0 translate-x-0 transition after:absolute after:inset-y-0 after:start-0 after:bg-red hover:bg-surface0"
+          class:list={{
+            'border-b': row.isLastSibling,
+            'bg-surface0 after:w-1': isCurr(row),
+          }}
           @mouseenter="activeGroup = groupId"
           @mouseleave="activeGroup = ''">
           {Object.entries(row.data)
