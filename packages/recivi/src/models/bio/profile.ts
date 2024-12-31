@@ -35,7 +35,7 @@ type Identity = UsernameIdentity | UrlIdentity | CompleteIdentity
  *       "id": "bluesky",
  *       "name": "Bluesky",
  *     },
- *     "username": "dhruvkb.bsky.social",
+ *     "username": "dhruvkb.dev",
  *   }
  * @example
  *   {
