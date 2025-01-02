@@ -4,7 +4,6 @@ import { site } from '@/stores/site'
 export interface RawMetadata {
   title: string
   description: string
-  path: string
   banRobots?: boolean
 }
 
