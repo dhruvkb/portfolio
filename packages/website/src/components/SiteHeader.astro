@@ -46,7 +46,7 @@ function getIsExactMatch(url: string): boolean {
     <!-- Class `inline-block` prevents underline from `Link`. -->
     <span
       class="inline-block font-bold hover:underline hover:decoration-wavy"
-      class:list={[{ 'text-red underline decoration-red': isHome }]}>
+      class:list={[{ 'text-peach underline decoration-peach': isHome }]}>
       {site.title}
     </span>
   </Link>
@@ -60,9 +60,9 @@ function getIsExactMatch(url: string): boolean {
               <span
                 class="inline-block"
                 class:list={[
-                  { 'text-red underline': getIsMatch(link.url) },
+                  { 'text-peach underline': getIsMatch(link.url) },
                   getIsExactMatch(link.url)
-                    ? ['decoration-red', 'visited:decoration-red']
+                    ? ['decoration-peach', 'visited:decoration-peach']
                     : [
                         'no-underline',
                         'hover:underline',

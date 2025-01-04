@@ -64,7 +64,7 @@ function isCurr(row: Row) {
           })}
           x-show="!activeCategories.length || activeCategories.some(item => categories.includes(item))"
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
-          class="clip-0 translate-x-0 transition after:absolute after:inset-y-0 after:start-0 after:bg-red hover:bg-surface0"
+          class="clip-0 translate-x-0 transition after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
           class:list={{
             'border-b': row.isLastSibling,
             'bg-surface0 after:w-1': isCurr(row),
@@ -103,7 +103,7 @@ function isCurr(row: Row) {
                     {/* prettier-ignore */}
                     <ul class="text-subtle">
                       {value.data.categories.map((category: string) => (
-                        <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-red': $store.writings.activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">{category}</li>
+                        <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-peach': $store.writings.activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">{category}</li>
                       ))}
                     </ul>
                   </Fragment>

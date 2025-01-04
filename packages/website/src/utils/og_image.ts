@@ -69,7 +69,7 @@ export function getOgImage(content: {
         <!-- Title -->
         <div
           class="mb-6 flex items-center text-8xl font-bold"
-          style="color: #eba0ac;">
+          style="color: #fab387;">
           ${
             icon &&
             `

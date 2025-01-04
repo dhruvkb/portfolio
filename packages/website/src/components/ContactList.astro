@@ -33,11 +33,13 @@ const items = [
     items.map((item) => (
       <li>
         <div class="flex items-center gap-2">
-          <Icon
-            source={item.icon.source}
-            name={item.icon.name}
-            title={item.name}
-          />
+          <span class="text-peach">
+            <Icon
+              source={item.icon.source}
+              name={item.icon.name}
+              title={item.name}
+            />
+          </span>
           <span class="sr-only">{item.name}</span>
           {item.url ? (
             <Link

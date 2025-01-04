@@ -17,18 +17,18 @@ import { tw } from '../utils/tailwind'
 
 const TAG_UTIL_MAP = {
   common: {
-    blockquote: tw`border-l-2 border-l-red pl-2`,
+    blockquote: tw`border-l-2 border-l-peach pl-2`,
     code: tw`px-1 py-0.5 not-italic [:not(pre)>&]:border [:not(pre)>&]:bg-surface0`,
     hr: tw`my-4 flex h-fit items-center justify-center border-none text-subtle after:content-["*\\a0\\a0*\\a0\\a0*"]`,
-    kbd: tw`rounded border border-b-2 border-b-red bg-surface0 px-1 pb-0.5 pt-1`,
-    li: tw`marker:text-red gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
+    kbd: tw`rounded border border-b-2 border-b-peach bg-surface0 px-1 pb-0.5 pt-1`,
+    li: tw`marker:text-peach gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
     ol: tw`ml-4 list-decimal [:not(li)>&]:my-4 [li>&]:list-lower-roman`,
     pre: tw`my-4 border p-2`,
     table: tw`my-4 border`,
     ul: tw`ml-4 list-disc marker:mr-2 [:not(li)>&]:my-4`,
   } as Record<string, string>,
   page: {
-    h2: tw`hdiv my-4 text-red`,
+    h2: tw`hdiv my-4 text-peach`,
   } as Record<string, string>,
   post: {
     h2: tw`mb-4 text-2xl font-bold`,

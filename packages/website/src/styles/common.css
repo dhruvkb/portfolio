@@ -42,7 +42,7 @@ a[href^='tel:'] {
 }
 
 h1 {
-  @apply mb-2 text-3xl font-bold text-red sm:text-5xl;
+  @apply mb-2 text-3xl font-bold text-peach sm:text-5xl;
 }
 
 p {
