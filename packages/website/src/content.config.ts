@@ -39,7 +39,6 @@ const pages = defineCollection({
     ogImage: z
       .object({
         title: z.string().optional(),
-        color: z.string().optional(),
       })
       .optional(),
   }),
