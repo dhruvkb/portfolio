@@ -1,0 +1,111 @@
+---
+import ResumeLayout from '@/layouts/resume.astro'
+
+import IconName from '@/components/IconName.astro'
+import Meta from '@/components/Meta.astro'
+import TimePeriod from '@/components/TimePeriod.astro'
+
+import type { Org } from '@/models/recivi'
+import { orgs } from '@/stores/recivi'
+import { addressDisplay } from '@/utils/recivi'
+import { roleTypeDisplay, roleLocationDisplay } from '@/utils/recivi'
+
+export async function getStaticPaths() {
+  return orgs.map((org) => ({
+    params: {
+      id: org.id,
+    },
+    props: {
+      org,
+    },
+  }))
+}
+
+interface Props {
+  org: Org
+}
+const { org } = Astro.props
+
+const metadata = {
+  title: `Org: ${org.name}`,
+  description: `Know more about the org ${org.name} and my work there.`,
+  banRobots: true,
+}
+---
+
+<ResumeLayout>
+  <slot
+    name="head"
+    slot="head">
+    <Meta data={metadata} />
+  </slot>
+
+  <div class="cntnr my-4">
+    <h1 class="text-3xl text-peach sm:text-5xl">
+      <IconName {...org} />
+    </h1>
+
+    {
+      org.address && (
+        <p>
+          <span class="text-subtle">Address:</span>
+          {addressDisplay(org.address)}
+        </p>
+      )
+    }
+    <p set:html={org.description ?? org.summary} />
+
+    {
+      org.roles.map((role) => (
+        <div>
+          <h2 class="hhr text-peach">
+            {role.name} ({roleTypeDisplay(role.type)})
+          </h2>
+
+          <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
+            {role.period && (
+              <Fragment>
+                <dt class="text-subtle">Period:</dt>
+                <dd>
+                  <TimePeriod {...role.period} />
+                </dd>
+              </Fragment>
+            )}
+            {role.location && (
+              <Fragment>
+                <dt class="text-subtle">Location:</dt>
+                <dd>{roleLocationDisplay(role.location)}</dd>
+              </Fragment>
+            )}
+            {role.epics.length ? (
+              <Fragment>
+                <dt class="text-subtle">Epics:</dt>
+                <dd>
+                  {role.epics.map((epic) => (
+                    <IconName
+                      {...epic}
+                      url={`/resume/epics/${epic.id}`}
+                    />
+                  ))}
+                </dd>
+              </Fragment>
+            ) : undefined}
+          </dl>
+
+          {role.summary && <p set:html={role.summary} />}
+
+          {role.highlights?.length ? (
+            <Fragment>
+              <h3 class="hhrs text-peach">Highlights</h3>
+              <ul class="mb-4 list-disc pl-4 marker:text-peach">
+                {role.highlights?.map((hl) => (
+                  <li set:html={hl} />
+                ))}
+              </ul>
+            </Fragment>
+          ) : undefined}
+        </div>
+      ))
+    }
+  </div>
+</ResumeLayout>

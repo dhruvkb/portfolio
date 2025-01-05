@@ -1,0 +1,96 @@
+---
+import type { Tech } from 'recivi'
+
+import ResumeLayout from '@/layouts/resume.astro'
+
+import IconName from '@/components/IconName.astro'
+import Meta from '@/components/Meta.astro'
+
+import type { Epic } from '@/models/recivi'
+import { epics } from '@/stores/recivi'
+
+export async function getStaticPaths() {
+  return epics.map((epic) => ({
+    params: {
+      id: epic.id,
+    },
+    props: {
+      epic,
+    },
+  }))
+}
+
+interface Props {
+  epic: Epic
+}
+const { epic } = Astro.props
+
+const metadata = {
+  title: `Epic: ${epic.name}`,
+  description: `Know about the epic ${epic.name} and my work on it.`,
+  banRobots: true,
+}
+---
+
+<ResumeLayout>
+  <slot
+    name="head"
+    slot="head">
+    <Meta data={metadata} />
+  </slot>
+
+  <div class="cntnr my-4">
+    <h1 class="text-3xl text-peach sm:text-5xl">
+      <IconName {...epic} />
+    </h1>
+
+    <!-- Org -->
+    {
+      epic.role?.org && (
+        <p>
+          <span class="text-subtle">Org:</span>
+          <IconName
+            {...epic.role.org}
+            url={`/resume/orgs/${epic.role.org.id}`}
+          />
+        </p>
+      )
+    }
+
+    <p set:html={epic.summary} />
+
+    {
+      epic.projects.map((project) => (
+        <div>
+          <h2 class="hhr text-peach">{project.name}</h2>
+
+          {project.summary && <p set:html={project.summary} />}
+
+          {project.highlights?.length ? (
+            <Fragment>
+              <h3 class="hhrs text-peach">Highlights</h3>
+              <ul class="list-disc pl-4 marker:text-peach">
+                {project.highlights?.map((hl) => (
+                  <li set:html={hl} />
+                ))}
+              </ul>
+            </Fragment>
+          ) : undefined}
+
+          {project.technologies?.length && (
+            <Fragment>
+              <h3 class="hhrs text-peach">Technologies</h3>
+              <ul class="list-disc columns-2 pl-4 marker:text-peach">
+                {project.technologies?.map((item: Tech) => (
+                  <li>
+                    <IconName {...item} />
+                  </li>
+                ))}
+              </ul>
+            </Fragment>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</ResumeLayout>

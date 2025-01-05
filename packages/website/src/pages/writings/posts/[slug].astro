@@ -1,0 +1,113 @@
+---
+import { render, type CollectionEntry } from 'astro:content'
+
+import WritingsLayout from '@/layouts/writings.astro'
+
+import Meta from '@/components/Meta.astro'
+import Link from '@/components/Link.astro'
+import DateComponent from '@/components/Date.astro'
+import Table from '@/components/Table.astro'
+import TocNode from '@/components/TocNode.astro'
+
+import { getPosts } from '@/utils/collections'
+import { getModDate } from '@/utils/mod_date'
+import { buildTree } from '@/utils/toc_tree'
+import { postColumns, getPostsData } from '@/models/table'
+
+export async function getStaticPaths() {
+  const posts = await getPosts()
+  return posts.map((post) => ({
+    params: {
+      slug: post.id.substring(5),
+    },
+    props: {
+      post,
+    },
+  }))
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>
+}
+const { post } = Astro.props
+
+const { Content, headings } = await render(post)
+const rootHeading = buildTree(headings)
+const modDate = getModDate(post.id)
+
+const allPosts = await getPosts()
+
+const seriesPosts = allPosts.filter(
+  (item) => item.data.series === post.data.series
+)
+const seriesPostsData = getPostsData(seriesPosts)
+
+const metadata = {
+  title: `Post: ${post.data.title}`,
+  description: post.data.description,
+}
+---
+
+<WritingsLayout>
+  <slot
+    name="head"
+    slot="head">
+    <Meta data={metadata} />
+  </slot>
+
+  <div class="cntnr my-4">
+    <h1 class="text-3xl text-peach sm:text-5xl">{post.data.title}</h1>
+
+    <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
+      <dt class="text-subtle">Tags:</dt>
+      <dd>
+        <ul class="inline">
+          {
+            post.data.categories.map((category: string) => (
+              <li class="inline-block after:mr-1 after:text-subtle after:content-['·'] last:after:content-none">
+                {category}
+              </li>
+            ))
+          }
+        </ul>
+      </dd>
+      <dt class="text-subtle">First published:</dt>
+      <dd><DateComponent date={post.data.pubDate} /></dd>
+      <dt class="text-subtle">Last updated:</dt>
+      <dd><DateComponent date={modDate} /></dd>
+    </dl>
+
+    <TocNode heading={rootHeading} />
+
+    <hr class="-mx-4 my-4" />
+
+    <article>
+      <Content />
+    </article>
+
+    <h2 class="hhr text-peach">Responses</h2>
+    <p>
+      If you have thoughts or feelings about this post, send them my way via
+      your preferred <Link url="/">communication channel</Link>. Webmention
+      support will be added soon.
+    </p>
+  </div>
+
+  {
+    post.data.series && (
+      <Fragment>
+        <div class="cntnr">
+          <h2 class="hhr text-peach">Series: '{post.data.series}'</h2>
+          <p>
+            This post is part of the '{post.data.series}' series. If you liked
+            it, you might also like these other posts in the series.
+          </p>
+        </div>
+        <Table
+          columns={postColumns}
+          data={seriesPostsData}
+        />
+      </Fragment>
+    )
+  }
+</WritingsLayout>
