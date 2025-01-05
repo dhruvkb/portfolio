@@ -1,8 +1,12 @@
 /**
- * Apply Tailwind utilities to the HTML generated from Markdown/MDX content.
+ * The site contains three types of content.
  *
- * This is useful for applying styles solely to generated HTML and not to Astro
- * components.
+ * - Astro components
+ * - MDX pages
+ * - MDX posts
+ *
+ * Styles which must apply only to MDX posts and pages, but not to Astro
+ * components, go here.
  */
 
 import type { VFile } from 'vfile'
@@ -18,24 +22,25 @@ import { tw } from '../utils/tailwind'
 const TAG_UTIL_MAP = {
   common: {
     blockquote: tw`border-l-2 border-l-peach pl-2`,
-    code: tw`px-1 py-0.5 not-italic [:not(pre)>&]:border [:not(pre)>&]:bg-surface0`,
-    hr: tw`my-4 flex h-fit items-center justify-center border-none text-subtle after:content-["*\\a0\\a0*\\a0\\a0*"]`,
+    hr: tw`my-4 flex h-fit items-center justify-center border-none text-subtle after:content-["*_*_*"]`,
     kbd: tw`rounded border border-b-2 border-b-peach bg-surface0 px-1 pb-0.5 pt-1`,
     li: tw`marker:text-peach gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0`,
     ol: tw`ml-4 list-decimal [:not(li)>&]:my-4 [li>&]:list-lower-roman`,
-    pre: tw`my-4 border p-2`,
-    table: tw`my-4 border`,
+    pre: tw`my-4 border p-2 [&>code>span.line:empty]:hidden`,
     ul: tw`ml-4 list-disc marker:mr-2 [:not(li)>&]:my-4`,
   } as Record<string, string>,
   page: {
-    h2: tw`hdiv my-4 text-peach`,
+    h1: tw`text-3xl text-peach sm:text-5xl`,
+    h2: tw`hhr text-peach`,
+    h3: tw`hhrs text-peach`,
   } as Record<string, string>,
   post: {
-    h2: tw`mb-4 text-2xl font-bold`,
-    h3: tw`mb-4 text-xl font-bold`,
-    h4: tw`mb-4 text-lg font-bold`,
-    h5: tw`mb-4 text-base font-bold`,
-    h6: tw`mb-4 text-sm font-bold`,
+    h2: tw`text-2xl`,
+    h3: tw`text-xl`,
+    h4: tw`text-lg`,
+    h5: tw`text-base`,
+    h6: tw`text-sm`,
+    table: tw`border`,
   } as Record<string, string>,
 }
 
@@ -93,9 +98,9 @@ function styleElem(type: SourceType, elem: Element) {
     return
   }
 
-  const existingClasses = elem.properties.className
   const className = [
-    existingClasses,
+    elem.properties.className,
+    elem.properties.class,
     TAG_UTIL_MAP[type]?.[elem.tagName],
     TAG_UTIL_MAP.common[elem.tagName],
   ]
