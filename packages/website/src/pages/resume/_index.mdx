@@ -1,0 +1,26 @@
+---
+slug: resume
+
+title: Résumé
+description: Peruse my résumé, encompassing my time developing software both as a hobbyist and full-time for many years.
+index: 2
+---
+
+import Link from '@/components/Link.astro'
+
+import { githubUrl } from '@/stores/recivi'
+
+# Résumé
+
+{/* Spans `#hobby-percent` and `#job-percent` are filled by JS. */}
+
+I've developed software as a hobbyist for
+<span class="border-dashed"id="hobby-percent">almost all</span> of my life, and
+for <span class="border-dashed"id="job-percent">a good fraction</span> of that,
+it's also been my full-time job. It's a privilege to be able to make a living
+doing what I love.
+
+All the code I write outside of work, and most of what I write at work, is
+free/_libre_, free/_gratis_ and open-source software. {
+	githubUrl && <Fragment>You can find all of it on my <Link url={githubUrl}>GitHub profile</Link>.</Fragment>
+}
