@@ -1,0 +1,110 @@
+---
+/**
+ * layout for writings index and post pages
+ *
+ * root
+ * └─ main
+ *    └─ writings (this)
+ *
+ * Provides two slots:
+ * - `head` for adding metadata to the page header
+ * - default slot for the right pane content
+ */
+
+import { getEntry } from 'astro:content'
+
+import ScreenLayout from '@/layouts/screen.astro'
+
+import Meta from '@/components/Meta.astro'
+import Table from '@/components/Table.astro'
+
+import { Content as WritingsIndex } from '@/pages/writings/_index.mdx'
+
+import { getPosts, getCategories } from '@/utils/collections'
+import { postColumns, getPostsData } from '@/models/table'
+
+// Forward all props to the parent layout `MainLayout`.
+const attrs = Astro.props
+
+const id = 'writings'
+const metadata = (await getEntry('pages', id))?.data
+
+const hasContent = Astro.slots.has('default')
+
+const posts = await getPosts()
+const postsData = getPostsData(posts)
+
+const categories = await getCategories()
+---
+
+<ScreenLayout {...attrs}>
+  <slot
+    name="head"
+    slot="head">
+    <!--
+    We render the writings index metadata by default.
+    Subpages can override this using the `head` slot.
+    -->
+    {metadata && <Meta data={metadata} />}
+  </slot>
+
+  <!-- content for the left pane -->
+  <main class="my-4 flex-grow">
+    <div class="cntnr">
+      <WritingsIndex />
+    </div>
+
+    <!-- Only shown when JS is enabled, so it will be revealed by JS. -->
+    <div
+      id="all-tags"
+      class="cntnr hidden">
+      <h2 class="hhr text-peach">Tags</h2>
+      <p>
+        Click on a category to only show posts in that particular category.
+        Click on a selected category to deselect it.
+      </p>
+
+      {
+        categories.length && (
+          <fieldset>
+            <legend class="sr-only">Tags</legend>
+            {categories.map((category) => (
+              <label
+                x-data={`{ category: '${category}' }`}
+                x-bind:class="{'border-peach': activeCategories.includes(category) }"
+                class="my-1 mr-1 inline-block rounded border px-1 py-0.5 hover:bg-surface0">
+                <input
+                  class="hidden"
+                  type="checkbox"
+                  x-model="activeCategories"
+                  id={category}
+                  name="category"
+                  value={category}
+                />
+                {category}
+              </label>
+            ))}
+          </fieldset>
+        )
+      }
+    </div>
+
+    <div class="cntnr">
+      <h2 class="hhr text-peach">Posts</h2>
+    </div>
+    <div id="all-posts">
+      <Table
+        columns={postColumns}
+        data={postsData}
+      />
+    </div>
+  </main>
+
+  <!-- content for the right pane -->
+  <slot slot={hasContent ? 'secondary' : undefined}>Hello</slot>
+</ScreenLayout>
+
+<script>
+  // Only show the tag filtering buttons when JS is enabled.
+  document.querySelector('#all-tags')?.classList.remove('hidden')
+</script>

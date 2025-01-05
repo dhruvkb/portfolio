@@ -1,0 +1,84 @@
+---
+/**
+ * base layout for pages meant for the screen
+ *
+ * root
+ * └─ main (this)
+ *
+ * This layout adds the site header and footer and can render content in two
+ * panes, which are intelligently rendered based on the screen width.
+ *
+ * If only primary content is provided, as is the case for most regular pages,
+ * it will be rendered in the left/singular column.
+ *
+ * If secondary content is also provided, it will be rendered in the right
+ * column on larger screens and in the left/singular column on smaller screens.
+ *
+ * It also applies the custom styles for the site.
+ *
+ * Provides three slots:
+ * - `head` for adding metadata to the page header
+ * - `secondary` for content in the right pane
+ * - default slot for the main content
+ */
+
+import RootLayout from '@/layouts/root.astro'
+
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+
+import '@/styles/screen.css'
+
+// Forward all props to the parent layout `RootLayout`.
+const attrs = Astro.props
+
+const hasSecondaryContent = Astro.slots.has('secondary')
+---
+
+<RootLayout
+  {...attrs}
+  rootClasses={['text-sm', 'leading-normal']}
+  bodyClasses={{ 'xl:h-full': hasSecondaryContent }}>
+  <slot
+    slot="head"
+    name="head"
+  />
+
+  <div
+    x-data="{ activeCategories: [] }"
+    class="grid grid-cols-1"
+    class:list={{
+      'xl:h-full xl:grid-cols-[640px,_1fr]': hasSecondaryContent,
+    }}>
+    <!--
+    left column;
+    This column is hidden on small widths when there is a right column.
+    -->
+    <div
+      class="flex flex-col overflow-y-auto"
+      class:list={{ 'hidden xl:flex': hasSecondaryContent }}>
+      <SiteHeader />
+
+      <main class="flex-grow">
+        <slot />
+      </main>
+
+      <SiteFooter />
+    </div>
+
+    <!-- right column -->
+    {
+      hasSecondaryContent && (
+        <div class="flex flex-col overflow-y-auto">
+          <SiteHeader classes="xl:hidden" />
+
+          <aside class="flex-grow overflow-y-auto xl:border-s">
+            <slot name="secondary" />
+          </aside>
+
+          <SiteFooter classes="xl:hidden" />
+        </div>
+      )
+    }
+  </div>
+</RootLayout>

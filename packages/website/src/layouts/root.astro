@@ -1,0 +1,94 @@
+---
+/**
+ * ultimate base layout
+ *
+ * Code written here will be available in every page of the site. The goal of
+ * this layout is to define global head tags such as meta and link tags.
+ *
+ * Provides two slots:
+ * - `head` for adding metadata to the page header
+ * - default slot for the main content
+ */
+
+import type { ClassList } from '@/types/class_list'
+
+import '@/styles/colors.css'
+
+interface Props {
+  rootClasses?: ClassList
+  bodyClasses?: ClassList
+}
+const { rootClasses = [], bodyClasses = [] } = Astro.props
+---
+
+<html
+  lang="en"
+  class="h-full bg-default text-default"
+  class:list={rootClasses}>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, viewport-fit=cover"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://rsms.me/"
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://rsms.me/inter/inter.css"
+    />
+
+    <meta
+      name="theme-color"
+      content="#1e1e2e"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#eff1f5"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <link
+      rel="manifest"
+      href="/site.webmanifest"
+    />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+      sizes="64x64"
+    />
+    <link
+      rel="icon"
+      href="/icon.svg"
+      type="image/svg+xml"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/icon-512.png"
+    />
+
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+
+    <slot name="head" />
+  </head>
+
+  <body class:list={bodyClasses}>
+    <slot />
+  </body>
+
+  <script
+    is:inline
+    data-goatcounter="https://dhruvkb.goatcounter.com/count"
+    async
+    src="https://gc.zgo.at/count.js"
+  ></script>
+</html>

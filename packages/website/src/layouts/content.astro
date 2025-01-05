@@ -1,0 +1,39 @@
+---
+/**
+ * layout for all pages (except résumé and writings)
+ *
+ * root
+ * └─ main
+ *    └─ content (this)
+ *
+ * All pages use this layout, except résumé and writings that extend the parent
+ * main layout separately due to their unique needs.
+ *
+ * Provides two slots:
+ * - `head` for adding metadata to the page header
+ * - default slot for the main content
+ */
+
+import type { CollectionEntry } from 'astro:content'
+
+import ScreenLayout from '@/layouts/screen.astro'
+
+import Meta from '@/components/Meta.astro'
+
+interface Props {
+  frontmatter: CollectionEntry<'pages'>['data'] & { file: string; url: string }
+}
+const { frontmatter, ...attrs } = Astro.props
+---
+
+<ScreenLayout {...attrs}>
+  <slot
+    slot="head"
+    name="head">
+    <Meta data={frontmatter} />
+  </slot>
+
+  <div class="cntnr my-4">
+    <slot />
+  </div>
+</ScreenLayout>

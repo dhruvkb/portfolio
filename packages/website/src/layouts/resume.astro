@@ -1,0 +1,151 @@
+---
+/**
+ * layout for résumé index and org/epic pages
+ *
+ * root
+ * └─ main
+ *    └─ resume (this)
+ *
+ * Provides two slots:
+ * - `head` for adding metadata to the page header
+ * - default slot for the right pane content
+ */
+
+import { getEntry } from 'astro:content'
+
+import ScreenLayout from '@/layouts/screen.astro'
+
+import EpicCard from '@/components/EpicCard.astro'
+import InstituteCard from '@/components/InstituteCard.astro'
+import Meta from '@/components/Meta.astro'
+import OrgCard from '@/components/OrgCard.astro'
+import Table from '@/components/Table.astro'
+
+import { Content as ResumeIndex } from '@/pages/resume/_index.mdx'
+
+import {
+  roleColumns,
+  projectColumns,
+  roleData,
+  projectData,
+  certColumns,
+  certData,
+} from '@/models/table'
+import { institutes, epics, orgs, recivi } from '@/stores/recivi'
+import { skillDisplay } from '@/utils/recivi'
+
+// Forward all props to the parent layout `MainLayout`.
+const attrs = Astro.props
+
+const id = 'resume'
+const metadata = (await getEntry('pages', id))?.data
+
+const hasContent = Astro.slots.has('default')
+---
+
+<ScreenLayout {...attrs}>
+  <slot
+    name="head"
+    slot="head">
+    <!--
+    We render the résumé index metadata by default.
+    Subpages can override this using the `head` slot.
+    -->
+    {metadata && <Meta data={metadata} />}
+  </slot>
+
+  <!-- content for the left pane -->
+  <main class="my-4 flex-grow">
+    <div class="cntnr">
+      <ResumeIndex />
+    </div>
+
+    <div class="cntnr">
+      <h2 class="hhr text-peach">Education</h2>
+    </div>
+    <div class="mb-4 w-full max-w-screen-lg">
+      <div class="hidden sm:block">
+        <Table
+          columns={certColumns}
+          data={certData}
+        />
+      </div>
+      <div class="sm:hidden">
+        {institutes.map((institute) => <InstituteCard {institute} />)}
+      </div>
+    </div>
+
+    <div class="cntnr">
+      <h2 class="hhr text-peach">Roles</h2>
+    </div>
+    <div class="mb-4 w-full max-w-screen-lg">
+      <div class="hidden sm:block">
+        <Table
+          columns={roleColumns}
+          data={roleData}
+        />
+      </div>
+      <div class="sm:hidden">
+        {orgs.map((org) => <OrgCard {org} />)}
+      </div>
+    </div>
+
+    <div class="cntnr">
+      <h2 class="hhr text-peach">Projects</h2>
+    </div>
+    <div class="mb-4 w-full max-w-screen-lg">
+      <div class="hidden sm:block">
+        <Table
+          columns={projectColumns}
+          data={projectData}
+        />
+      </div>
+      <div class="sm:hidden">
+        {epics.map((epic) => <EpicCard {epic} />)}
+      </div>
+    </div>
+
+    <div class="cntnr">
+      {
+        recivi.bio.skills?.length ? (
+          <Fragment>
+            <h2 class="hhr text-peach">Skills</h2>
+            <p>Apart from what's listed above, I also possess these skills.</p>
+            <ul class="ml-4 list-disc marker:text-peach sm:columns-2">
+              {recivi.bio.skills?.map((skill) => (
+                <li>{skillDisplay(skill)}</li>
+              ))}
+            </ul>
+          </Fragment>
+        ) : undefined
+      }
+    </div>
+  </main>
+
+  <!-- content for the right pane -->
+  <slot slot={hasContent ? 'secondary' : undefined} />
+</ScreenLayout>
+
+<script>
+  /** Calculate the percentage of life spent producing software. */
+
+  import { site } from '@/stores/site'
+
+  const age = new Date().getFullYear() - site.birthYear
+
+  const hobbyYears = age - site.hobbyAge
+  /** hobby years as a percent of age */
+  const hobbyPercent = Math.ceil((hobbyYears / age) * 100)
+  const prodPercentEl = document.getElementById('hobby-percent')
+  if (prodPercentEl) {
+    prodPercentEl.innerText = `~${hobbyPercent}%`
+  }
+
+  const jobYears = age - site.jobAge
+  /** job years as a percent of hobby years */
+  const jobPercent = Math.ceil((jobYears / hobbyYears) * 100)
+  const jobPercentEl = document.getElementById('job-percent')
+  if (jobPercentEl) {
+    jobPercentEl.innerText = `~${jobPercent}%`
+  }
+</script>
