@@ -17,6 +17,7 @@ import ScreenLayout from '@/layouts/screen.astro'
 
 import Meta from '@/components/Meta.astro'
 import Table from '@/components/Table.astro'
+import Icon from '@/components/Icon.astro'
 
 import { Content as WritingsIndex } from '@/pages/writings/_index.mdx'
 
@@ -58,33 +59,43 @@ const categories = await getCategories()
     <div
       id="all-tags"
       class="cntnr hidden">
-      <h2 class="hhr text-peach">Tags</h2>
-      <p>
-        Click on a category to only show posts in that particular category.
-        Click on a selected category to deselect it.
-      </p>
+      <h2 class="hhr text-peach">Categories</h2>
 
       {
-        categories.length && (
-          <fieldset>
-            <legend class="sr-only">Tags</legend>
-            {categories.map((category) => (
-              <label
-                x-data={`{ category: '${category}' }`}
-                x-bind:class="{'border-peach': activeCategories.includes(category) }"
-                class="my-1 mr-1 inline-block rounded border px-1 py-0.5 hover:bg-surface0">
-                <input
-                  class="hidden"
-                  type="checkbox"
-                  x-model="activeCategories"
-                  id={category}
-                  name="category"
-                  value={category}
-                />
-                {category}
-              </label>
-            ))}
-          </fieldset>
+        categories.length ? (
+          <Fragment>
+            <p>
+              Click on a category to only show posts in that particular
+              category. Click on a selected category to deselect it.
+            </p>
+            <fieldset>
+              <legend class="sr-only">Tags</legend>
+              {categories.map((category) => (
+                <label
+                  x-data={`{ category: '${category}' }`}
+                  x-bind:class="{'border-peach': activeCategories.includes(category) }"
+                  class="my-1 mr-1 inline-block rounded border px-1 py-0.5 hover:bg-surface0">
+                  <input
+                    class="hidden"
+                    type="checkbox"
+                    x-model="activeCategories"
+                    id={category}
+                    name="category"
+                    value={category}
+                  />
+                  {category}
+                </label>
+              ))}
+            </fieldset>
+          </Fragment>
+        ) : (
+          <p class="text-yellow">
+            <Icon
+              source="lucide"
+              name="circle-slash-2"
+            />
+            No categories to show.
+          </p>
         )
       }
     </div>
@@ -93,10 +104,22 @@ const categories = await getCategories()
       <h2 class="hhr text-peach">Posts</h2>
     </div>
     <div id="all-posts">
-      <Table
-        columns={postColumns}
-        data={postsData}
-      />
+      {
+        postsData.length ? (
+          <Table
+            columns={postColumns}
+            data={postsData}
+          />
+        ) : (
+          <p class="cntnr text-yellow">
+            <Icon
+              source="lucide"
+              name="circle-slash-2"
+            />
+            No posts to show.
+          </p>
+        )
+      }
     </div>
   </main>
 
