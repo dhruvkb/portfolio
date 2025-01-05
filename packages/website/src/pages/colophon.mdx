@@ -1,0 +1,85 @@
+---
+layout: '@/layouts/content.astro'
+
+title: Colophon
+description: An introduction to the ideology, design and technology that power this website.
+index: 5
+---
+
+# Colophon
+
+I designed and built this site myself. As with my other projects, this site is
+free/_libre_, free/_gratis_ and open-source software, with the
+[source code](https://github.com/dhruvkb/portfolio) available on GitHub to use
+as you like. Except steal and claim as your own, because that would not be a
+nice thing to do.
+
+Apart from this colophon, you might also find interesting [writing](/writings)
+related to this site under the "portfolio" tag.
+
+## Ideology
+
+This site subscribes to many [IndieWeb](https://indieweb.org) tenets such as
+data and domain ownership, open-source tools and longevity of plain text files.
+I plan on integrating more IndieWeb technologies such as
+[RelMeAuth](https://indieweb.org/RelMeAuth) and
+[Webmention](https://indieweb.org/Webmention) in the future.
+
+## Design
+
+### Colors
+
+The site's color palette comes from [Catppuccin](https://catppuccin.com/),
+specifically the Mocha and Latte variants for the dark and light modes
+respectively. Earlier iterations of the site have used
+[Solarized](https://ethanschoonover.com/solarized/) and
+[Flexoki](https://stephango.com/flexoki), both of which are also excellent color
+palettes.
+
+### Typography
+
+The site uses [Inter](https://rsms.me/inter/) by Rasmus Andersson, as the
+sans-serif typeface. Inter is famously readable at all sizes and weights, for
+both headings and body text. The résume, for a more classical look, uses the
+serif typeface [Spectral](https://productiontype.com/font/spectral) by
+Production Type. Both fonts are open-source and licensed under the SIL Open Font
+License 1.1.
+
+The programming typeface is set to `monospace` for a multitude of reasons:
+- This respects the font choices of the user. Programmers are very particular
+  about their typefaces, and letting them read in their preferred font makes for
+  a good experience.
+- Not having to download a font makes the site faster and more efficient, and
+  avoids the flash of unstyled text.
+
+Unfortunately, users of Safari will probably not have a choice in fonts, so they
+will have to exercise their choice in web browsers.
+
+## Technology
+
+For a developer portfolio, I find it ironic that this is a collection of largely
+static pages.
+
+- The site is built on the concept of progressive enhancement and can be used
+  without both CSS and JavaScript, with little or no degradation in the overall
+  experience.
+- The source code is [TypeScript](https://www.typescriptlang.org),
+  [Astro](https://astro.build) and [Tailwind](https://tailwindcss.com), because
+  JS should be strongly typed, HTML should be broken into components and CSS
+  should be tokenized.
+- Open Graph images (_e.g._ [this one](/og/colophon.png)) are generated with
+  [`@vercel/og`](https://www.npmjs.com/package/@vercel/og). Automation is great
+  for tasks like this that are otherwise impossible to do manually with
+  consistency.
+- [GoatCounter](https://goatcounter.com) provides privacy-friendly metrics
+  without adding too much bloat. Data is only retained for 31 days. You can opt
+  out by disabling JavaScript in your browser.
+- My [interactive résumé](/resume/) and some other parts of the site generated
+  from a JSON file using [Récivi](https://recivi.vercel.app), a personal
+  endeavour to create a new kind of résumé for computers.
+- The only external requests this site makes are to
+  [Rasmus' site](https://rsms.me) for Inter,
+  [Goat Counter](https://goatcounter.com) for analytics and
+  [Google Fonts](https://) for Spectral (only on the résumé PDF page).
+
+{/* TODO: Add link to Récivi JSON file. */}
