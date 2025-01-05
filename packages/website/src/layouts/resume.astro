@@ -131,6 +131,11 @@ const hasContent = Astro.slots.has('default')
 
   import { site } from '@/stores/site'
 
+  function highlightEl(percentEl: HTMLElement) {
+    percentEl.style.borderBottomWidth = '1px'
+    percentEl.style.cursor = 'help'
+  }
+
   const age = new Date().getFullYear() - site.birthYear
 
   const hobbyYears = age - site.hobbyAge
@@ -139,6 +144,8 @@ const hasContent = Astro.slots.has('default')
   const prodPercentEl = document.getElementById('hobby-percent')
   if (prodPercentEl) {
     prodPercentEl.innerText = `~${hobbyPercent}%`
+    prodPercentEl.title = `~${hobbyYears} years`
+    highlightEl(prodPercentEl)
   }
 
   const jobYears = age - site.jobAge
@@ -147,5 +154,7 @@ const hasContent = Astro.slots.has('default')
   const jobPercentEl = document.getElementById('job-percent')
   if (jobPercentEl) {
     jobPercentEl.innerText = `~${jobPercent}%`
+    jobPercentEl.title = `~${jobYears} years`
+    highlightEl(jobPercentEl)
   }
 </script>
