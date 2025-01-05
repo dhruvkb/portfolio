@@ -34,7 +34,7 @@ function isCurr(row: Row) {
 <table
   border="1px"
   class="cntnr px-0 transition"
-  x-data={`{ activeGroup: "" }`}>
+  x-data="{ activeGroup: undefined }">
   <thead class="border-y bg-surface0">
     <tr>
       {
@@ -103,7 +103,9 @@ function isCurr(row: Row) {
                     {/* prettier-ignore */}
                     <ul class="text-subtle">
                       {value.data.categories.map((category: string) => (
-                        <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-peach': $store.writings.activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">{category}</li>
+                        <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-peach': activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">
+                          {category}
+                        </li>
                       ))}
                     </ul>
                   </Fragment>
