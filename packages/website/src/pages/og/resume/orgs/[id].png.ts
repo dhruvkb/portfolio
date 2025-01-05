@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute<Props> = async function ({ props: { org } }) {
-  const description = `Know about my time at ${org.name}. ${
+  const description = `Know about my work at ${org.name}. ${
     org.description ?? org.summary
   }`
   return getOgImage({
