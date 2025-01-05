@@ -80,9 +80,9 @@ function isCurr(row: Row) {
             )
             .map(([key, value], idx) => (
               <td
-                class:list={[
-                  { 'w-px whitespace-nowrap': !columns[idx]?.isExpanding },
-                ]}>
+                class:list={{
+                  'w-px whitespace-nowrap': !columns[idx]?.isExpanding,
+                }}>
                 {key === 'epic' || key === 'org' || key === 'institute' ? (
                   <Fragment>
                     {value && (
