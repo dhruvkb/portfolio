@@ -28,12 +28,12 @@ const items = [
 ].flat()
 ---
 
-<ul class="columns-2">
+<ul class="columns-2 pdf:flex pdf:justify-between">
   {
     items.map((item) => (
       <li>
         <div class="flex items-center gap-2">
-          <span class="text-peach">
+          <span class="text-peach pdf:text-default">
             <Icon
               source={item.icon.source}
               name={item.icon.name}
