@@ -13,23 +13,22 @@ import FunFact from '@/components/FunFact.astro'
 import Kaomoji from '@/components/Kaomoji.astro'
 
 import { recivi } from '@/stores/recivi'
-import { addressDisplay } from '@/utils/recivi'
+import { addressDisplay, labelsDisplay } from '@/utils/recivi'
 
 export const { origin, residence, labels } = recivi.bio
-export const labelText = labels
-  ?.map(
-    (label, idx) =>
-      `${idx === 0 ? 'a ' : idx === labels.length - 1 ? ' and ' : ', '}${label}`
-  )
-  .join('')
 
 <h1 className="sr-only">About</h1>
 <Kaomoji />
 
-Hi friend, I am **{ recivi.bio.name }**, {
-labelText } {
-residence && `based in ${addressDisplay(residence)}` } {
-origin && `(originally from ${addressDisplay(origin)})` } who <FunFact />.
+Hi friend, I am **{
+	recivi.bio.name
+}**, {
+	labels && labelsDisplay(labels)
+} {
+	residence && `based in ${addressDisplay(residence)}`
+} {
+	origin && `(originally from ${addressDisplay(origin)})`
+} who <FunFact />.
 
 Welcome to my small, personal corner of the Internet. Click around and make
 yourself at home. To make the most of this visit, I would recommend checking out

@@ -119,3 +119,19 @@ export function certDisplay(cert: Cert): string {
   }
   return output
 }
+
+/**
+ * Convert the list of labels into a grammatically correct string, using
+ * commas between two entries and "and" between the last two entries.
+ *
+ * @param labels - the list of labels that apply to the person
+ * @returns the human-readable textual representation
+ */
+export function labelsDisplay(labels: string[]): string {
+  return labels
+    ?.map(
+      (label, idx) =>
+        `${idx === 0 ? 'a ' : idx === labels.length - 1 ? ' and ' : ', '}${label}`
+    )
+    .join('')
+}
