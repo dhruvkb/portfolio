@@ -1,6 +1,7 @@
 import type { Tech } from '@/models/creations/tech'
 import type { Period } from '@/models/base/period'
 import type { Url } from '@/models/base/url'
+import type { Tag } from '@/models/base/tag'
 
 interface ExtendedProject {
   /**
@@ -31,6 +32,11 @@ interface ExtendedProject {
    * the period over which the project was built or maintained
    */
   period: Period
+  /**
+   * tags to apply to this project; The use of tags is left up to the
+   * application (for example, the portfolio uses tags for PDF résumés).
+   */
+  tags: Tag[]
 }
 
 /**

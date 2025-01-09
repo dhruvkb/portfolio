@@ -1,6 +1,7 @@
 import type { Period } from '@/models/base/period'
 import type { RoleLocation } from '@/models/work/role_location'
 import type { RoleType } from '@/models/work/role_type'
+import type { Tag } from '@/models/base/tag'
 
 interface ExtendedRole {
   /**
@@ -28,6 +29,11 @@ interface ExtendedRole {
    * This is a relationship to the `Epic` model.
    */
   epicIds: string[]
+  /**
+   * tags to apply to this role; The use of tags is left up to the
+   * application (for example, the portfolio uses tags for PDF résumés).
+   */
+  tags: Tag[]
 }
 
 export interface Role extends Partial<ExtendedRole> {
