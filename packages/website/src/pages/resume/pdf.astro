@@ -9,7 +9,7 @@ import OrgEntry from '@/components/OrgEntry.astro'
 import { recivi, orgs, epics } from '@/stores/recivi'
 import { site } from '@/stores/site'
 import { getPageTitle } from '@/utils/meta'
-import { addressDisplay, labelsDisplay, skillDisplay } from '@/utils/recivi'
+import { skillDisplay } from '@/utils/recivi'
 
 import '@/styles/print.css'
 
@@ -61,17 +61,14 @@ const pageTitle = getPageTitle('Résumé PDF')
         <h1 class="font-serif text-xl font-bold">
           <a href={site.baseUrl}>Dhruv Bhanushali</a>
         </h1>
-        <p class="mb-2">
-          {recivi.bio.labels && labelsDisplay(recivi.bio.labels)}
-          {
-            recivi.bio.residence &&
-              `based in ${addressDisplay(recivi.bio.residence)}`
-          }
-          {
-            recivi.bio.origin &&
-              `(originally from ${addressDisplay(recivi.bio.origin)})`
-          }
-        </p>
+        {
+          recivi.bio.summary && (
+            <p
+              class="mb-2"
+              set:html={recivi.bio.summary}
+            />
+          )
+        }
         <ContactList />
       </header>
 
