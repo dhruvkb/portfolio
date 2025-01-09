@@ -15,6 +15,7 @@
 /* Apply universal styles, kind of like an anti-reset. */
 @layer base {
   /* Add vertical margins to block components. */
+
   h1,
   h2,
   h3,
