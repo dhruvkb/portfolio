@@ -25,13 +25,12 @@ const { epic } = Astro.props
         <li>
           <div class="flex">
             {project.name}
-            <span class="ml-auto text-subtle">
+            {/* prettier-ignore */}
+            <ul class="ml-auto text-subtle">
               {project.technologies?.map((technology) => (
-                <span class="inline after:mx-2 after:content-['·'] last:after:content-none">
-                  <Icon name={technology.id} />
-                </span>
+                <li class="inline after:mx-1 after:content-['·'] last:after:content-none"><Icon name={technology.id} /></li>
               ))}
-            </span>
+            </ul>
 
             {/* Hack to preserve alignment when there is no link. */}
             <div
