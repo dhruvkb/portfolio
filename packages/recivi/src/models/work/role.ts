@@ -9,6 +9,11 @@ interface ExtendedRole {
    */
   summary: string
   /**
+   * long-form description of the role; This is used where space is not
+   * constrained.
+   */
+  description: string
+  /**
    * a list of highlights, like responsibilities or achievements, from the role
    */
   highlights: string[]

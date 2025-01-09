@@ -13,6 +13,11 @@ interface ExtendedProject {
    */
   summary: string
   /**
+   * long-form description of the project; This is used where space is
+   * not constrained.
+   */
+  description: string
+  /**
    * a list of highlights, like noteworthy or salient features, from the project
    */
   highlights: string[]
