@@ -1,0 +1,128 @@
+---
+import RootLayout from '@/layouts/root.astro'
+
+import Link from '@/components/Link.astro'
+import ContactList from '@/components/ContactList.astro'
+import EpicEntry from '@/components/EpicEntry.astro'
+import OrgEntry from '@/components/OrgEntry.astro'
+
+import { recivi, orgs, epics } from '@/stores/recivi'
+import { site } from '@/stores/site'
+import { getPageTitle } from '@/utils/meta'
+import { addressDisplay, labelsDisplay, skillDisplay } from '@/utils/recivi'
+
+import '@/styles/print.css'
+
+// Forward all props to the parent layout `RootLayout`.
+const { ...attrs } = Astro.props
+
+const pageTitle = getPageTitle('Résumé PDF')
+---
+
+<RootLayout
+  {...attrs}
+  rootClasses={['print:light-theme', 'pdf', 'text-[12px]', 'leading-snug']}>
+  <slot
+    slot="head"
+    name="head">
+    <title>{pageTitle}</title>
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin=""
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400..800;1,400..800&display=swap"
+    />
+  </slot>
+
+  <div>
+    <!-- Button panel -->
+    <div class="mx-auto my-4 w-[210mm] print:hidden">
+      <Link
+        url="/resume"
+        class="text-[1.167rem] underline decoration-blue before:mx-0.5 before:inline-block before:text-blue before:content-['←'] visited:decoration-mauve visited:before:text-mauve hover:decoration-wavy hover:before:-translate-x-1"
+        >Back to résumé</Link
+      >
+    </div>
+
+    <!-- Page -->
+    <div
+      class="print:bg-white relative mx-auto mt-2 h-[297mm] w-[210mm] origin-top border p-[5mm] shadow-md after:absolute after:inset-[5mm] after:-z-10 after:border after:border-red hover:shadow-lg print:m-0 print:scale-100 print:border-none print:shadow-none print:after:hidden print:hover:shadow-none">
+      <!-- Top segment -->
+      <header class="mb-[5mm] text-center">
+        <h1 class="font-serif text-xl font-bold">
+          <a href={site.baseUrl}>Dhruv Bhanushali</a>
+        </h1>
+        <p class="mb-2">
+          {recivi.bio.labels && labelsDisplay(recivi.bio.labels)}
+          {
+            recivi.bio.residence &&
+              `based in ${addressDisplay(recivi.bio.residence)}`
+          }
+          {
+            recivi.bio.origin &&
+              `(originally from ${addressDisplay(recivi.bio.origin)})`
+          }
+        </p>
+        <ContactList />
+      </header>
+
+      <!-- Two-pane content -->
+      <main class="grid grid-cols-2 gap-[5mm]">
+        <!-- Left pane -->
+        <div>
+          <h2 class="hhre mb-2 font-serif text-lg font-medium">Projects</h2>
+          <ul>
+            {
+              epics
+                .filter((epic) =>
+                  epic.projects.some((project) =>
+                    project.tags?.includes('resume_pdf')
+                  )
+                )
+                .map((epic) => <EpicEntry {epic} />)
+            }
+          </ul>
+
+          <h2 class="hhre mb-2 mt-[5mm] font-serif text-lg font-medium">
+            Other skills
+          </h2>
+          {
+            recivi.bio.skills?.length ? (
+              <ul>
+                {recivi.bio.skills?.map((skill) => (
+                  <Fragment>
+                    {/* prettier-ignore */}
+                    <li class="inline after:content-[','] last:after:content-none">{skillDisplay(skill)}</li>
+                  </Fragment>
+                ))}
+              </ul>
+            ) : undefined
+          }
+        </div>
+
+        <!-- Right pane -->
+        <div>
+          <h2 class="hhre mb-2 font-serif text-lg font-medium">Roles</h2>
+          <ul>
+            {
+              orgs
+                .filter((org) =>
+                  org.roles.some((role) => role.tags?.includes('resume_pdf'))
+                )
+                .map((org) => <OrgEntry {org} />)
+            }
+          </ul>
+        </div>
+      </main>
+    </div>
+  </div>
+</RootLayout>

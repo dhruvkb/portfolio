@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Element specific styles */
+
+  a {
+    @apply underline decoration-blue visited:decoration-mauve hover:decoration-wavy print:no-underline;
+  }
+
+  code {
+    @apply border bg-surface0 px-1 py-0.5 font-mono;
+  }
+}
+
+@layer components {
+  .hhre {
+    @apply flex items-center gap-2 after:h-px after:flex-grow after:bg-surface1;
+  }
+}

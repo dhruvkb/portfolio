@@ -1,0 +1,81 @@
+---
+import Link from '@/components/Link.astro'
+import IconName from '@/components/IconName.astro'
+import TimePeriod from '@/components/TimePeriod.astro'
+
+import type { Org } from '@/models/recivi'
+import { urlToDest, addressDisplay, roleTypeDisplay } from '@/utils/recivi'
+
+interface Props {
+  org: Org
+}
+const { org } = Astro.props
+---
+
+<li class="mb-3 border-b pb-3 last:mb-0 last:border-none last:pb-0">
+  <div class="flex items-center justify-between">
+    <h3 class="font-medium">
+      <IconName
+        id={org.id}
+        name={org.name}
+      />
+    </h3>
+    {
+      org.address && (
+        <span
+          class="text-subtle"
+          set:html={addressDisplay(org.address)}
+        />
+      )
+    }
+  </div>
+  {
+    org.url && (
+      <Link
+        url={org.url}
+        class="font-mono text-sm text-subtle">
+        {urlToDest(org.url)}
+      </Link>
+    )
+  }
+  {
+    org.summary && (
+      <p
+        class="mb-4 mt-1"
+        set:html={org.summary}
+      />
+    )
+  }
+  <ul>
+    {
+      org.roles
+        .filter((role) => role.tags?.includes('resume_pdf'))
+        .map((role) => (
+          <li class="mb-4 last:mb-0">
+            <div class="flex items-center justify-between">
+              <h4 class="font-medium">
+                {role.name}
+                {role.type !== 'full-time' && `(${roleTypeDisplay(role.type)})`}
+              </h4>
+              <span class="font-xs text-subtle">
+                {role.period && <TimePeriod {...role.period} />}
+              </span>
+            </div>
+            {role.summary && (
+              <p
+                class="my-1"
+                set:html={role.summary}
+              />
+            )}
+            {role.highlights?.length ? (
+              <ul class="list-inside list-disc">
+                {role.highlights.map((hl) => (
+                  <li set:html={hl} />
+                ))}
+              </ul>
+            ) : undefined}
+          </li>
+        ))
+    }
+  </ul>
+</li>

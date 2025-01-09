@@ -1,0 +1,89 @@
+---
+import Icon from '@/components/Icon.astro'
+import IconName from '@/components/IconName.astro'
+import Link from '@/components/Link.astro'
+
+import type { Epic } from '@/models/recivi'
+import { urlToDest } from '@/utils/recivi'
+
+interface Props {
+  epic: Epic
+}
+const { epic } = Astro.props
+---
+
+<li class="mb-3 border-b pb-3 last:mb-0 last:border-none last:pb-0">
+  <div class="flex items-center justify-between">
+    <h3 class="font-medium">
+      <IconName
+        id={epic.id}
+        name={epic.name}
+      />
+    </h3>
+    {
+      epic.role && (
+        <span class="text-subtle">
+          Built at
+          <IconName
+            id={epic.role.org.id}
+            name={epic.role.org.name}
+          />
+        </span>
+      )
+    }
+  </div>
+  {
+    epic.url && (
+      <Link
+        url={epic.url}
+        class="font-mono text-sm text-subtle">
+        {urlToDest(epic.url)}
+      </Link>
+    )
+  }
+  {
+    epic.summary && (
+      <p
+        class="mb-4 mt-1"
+        set:html={epic.summary}
+      />
+    )
+  }
+  <ul>
+    {
+      epic.projects
+        .filter((project) => project.tags?.includes('resume_pdf'))
+        .map((project) => (
+          <li class="mb-4 last:mb-0">
+            <div class="flex items-center justify-between">
+              <h4 class="font-medium">{project.name}</h4>
+              <Fragment>
+                {/* prettier-ignore */}
+                <ul class="text-subtle">
+                  {project.technologies?.map((technology) => (
+                    <li class="inline after:mx-1 after:content-['·'] last:after:content-none"><Icon name={technology.id} /></li>
+                  ))}
+                </ul>
+              </Fragment>
+            </div>
+            {project.url && (
+              <Link
+                url={project.url}
+                class="font-mono text-sm text-subtle">
+                {urlToDest(project.url)}
+              </Link>
+            )}
+            <p
+              class="my-1"
+              set:html={project.summary}
+            />
+            <ul class="list-inside list-disc">
+              {project.highlights?.map((hl) => (
+                <li set:html={hl} />
+              ))}
+            </ul>
+          </li>
+        ))
+    }
+  </ul>
+</li>

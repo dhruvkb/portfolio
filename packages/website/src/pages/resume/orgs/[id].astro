@@ -53,16 +53,24 @@ const metadata = {
         </p>
       )
     }
-    <p set:html={org.description ?? org.summary} />
+
+    {
+      org.description ? (
+        <p set:html={org.description} />
+      ) : org.summary ? (
+        <p set:html={org.summary} />
+      ) : undefined
+    }
 
     {
       org.roles.map((role) => (
         <div>
           <h2 class="hhr text-peach">
-            {role.name} ({roleTypeDisplay(role.type)})
+            {role.name}
+            {role.type !== 'full-time' && `(${roleTypeDisplay(role.type)})`}
           </h2>
 
-          <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
+          <dl class="[:not(:has(dt))]:hidden mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
             {role.period && (
               <Fragment>
                 <dt class="text-subtle">Period:</dt>
@@ -92,7 +100,11 @@ const metadata = {
             ) : undefined}
           </dl>
 
-          {role.summary && <p set:html={role.summary} />}
+          {role.description ? (
+            <p set:html={role.description} />
+          ) : role.summary ? (
+            <p set:html={role.summary} />
+          ) : undefined}
 
           {role.highlights?.length ? (
             <Fragment>

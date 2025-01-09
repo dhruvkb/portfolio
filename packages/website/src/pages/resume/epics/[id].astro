@@ -5,9 +5,11 @@ import ResumeLayout from '@/layouts/resume.astro'
 
 import IconName from '@/components/IconName.astro'
 import Meta from '@/components/Meta.astro'
+import Link from '@/components/Link.astro'
 
 import type { Epic } from '@/models/recivi'
 import { epics } from '@/stores/recivi'
+import { urlToDest } from '@/utils/recivi'
 
 export async function getStaticPaths() {
   return epics.map((epic) => ({
@@ -57,14 +59,41 @@ const metadata = {
       )
     }
 
-    <p set:html={epic.summary} />
+    {
+      epic.description ? (
+        <p set:html={epic.description} />
+      ) : epic.summary ? (
+        <p set:html={epic.summary} />
+      ) : undefined
+    }
 
     {
       epic.projects.map((project) => (
         <div>
           <h2 class="hhr text-peach">{project.name}</h2>
 
-          {project.summary && <p set:html={project.summary} />}
+          <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2 [&:not(:has(dt))]:hidden">
+            {project.url && (
+              <Fragment>
+                <dt class="text-subtle">URL:</dt>
+                <dd>
+                  <Link url={project.url}>{urlToDest(project.url)}</Link>
+                </dd>
+              </Fragment>
+            )}
+            {project.role && (
+              <Fragment>
+                <dt class="text-subtle">Role:</dt>
+                <dd>{project.role}</dd>
+              </Fragment>
+            )}
+          </dl>
+
+          {project.description ? (
+            <p set:html={project.description} />
+          ) : project.summary ? (
+            <p set:html={project.summary} />
+          ) : undefined}
 
           {project.highlights?.length ? (
             <Fragment>

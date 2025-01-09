@@ -72,6 +72,14 @@
   }
 }
 
+@media print {
+  :root {
+    /* Use black text on white background for print */
+    --color-text: #222222;
+    --color-overlay1: #878787;
+  }
+}
+
 /*
  * The code below is copied from Shiki docs, with modifications as specified by
  * Astro, and additional customisations to avoid use of `!important`.
