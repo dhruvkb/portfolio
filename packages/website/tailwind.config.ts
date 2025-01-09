@@ -103,7 +103,7 @@ export default {
     plugin(function ({ addVariant }) {
       addVariant('gfm-done', '&:has(input[checked])')
       addVariant('gfm-todo', '&:has(input:not([checked]))')
-      addVariant('pdf', ':where(.pdf &)')
+      addVariant('pdf', '&:where(.pdf &)')
     }),
     tailwindcssSafeArea,
   ],
