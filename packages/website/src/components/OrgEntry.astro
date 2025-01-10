@@ -57,7 +57,7 @@ const { org } = Astro.props
                 {role.name}
                 {role.type !== 'full-time' && `(${roleTypeDisplay(role.type)})`}
               </h4>
-              <span class="font-xs text-subtle">
+              <span class="text-subtle">
                 {role.period && <TimePeriod {...role.period} />}
               </span>
             </div>
