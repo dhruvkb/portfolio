@@ -6,11 +6,15 @@ description: An introduction to the ideology, design and technology that power t
 index: 5
 ---
 
+import Link from '@/components/Link.astro'
+
+import { site } from '@/stores/site'
+
 # Colophon
 
 I designed and built this site myself. As with my other projects, this site is
 free/_libre_, free/_gratis_ and open-source software, with the
-[source code](https://github.com/dhruvkb/portfolio) available on GitHub to use
+<Link url={site.repoUrl}>source code</Link> available on GitHub to use
 as you like. Except steal and claim as your own, because that would not be a
 nice thing to do.
 

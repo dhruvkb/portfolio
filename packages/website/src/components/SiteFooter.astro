@@ -4,6 +4,7 @@ import Breakpoint from '@/components/Breakpoint.astro'
 import Icon from '@/components/Icon.astro'
 
 import type { ClassList } from '@/types/class_list'
+import { site } from '@/stores/site'
 
 interface Props {
   classes?: ClassList
@@ -23,6 +24,6 @@ const { classes = [] } = Astro.props
   </div>
   <Breakpoint />
   <div>
-    <Link url="https://github.com/dhruvkb/portfolio">Source</Link>
+    <Link url={site.repoUrl}>Source</Link>
   </div>
 </footer>

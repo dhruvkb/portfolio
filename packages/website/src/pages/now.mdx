@@ -6,6 +6,10 @@ description: Find out what I'm currently working on, building, maintaining, lear
 index: 3
 ---
 
+import Link from '@/components/Link.astro'
+
+import { site } from '@/stores/site'
+
 # Now
 
 These are all the things I am currently involved in spanning a few days in the
@@ -50,5 +54,6 @@ past, and the foreseeable future.
 
 ---
 
-You can see [previous versions](https://github.com/dhruvkb/portfolio/blob/main/packages/website/src/pages/now.mdx).
+You can see
+<Link url={`${site.repoUrl}/commits/main/packages/website/src/pages/now.mdx`}>previous versions</Link>
 of this page on GitHub.
