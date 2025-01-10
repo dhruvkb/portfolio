@@ -59,6 +59,7 @@
     ],
     "skills": [
       {
+        "id": "openjdk",
         "name": "Java",
         "subSkills": ["Swing", { "id": "spring", "name": "Spring" }]
       },
@@ -72,17 +73,25 @@
         "name": "Ruby",
         "subSkills": [{ "id": "rubyonrails", "name": "Rails" }]
       },
+      { "id": "go", "name": "Golang" },
+      { "id": "php", "name": "PHP" },
+
       {
         "name": "Web",
         "subSkills": [
           { "id": "html5", "name": "HTML" },
-          { "id": "css3", "name": "CSS" },
-          { "id": "javascript", "name": "JS" }
+          { "id": "css", "name": "CSS" },
+          { "id": "javascript", "name": "JS" },
+          { "id": "svg", "name": "SVG" }
         ]
       },
-      { "id": "go", "name": "Golang" },
-      { "id": "php", "name": "PHP" },
-      "Shell"
+      {
+        "name": "Shell",
+        "subSkills": [
+          { "id": "gnubash", "name": "Bash" },
+          { "id": "zsh", "name": "Zsh" }
+        ]
+      }
     ],
     "residence": {
       "city": "Dubai",

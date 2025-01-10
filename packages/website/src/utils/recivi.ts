@@ -99,7 +99,7 @@ export function skillDisplay(skill: Skill): string {
   const { name, subSkills } = skill
   let output = name
   if (subSkills?.length) {
-    output = `${output} (${subSkills.map(skillDisplay).join(', ')})`
+    output = `${output} (+ ${subSkills.map(skillDisplay).join(', ')})`
   }
   return output
 }

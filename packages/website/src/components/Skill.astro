@@ -1,0 +1,46 @@
+---
+import type { Skill } from 'recivi'
+
+import IconName from '@/components/IconName.astro'
+
+interface Props {
+  skill: Skill
+}
+const { skill } = Astro.props
+
+const formalSkill =
+  typeof skill === 'string'
+    ? {
+        id: null,
+        name: skill,
+        subSkills: [],
+      }
+    : skill
+---
+
+<span>
+  <span>
+    {
+      formalSkill.id ? (
+        <IconName
+          id={formalSkill.id}
+          name={formalSkill.name}
+        />
+      ) : (
+        formalSkill.name
+      )
+    }
+  </span>
+  {
+    formalSkill.subSkills?.length ? (
+      <span class="text-subtle">
+        :
+        {formalSkill.subSkills.map((subskill) => (
+          <span class="after:text-subtle after:content-['·'] last:after:content-none">
+            <Astro.self skill={subskill} />
+          </span>
+        ))}
+      </span>
+    ) : undefined
+  }
+</span>

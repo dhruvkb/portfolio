@@ -20,6 +20,7 @@ import InstituteCard from '@/components/InstituteCard.astro'
 import Meta from '@/components/Meta.astro'
 import OrgCard from '@/components/OrgCard.astro'
 import Table from '@/components/Table.astro'
+import Skill from '@/components/Skill.astro'
 
 import { Content as ResumeIndex } from '@/pages/resume/_index.mdx'
 
@@ -32,7 +33,6 @@ import {
   certData,
 } from '@/models/table'
 import { institutes, epics, orgs, recivi } from '@/stores/recivi'
-import { skillDisplay } from '@/utils/recivi'
 
 // Forward all props to the parent layout `MainLayout`.
 const attrs = Astro.props
@@ -115,7 +115,9 @@ const hasContent = Astro.slots.has('default')
             <p>Apart from what's listed above, I also possess these skills.</p>
             <ul class="ml-4 list-disc marker:text-peach sm:columns-2">
               {recivi.bio.skills?.map((skill) => (
-                <li>{skillDisplay(skill)}</li>
+                <li>
+                  <Skill {skill} />
+                </li>
               ))}
             </ul>
           </Fragment>
