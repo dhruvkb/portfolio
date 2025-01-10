@@ -279,8 +279,8 @@
           "type": "foss",
           "location": "remote",
           "highlights": [
-            "<strong>Assumption:</strong> <a href=\"https://htmx.org/essays/lore/#htmx-ceo\">Every human is a CEO of htmx.</a>",
-            "<strong>Assumption:</strong> I am human.",
+            "<em>Assumption:</em> <a href=\"https://htmx.org/essays/lore/#htmx-ceo\">Every human is a CEO of htmx.</a>",
+            "<em>Assumption:</em> I am human.",
             "Therefore, I am a CEO of htmx. <em>Q.E.D.</em>"
           ]
         }
@@ -410,8 +410,8 @@
           "location": "remote",
           "highlights": [
             "Onboarded & guided applicants; scored & ranked proposals.",
-            "Mentored <a href=\"https://developers.google.com/season-of-docs\"><strong>Google Season of Docs</strong></a> in 2020.",
-            "Mentored <a href=\"https://www.outreachy.org/\"><strong>Outreachy</strong></a> in winter 2019-20 & summer 2020."
+            "Mentored <a href=\"https://developers.google.com/season-of-docs\"><em>Google Season of Docs</em></a> in 2020.",
+            "Mentored <a href=\"https://www.outreachy.org/\"><em>Outreachy</em></a> in winter 2019-20 & summer 2020."
           ],
           "epicIds": ["vocabulary"],
           "tags": ["resume_pdf"]
