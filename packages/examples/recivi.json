@@ -55,6 +55,14 @@
         },
         "url": "https://www.instagram.com/dhruvkb_",
         "username": "dhruvkb_"
+      },
+      {
+        "site": {
+          "id": "mastodon",
+          "name": "Mastodon"
+        },
+        "url": "https://mastodon.social/@dhruvkb",
+        "username": "dhruvkb"
       }
     ],
     "skills": [
