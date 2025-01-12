@@ -10,7 +10,6 @@ const posts = defineCollection({
     pubDate: z.date(),
     categories: z.array(z.string()),
 
-    isFeatured: z.boolean().default(false),
     isDraft: z.boolean().default(false),
 
     image: z
