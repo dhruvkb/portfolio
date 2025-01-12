@@ -1,6 +1,7 @@
 {
   "baseUrl": "https://dhruvkb.dev",
   "repoUrl": "https://github.com/dhruvkb/portfolio",
+  "fediverse": "@dhruvkb@mastodon.social",
   "title": "@dhruvkb",
   "birthYear": 1997,
   "hobbyAge": 12,

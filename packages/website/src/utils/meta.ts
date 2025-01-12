@@ -16,10 +16,6 @@ export type MetaTag = { content: string } & (
   | { property: string }
 )
 
-function isDefined<T>(item: T | boolean): item is T {
-  return Boolean(item)
-}
-
 /**
  * Get the title to render in the page tab. This consists of the two parts, the page
  * title and the site title, joined by a separator.
@@ -52,7 +48,7 @@ export function getMetadata(
     path === '/' ? '/index' : path.replace(/\/$/, '')
   }.png`
 
-  return [
+  const metaTags = [
     { name: 'author', content: recivi.bio.name },
     { name: 'description', content: description },
     // Open Graph
@@ -62,7 +58,15 @@ export function getMetadata(
     { property: 'og:title', content: pageTitle },
     { property: 'og:description', content: description },
     { property: 'og:image', content: imageUrl },
-    // Robots
-    banRobots && { name: 'robots', content: 'noindex' },
-  ].filter(isDefined)
+  ]
+  // Fediverse
+  if (site.fediverse) {
+    metaTags.push({ property: 'fediverse:creator', content: site.fediverse })
+  }
+  // Robots
+  if (banRobots) {
+    metaTags.push({ name: 'robots', content: 'noindex' })
+  }
+
+  return metaTags
 }
