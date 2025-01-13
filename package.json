@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "pnpm run lint -- --fix",
+    "lint:fix": "pnpm run lint --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "checks": "pnpm run lint && pnpm run format:check",
