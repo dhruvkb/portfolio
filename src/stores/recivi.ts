@@ -1,4 +1,4 @@
-import type { Resume, Url } from 'recivi'
+import type { Resume } from '@recivi/schema'
 
 import type { Cert, Institute, Epic, Org, Project, Role } from '@/models/recivi'
 
@@ -6,17 +6,9 @@ export const recivi = (await import(
   '@/../../examples/recivi.json'
 )) as unknown as Resume
 
-const githubProfile = recivi.bio.profiles?.find(
+export const githubUrl = recivi.bio.profiles?.find(
   (profile) => profile.site.id === 'github'
-)
-export let githubUrl: Url | undefined = undefined
-if (githubProfile) {
-  if ('url' in githubProfile) {
-    githubUrl = githubProfile.url
-  } else {
-    githubUrl = `https://github.com/${githubProfile.username}`
-  }
-}
+)?.url
 
 export const institutes: Institute[] =
   recivi.education?.map((rcvInstitute) => {
@@ -63,7 +55,7 @@ export const roles: Role[] = orgs.flatMap((org: Org) => org.roles)
 
 roles.forEach((role) => {
   epics.forEach((epic) => {
-    if (role.epicIds?.includes(epic.id)) {
+    if (epic.id && role.epicIds?.includes(epic.id)) {
       epic.role = role
       role.epics.push(epic)
     }

@@ -44,7 +44,7 @@ export function getOgImage(content: {
   description: string
   left?: string
   right?: string
-  icon?: string
+  icon?: string | undefined
 }): ImageResponse {
   const left = content.left ?? ''
   const right = content.right ?? ''

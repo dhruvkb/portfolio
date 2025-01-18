@@ -5,9 +5,9 @@ import type {
   Skill,
   Address,
   Cert,
-} from 'recivi/src'
+} from '@recivi/schema'
 
-const ROLE_TYPE_DISPLAYS: Record<RoleType, string> = {
+const ROLE_TYPE_DISPLAYS = {
   contract: 'Contract',
   foss: 'FOSS',
   'full-time': 'Full-time',
@@ -19,7 +19,7 @@ const ROLE_TYPE_DISPLAYS: Record<RoleType, string> = {
   other: 'Other',
 } as const
 
-const ROLE_LOCATION_DISPLAY: Record<RoleLocation, string> = {
+const ROLE_LOCATION_DISPLAY = {
   remote: 'Remote',
   onsite: 'On-site',
   hybrid: 'Hybrid',
@@ -31,7 +31,7 @@ const ROLE_LOCATION_DISPLAY: Record<RoleLocation, string> = {
  * @param roleType - the code for the type of the role
  * @returns the display name for the role type
  */
-export function roleTypeDisplay(roleType: RoleType): string | undefined {
+export function roleTypeDisplay(roleType: RoleType): string {
   return ROLE_TYPE_DISPLAYS[roleType]
 }
 
@@ -41,9 +41,7 @@ export function roleTypeDisplay(roleType: RoleType): string | undefined {
  * @param roleLocation - the code for the location of the role
  * @returns the display name for the role location
  */
-export function roleLocationDisplay(
-  roleLocation: RoleLocation
-): string | undefined {
+export function roleLocationDisplay(roleLocation: RoleLocation): string {
   return ROLE_LOCATION_DISPLAY[roleLocation]
 }
 
@@ -113,7 +111,7 @@ export function skillDisplay(skill: Skill): string {
  * @returns the string representation of the certificate
  */
 export function certDisplay(cert: Cert): string {
-  let output = cert.shortName
+  let output = cert.shortName ?? cert.name
   if (cert.field) {
     output = `${output} (${cert.field})`
   }

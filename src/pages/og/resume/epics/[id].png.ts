@@ -16,9 +16,12 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute<Props> = async function ({ props: { epic } }) {
-  const description = `Know about my work on ${epic.name}. ${
-    epic.description ?? epic.summary
-  }`
+  let description = `Know about my work on ${epic.name}.`
+  if (epic.description) {
+    description = `${description} ${epic.description}`
+  } else if (epic.summary) {
+    description = `${description} ${epic.summary}`
+  }
   return getOgImage({
     left: 'Résumé',
     right: 'Epic',

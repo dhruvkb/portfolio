@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 
-import type { Period, Tech, Url, Date as RcvDate } from 'recivi'
+import type { Period, Tech, Url, Date as RcvDate } from '@recivi/schema'
 
 import type { Epic, Org, Institute } from '@/models/recivi'
 import { roleTypeDisplay, certDisplay } from '@/utils/recivi'
@@ -144,7 +144,7 @@ export const roleData = roles.map(
       name: role.name,
       org: role.org,
       epic: role.epics[0],
-      type: roleTypeDisplay(role.type),
+      type: role.type && roleTypeDisplay(role.type),
       period: role.period,
     },
     isLastSibling: role.org !== roles[idx + 1]?.org,

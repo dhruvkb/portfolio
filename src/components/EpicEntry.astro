@@ -61,7 +61,7 @@ const { epic } = Astro.props
                 {/* prettier-ignore */}
                 <ul class="text-subtle">
                   {project.technologies?.map((technology) => (
-                    <li class="inline after:mx-1 after:content-['·'] last:after:content-none"><Icon name={technology.id} /></li>
+                    technology.id && <li class="inline after:mx-1 after:content-['·'] last:after:content-none"><Icon name={technology.id} /></li>
                   ))}
                 </ul>
               </Fragment>

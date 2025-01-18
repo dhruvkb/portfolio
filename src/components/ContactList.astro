@@ -43,11 +43,13 @@ const items = [
       <li>
         <div class="flex items-center gap-2">
           <span class="text-peach pdf:text-subtle">
-            <Icon
-              source={item.icon.source}
-              name={item.icon.name}
-              title={item.name}
-            />
+            {item.icon.name && (
+              <Icon
+                source={item.icon.source}
+                name={item.icon.name}
+                title={item.name}
+              />
+            )}
           </span>
           <span class="sr-only">{item.name}</span>
           {item.url ? (

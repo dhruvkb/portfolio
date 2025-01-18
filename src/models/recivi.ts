@@ -5,7 +5,7 @@ import type {
   Role as RcvRole,
   Institute as RcvInstitute,
   Cert as RcvCert,
-} from 'recivi'
+} from '@recivi/schema'
 
 export interface Cert extends RcvCert {
   institute: Institute

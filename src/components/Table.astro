@@ -1,5 +1,5 @@
 ---
-import type { Tech } from 'recivi'
+import type { Tech } from '@recivi/schema'
 
 import Link from '@/components/Link.astro'
 import Icon from '@/components/Icon.astro'
@@ -116,7 +116,7 @@ function isCurr(row: Row) {
                     {/* prettier-ignore */}
                     <ul>
                       {value.map((item: Tech) => (
-                        <li class="inline after:mx-1 after:text-subtle after:content-['·'] last:after:content-none"><Icon name={item.id} title={item.name} /></li>
+                        item.id && <li class="inline after:mx-1 after:text-subtle after:content-['·'] last:after:content-none"><Icon name={item.id} title={item.name} /></li>
                       ))}
                     </ul>
                   </Fragment>

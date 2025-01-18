@@ -67,7 +67,9 @@ const metadata = {
         <div>
           <h2 class="hhr text-peach">
             {role.name}
-            {role.type !== 'full-time' && `(${roleTypeDisplay(role.type)})`}
+            {role.type &&
+              role.type !== 'full-time' &&
+              `(${roleTypeDisplay(role.type)})`}
           </h2>
 
           <dl class="[:not(:has(dt))]:hidden mb-2 grid grid-cols-[auto,_1fr] gap-x-2">

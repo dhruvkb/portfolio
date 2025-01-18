@@ -1,4 +1,8 @@
-import type { Date as RcvDate, Y, YM, YMD } from 'recivi'
+import type { Date as RcvDate } from '@recivi/schema'
+
+type Y = [number]
+type YM = [number, number]
+type YMD = [number, number, number]
 
 const MONTHS = Array.from({ length: 12 }, (_, i) =>
   new Date(0, i).toLocaleString('default', { month: 'short' })
