@@ -21,7 +21,6 @@ module.exports = {
     },
   ],
   proseWrap: 'always',
-  tailwindConfig: './packages/website/tailwind.config.ts',
   tailwindFunctions: ['tw'],
   plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
 }
