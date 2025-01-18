@@ -1,15 +1,16 @@
-import puppeteer from 'puppeteer'
+import { join, resolve } from 'node:path'
 
 import chalk from 'chalk'
+import puppeteer from 'puppeteer'
 
-const projectRoot = new URL('../..', import.meta.url)
-const pdfUrl = new URL('dist/resume.pdf', projectRoot)
+const projectRoot = resolve(import.meta.filename, '../../..')
+const pdfUrl = join(projectRoot, 'dist/resume.pdf')
 
 /**
  * Returns the current time in %H:%M:%S format, which is the format used
  * by Astro in the output of the build subcommand.
  *
- * @returns {string} the current time formatted as %H:%M:%S
+ * @returns the current time formatted as %H:%M:%S
  */
 function timestamp() {
   const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false })
