@@ -5,8 +5,6 @@
 interface Site {
   /** the final URL where the site is deployed, no trailing slash */
   baseUrl: string
-  /** the URL to the repository containing the source code for this site */
-  repoUrl: string
   /**
    * the URL to the Récivi data file to populate the site
    *
@@ -46,7 +44,6 @@ interface Site {
 
 export const site: Site = {
   baseUrl: 'https://dhruvkb.dev',
-  repoUrl: 'https://github.com/dhruvkb/portfolio',
   reciviUrl: import.meta.env.DEV
     ? 'file:///Users/dhruvkb/Developer/personal/recivi/recivi.json'
     : 'https://raw.githubusercontent.com/dhruvkb/recivi/main/recivi.json',
