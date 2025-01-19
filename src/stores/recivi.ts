@@ -1,10 +1,21 @@
+import { readFileSync } from 'node:fs'
+
 import type { Resume } from '@recivi/schema'
 
 import type { Cert, Institute, Epic, Org, Project, Role } from '@/models/recivi'
+import { site } from '@/stores/site'
 
-export const recivi = (await import(
-  '@/../../examples/recivi.json'
-)) as unknown as Resume
+async function loadRecivi() {
+  if (site.reciviUrl.startsWith('file://')) {
+    const text = readFileSync(site.reciviUrl.replace('file://', ''), 'utf-8')
+    return JSON.parse(text) as Resume
+  }
+
+  const res = await fetch(site.reciviUrl)
+  return (await res.json()) as Resume
+}
+
+export const recivi: Resume = await loadRecivi()
 
 export const githubUrl = recivi.bio.profiles?.find(
   (profile) => profile.site.id === 'github'
