@@ -17,10 +17,6 @@ async function loadRecivi() {
 
 export const recivi: Resume = await loadRecivi()
 
-export const githubUrl = recivi.bio.profiles?.find(
-  (profile) => profile.site.id === 'github'
-)?.url
-
 export const institutes: Institute[] =
   recivi.education?.map((rcvInstitute) => {
     const institute: Institute = {
