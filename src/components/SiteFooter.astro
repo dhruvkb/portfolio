@@ -1,7 +1,7 @@
 ---
-import Link from '@/components/Link.astro'
 import Breakpoint from '@/components/Breakpoint.astro'
 import Icon from '@/components/Icon.astro'
+import IconName from '@/components/IconName.astro'
 
 import type { ClassList } from '@/types/class_list'
 import { site } from '@/stores/site'
@@ -13,9 +13,9 @@ const { classes = [] } = Astro.props
 ---
 
 <footer
-  class="cntnr flex items-center justify-between border-t py-4"
+  class="cntnr flex items-center justify-between border-t py-4 text-subtle"
   class:list={classes}>
-  <div class="italic text-subtle">
+  <div class="italic">
     <Icon
       name="hand-metal"
       source="lucide"
@@ -23,7 +23,16 @@ const { classes = [] } = Astro.props
     Thanks for visiting!
   </div>
   <Breakpoint />
-  <div>
-    <Link url={site.repoUrl}>Source</Link>
-  </div>
+  {
+    site.showCredit && (
+      <div>
+        Built with
+        <IconName
+          id="recivi"
+          name="Récivi"
+          url="https://recivi.pages.dev"
+        />
+      </div>
+    )
+  }
 </footer>
