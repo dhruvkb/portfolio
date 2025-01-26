@@ -32,7 +32,7 @@ export default defineConfig({
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),
-    watchPlugins(),
     alpinejs(),
+    watchPlugins(),
   ],
 })
