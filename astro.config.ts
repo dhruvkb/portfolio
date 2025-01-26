@@ -6,6 +6,7 @@ import alpinejs from '@astrojs/alpinejs'
 
 import { rehypeTailwind } from './src/plugins/rehype_tailwind'
 import { watchPlugins } from './src/integrations/watch_plugins'
+import { watchRecivi } from './src/integrations/watch_recivi'
 
 import { site } from './src/stores/site'
 
@@ -34,5 +35,6 @@ export default defineConfig({
     mdx(),
     alpinejs(),
     watchPlugins(),
+    watchRecivi(),
   ],
 })
