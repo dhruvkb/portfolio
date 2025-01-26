@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
 import type { Resume } from '@recivi/schema'
 
@@ -7,7 +8,7 @@ import { site } from '@/stores/site'
 
 async function loadRecivi() {
   if (site.reciviUrl.startsWith('file://')) {
-    const text = readFileSync(site.reciviUrl.replace('file://', ''), 'utf-8')
+    const text = readFileSync(fileURLToPath(site.reciviUrl), 'utf-8')
     return JSON.parse(text) as Resume
   }
 
