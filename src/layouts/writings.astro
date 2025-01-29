@@ -128,6 +128,6 @@ const categories = await getCategories()
 </ScreenLayout>
 
 <script>
-  // Only show the tag filtering buttons when JS is enabled.
-  document.querySelector('#all-tags')?.classList.remove('hidden')
+  // When JS is enabled, show the tag filtering buttons.
+  document.getElementById('all-tags')?.classList.remove('hidden')
 </script>
