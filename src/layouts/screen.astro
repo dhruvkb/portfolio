@@ -48,7 +48,7 @@ const hasSecondaryContent = Astro.slots.has('secondary')
     x-data="{ activeCategories: [] }"
     class="grid grid-cols-1"
     class:list={{
-      'xl:h-full xl:grid-cols-[640px,_1fr]': hasSecondaryContent,
+      'xl:h-full xl:grid-cols-[640px_1fr]': hasSecondaryContent,
     }}>
     <!--
     left column;

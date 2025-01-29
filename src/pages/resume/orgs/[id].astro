@@ -72,7 +72,7 @@ const metadata = {
               `(${roleTypeDisplay(role.type)})`}
           </h2>
 
-          <dl class="[:not(:has(dt))]:hidden mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
+          <dl class="mb-2 grid grid-cols-[auto_1fr] gap-x-2 [:not(:has(dt))]:hidden">
             {role.period && (
               <Fragment>
                 <dt class="text-overlay1">Period:</dt>
