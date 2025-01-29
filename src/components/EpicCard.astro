@@ -11,7 +11,7 @@ interface Props {
 const { epic } = Astro.props
 ---
 
-<div class="border-b px-4 py-2">
+<div class="border-b border-surface1 px-4 py-2">
   <strong
     ><IconName
       {...epic}
@@ -34,9 +34,9 @@ const { epic } = Astro.props
 
             {/* Hack to preserve alignment when there is no link. */}
             <div
-              class="ms-2 border-s ps-2"
+              class="ms-2 border-s border-surface1 ps-2"
               class:list={{
-                'pointer-none invisible border-trans': !project.url,
+                'pointer-none border-trans invisible': !project.url,
               }}
               aria-hidden={!project.url}>
               <Link url={project.url || 'https://dhruvkb.dev'}>link</Link>

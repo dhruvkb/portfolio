@@ -66,7 +66,7 @@ function isCurr(row: Row) {
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
           class="clip-0 translate-x-0 transition after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
           class:list={{
-            'border-b': row.isLastSibling,
+            'border-b border-surface1': row.isLastSibling,
             'bg-surface0 after:w-1': isCurr(row),
           }}
           @mouseenter="activeGroup = groupId"

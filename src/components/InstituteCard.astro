@@ -11,7 +11,7 @@ interface Props {
 const { institute } = Astro.props
 ---
 
-<div class="border-b px-4 py-2">
+<div class="border-b border-surface1 px-4 py-2">
   <div class="flex justify-between">
     <strong>{institute.name}</strong>
     {institute.url && <Link url={institute.url}>link</Link>}

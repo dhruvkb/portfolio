@@ -25,7 +25,7 @@ const { heading } = Astro.props
       </summary>
       <ul>
         {heading.children.map((child) => (
-          <li class="relative ml-2 border-s pl-4 before:absolute before:top-0 before:-left-px before:block before:h-4 before:w-4 before:border-s before:border-b last:border-trans">
+          <li class="relative ml-2 border-s border-surface1 pl-4 before:absolute before:top-0 before:-left-px before:block before:h-4 before:w-4 before:border-s before:border-b before:border-surface1 last:border-trans">
             <Astro.self heading={child} />
           </li>
         ))}
