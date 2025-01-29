@@ -65,7 +65,7 @@ export function getOgImage(content: {
         ${right}
       </div>
       <!-- Main -->
-      <div class="flex flex-grow flex-col">
+      <div class="flex grow flex-col">
         <!-- Title -->
         <div
           class="mb-6 flex items-center text-8xl font-bold"

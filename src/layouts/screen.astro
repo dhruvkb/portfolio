@@ -59,7 +59,7 @@ const hasSecondaryContent = Astro.slots.has('secondary')
       class:list={{ 'hidden xl:flex': hasSecondaryContent }}>
       <SiteHeader />
 
-      <main class="flex-grow">
+      <main class="grow">
         <slot />
       </main>
 
@@ -72,7 +72,7 @@ const hasSecondaryContent = Astro.slots.has('secondary')
         <div class="flex flex-col overflow-y-auto">
           <SiteHeader classes="xl:hidden" />
 
-          <aside class="flex-grow overflow-y-auto xl:border-s xl:border-surface1">
+          <aside class="grow overflow-y-auto xl:border-s xl:border-surface1">
             <slot name="secondary" />
           </aside>
 
