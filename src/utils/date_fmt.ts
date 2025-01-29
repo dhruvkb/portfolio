@@ -56,7 +56,7 @@ export function dateDisplay(date: RcvDate, useMarkup = true): string {
   }
   return dateComponents
     .reverse()
-    .join(useMarkup ? '<span class="text-subtle">-</span>' : '-')
+    .join(useMarkup ? '<span class="text-overlay1">-</span>' : '-')
 }
 
 /**

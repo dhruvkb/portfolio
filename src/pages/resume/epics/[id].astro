@@ -50,7 +50,7 @@ const metadata = {
     {
       epic.role?.org && (
         <p>
-          <span class="text-subtle">Org:</span>
+          <span class="text-overlay1">Org:</span>
           <IconName
             {...epic.role.org}
             url={`/resume/orgs/${epic.role.org.id}`}
@@ -75,7 +75,7 @@ const metadata = {
           <dl class="mb-2 grid grid-cols-[auto,_1fr] gap-x-2 [&:not(:has(dt))]:hidden">
             {project.url && (
               <Fragment>
-                <dt class="text-subtle">URL:</dt>
+                <dt class="text-overlay1">URL:</dt>
                 <dd>
                   <Link url={project.url}>{urlToDest(project.url)}</Link>
                 </dd>
@@ -83,7 +83,7 @@ const metadata = {
             )}
             {project.role && (
               <Fragment>
-                <dt class="text-subtle">Role:</dt>
+                <dt class="text-overlay1">Role:</dt>
                 <dd>{project.role}</dd>
               </Fragment>
             )}

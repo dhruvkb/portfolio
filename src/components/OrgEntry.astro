@@ -23,7 +23,7 @@ const { org } = Astro.props
     {
       org.address && (
         <span
-          class="text-subtle"
+          class="text-overlay1"
           set:html={addressDisplay(org.address)}
         />
       )
@@ -33,7 +33,7 @@ const { org } = Astro.props
     org.url && (
       <Link
         url={org.url}
-        class="font-mono text-sm text-subtle">
+        class="font-mono text-sm text-overlay1">
         {urlToDest(org.url)}
       </Link>
     )
@@ -59,7 +59,7 @@ const { org } = Astro.props
                   role.type !== 'full-time' &&
                   `(${roleTypeDisplay(role.type)})`}
               </h4>
-              <span class="text-subtle">
+              <span class="text-overlay1">
                 {role.period && <TimePeriod {...role.period} />}
               </span>
             </div>

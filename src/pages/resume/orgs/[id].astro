@@ -48,7 +48,7 @@ const metadata = {
     {
       org.address && (
         <p>
-          <span class="text-subtle">Address:</span>
+          <span class="text-overlay1">Address:</span>
           {addressDisplay(org.address)}
         </p>
       )
@@ -75,7 +75,7 @@ const metadata = {
           <dl class="[:not(:has(dt))]:hidden mb-2 grid grid-cols-[auto,_1fr] gap-x-2">
             {role.period && (
               <Fragment>
-                <dt class="text-subtle">Period:</dt>
+                <dt class="text-overlay1">Period:</dt>
                 <dd>
                   <TimePeriod {...role.period} />
                 </dd>
@@ -83,13 +83,13 @@ const metadata = {
             )}
             {role.location && (
               <Fragment>
-                <dt class="text-subtle">Location:</dt>
+                <dt class="text-overlay1">Location:</dt>
                 <dd>{roleLocationDisplay(role.location)}</dd>
               </Fragment>
             )}
             {role.epics.length ? (
               <Fragment>
-                <dt class="text-subtle">Epics:</dt>
+                <dt class="text-overlay1">Epics:</dt>
                 <dd>
                   {role.epics.map((epic) => (
                     <IconName

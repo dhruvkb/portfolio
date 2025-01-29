@@ -33,10 +33,10 @@ const formalSkill =
   </span>
   {
     formalSkill.subSkills?.length ? (
-      <span class="text-subtle">
+      <span class="text-overlay1">
         :
         {formalSkill.subSkills.map((subskill) => (
-          <span class="after:text-subtle after:content-['·'] last:after:content-none">
+          <span class="after:text-overlay1 after:content-['·'] last:after:content-none">
             <Astro.self skill={subskill} />
           </span>
         ))}

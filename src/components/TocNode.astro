@@ -15,7 +15,7 @@ const { heading } = Astro.props
       <summary class="cursor-pointer rounded hover:bg-surface0">
         <span
           class="px-1 py-0.5"
-          class:list={{ 'text-subtle': heading.depth === 0 }}>
+          class:list={{ 'text-overlay1': heading.depth === 0 }}>
           {heading.slug ? (
             <Link url={`#${heading.slug}`}>{heading.text}</Link>
           ) : (

@@ -101,7 +101,7 @@ function isCurr(row: Row) {
                       value.data.title
                     )}
                     {/* prettier-ignore */}
-                    <ul class="text-subtle">
+                    <ul class="text-overlay1">
                       {value.data.categories.map((category: string) => (
                         <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-peach': activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">
                           {category}
@@ -116,7 +116,7 @@ function isCurr(row: Row) {
                     {/* prettier-ignore */}
                     <ul>
                       {value.map((item: Tech) => (
-                        item.id && <li class="inline after:mx-1 after:text-subtle after:content-['·'] last:after:content-none"><Icon name={item.id} title={item.name} /></li>
+                        item.id && <li class="inline after:mx-1 after:text-overlay1 after:content-['·'] last:after:content-none"><Icon name={item.id} title={item.name} /></li>
                       ))}
                     </ul>
                   </Fragment>

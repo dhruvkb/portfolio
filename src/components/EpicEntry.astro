@@ -22,7 +22,7 @@ const { epic } = Astro.props
     </h3>
     {
       epic.role && (
-        <span class="text-subtle">
+        <span class="text-overlay1">
           Built at
           <IconName
             id={epic.role.org.id}
@@ -36,7 +36,7 @@ const { epic } = Astro.props
     epic.url && (
       <Link
         url={epic.url}
-        class="font-mono text-sm text-subtle">
+        class="font-mono text-sm text-overlay1">
         {urlToDest(epic.url)}
       </Link>
     )
@@ -59,7 +59,7 @@ const { epic } = Astro.props
               <h4 class="font-medium">{project.name}</h4>
               <Fragment>
                 {/* prettier-ignore */}
-                <ul class="text-subtle">
+                <ul class="text-overlay1">
                   {project.technologies?.map((technology) => (
                     technology.id && <li class="inline after:mx-1 after:content-['·'] last:after:content-none"><Icon name={technology.id} /></li>
                   ))}
@@ -69,7 +69,7 @@ const { epic } = Astro.props
             {project.url && (
               <Link
                 url={project.url}
-                class="font-mono text-sm text-subtle">
+                class="font-mono text-sm text-overlay1">
                 {urlToDest(project.url)}
               </Link>
             )}
