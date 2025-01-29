@@ -5,8 +5,6 @@ import alpinejs from '@astrojs/alpinejs'
 
 import tailwindcss from '@tailwindcss/vite'
 
-import { rehypeTailwind } from './src/plugins/rehype_tailwind'
-import { watchPlugins } from './src/integrations/watch_plugins'
 import { watchRecivi } from './src/integrations/watch_recivi'
 
 import { site } from './src/stores/site'
@@ -18,7 +16,6 @@ export default defineConfig({
     service: passthroughImageService(),
   },
   markdown: {
-    rehypePlugins: [rehypeTailwind],
     smartypants: false, // https://daringfireball.net/projects/smartypants/
     shikiConfig: {
       defaultColor: false,
@@ -31,7 +28,7 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  integrations: [mdx(), alpinejs(), watchPlugins(), watchRecivi()],
+  integrations: [mdx(), alpinejs(), watchRecivi()],
   vite: {
     plugins: [tailwindcss()],
   },
