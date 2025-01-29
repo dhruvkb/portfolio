@@ -63,7 +63,7 @@ const hasContent = Astro.slots.has('default')
     <div class="cntnr">
       <h2 class="hhr text-peach">Education</h2>
     </div>
-    <div class="mb-4 w-full max-w-screen-lg">
+    <div class="mb-4">
       <div class="hidden sm:block">
         <Table
           columns={certColumns}
@@ -79,7 +79,7 @@ const hasContent = Astro.slots.has('default')
       <h2 class="hhr text-peach">Roles</h2>
       <p>Click on an org (or epic) name to know more.</p>
     </div>
-    <div class="mb-4 w-full max-w-screen-lg">
+    <div class="mb-4">
       <div class="hidden sm:block">
         <Table
           columns={roleColumns}
@@ -95,7 +95,7 @@ const hasContent = Astro.slots.has('default')
       <h2 class="hhr text-peach">Projects</h2>
       <p>Click on an epic (or org) name to know more.</p>
     </div>
-    <div class="mb-4 w-full max-w-screen-lg">
+    <div class="mb-4">
       <div class="hidden sm:block">
         <Table
           columns={projectColumns}
