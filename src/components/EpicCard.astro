@@ -36,7 +36,7 @@ const { epic } = Astro.props
             <div
               class="ms-2 border-s border-surface1 ps-2"
               class:list={{
-                'pointer-none border-trans invisible': !project.url,
+                'pointer-none invisible': !project.url,
               }}
               aria-hidden={!project.url}>
               <Link url={project.url || 'https://dhruvkb.dev'}>link</Link>
