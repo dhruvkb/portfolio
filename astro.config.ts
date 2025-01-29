@@ -1,8 +1,9 @@
 import { defineConfig, passthroughImageService } from 'astro/config'
 
 import mdx from '@astrojs/mdx'
-import tailwind from '@astrojs/tailwind'
 import alpinejs from '@astrojs/alpinejs'
+
+import tailwindcss from '@tailwindcss/vite'
 
 import { rehypeTailwind } from './src/plugins/rehype_tailwind'
 import { watchPlugins } from './src/integrations/watch_plugins'
@@ -30,11 +31,8 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  integrations: [
-    tailwind({ applyBaseStyles: false }),
-    mdx(),
-    alpinejs(),
-    watchPlugins(),
-    watchRecivi(),
-  ],
+  integrations: [mdx(), alpinejs(), watchPlugins(), watchRecivi()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

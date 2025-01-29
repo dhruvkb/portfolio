@@ -1,0 +1,85 @@
+@import 'tailwindcss';
+
+@theme {
+  /*
+   * We only concern ourselves with two breakpoints, which determine whether the
+   * site has a single pane or two.
+   */
+
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-xl: 1280px;
+
+  /*
+   * Based on the user's dark mode preference, the theme will either be
+   * Catppuccin Latte or Catppuccin Mocha.
+   */
+
+  --color-text: var(--color-catppuccin-text);
+  --color-subtext1: var(--color-catppuccin-subtext1);
+  --color-subtext0: var(--color-catppuccin-subtext0);
+  --color-overlay2: var(--color-catppuccin-overlay2);
+  --color-overlay1: var(--color-catppuccin-overlay1);
+  --color-overlay0: var(--color-catppuccin-overlay0);
+  --color-surface2: var(--color-catppuccin-surface2);
+  --color-surface1: var(--color-catppuccin-surface1);
+  --color-surface0: var(--color-catppuccin-surface0);
+  --color-base: var(--color-catppuccin-base);
+  --color-mantle: var(--color-catppuccin-mantle);
+  --color-crust: var(--color-catppuccin-crust);
+
+  --color-rosewater: var(--color-catppuccin-rosewater);
+  --color-flamingo: var(--color-catppuccin-flamingo);
+  --color-pink: var(--color-catppuccin-pink);
+  --color-mauve: var(--color-catppuccin-mauve);
+  --color-red: var(--color-catppuccin-red);
+  --color-maroon: var(--color-catppuccin-maroon);
+  --color-peach: var(--color-catppuccin-peach);
+  --color-yellow: var(--color-catppuccin-yellow);
+  --color-green: var(--color-catppuccin-green);
+  --color-teal: var(--color-catppuccin-teal);
+  --color-sky: var(--color-catppuccin-sky);
+  --color-sapphire: var(--color-catppuccin-sapphire);
+  --color-blue: var(--color-catppuccin-blue);
+  --color-lavender: var(--color-catppuccin-lavender);
+
+  /* The second and subsequent font names are from Tailwind CSS defaults. */
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: 'Spectral', ui-serif, Georgia, Cambria, 'Times New Roman',
+    Times, serif;
+  --font-mono: monospace;
+
+  --animate-wave: wave 1s ease-in-out infinite;
+
+  @keyframes wave {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(15deg);
+    }
+  }
+}
+
+@custom-variant pdf {
+  &:where(.pdf &) {
+    @slot;
+  }
+}
+
+@custom-variant gfm-done {
+  &:has(input[checked]) {
+    @slot;
+  }
+}
+
+@custom-variant gfm-todo {
+  &:has(input:not([checked])) {
+    @slot;
+  }
+}
+
+@plugin 'tailwindcss-safe-area';
