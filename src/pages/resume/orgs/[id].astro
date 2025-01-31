@@ -65,7 +65,7 @@ const metadata = {
     {
       org.roles.map((role) => (
         <div>
-          <h2 class="hhr text-peach">
+          <h2>
             {role.name}
             {role.type &&
               role.type !== 'full-time' &&
@@ -110,7 +110,7 @@ const metadata = {
 
           {role.highlights?.length ? (
             <Fragment>
-              <h3 class="hhrs text-peach">Highlights</h3>
+              <h3>Highlights</h3>
               <ul class="mb-4 list-disc pl-4 marker:text-peach">
                 {role.highlights?.map((hl) => (
                   <li set:html={hl} />

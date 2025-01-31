@@ -70,7 +70,7 @@ const metadata = {
     {
       epic.projects.map((project) => (
         <div>
-          <h2 class="hhr text-peach">{project.name}</h2>
+          <h2>{project.name}</h2>
 
           <dl class="mb-2 grid grid-cols-[auto_1fr] gap-x-2 [&:not(:has(dt))]:hidden">
             {project.url && (
@@ -97,7 +97,7 @@ const metadata = {
 
           {project.highlights?.length ? (
             <Fragment>
-              <h3 class="hhrs text-peach">Highlights</h3>
+              <h3>Highlights</h3>
               <ul class="list-disc pl-4 marker:text-peach">
                 {project.highlights?.map((hl) => (
                   <li set:html={hl} />
@@ -108,7 +108,7 @@ const metadata = {
 
           {project.technologies?.length && (
             <Fragment>
-              <h3 class="hhrs text-peach">Technologies</h3>
+              <h3>Technologies</h3>
               <ul class="list-disc columns-2 pl-4 marker:text-peach">
                 {project.technologies?.map((item: Tech) => (
                   <li>
