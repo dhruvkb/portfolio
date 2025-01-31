@@ -31,55 +31,31 @@
  */
 
 @layer base {
-  /*
-   * Add vertical margins to block components. We're excluding `<ol>` and `<ul>`
-   * here because they're used in a lot of ways across the site and not just as
-   * typography.
-   */
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  table,
-  hr {
-    @apply my-4;
-  }
-
-  /* Except for `<h1>`, medium is the new bold. */
-
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong,
-  th {
-    @apply font-medium;
-  }
-
   /* Headings
    * ======== */
 
   h1 {
-    @apply text-3xl font-bold text-peach sm:text-5xl;
+    @apply my-4 text-3xl font-bold text-peach sm:text-5xl;
   }
 
-  h2:not(.md-post *),
-  h2#footnote-label {
-    /* special inclusion of footnote heading */
-    @apply -mx-4 flex items-center gap-2 text-peach before:h-px before:w-2 before:bg-peach after:h-px after:w-2 after:grow after:bg-surface1;
+  h2 {
+    @apply my-4 font-medium text-peach;
   }
 
-  h3:not(.md-post *) {
-    @apply -ms-4 flex items-center gap-2 text-peach before:h-px before:w-2 before:bg-peach;
+  h3 {
+    @apply my-4 font-medium text-peach;
   }
 
-  h4:not(.md-post *) {
-    @apply text-peach;
+  h4 {
+    @apply my-4 font-medium text-peach;
+  }
+
+  h5 {
+    @apply my-4 font-medium text-peach;
+  }
+
+  h6 {
+    @apply my-4 font-medium text-peach;
   }
 
   /* Anchor links
@@ -124,7 +100,7 @@
 
   table {
     /* `.-mx-4` breaks tables out of their container. */
-    @apply -mx-4 w-[calc(100%_+_2_*_(var(--spacing)_*_4))];
+    @apply -mx-4 my-4 w-[calc(100%_+_2_*_(var(--spacing)_*_4))];
   }
 
   tr {
@@ -132,10 +108,9 @@
   }
 
   th {
-    @apply border-y border-surface1 bg-surface0 text-left;
+    @apply border-y border-surface1 bg-surface0 px-2 py-0.5 text-left font-medium first:pl-4 last:pr-4;
   }
 
-  th,
   td {
     @apply px-2 py-0.5 first:pl-4 last:pr-4;
   }
@@ -161,6 +136,18 @@
 
   blockquote {
     @apply border-l-2 border-l-peach pl-2;
+  }
+
+  p {
+    @apply my-4;
+  }
+
+  hr {
+    @apply my-4 border-surface1;
+  }
+
+  strong {
+    @apply font-medium; /* Medium is the new bold. */
   }
 }
 
@@ -199,8 +186,7 @@
   }
 
   .md-post {
-    h2:not(#footnote-label) {
-      /* special exclusion of footnote heading */
+    h2 {
       @apply text-2xl;
     }
 
@@ -215,6 +201,15 @@
     h6 {
       @apply text-sm;
     }
+  }
+
+  h2:not(.md-post *) {
+    /* special inclusion of footnote heading */
+    @apply -mx-4 my-4 flex items-center gap-2 before:h-px before:w-2 before:bg-peach after:h-px after:w-2 after:grow after:bg-surface1;
+  }
+
+  h3:not(.md-post *) {
+    @apply my-4 -ms-4 flex items-center gap-2 before:h-px before:w-2 before:bg-peach;
   }
 }
 
@@ -242,5 +237,5 @@
  * override those styles.
  */
 #footnote-label {
-  @apply static -mx-4 h-fit w-[unset];
+  @apply static -mx-4 my-4 flex h-fit w-[calc(100%_+_2_*_var(--spacing)_*_4)] items-center gap-2 text-base before:h-px before:w-2 before:bg-peach after:h-px after:w-2 after:grow after:bg-surface1;
 }
