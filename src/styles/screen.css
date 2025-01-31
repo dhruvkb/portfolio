@@ -1,20 +1,41 @@
 /*
-  This sheet defines styles that must apply to the complete site, which includes both
-  content inside Markdown and markup defined in Astro components.
-
-  Styles that apply to components that would normally only appear in MDX content should
-  be defined in `rehype_tailwind.ts`.
-
-  Imported by `main.astro`.
+ * This sheet defines styles that must apply to the screen version of the site.
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './tailwind.css';
 
-/* Apply universal styles, kind of like an anti-reset. */
+/*
+ * Additional utilities
+ * ====================
+ * Utilities are named classes that set a single CSS rule. If you want to set
+ * more than one rule, define a component in the components layer.
+ */
+
+@utility clip-0 {
+  clip-path: inset(0);
+}
+
+@utility list-lower-roman {
+  list-style-type: lower-roman;
+}
+
+@utility list-circle {
+  list-style-type: circle;
+}
+
+/*
+ * Layer base
+ * ==========
+ * These are the base styles that apply to all elements. They apply across the
+ * entire site and are useful when defining the default appearance of elements.
+ */
+
 @layer base {
-  /* Add vertical margins to block components. */
+  /*
+   * Add vertical margins to block components. We're excluding `<ol>` and `<ul>`
+   * here because they're used in a lot of ways across the site and not just as
+   * typography.
+   */
 
   h1,
   h2,
@@ -27,13 +48,7 @@
     @apply my-4;
   }
 
-  /* Top level headings should be in bold font... */
-
-  h1 {
-    @apply font-bold;
-  }
-
-  /* ...but for everything else, bold is too heavy. */
+  /* Except for `<h1>`, medium is the new bold. */
 
   h2,
   h3,
@@ -45,14 +60,36 @@
     @apply font-medium;
   }
 
-  /* Element specific styles */
+  /* Headings
+   * ======== */
+
+  h1 {
+    @apply text-3xl font-bold text-peach sm:text-5xl;
+  }
+
+  h2:not(.md-post *),
+  h2#footnote-label {
+    /* special inclusion of footnote heading */
+    @apply -mx-4 flex items-center gap-2 text-peach before:h-px before:w-2 before:bg-peach after:h-px after:w-2 after:grow after:bg-surface1;
+  }
+
+  h3:not(.md-post *) {
+    @apply -ms-4 flex items-center gap-2 text-peach before:h-px before:w-2 before:bg-peach;
+  }
+
+  h4:not(.md-post *) {
+    @apply text-peach;
+  }
+
+  /* Anchor links
+   * ============ */
 
   a {
     @apply underline decoration-blue visited:decoration-mauve hover:decoration-wavy;
   }
 
   a[data-rel='parent'] {
-    /* Parent links */
+    /* Parent links have ← before the link. */
     @apply before:mx-0.5 before:inline-block before:text-blue before:transition-transform before:content-["←"] visited:before:text-mauve hover:before:-translate-x-1;
   }
 
@@ -60,37 +97,41 @@
   a[href^='http'],
   a[href^='mailto:'],
   a[href^='tel:'] {
-    /* Special links */
+    /* Special links have some arrow after the link. */
     @apply after:mx-0.5 after:inline-block after:text-blue after:transition-transform visited:after:text-mauve hover:after:transform;
   }
 
-  /* Download links */
   a[href$='.pdf'] {
+    /* download links */
     @apply after:content-["↓"] hover:after:translate-y-1;
   }
 
   a[href^='http'] {
-    /* External links */
+    /* external links */
     /* IDEA: ⤴ is another nice arrow that conveys a similar idea to ↗. */
     @apply after:content-["↗"] hover:after:-translate-y-1 hover:after:translate-x-1;
   }
 
   a[href^='mailto:'],
   a[href^='tel:'] {
-    /* Non-web links */
+    /* non-web links */
     @apply after:content-["→"] hover:after:translate-x-1;
   }
 
-  h1 {
-    @apply text-3xl text-peach sm:text-5xl;
-  }
+  /* Tables
+   * ====== */
 
   table {
-    @apply w-full;
+    /* `.-mx-4` breaks tables out of their container. */
+    @apply -mx-4 w-[calc(100%_+_2_*_(var(--spacing)_*_4))];
+  }
+
+  tr {
+    @apply last:border-b last:border-surface1;
   }
 
   th {
-    @apply border-y bg-surface0 text-left;
+    @apply border-y border-surface1 bg-surface0 text-left;
   }
 
   th,
@@ -98,37 +139,107 @@
     @apply px-2 py-0.5 first:pl-4 last:pr-4;
   }
 
-  code {
-    @apply px-1 py-0.5 [:not(pre)>&]:border [:not(pre)>&]:bg-surface0;
+  /* Computing specific stuff
+   * ======================== */
+
+  code:not(pre > code) {
+    /* `<code>` elements nested inside `<pre>` will already by styled appropriately. */
+    @apply rounded-sm border border-surface1 bg-surface0 px-1 py-0.5;
+  }
+
+  pre {
+    @apply my-4 border border-surface1 p-2 [&>code>span.line:empty]:hidden;
+  }
+
+  kbd {
+    @apply relative -top-0.5 inline-block rounded-sm border border-surface1 bg-surface0 px-1 py-0.5 leading-none font-medium shadow-[0_2px_0_1px] shadow-surface1 hover:translate-y-px hover:shadow-[0_1px_0_0.5px];
+  }
+
+  /* Writing
+   * ======= */
+
+  blockquote {
+    @apply border-l-2 border-l-peach pl-2;
+  }
+
+  hr {
+    @apply my-4 flex h-fit items-center justify-center border-none text-overlay1 after:content-['*_*_*'];
   }
 }
+
+/*
+ * Layer components
+ * ================
+ * These are reusable components that are used in multiple places in the site.
+ * They define multiple rules and can be overridden with utilities.
+ */
 
 @layer components {
   .cntnr {
-    @apply w-full px-4 mx-safe sm:max-w-screen-sm;
+    @apply mx-safe w-full px-4 sm:max-w-(--breakpoint-sm);
   }
 
-  .hhr-core {
-    @apply flex items-center gap-2;
+  .md-page,
+  .md-post {
+    /* Lists
+     * ===== */
+
+    ul {
+      @apply ml-4 list-disc marker:mr-2 [:not(li)>&]:my-4 [li>&]:list-circle;
+    }
+
+    ol {
+      @apply ml-4 list-decimal [:not(li)>&]:my-4 [li>&]:list-lower-roman;
+    }
+
+    li {
+      @apply marker:text-peach gfm-done:marker:text-green gfm-done:marker:content-["✓_"] gfm-todo:marker:content-["▢_"] [&.task-list-item_input]:appearance-none [&[id^="user-content-fn"]_p]:my-0;
+    }
   }
 
-  .hhrs {
-    /* Uses `-ms-4` to reverse the padding applied by the container. */
-    @apply hhr-core -ms-4 before:h-px before:w-2 before:bg-peach;
-  }
+  .md-post {
+    h2:not(#footnote-label) {
+      /* special exclusion of footnote heading */
+      @apply text-2xl;
+    }
 
-  .hhre {
-    /* Uses `-me-4` to reverse the padding applied by the container. */
-    @apply hhr-core -me-4 after:h-px after:w-2 after:flex-grow after:bg-surface1;
-  }
+    h3 {
+      @apply text-xl;
+    }
 
-  .hhr {
-    @apply hhrs hhre;
+    h4 {
+      @apply text-lg;
+    }
+
+    h6 {
+      @apply text-sm;
+    }
   }
 }
 
+/*
+ * Layer utilities
+ * ===============
+ * These consists of modifications to existing utilities. New utilities should
+ * be defined above using `@utility`.
+ */
+
 @layer utilities {
-  .clip-0 {
-    clip-path: inset(0);
+  /* Prevent `.sr-only` from breaking scroll behaviour. */
+  .sr-only {
+    @apply top-0 left-0;
   }
+}
+
+/* Styles
+ * ====== */
+
+/*
+ * This makes the "Footnotes" heading visible again and apples the H2 style used
+ * in page content (even though it is technically post content). It cannot be
+ * placed in any layer because it has the `.sr-only` utility and we need to
+ * override those styles.
+ */
+#footnote-label {
+  @apply static -mx-4 h-fit w-[unset];
 }

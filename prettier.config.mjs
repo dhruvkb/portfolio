@@ -22,6 +22,6 @@ export default {
   ],
   proseWrap: 'always',
   tailwindFunctions: ['tw'],
-  tailwindStylesheet: './src/styles/tailwind.css',
+  tailwindStylesheet: './src/styles/screen.css',
   plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
 }
