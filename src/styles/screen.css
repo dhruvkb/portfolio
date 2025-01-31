@@ -44,7 +44,8 @@
   h5,
   h6,
   p,
-  table {
+  table,
+  hr {
     @apply my-4;
   }
 
@@ -161,10 +162,6 @@
   blockquote {
     @apply border-l-2 border-l-peach pl-2;
   }
-
-  hr {
-    @apply my-4 flex h-fit items-center justify-center border-none text-overlay1 after:content-['*_*_*'];
-  }
 }
 
 /*
@@ -181,6 +178,10 @@
 
   .md-page,
   .md-post {
+    hr {
+      @apply flex h-fit items-center justify-center border-none text-overlay1 after:content-['*_*_*'];
+    }
+
     /* Lists
      * ===== */
 
