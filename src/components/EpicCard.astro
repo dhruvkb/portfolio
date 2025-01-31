@@ -11,7 +11,8 @@ interface Props {
 const { epic } = Astro.props
 ---
 
-<div class="border-b border-surface1 px-4 py-2">
+<!-- Class `.-mx-4` breaks the card out of its container. -->
+<div class="-mx-4 border-b border-surface1 px-4 py-2">
   <strong
     ><IconName
       {...epic}

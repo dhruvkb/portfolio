@@ -33,7 +33,7 @@ function isCurr(row: Row) {
 <!-- Padding must be removed because cells are padded individually. -->
 <table
   border="1px"
-  class="cntnr px-0 transition"
+  class="transition"
   x-data="{ activeGroup: undefined }">
   <thead class="bg-surface0">
     <tr>
@@ -64,7 +64,7 @@ function isCurr(row: Row) {
           })}
           x-show="!activeCategories.length || activeCategories.some(item => categories.includes(item))"
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
-          class="clip-0 translate-x-0 transition after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
+          class="translate-x-0 transition clip-0 after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
           class:list={{
             'border-b border-surface1': row.isLastSibling,
             'bg-surface0 after:w-1': isCurr(row),

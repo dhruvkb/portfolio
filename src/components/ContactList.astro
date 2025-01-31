@@ -31,18 +31,18 @@ const items = [
   profiles.map((profile) => ({
     icon: Object.freeze({ name: profile.site.id, source: 'simple_icons' }),
     name: profile.site.name,
-    url: 'url' in profile ? profile.url : null,
+    url: profile.url,
     text: 'username' in profile ? profile.username : profile.site.name,
   })),
 ].flat()
 ---
 
-<ul class="columns-2 pdf:flex pdf:justify-between">
-  {
-    items.map((item) => (
-      <li>
-        <div class="flex items-center gap-2">
-          <span class="text-peach pdf:text-overlay1">
+<address class="not-italic">
+  <ul class="ml-0 list-none sm:columns-2 pdf:flex pdf:justify-between">
+    {
+      items.map((item) => (
+        <li>
+          <span class="text-peach pdf:text-text">
             {item.icon.name && (
               <Icon
                 source={item.icon.source}
@@ -52,17 +52,13 @@ const items = [
             )}
           </span>
           <span class="sr-only">{item.name}</span>
-          {item.url ? (
-            <Link
-              rel="me"
-              url={item.url}>
-              {item.text}
-            </Link>
-          ) : (
-            item.text
-          )}
-        </div>
-      </li>
-    ))
-  }
-</ul>
+          <Link
+            rel="me"
+            url={item.url}>
+            {item.text}
+          </Link>
+        </li>
+      ))
+    }
+  </ul>
+</address>

@@ -21,6 +21,7 @@ import Meta from '@/components/Meta.astro'
 import OrgCard from '@/components/OrgCard.astro'
 import Table from '@/components/Table.astro'
 import Skill from '@/components/Skill.astro'
+import LanguageList from '@/components/LanguageList.astro'
 
 import { Content as ResumeIndex } from '@/pages/resume/_index.mdx'
 
@@ -55,75 +56,92 @@ const hasContent = Astro.slots.has('default')
   </slot>
 
   <!-- content for the left pane -->
-  <main class="my-4 grow">
-    <div class="cntnr">
-      <ResumeIndex />
-    </div>
+  <main class="cntnr my-4 grow">
+    <ResumeIndex />
 
-    <div class="cntnr">
-      <h2 class="hhr text-peach">Education</h2>
-    </div>
-    <div class="mb-4">
-      <div class="hidden sm:block">
-        <Table
-          columns={certColumns}
-          data={certData}
-        />
-      </div>
-      <div class="sm:hidden">
-        {institutes.map((institute) => <InstituteCard {institute} />)}
-      </div>
-    </div>
+    {
+      Boolean(certData.length) && (
+        <Fragment>
+          <h2>Education</h2>
+          <div class="hidden sm:block">
+            <Table
+              columns={certColumns}
+              data={certData}
+            />
+          </div>
+          <div class="sm:hidden">
+            {institutes.map((institute) => (
+              <InstituteCard {institute} />
+            ))}
+          </div>
+        </Fragment>
+      )
+    }
 
-    <div class="cntnr">
-      <h2 class="hhr text-peach">Roles</h2>
-      <p>Click on an org (or epic) name to know more.</p>
-    </div>
-    <div class="mb-4">
-      <div class="hidden sm:block">
-        <Table
-          columns={roleColumns}
-          data={roleData}
-        />
-      </div>
-      <div class="sm:hidden">
-        {orgs.map((org) => <OrgCard {org} />)}
-      </div>
-    </div>
+    {
+      Boolean(roleData.length) && (
+        <Fragment>
+          <h2>Roles</h2>
+          <p>Click on an org (or epic) name to know more.</p>
+          <div class="hidden sm:block">
+            <Table
+              columns={roleColumns}
+              data={roleData}
+            />
+          </div>
+          <div class="sm:hidden">
+            {orgs.map((org) => (
+              <OrgCard {org} />
+            ))}
+          </div>
+        </Fragment>
+      )
+    }
 
-    <div class="cntnr">
-      <h2 class="hhr text-peach">Projects</h2>
-      <p>Click on an epic (or org) name to know more.</p>
-    </div>
-    <div class="mb-4">
-      <div class="hidden sm:block">
-        <Table
-          columns={projectColumns}
-          data={projectData}
-        />
-      </div>
-      <div class="sm:hidden">
-        {epics.map((epic) => <EpicCard {epic} />)}
-      </div>
-    </div>
+    {
+      Boolean(projectData.length) && (
+        <Fragment>
+          <h2>Projects</h2>
+          <p>Click on an epic (or org) name to know more.</p>
+          <div class="hidden sm:block">
+            <Table
+              columns={projectColumns}
+              data={projectData}
+            />
+          </div>
+          <div class="sm:hidden">
+            {epics.map((epic) => (
+              <EpicCard {epic} />
+            ))}
+          </div>
+        </Fragment>
+      )
+    }
 
-    <div class="cntnr">
-      {
-        recivi.bio.skills?.length ? (
-          <Fragment>
-            <h2 class="hhr text-peach">Skills</h2>
-            <p>Apart from what's listed above, I also possess these skills.</p>
-            <ul class="ml-4 list-disc marker:text-peach sm:columns-2">
-              {recivi.bio.skills?.map((skill) => (
-                <li>
-                  <Skill {skill} />
-                </li>
-              ))}
-            </ul>
-          </Fragment>
-        ) : undefined
-      }
-    </div>
+    {
+      Boolean(recivi.bio.skills?.length) && (
+        <Fragment>
+          <h2>Skills</h2>
+          <p>Apart from what's listed above, I also possess these skills.</p>
+          <ul class="ml-4 list-disc marker:text-peach sm:columns-2">
+            {recivi.bio.skills?.map((skill) => (
+              <li>
+                <Skill {skill} />
+              </li>
+            ))}
+          </ul>
+        </Fragment>
+      )
+    }
+
+    {
+      Boolean(recivi.bio.languages?.length) && (
+        <Fragment>
+          <h2>Languages</h2>
+          <LanguageList />
+        </Fragment>
+      )
+    }
   </main>
 
   <!-- content for the right pane -->

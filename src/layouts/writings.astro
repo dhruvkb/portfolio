@@ -50,16 +50,14 @@ const categories = await getCategories()
   </slot>
 
   <!-- content for the left pane -->
-  <main class="my-4 grow">
-    <div class="cntnr">
-      <WritingsIndex />
-    </div>
+  <main class="cntnr my-4 grow">
+    <WritingsIndex />
 
     <!-- Only shown when JS is enabled, so it will be revealed by JS. -->
     <div
       id="all-tags"
-      class="cntnr hidden">
-      <h2 class="hhr text-peach">Categories</h2>
+      class="hidden">
+      <h2>Categories</h2>
 
       {
         categories.length ? (
@@ -100,27 +98,23 @@ const categories = await getCategories()
       }
     </div>
 
-    <div class="cntnr">
-      <h2 class="hhr text-peach">Posts</h2>
-    </div>
-    <div id="all-posts">
-      {
-        postsData.length ? (
-          <Table
-            columns={postColumns}
-            data={postsData}
+    <h2>Posts</h2>
+    {
+      postsData.length ? (
+        <Table
+          columns={postColumns}
+          data={postsData}
+        />
+      ) : (
+        <p class="cntnr text-yellow">
+          <Icon
+            source="lucide"
+            name="circle-slash-2"
           />
-        ) : (
-          <p class="cntnr text-yellow">
-            <Icon
-              source="lucide"
-              name="circle-slash-2"
-            />
-            No posts to show.
-          </p>
-        )
-      }
-    </div>
+          No posts to show.
+        </p>
+      )
+    }
   </main>
 
   <!-- content for the right pane -->
