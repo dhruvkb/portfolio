@@ -70,9 +70,9 @@ const categories = await getCategories()
               <legend class="sr-only">Tags</legend>
               {categories.map((category) => (
                 <label
+                  class="my-1 mr-1 inline-block rounded-sm border px-1 py-0.5 hover:bg-surface0"
                   x-data={`{ category: '${category}' }`}
-                  x-bind:class="activeCategories.includes(category) ? 'border-peach' : 'border-surface1'"
-                  class="my-1 mr-1 inline-block rounded-sm border px-1 py-0.5 hover:bg-surface0">
+                  x-bind:class="activeCategories.includes(category) ? 'border-peach' : 'border-surface1'">
                   <input
                     class="hidden"
                     type="checkbox"

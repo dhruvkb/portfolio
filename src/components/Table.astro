@@ -58,19 +58,19 @@ function isCurr(row: Row) {
         a cell.
         */
         <tr
+          class="translate-x-0 transition clip-0 after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
+          class:list={{
+            'border-b border-surface1': row.isLastSibling,
+            'bg-surface0 after:w-1': isCurr(row),
+          }}
           x-data={JSON.stringify({
             groupId: row.groupId ?? idx,
             categories: 'post' in row.data && row.data.post?.data.categories,
           })}
           x-show="!activeCategories.length || activeCategories.some(item => categories.includes(item))"
           x-bind:class="{ 'opacity-30': activeGroup && groupId !== activeGroup }"
-          class="translate-x-0 transition clip-0 after:absolute after:inset-y-0 after:start-0 after:bg-peach hover:bg-surface0"
-          class:list={{
-            'border-b border-surface1': row.isLastSibling,
-            'bg-surface0 after:w-1': isCurr(row),
-          }}
-          @mouseenter="activeGroup = groupId"
-          @mouseleave="activeGroup = ''">
+          x-on:mouseenter="activeGroup = groupId"
+          x-on:mouseleave="activeGroup = ''">
           {Object.entries(row.data)
             .filter(([key]) => columnIds.includes(key as keyof typeof row.data))
             .sort(
@@ -103,7 +103,7 @@ function isCurr(row: Row) {
                     {/* prettier-ignore */}
                     <ul class="text-overlay1">
                       {value.data.categories.map((category: string) => (
-                        <li x-data={JSON.stringify({ category })} x-bind:class="{ 'text-peach': activeCategories.includes(category) }" class="inline-block after:mx-1 after:content-['·'] last:after:content-none">
+                        <li class="inline-block after:mx-1 after:content-['·'] last:after:content-none" x-data={JSON.stringify({ category })} x-bind:class="{ 'text-peach': activeCategories.includes(category) }">
                           {category}
                         </li>
                       ))}
