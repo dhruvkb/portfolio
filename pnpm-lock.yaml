@@ -27,8 +27,8 @@ importers:
         specifier: ^1.2.19
         version: 1.2.22
       '@recivi/schema':
-        specifier: ^0.0.1
-        version: link:../../recivi/recivi/packages/schema
+        specifier: ^0.0.2
+        version: 0.0.2
       '@tailwindcss/vite':
         specifier: ^4.0.0
         version: 4.0.0(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.7.0))
@@ -718,6 +718,9 @@ packages:
     resolution: {integrity: sha512-aBSREisdsGH890S2rQqK82qmQYU3uFpSH8wcZWHgHzl3LfzsxAKbLNiAG9mO8v1Y0UICBeClICxPJvyr0rcuxg==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@recivi/schema@0.0.2':
+    resolution: {integrity: sha512-J2vCCpoZnYdkN3BVq1K0Pd/qdoM3/EAnSmkl18CuSu3cLDcavacGZYPC+Tx7hpDCEJEbm1AIwohA7hqqGsyG7g==}
 
   '@resvg/resvg-wasm@2.4.0':
     resolution: {integrity: sha512-C7c51Nn4yTxXFKvgh2txJFNweaVcfUPQxwEUFw4aWsCmfiBDJsTSwviIF8EcwjQ6k8bPyMWCl1vw4BdxE569Cg==}
@@ -4009,6 +4012,10 @@ snapshots:
     transitivePeerDependencies:
       - bare-buffer
       - supports-color
+
+  '@recivi/schema@0.0.2':
+    dependencies:
+      zod: 3.24.1
 
   '@resvg/resvg-wasm@2.4.0': {}
 

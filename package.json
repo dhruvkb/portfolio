@@ -24,7 +24,7 @@
     "@astrojs/rss": "^4.0.11",
     "@iconify-json/lucide": "^1.2.22",
     "@iconify-json/simple-icons": "^1.2.19",
-    "@recivi/schema": "^0.0.1",
+    "@recivi/schema": "^0.0.2",
     "@tailwindcss/vite": "^4.0.0",
     "@types/alpinejs": "^3.13.11",
     "@types/node": "^22.10.1",
