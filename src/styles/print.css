@@ -1,21 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './tailwind.css';
+
+@theme {
+  /* Override background and text colours for printing. */
+  --color-text: #222222;
+  --color-overlay1: #878787;
+  --color-surface1: #c3c3c3;
+  --color-base: #ffffff;
+}
 
 @layer base {
-  /* Element specific styles */
+  h2 {
+    @apply flex items-center gap-2 font-serif text-lg font-medium after:h-px after:grow after:bg-surface1;
+  }
 
   a {
     @apply underline decoration-blue visited:decoration-mauve hover:decoration-wavy print:no-underline;
   }
 
   code {
-    @apply border bg-surface0 px-1 py-0.5 font-mono;
+    /* In a résumé, the usual styles for code draw too much attention. */
+    @apply rounded-sm border border-surface1 px-1 py-0.5 font-mono;
   }
 }
 
-@layer components {
-  .hhre {
-    @apply flex items-center gap-2 after:h-px after:flex-grow after:bg-surface1;
+:root {
+  /* Keep variables synced with the page size and orientation below. */
+  --page-width: 210mm;
+  --page-height: 297mm;
+
+  --page-x-margin: 5mm;
+  --page-t-margin: 5mm;
+  --page-b-margin: 10mm;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: var(--page-t-margin) var(--page-x-margin) var(--page-b-margin);
+
+    @bottom-right {
+      content: 'Page ' counter(page) ' of ' counter(pages);
+      @apply text-sm text-overlay1;
+    }
   }
 }
