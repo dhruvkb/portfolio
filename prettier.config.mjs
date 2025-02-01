@@ -19,6 +19,12 @@ export default {
         parser: 'html',
       },
     },
+    {
+      files: ['src/**/pdf.astro'],
+      options: {
+        tailwindStylesheet: './src/styles/print.css',
+      },
+    },
   ],
   proseWrap: 'always',
   tailwindFunctions: ['tw'],
