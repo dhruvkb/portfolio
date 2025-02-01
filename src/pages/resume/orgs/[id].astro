@@ -1,6 +1,8 @@
 ---
 import ResumeLayout from '@/layouts/resume.astro'
 
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
 import IconName from '@/components/IconName.astro'
 import Meta from '@/components/Meta.astro'
 import TimePeriod from '@/components/TimePeriod.astro'
@@ -40,7 +42,9 @@ const metadata = {
     <Meta data={metadata} />
   </slot>
 
-  <div class="cntnr my-4">
+  <SiteHeader classes="xl:hidden" />
+
+  <aside class="cntnr my-4">
     <h1 class="text-3xl text-peach sm:text-5xl">
       <IconName {...org} />
     </h1>
@@ -121,5 +125,7 @@ const metadata = {
         </div>
       ))
     }
-  </div>
+  </aside>
+
+  <SiteFooter classes="xl:hidden" />
 </ResumeLayout>

@@ -3,6 +3,8 @@ import { render, type CollectionEntry } from 'astro:content'
 
 import WritingsLayout from '@/layouts/writings.astro'
 
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
 import Meta from '@/components/Meta.astro'
 import Link from '@/components/Link.astro'
 import DateComponent from '@/components/Date.astro'
@@ -55,7 +57,9 @@ const metadata = {
     <Meta data={metadata} />
   </slot>
 
-  <div class="cntnr my-4">
+  <SiteHeader classes="xl:hidden" />
+
+  <aside class="cntnr my-4">
     <h1 class="text-3xl text-peach sm:text-5xl">{post.data.title}</h1>
 
     <dl class="mb-2 grid grid-cols-[auto_1fr] gap-x-2">
@@ -91,7 +95,7 @@ const metadata = {
       your preferred <Link url="/">communication channel</Link>. Webmention
       support will be added soon.
     </p>
-  </div>
+  </aside>
 
   {
     post.data.series && (
@@ -110,4 +114,6 @@ const metadata = {
       </Fragment>
     )
   }
+
+  <SiteFooter classes="xl:hidden" />
 </WritingsLayout>
