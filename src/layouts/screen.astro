@@ -55,7 +55,7 @@ const hasSecondaryContent = Astro.slots.has('secondary')
     This column is hidden on small widths when there is a right column.
     -->
     <div
-      class="flex flex-col overflow-y-auto"
+      class="flex max-h-screen flex-col overflow-y-auto"
       class:list={{ 'hidden xl:flex': hasSecondaryContent }}>
       <SiteHeader />
 
@@ -69,7 +69,9 @@ const hasSecondaryContent = Astro.slots.has('secondary')
     <!-- right column -->
     {
       hasSecondaryContent && (
-        <div class="overflow-y-auto xl:border-s xl:border-surface1">
+        <div
+          class="max-h-screen overflow-x-hidden overflow-y-auto xl:border-s xl:border-surface1"
+          id="secondaryScroll">
           <slot name="secondary" />
         </div>
       )
