@@ -39,7 +39,7 @@ const nameProficiencyMap = Object.fromEntries(
 <div
   id="languages"
   class="block flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center"
-  x-data="xData()">
+  x-data="languageProficiency">
   <ul
     id="language-names"
     class="group ml-4 list-disc columns-2 marker:text-peach">
@@ -173,8 +173,8 @@ const nameProficiencyMap = Object.fromEntries(
   is:inline
   define:vars={{ nameProficiencyMap, axisLen, levels, midX, midY }}
 >
-  window.xData = function () {
-    return {
+  function languageProficiencyData() {
+    Alpine.data('languageProficiency', () => ({
       nameProficiencyMap,
       midX,
       midY,
@@ -202,6 +202,7 @@ const nameProficiencyMap = Object.fromEntries(
         this.hoverName = null // ignore the hover name
         this.activeName = this.activeName === name ? null : name
       },
-    }
+    }))
   }
+  document.addEventListener('alpine:init', languageProficiencyData)
 </script>
