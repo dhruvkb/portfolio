@@ -12,6 +12,7 @@ import recivi from '@/assets/icons/recivi.svg?raw'
 import skyscraper from '@/assets/icons/skyscraper.svg?raw'
 import starlight from '@/assets/icons/starlight.svg?raw'
 import yojak from '@/assets/icons/yojak.svg?raw'
+import zsh from '@/assets/icons/zsh.svg?raw'
 
 const knownIcons = {
   '2fac': _2fac,
@@ -25,6 +26,8 @@ const knownIcons = {
   skyscraper,
   starlight,
   yojak,
+  // TODO: https://github.com/simple-icons/simple-icons/issues/12677
+  zsh,
 } as Record<string, string>
 
 // These are generally epics that don't have their own icon and just use the
