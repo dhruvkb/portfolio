@@ -9,35 +9,19 @@ interface Props {
 const { heading } = Astro.props
 ---
 
-{
-  heading.children.length ? (
-    <details>
-      <summary class="cursor-pointer rounded-sm hover:bg-surface0">
-        <span
-          class="px-1 py-0.5"
-          class:list={{ 'text-overlay1': heading.depth === 0 }}>
-          {heading.slug ? (
-            <Link url={`#${heading.slug}`}>{heading.text}</Link>
-          ) : (
-            heading.text
-          )}
-        </span>
-      </summary>
-      <ul>
-        {heading.children.map((child) => (
-          <li class="relative ml-2 border-s border-surface1 pl-4 before:absolute before:top-0 before:-left-px before:block before:h-4 before:w-4 before:border-s before:border-b before:border-surface1 last:border-transparent">
-            <Astro.self heading={child} />
-          </li>
-        ))}
-      </ul>
-    </details>
-  ) : (
-    <span class="px-1 py-0.5">
-      {heading.slug ? (
-        <Link url={`#${heading.slug}`}>{heading.text}</Link>
-      ) : (
-        heading.text
-      )}
-    </span>
-  )
-}
+<ol>
+  {
+    heading.children.map((child) => (
+      <li class:list={{ 'border-s border-surface0 pl-4': heading.depth !== 0 }}>
+        <Link
+          class="transition"
+          url={`#${child.slug}`}
+          x-data={JSON.stringify({ slug: child.slug })}
+          x-bind:class="$store.toc.activeHeadings.has(slug) ? 'text-text' : 'text-overlay1'">
+          {child.text}
+        </Link>
+        {child.children && <Astro.self heading={child} />}
+      </li>
+    ))
+  }
+</ol>
