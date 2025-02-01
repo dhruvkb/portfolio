@@ -1,10 +1,12 @@
-import type {
-  RoleLocation,
-  RoleType,
-  Url,
-  Skill,
-  Address,
-  Cert,
+import {
+  type RoleLocation,
+  type RoleType,
+  type Url,
+  type Skill,
+  type Address,
+  type Cert,
+  type Language,
+  languageProficiencySchema,
 } from '@recivi/schema'
 
 const ROLE_TYPE_DISPLAYS = {
@@ -132,4 +134,26 @@ export function labelsDisplay(labels: string[]): string {
         `${idx === 0 ? 'a ' : idx === labels.length - 1 ? ' and ' : ', '}${label}`
     )
     .join('')
+}
+
+/**
+ * Convert the language proficiency value in all four areas of communication
+ * into a numerical score.
+ *
+ * @param language - the language proficiency information for a language
+ * @returns the numerical score for the language proficiency
+ */
+export function languageProficiencyInt(language: Language): {
+  s: number
+  l: number
+  w: number
+  r: number
+} {
+  const { speak, listen, write, read } = language
+  const proficiencyValues = languageProficiencySchema.options
+  const s = speak ? proficiencyValues.indexOf(speak) : 0
+  const l = listen ? proficiencyValues.indexOf(listen) : 0
+  const w = write ? proficiencyValues.indexOf(write) : 0
+  const r = read ? proficiencyValues.indexOf(read) : 0
+  return { s, l, w, r }
 }
