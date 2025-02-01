@@ -95,25 +95,23 @@ const metadata = {
       your preferred <Link url="/">communication channel</Link>. Webmention
       support will be added soon.
     </p>
-  </aside>
 
-  {
-    post.data.series && (
-      <Fragment>
-        <div class="cntnr">
+    {
+      post.data.series && (
+        <Fragment>
           <h2>Series: '{post.data.series}'</h2>
           <p>
             This post is part of the '{post.data.series}' series. If you liked
             it, you might also like these other posts in the series.
           </p>
-        </div>
-        <Table
-          columns={postColumns}
-          data={seriesPostsData}
-        />
-      </Fragment>
-    )
-  }
+          <Table
+            columns={postColumns}
+            data={seriesPostsData}
+          />
+        </Fragment>
+      )
+    }
+  </aside>
 
   <SiteFooter classes="xl:hidden" />
 </WritingsLayout>
