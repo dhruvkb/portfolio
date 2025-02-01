@@ -7,9 +7,13 @@ const isDev = import.meta.env.DEV
     <span class="text-blue">
       Breakpoint:
       <span class="sm:hidden">mobile</span>
-      <span class="hidden sm:inline xl:hidden">sm</span>
-      <span class="hidden xl:inline">xl</span>
-      <span id="width" />
+      <span class="hidden sm:inline lg:hidden">sm</span>
+      <span class="hidden lg:inline xl:hidden">lg</span>
+      <span class="hidden xl:inline 2xl:hidden">xl</span>
+      <span class="hidden 2xl:inline">2xl</span>
+      <page-width>
+        <span id="width" />
+      </page-width>
     </span>
   )
 }
@@ -17,18 +21,28 @@ const isDev = import.meta.env.DEV
 <script>
   /** Populate screen width and update it on resize using `ResizeObserver`. */
 
-  const width = document.getElementById('width')
+  class PageWidth extends HTMLElement {
+    observer: ResizeObserver
 
-  const updateWidth = () => {
-    if (!width) {
-      return
+    constructor() {
+      super()
+
+      this.observer = new ResizeObserver(() => {
+        this.updateWidth()
+      })
     }
-    width.textContent = ` (${window.innerWidth}px)`
+    updateWidth() {
+      const widthEl = this.querySelector('#width')
+      if (widthEl) widthEl.textContent = ` (${window.innerWidth}px)`
+    }
+    connectedCallback() {
+      this.updateWidth()
+      this.observer.observe(document.body)
+    }
+    disconnectedCallback() {
+      this.observer.disconnect()
+    }
   }
-  updateWidth()
 
-  const resizeObserver = new ResizeObserver(updateWidth)
-  resizeObserver.observe(document.body)
-
-  document.addEventListener('beforeunload', () => resizeObserver.disconnect())
+  customElements.define('page-width', PageWidth)
 </script>

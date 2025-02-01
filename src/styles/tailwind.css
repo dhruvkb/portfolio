@@ -8,7 +8,9 @@
 
   --breakpoint-*: initial;
   --breakpoint-sm: 640px;
-  --breakpoint-xl: 1280px;
+  --breakpoint-lg: 960px; /* 640px + 320px */
+  --breakpoint-xl: 1280px; /* 640px + 640px */
+  --breakpoint-2xl: 1600px; /* 640px + 640px + 320px */
 
   /*
    * Based on the user's dark mode preference, the theme will either be
