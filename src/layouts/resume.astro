@@ -123,9 +123,9 @@ const hasContent = Astro.slots.has('default')
         <Fragment>
           <h2>Skills</h2>
           <p>Apart from what's listed above, I also possess these skills.</p>
-          <ul class="ml-4 list-disc marker:text-peach sm:columns-2">
+          <ul class="group ml-4 list-disc marker:text-peach sm:columns-2">
             {recivi.bio.skills?.map((skill) => (
-              <li>
+              <li class="py-0.5 transition group-hover:opacity-30 hover:opacity-100">
                 <Skill {skill} />
               </li>
             ))}

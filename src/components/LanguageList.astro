@@ -1,0 +1,207 @@
+---
+import type { Language } from '@recivi/schema'
+
+import { recivi } from '@/stores/recivi'
+import { languageProficiencyInt } from '@/utils/recivi'
+
+const { languages = [] }: { languages?: Language[] } = recivi.bio
+
+const levels = 5 // levels of proficiency, where "no" = 0 and "native" = 5
+
+const textWidth = 50 // px
+const textHeight = 20 // px
+const axisLen = 150 // px
+const gap = 10 // px
+
+const graphHeight = textHeight * 2 + gap * 2 + axisLen // px
+const graphWidth = textWidth * 2 + gap * 2 + axisLen // px
+
+const midX = textWidth + gap + axisLen / 2 // px
+const midY = textHeight + gap + axisLen / 2 // px
+
+/**
+ * Get the name of the language as a pair of endonym and exonym.
+ *
+ * @param lang the language whose name is to be extracted
+ * @returns the names of the language
+ */
+function langNames(lang: Language): [string, string | undefined] {
+  return typeof lang.name === 'string'
+    ? [lang.name, undefined]
+    : [lang.name.name, lang.name.englishName]
+}
+
+const nameProficiencyMap = Object.fromEntries(
+  languages.map((lang) => [langNames(lang)[0], languageProficiencyInt(lang)])
+)
+---
+
+<div
+  id="languages"
+  class="block flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center"
+  x-data="xData()">
+  <ul
+    id="language-names"
+    class="group ml-4 list-disc columns-2 marker:text-peach">
+    {
+      languages.map((lang) => {
+        const [name, englishName] = langNames(lang)
+        return (
+          <li
+            class="language-name py-0.5 transition group-hover:opacity-30 hover:opacity-100"
+            title={englishName}
+            x-data={`{ name: '${name}' }`}
+            x-bind:class="{ 'text-peach': activeName === name }"
+            x-on:click="handleClick(name)"
+            x-on:mouseover="hoverName = name"
+            x-on:mouseout="hoverName = null">
+            {name}
+          </li>
+        )
+      })
+    }
+  </ul>
+
+  <!-- Proficiency graph -->
+  <svg
+    id="proficiency-graph"
+    class="hidden self-center"
+    viewBox={`0 0 ${graphWidth} ${graphHeight}`}
+    style={{ width: `${graphWidth}px` }}
+    fill="currentColor">
+    <!-- Legend -->
+    <text
+      class="font-medium"
+      text-anchor="middle"
+      dominant-baseline="text-bottom"
+      x={midX}
+      y={textHeight}>
+      listen
+    </text>
+    <text
+      class="font-medium"
+      text-anchor="middle"
+      dominant-baseline="hanging"
+      x={midX}
+      y={textHeight + gap + axisLen + gap}>
+      speak
+    </text>
+    <text
+      class="font-medium"
+      text-anchor="end"
+      dominant-baseline="middle"
+      x={textWidth}
+      y={midY}>
+      read
+    </text>
+    <text
+      class="font-medium"
+      text-anchor="start"
+      dominant-baseline="middle"
+      x={textWidth + gap + axisLen + gap}
+      y={midY}>
+      write
+    </text>
+
+    <!-- Radar chart fill, appears below axes and dots. -->
+    <path
+      class="fill-surface0 transition-[d]"
+      x-bind:d="pathD"
+    ></path>
+
+    <!-- x-axis -->
+    <line
+      x1={textWidth + gap}
+      y1={midY}
+      x2={textWidth + gap + axisLen}
+      y2={midY}
+      class="stroke-surface1 stroke-1"
+    ></line>
+    <!-- y-axis -->
+    <line
+      x1={midX}
+      y1={textHeight + gap}
+      x2={midX}
+      y2={textHeight + gap + axisLen}
+      class="stroke-surface1 stroke-1"
+    ></line>
+    <!-- Dots -->
+    {
+      Array.from({ length: levels }).map((_, idx, arr) => {
+        const offset = (axisLen / 2 / arr.length) * (idx + 1)
+        return (
+          <Fragment>
+            {[
+              [midX, midY],
+              [midX - offset, midY],
+              [midX + offset, midY],
+              [midX, midY - offset],
+              [midX, midY + offset],
+            ].map(([x, y]) => (
+              <circle
+                cx={x}
+                cy={y}
+                r="1"
+                class="fill-overlay1"
+              />
+            ))}
+          </Fragment>
+        )
+      })
+    }
+
+    <!-- Radar chart stroke -->
+    <path
+      class="fill-none stroke-peach stroke-1 transition-[d]"
+      x-bind:d="pathD"
+    ></path>
+  </svg>
+</div>
+
+<script>
+  // When JS is enabled,...
+  // ...show the proficiency graph.
+  document.getElementById('proficiency-graph')?.classList.remove('hidden')
+  // ...make the language list span a single column.
+  document.getElementById('language-names')?.classList.remove('columns-2')
+  // ...place the graph side-by-side with the language list.
+  document.getElementById('languages')?.classList.remove('block')
+  document.getElementById('languages')?.classList.add('flex')
+</script>
+
+<script
+  is:inline
+  define:vars={{ nameProficiencyMap, axisLen, levels, midX, midY }}
+>
+  window.xData = function () {
+    return {
+      nameProficiencyMap,
+      midX,
+      midY,
+      activeName: null,
+      hoverName: null,
+      get activeProficiency() {
+        return this.hoverName
+          ? this.nameProficiencyMap[this.hoverName]
+          : this.activeName
+            ? this.nameProficiencyMap[this.activeName]
+            : { l: 0, s: 0, w: 0, r: 0 }
+      },
+      get pathD() {
+        return `
+          M ${midX} ${midY - (this.activeProficiency.l * axisLen) / (2 * levels)}
+          L ${midX + (this.activeProficiency.w * axisLen) / (2 * levels)} ${midY}
+          L ${midX} ${midY + (this.activeProficiency.s * axisLen) / (2 * levels)}
+          L ${midX - (this.activeProficiency.r * axisLen) / (2 * levels)} ${midY}
+          Z
+        `
+          .replace(/\s+/g, ' ')
+          .trim()
+      },
+      handleClick(name) {
+        this.hoverName = null // ignore the hover name
+        this.activeName = this.activeName === name ? null : name
+      },
+    }
+  }
+</script>
