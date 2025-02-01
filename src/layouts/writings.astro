@@ -118,7 +118,7 @@ const categories = await getCategories()
   </main>
 
   <!-- content for the right pane -->
-  <slot slot={hasContent ? 'secondary' : undefined}>Hello</slot>
+  <slot slot={hasContent ? 'secondary' : undefined} />
 </ScreenLayout>
 
 <script>
