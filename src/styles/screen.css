@@ -242,5 +242,5 @@
  * override those styles.
  */
 #footnote-label {
-  @apply static -mx-4 my-4 flex h-fit w-[calc(100%_+_2_*_var(--spacing)_*_4)] items-center gap-2 text-rem text-peach before:h-px before:w-2 before:bg-peach after:h-px after:w-2 after:grow after:bg-surface1;
+  @apply static -mx-4 my-4 flex h-fit w-[calc(100%_+_2_*_var(--spacing)_*_4)] items-center gap-2 text-rem before:h-px before:w-2 before:bg-peach after:h-px after:w-2 after:grow after:bg-surface1;
 }
