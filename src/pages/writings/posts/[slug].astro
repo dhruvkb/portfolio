@@ -140,3 +140,64 @@ const metadata = {
     </div>
   </div>
 </WritingsLayout>
+
+<script>
+  interface TocStore {
+    activeElements: Set<Element>
+    activeHeadings: Set<string>
+    updateActiveHeadings: () => void
+  }
+
+  const elementHeadingMap = new Map<Element, string | undefined>()
+
+  const contentEls = document.querySelectorAll('article > *')
+  let currentHeadingId: string | undefined
+  for (const contentEl of contentEls) {
+    if (contentEl instanceof HTMLHeadingElement) {
+      currentHeadingId = contentEl.id
+    }
+    elementHeadingMap.set(contentEl, currentHeadingId)
+  }
+
+  const footnoteLabelEl = document.getElementById('footnote-label')
+  if (footnoteLabelEl) {
+    elementHeadingMap.set(footnoteLabelEl, 'footnote-label')
+  }
+
+  Alpine.store('toc', {
+    activeElements: new Set(),
+    activeHeadings: new Set(),
+    updateActiveHeadings() {
+      this.activeHeadings.clear()
+      for (const activeElement of this.activeElements) {
+        const heading = elementHeadingMap.get(activeElement)
+        if (heading) {
+          this.activeHeadings.add(heading)
+        }
+      }
+    },
+  } satisfies TocStore)
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const tocStore = Alpine.store('toc') as TocStore
+        if (entry.isIntersecting) {
+          tocStore.activeElements.add(entry.target)
+        } else {
+          tocStore.activeElements.delete(entry.target)
+        }
+        tocStore.updateActiveHeadings()
+      })
+    },
+    { root: document.getElementById('secondaryScroll') }
+  )
+
+  // Start intersection observer.
+  for (const contentEl of contentEls) {
+    observer.observe(contentEl)
+  }
+  if (footnoteLabelEl) {
+    observer.observe(footnoteLabelEl)
+  }
+</script>
