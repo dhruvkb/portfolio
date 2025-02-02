@@ -1,15 +1,6 @@
-<a href="https://dhruvkb.github.io">
-  <img src="readme_assets/cover.jpeg" alt="A picture of me" width="100%"/>
-</a>
+# <img src="https://raw.githubusercontent.com/dhruvkb/portfolio/main/readme_assets/logo.png" height="40" width="40" align="left"> Portfolio
 
-<h1 align="center">
-  Dhruv Bhanushali
-</h1>
+Hi friend, I am [Dhruv Bhanushali](https://dhruvkb.dev). This is my portfolio,
+my small personal slice of the Internet.
 
-## Portfolio
-
-Hello! I am [Dhruv Bhanushali](https://dhruvkb.dev/), an engineering graduate
-from the Indian Institute of Technology, Roorkee. I develop software, both as a
-hobby and as a profession.
-
-This is my portfolio, my tiny personal slice of the Internet.
+You can make your own using [Récivi](https://recivi.pages.dev).
