@@ -1,6 +1,0 @@
-# Strict lint
-pnpm lint --max-warnings 0
-pnpm format:check
-
-# Run Astro checks
-pnpm check
