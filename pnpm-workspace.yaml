@@ -1,0 +1,6 @@
+minimumReleaseAge: 0
+
+allowBuilds:
+  esbuild: true
+  puppeteer: true
+  sharp: true
