@@ -1,0 +1,83 @@
+---
+// Randomly display a fun fact about me.
+
+import type { BaseProps } from "@recivi/pf/types/props";
+
+type Props = BaseProps;
+const { class: className, ...attrs } = Astro.props;
+---
+
+<fun-fact class:list={["fun-fact", className]} {...attrs}>
+	wears many other hats
+</fun-fact>
+
+<script>
+	const FACTS = [
+		"writes code that sparks joy",
+		"is fuelled by cappuccinos",
+		"is a computer whisperer",
+		"handles tech support for family",
+		"designs his own websites, repeatedly",
+		"crafts new and innovative <del>apps</del> bugs",
+		"occasionally finishes a side-project",
+		"is a real programmer<sup>TM</sup>",
+		"is nuts about good public transit",
+		"rewrites it in Rust",
+		"knows how to exit Vim",
+		"prefers tabs over spaces",
+		"prefers Vim over Emacs",
+		"wakes up each day furious to be laboring under capitalism",
+		"writes code; <em>sometimes gets paid for it</em>",
+		"writes code that works on his machine",
+		"reads (and writes) the f&#**^% manual",
+		"tries turning it off and on again",
+		"loves Shrek",
+		"is secretly a dog on the Internet",
+		"is a <del>pythonista</del> <del>pythoneer</del> parselmouth",
+		"is [🚧 WIP], like his code",
+		"is a wallflower",
+		"lives in a terminal",
+		"spent way too much time <em>(re)</em>building this site",
+		"has some good ideas, but mostly bad ones",
+		"spends hours to automate a task that takes minutes",
+		'painstakingly maintains his <a href="https://github.com/dhruvkb/dotfiles">dotfiles</a>',
+		"writes way too much documentation",
+		"used em dashes before they were co-opted by LLMs",
+	];
+
+	class FunFactElement extends HTMLElement {
+		private idx: number = 0;
+
+		/* Render the next fun fact. */
+		private refresh = (): void => {
+			this.innerHTML = FACTS[this.idx++ % FACTS.length]!;
+		};
+
+		connectedCallback() {
+			this.idx = Math.floor(Math.random() * FACTS.length);
+			this.refresh();
+			this.addEventListener("click", this.refresh);
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("click", this.refresh);
+		}
+	}
+
+	if (!customElements.get("fun-fact")) {
+		customElements.define("fun-fact", FunFactElement);
+	}
+</script>
+
+<style>
+	@layer components {
+		.fun-fact {
+			color: var(--pf-color-accent);
+			font-style: italic;
+
+			@media (scripting: enabled) {
+				cursor: pointer;
+			}
+		}
+	}
+</style>
