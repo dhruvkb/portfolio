@@ -1,0 +1,48 @@
+---
+// Count the years as a percent since I've been coding.
+
+import type { YearsPercentProps } from "@/components/props/YearsPercent";
+
+type Props = YearsPercentProps;
+const { since, class: className, ...attrs } = Astro.props;
+---
+
+<years-percent
+	data-since={since}
+	class:list={["years-percent", className]}
+	{...attrs}
+>
+	since {since}
+</years-percent>
+
+<style>
+	@layer components {
+		.years-percent :global(em) {
+			cursor: help;
+			text-decoration: underline dotted;
+		}
+	}
+</style>
+
+<script>
+	// May be real, may be not, but close enough.
+	const BIRTH_YEAR = 1997;
+
+	class YearsPercent extends HTMLElement {
+		connectedCallback() {
+			const since = Number(this.dataset.since);
+			if (isNaN(since)) return;
+
+			const currentYear = new Date().getFullYear();
+			const yearsElapsed = currentYear - since;
+			const yearsAlive = currentYear - BIRTH_YEAR;
+			const percent = Math.round((yearsElapsed / yearsAlive) * 100);
+
+			this.innerHTML = `for <em title="since ${since}; ~${yearsElapsed} years">~${percent}%</em> of my life`;
+		}
+	}
+
+	if (!customElements.get("years-percent")) {
+		customElements.define("years-percent", YearsPercent);
+	}
+</script>
