@@ -9,7 +9,7 @@ const { since, class: className, ...attrs } = Astro.props;
 
 <years-percent
 	data-since={since}
-	class:list={["years-percent", className]}
+	class:list={["db-years-percent", className]}
 	{...attrs}
 >
 	since {since}
@@ -17,9 +17,11 @@ const { since, class: className, ...attrs } = Astro.props;
 
 <style>
 	@layer components {
-		.years-percent :global(em) {
-			cursor: help;
-			text-decoration: underline dotted;
+		.db-years-percent {
+			:global(em) {
+				cursor: help;
+				text-decoration: underline dotted;
+			}
 		}
 	}
 </style>

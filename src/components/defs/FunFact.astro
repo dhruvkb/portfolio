@@ -7,7 +7,7 @@ type Props = BaseProps;
 const { class: className, ...attrs } = Astro.props;
 ---
 
-<fun-fact class:list={["fun-fact", className]} {...attrs}>
+<fun-fact class:list={["db-fun-fact", className]} {...attrs}>
 	wears many other hats
 </fun-fact>
 
@@ -71,7 +71,7 @@ const { class: className, ...attrs } = Astro.props;
 
 <style>
 	@layer components {
-		.fun-fact {
+		.db-fun-fact {
 			color: var(--pf-color-accent);
 			font-style: italic;
 
