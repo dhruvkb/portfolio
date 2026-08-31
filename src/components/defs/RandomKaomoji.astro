@@ -1,0 +1,190 @@
+---
+// Render a waving kaomoji with randomly-chosen facial features.
+
+import type { RandomKaomojiProps } from "@/components/props/RandomKaomoji";
+
+type Props = RandomKaomojiProps;
+const { mood = "happy", class: className, ...attrs } = Astro.props;
+---
+
+<random-kaomoji
+	class:list={["db-random-kaomoji", className]}
+	{...attrs}
+	data-mood={mood}
+>
+	{
+		mood === "happy" ? (
+			<span class="kaomoji" aria-hidden="true">
+				ʕ • ᴥ • ʔ<span class="hand">ﾉ</span>
+			</span>
+		) : mood === "angry" ? (
+			<Fragment>
+				<span class="kaomoji over-640px" aria-hidden="true">
+					ʕ<span class="hand">ﾉ</span> •□• ʔ<span class="hand">ﾉ</span>
+				</span>
+				<span class="table over-640px" aria-hidden="true">
+					︵ ┻━┻
+				</span>
+				<span class="shrug under-640px" aria-hidden="true">
+					¯\_(ツ)_/¯
+				</span>
+			</Fragment>
+		) : undefined
+	}
+	<span class="sr-only"><slot /></span>
+</random-kaomoji>
+
+<style>
+	@layer components {
+		.db-random-kaomoji {
+			font-family: var(--pf-font-family);
+			font-size: var(--pf-font-size-p6);
+			user-select: none;
+
+			@media (scripting: enabled) {
+				cursor: pointer;
+			}
+
+			:global(.hand) {
+				@media not (prefers-reduced-motion: reduce) {
+					display: inline-block;
+					transform-origin: bottom left;
+					animation: move 2s infinite;
+				}
+			}
+
+			.table {
+				color: var(--pf-color-fg-subtle);
+			}
+		}
+
+		@keyframes move {
+			50% {
+				transform: rotate(20deg);
+			}
+		}
+	}
+</style>
+
+<script>
+	import type { KaomojiMood } from "@/components/props/RandomKaomoji";
+
+	type KaomojiPair = [string, string];
+	type KaomojiChoice<T> = T[];
+	type MoodyKaomojiChoice<T> = {
+		neutral: KaomojiChoice<T>;
+	} & {
+		[k in KaomojiMood]: KaomojiChoice<T>;
+	};
+
+	const EDGE_PAIRS: KaomojiChoice<KaomojiPair> = [
+		["ʕ", "ʔ"],
+		["(", ")"],
+		["[", "]"],
+	];
+	const EYE_PAIRS: MoodyKaomojiChoice<KaomojiPair> = {
+		neutral: [
+			["•", "•"],
+			["ˇ", "ˇ"],
+			["ᵒ", "ᵒ"],
+		],
+		happy: [
+			["❛", "❛"],
+			["^", "^"],
+			["＾", "＾"],
+			["´•", "•`"],
+			["◕", "◕"],
+			["❤", "❤"],
+			["˘", "˘"],
+			[" ͡°", " ͡°"],
+		],
+		angry: [["ಠ", "ಠ"]],
+	};
+	const MOUTHS: MoodyKaomojiChoice<string> = {
+		neutral: [],
+		happy: ["ᴥ", "◡", "ᴗ", "▽", "ヮ", "_", "-", " ͜ʖ"],
+		angry: ["□", "益", "⌓", "Д", "∧", "﹏"],
+	};
+	const HANDS: MoodyKaomojiChoice<string> = {
+		neutral: ["ﾉ", "ノ"],
+		happy: ["𐒡", "ﾉﾟ", "◞*", "つ", "づ"],
+		angry: ["╯"],
+	};
+
+	function getChoices<T>(
+		mood: KaomojiMood,
+		choices: MoodyKaomojiChoice<T>,
+	): KaomojiChoice<T> {
+		return [
+			...choices.neutral,
+			...(mood === "happy" ? choices.happy : []),
+			...(mood === "angry" ? choices.angry : []),
+		];
+	}
+
+	/**
+	 * Returns a random element from the given array. If the array is empty, it
+	 * returns `undefined`.
+	 *
+	 * @param choices - the array from to choose a random element
+	 * @returns a random element from the given array
+	 */
+	function sample<T>(choices: KaomojiChoice<T>): T {
+		if (choices.length === 0) {
+			throw new Error("Cannot sample from an empty array");
+		}
+		return choices[Math.floor(Math.random() * choices.length)]!;
+	}
+
+	class RandomKaomojiElement extends HTMLElement {
+		private mood: KaomojiMood;
+		private kaomojiEl?: HTMLElement;
+
+		/* Get a randomly generated kaomoji. */
+		private getKaomoji = (): string => {
+			const [edgeLeft, edgeRight] = sample(EDGE_PAIRS);
+			const [eyeLeft, eyeRight] = sample(getChoices(this.mood, EYE_PAIRS));
+			const mouth = sample(getChoices(this.mood, MOUTHS));
+			const hand = `<span class='hand'>${sample(getChoices(this.mood, HANDS))}</span>`;
+
+			const parts =
+				this.mood === "happy"
+					? [edgeLeft, eyeLeft, mouth, eyeRight, edgeRight, hand]
+					: this.mood === "angry"
+						? [
+								[edgeLeft, hand],
+								[eyeLeft, mouth, eyeRight],
+								[edgeRight, hand],
+							].map((set) => set.join(""))
+						: [];
+			return parts.join(" ");
+		};
+
+		/** Update the kaomoji and render a new random one. */
+		private refresh = (): void => {
+			if (this.kaomojiEl) {
+				this.kaomojiEl.innerHTML = this.getKaomoji();
+			}
+		};
+
+		constructor() {
+			super();
+			this.mood = this.dataset.mood as KaomojiMood;
+			const kaomojiEl = this.querySelector(".kaomoji");
+			if (kaomojiEl instanceof HTMLElement) this.kaomojiEl = kaomojiEl;
+		}
+
+		connectedCallback() {
+			this.refresh();
+			this.addEventListener("click", this.refresh);
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("click", this.refresh);
+		}
+	}
+
+	if (!customElements.get("random-kaomoji")) {
+		customElements.define("random-kaomoji", RandomKaomojiElement);
+	}
+</script>
