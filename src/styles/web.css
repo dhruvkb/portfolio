@@ -1,0 +1,16 @@
+@layer media {
+	html {
+		/* Configure Inter. */
+		font-feature-settings: "dlig", "ss02";
+	}
+
+	::marker {
+		color: var(--pf-color-accent);
+	}
+
+	/* Headings */
+
+	.table-heading {
+		margin-block-end: calc(-6 * var(--pf-spacing));
+	}
+}

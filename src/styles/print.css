@@ -1,0 +1,29 @@
+@layer media {
+	@page {
+		@bottom-center {
+			content: "ʕ • ᴥ • ʔﾉ";
+			color: var(--pf-color-fg-subtle);
+		}
+	}
+
+	/* Headings */
+
+	h1 {
+		font-size: var(--pf-font-size-p6);
+	}
+
+	h2 {
+		font-size: var(--pf-font-size-m1);
+		text-transform: uppercase;
+		margin-block-start: calc(4 * var(--pf-spacing));
+
+		&::after {
+			display: none;
+		}
+	}
+
+	h3, /* institute, org and epic names */
+	h4 /* cert, role and project names */ {
+		font-weight: 500;
+	}
+}
