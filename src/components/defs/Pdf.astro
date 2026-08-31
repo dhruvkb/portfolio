@@ -1,0 +1,108 @@
+---
+import {
+	EpicDetails,
+	InstituteDetails,
+	OrgDetails,
+	SkillList,
+	LanguageList,
+} from "virtual:pf/components";
+import reciviData from "virtual:recivi/data";
+
+import Print from "@recivi/pf/layouts/defs/Print.astro";
+
+import type { PdfProps } from "@/components/props/Pdf";
+
+type Props = PdfProps;
+const {
+	title,
+	filterTag,
+	includeLangs = false,
+	class: className,
+	...attrs
+} = Astro.props;
+
+let institutes = reciviData.education;
+if (filterTag) {
+	institutes = institutes.filter((institute) =>
+		institute.certs.some((cert) => cert.tags.includes(filterTag)),
+	);
+}
+
+let orgs = reciviData.work;
+if (filterTag) {
+	orgs = orgs.filter((org) =>
+		org.roles.some((role) => role.tags.includes(filterTag)),
+	);
+}
+
+let epics = reciviData.creations;
+if (filterTag) {
+	epics = epics.filter((epic) =>
+		epic.projects.some((project) => project.tags.includes(filterTag)),
+	);
+}
+---
+
+<Print class={[className]} {title} {...attrs}>
+	{
+		institutes.length ? (
+			<section>
+				<h2>Education</h2>
+				<div>
+					{institutes.map((institute) => (
+						<InstituteDetails headingOffset={2} {filterTag} {institute} />
+					))}
+				</div>
+			</section>
+		) : undefined
+	}
+	{
+		orgs.length ? (
+			<section>
+				<h2>Work experience</h2>
+				<div>
+					{orgs.map((org) => (
+						<OrgDetails headingOffset={2} {filterTag} {org} />
+					))}
+				</div>
+			</section>
+		) : undefined
+	}
+	{
+		epics.length ? (
+			<section>
+				<h2>Projects</h2>
+				<div>
+					{epics.map((epic) => (
+						<EpicDetails headingOffset={2} {filterTag} {epic} />
+					))}
+				</div>
+			</section>
+		) : undefined
+	}
+	{
+		reciviData.skills.length ? (
+			<section>
+				<h2>Languages & frameworks</h2>
+				<SkillList class="last-element" />
+			</section>
+		) : undefined
+	}
+	{
+		includeLangs && reciviData.languages.length ? (
+			<section>
+				<h2>Human languages</h2>
+				<LanguageList class="last-element" />
+			</section>
+		) : undefined
+	}
+</Print>
+
+<style>
+	@layer core {
+		h2 {
+			/* Don't leave dangling headings at the bottom of a page. */
+			break-after: avoid-page;
+		}
+	}
+</style>
