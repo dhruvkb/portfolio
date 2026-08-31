@@ -1,0 +1,7 @@
+@layer universal {
+	/* Typographic elements */
+
+	blockquote {
+		border-color: var(--pf-color-accent);
+	}
+}
