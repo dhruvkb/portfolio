@@ -1,18 +1,13 @@
 ---
-layout: '@/layouts/content.astro'
-
 title: 404 Not Found
-description: Sorry, but the content you are looking for cannot be found.
+description: >-
+  Sorry, but the content you are looking for cannot be found.
 banRobots: true
 ---
 
-import { Picture } from 'astro:assets'
+import RandomKaomoji from "@/components/defs/RandomKaomoji.astro";
 
-import oof from '@/assets/images/oof.jpg'
+# <RandomKaomoji mood="angry">404 Not Found</RandomKaomoji>
 
-# Oof!
-
-<Picture src={oof} alt="Oof!" />
-
-Sorry, but there's nothing at this URL (except this error page, of course). Use
-the nav bar to find your way around.
+Sorry, but there's no content at this URL (except this error page, of course). You're welcome to
+explore the site using the links at the top.
