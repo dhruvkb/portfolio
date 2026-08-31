@@ -85,6 +85,13 @@ export default defineConfig({
 					{ tag: "link", attrs: { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" } },
 				],
 			},
+			css: {
+				customCss: {
+					Root: ["./src/styles/props.css", "./src/styles/universal.css"],
+					Web: ["./src/styles/web.css"],
+					Print: ["./src/styles/print.css"],
+				},
+			},
 			locale: {
 				bcp47: "en-IN",
 			},
