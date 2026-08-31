@@ -1,0 +1,30 @@
+@layer props {
+	:root {
+		/* common styles */
+
+		--pf-font-family: "InterVariable", sans-serif;
+		--pf-font-family-display: "Space Grotesk", sans-serif;
+	}
+
+	:root[data-media="print"] {
+		--pf-font-family: "IBM Plex Sans", sans-serif;
+		--pf-font-family-display: "Space Grotesk", sans-serif;
+		--pf-font-family-monospace: "JetBrains Mono", monospace;
+
+		--pf-print-credits-left: "Built with Récivi, my side project";
+	}
+
+	:root {
+		/* light theme */
+
+		--pf-color-accent: #fe640b;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		/* dark theme */
+
+		:root:not([data-media="print"]) {
+			--pf-color-accent: #fab387;
+		}
+	}
+}
