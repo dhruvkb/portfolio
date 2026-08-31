@@ -55,6 +55,36 @@ export default defineConfig({
 					instagram: { pack: "simple-icons", name: "instagram" },
 				},
 			},
+			head: {
+				elements: [
+					{ tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
+					{
+						tag: "link",
+						attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+					},
+					// Provides the following fonts:
+					// - IBM Plex Sans: print body font
+					// - JetBrains Mono: print monospace font
+					// - Space Grotesk: web and print display font
+					{
+						tag: "link",
+						attrs: {
+							href: [
+								"https://fonts.googleapis.com/css2?",
+								"&display=swap",
+								"&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700",
+								"&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800",
+								"&family=Space+Grotesk:wght@300..700",
+							].join(""),
+							rel: "stylesheet",
+						},
+					},
+					{ tag: "link", attrs: { rel: "preconnect", href: "https://rsms.me" } },
+					// Provides the following font:
+					// - Inter: web body font
+					{ tag: "link", attrs: { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" } },
+				],
+			},
 		}),
 	],
 });
