@@ -1,0 +1,150 @@
+---
+title: Kitchen sink
+description: >-
+  This is a test page to test all the features of a blog post.
+pubDate: 1970-01-01
+categories:
+  - test
+  - portfolio
+  - blog
+isDraft: true # DO NOT UNDRAFT THIS!
+---
+
+import { Anchor, Brand } from "virtual:pf/components";
+import nav from "virtual:pf/nav";
+import projectContext from "virtual:pf/project-context";
+import reciviData from "virtual:recivi/data";
+
+import { getBlogPostUrl, getResumeEntityUrl } from "@recivi/pf/utils/dynamic_pages";
+import { prefixBase, getUrlFromPattern, getUrlFromSlug } from "@recivi/pf/utils/project_context";
+
+export const resumeIndexUrl = getUrlFromPattern(projectContext, nav.resume.index.pattern);
+export const blogIndexUrl = getUrlFromPattern(projectContext, nav.blog.index.pattern);
+
+export const anyInstitute = reciviData.education[0];
+export const anyOrg = reciviData.work[0];
+export const anyEpic = reciviData.creations[0];
+
+export const resumePdfHref = prefixBase(projectContext, "/resume/resume.pdf");
+
+This is blog entry 0000. Hello there!
+
+## Markdown
+
+### Styling
+
+This is some regular text. This is **bold**, _italic_ and ~strikethrough~. Subscripts like
+H<sub>2</sub>O and superscripts like a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup> can be achieved
+with raw HTML.
+
+### Lists
+
+#### Unordered list
+
+These are some links in an unordered list[^unordered]:
+
+- <Anchor url={getUrlFromSlug(projectContext, "colophon")}>internal link to Colophon</Anchor>
+- blog <Anchor url={blogIndexUrl}>index</Anchor> or <Anchor url={getUrlFromSlug(projectContext,
+  "blog")}>page</Anchor>
+- <Anchor url={getBlogPostUrl("kitchen_sink")}>blog post link</Anchor> (highlighted because active
+  page!)
+- résumé <Anchor url={resumeIndexUrl}>index</Anchor> or <Anchor url={getUrlFromSlug(projectContext,
+  "resume")}>page</Anchor>
+- {anyInstitute ? <Anchor url={getResumeEntityUrl(anyInstitute)}>institute link</Anchor> :
+  `no institute link`}
+- {anyOrg ? <Anchor url={getResumeEntityUrl(anyOrg)}>org link</Anchor> : `no org link`}
+- {anyEpic ? <Anchor url={getResumeEntityUrl(anyEpic)}>epic link</Anchor> : `no epic link`}
+- [external link to `pls`](https://pls.cli.rs)
+- [phone number](tel:+911234567890)
+- [email address](mailto:user@domain.tld)
+- <Anchor url={resumePdfHref}>download link to Résumé PDF</Anchor>
+
+[^unordered]: This is a footnote for the unordered list.
+
+##### Task list
+
+This is a task list.
+
+- [x] Chop the apples.
+- [ ] Peel the bananas.
+
+#### Ordered list
+
+This is an ordered list[^ordered]:
+
+1. First you chop the apples.
+   1. Take the apple.
+   2. Take the knife.
+   3. Apply knife to apple.
+2. Then you peel the bananas.
+
+[^ordered]: Avoid going into the double digits as that'll break the alignment.
+
+### Horizontal rules
+
+This is a horizontal rule:
+
+---
+
+This is a solid horizontal rule:
+
+<hr class="solid" />
+
+This is a [dinkus](https://en.wikipedia.org/wiki/Dinkus):
+
+<hr class="dinkus" />
+
+### Inter features
+
+- `dlig`: Difficult affine fjord
+- `ss02`: O0 Il1
+
+### Misc
+
+These are two nested block quotes:
+
+> > _You miss 100% of the shots you don't take._
+> >
+> > — Wayne Gretzky
+>
+> — Michael Scott
+
+This is an `inline code sample` and a code block:
+
+```python
+def say_hello(name: str) -> bool:
+    """This is a docstring."""
+    num_var, boolean_var, none_var = (1, True, None,)
+    print(f"Hello, {name}!")
+    return True
+
+say_hello("World") # Call function ``say_hello`` with the string argument ``"World"`` to print a greeting to the console.
+```
+
+This is an embedded image: You can use standard Markdown syntax or you can use the `Image` component
+from `astro:assets`
+
+![Stones saying "Oof"](@/assets/images/oof.jpg)
+
+Here is a table:
+
+|     | A   | B   |
+| --- | --- | --- |
+| 1   | A1  | B1  |
+| 2   | A2  | B2  |
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+You can use HTML tags, e.g. keyboard tags `<kbd>` inline such as <kbd>⌘ Cmd</kbd> + <kbd>⌥
+Opt</kbd> + <kbd>C</kbd>.
+
+Regular <Brand icon={{ name: "astro", title: "Astro" }} anchor={{ url: "https://astro.build" }}
+name="Astro" /> components, like `Brand`, work inside MDX.
