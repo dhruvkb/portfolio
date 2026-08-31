@@ -1,0 +1,20 @@
+---
+import Post from "@recivi/pf/layouts/defs/Post.astro";
+import { isNotDraft } from "@recivi/pf/utils/collections";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog", isNotDraft);
+	return posts.map((post) => ({
+		params: { postSlug: post.id.slice(5) },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+
+<Post postData={post.data} {headings}>
+	<Content />
+</Post>
