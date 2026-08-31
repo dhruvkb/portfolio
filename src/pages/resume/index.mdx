@@ -1,0 +1,64 @@
+---
+title: Résumé
+description: >-
+  Peruse my résumé which covers my time developing software and leading teams, both as a hobbyist
+  and a professional.
+navIndex: 2
+---
+
+import {
+  Anchor,
+  Icon,
+  CertsTable,
+  RolesTable,
+  ProjectsTable,
+  SkillList,
+  LanguageList,
+} from "virtual:pf/components";
+import projectContext from "virtual:pf/project-context";
+
+import { prefixBase } from "@recivi/pf/utils/project_context";
+
+import YearsPercent from "@/components/defs/YearsPercent.astro";
+
+export const resumePdfHref = prefixBase(projectContext, "/resume/resume.pdf");
+export const cvPdfHref = prefixBase(projectContext, "/resume/cv.pdf");
+
+# Résumé
+
+> _Find a job you enjoy doing, and you will never have to work a day in your life._
+>
+> — [Mark Twain](https://www.goodreads.com/author/quotes/1244.Mark_Twain)
+
+I've been developing software for years, as a hobbyist <YearsPercent since={2010} />, and as a
+professional <YearsPercent since={2019} />. And in that time, I _never had to work a day_.
+
+All the code I write outside of work, and most of what I write at work too, is free/_libre_,
+free/_gratis_ and open-source software. You can find all of it on my
+[GitHub profile](https://github.com/dhruvkb/).
+
+If you'd like to work with me, my <Anchor url={resumePdfHref}><Icon name="file-text" /> short
+résumé</Anchor> and <Anchor url={cvPdfHref}><Icon name="file-text" /> longer CV</Anchor> are both
+available as PDFs. Print responsibly.
+
+Click on the institute, org or epic names in the tables below to know more.
+
+<h2 class="table-heading">Education</h2>
+
+<CertsTable />
+
+<h2 class="table-heading">Work experience</h2>
+
+<RolesTable />
+
+<h2 class="table-heading">Projects</h2>
+
+<ProjectsTable />
+
+## Languages & frameworks
+
+<SkillList />
+
+## Human languages
+
+<LanguageList />

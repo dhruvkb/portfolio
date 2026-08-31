@@ -1,0 +1,39 @@
+---
+title: Writings
+description: >-
+  Read entries in my digital garden about my experiences in building software, and learning new
+  things along the way.
+navIndex: 2
+---
+
+import { Anchor, Icon, CategoryFilter, PostsTable } from "virtual:pf/components";
+import projectContext from "virtual:pf/project-context";
+
+import { prefixBase } from "@recivi/pf/utils/project_context";
+
+export const rootContactHref = prefixBase(projectContext, "/#contact");
+export const rssHref = prefixBase(projectContext, "/rss.xml");
+
+# Writings
+
+Welcome to my blog/digital garden. This is my attempt to force myself to write more regularly. Among
+other things from time to time, I'll mainly document my experiences in building software, and
+learning new things along the way.
+
+If you like what you read here, <Anchor url={rootContactHref}>let me know!</Anchor>. To get updates
+on new posts, you can also subscribe to the <Anchor url={rssHref}><Icon name="rss" /> RSS
+feed</Anchor>.
+
+<div x-data={JSON.stringify({ activeCategories: [] })}>
+<CategoryFilter>
+
+## Categories
+
+Click on a category name to highlight the posts in that particular category.
+
+</CategoryFilter>
+
+<h2 class="table-heading">All posts</h2>
+
+<PostsTable class="last-element" />
+</div>
