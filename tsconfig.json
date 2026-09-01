@@ -5,6 +5,11 @@
 	// Fields "include" and "exclude" are already in `astro/tsconfigs/base`.
 
 	"compilerOptions": {
+		// Resolve modules along symlinks, so that packages linked by `links.json`
+		// share this repo's `astro`, `vite` and `zod` instead of pulling a second,
+		// type-incompatible copy from their own checkout.
+		"preserveSymlinks": true,
+
 		// Path mapping for cleaner imports.
 		"paths": {
 			"@/*": ["./src/*"]

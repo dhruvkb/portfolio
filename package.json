@@ -21,6 +21,7 @@
 	},
 	"devDependencies": {
 		"@j178/prek": "^0.4.10",
+		"@types/node": "^24.12.0",
 		"@typescript-eslint/parser": "^8.65.0",
 		"eslint": "^9.39.5",
 		"eslint-config-prettier": "^10.1.8",
