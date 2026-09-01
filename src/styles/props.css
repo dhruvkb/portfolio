@@ -4,6 +4,9 @@
 
 		--pf-font-family: "InterVariable", sans-serif;
 		--pf-font-family-display: "Space Grotesk", sans-serif;
+		--pf-font-family-monospace: "JetBrains Mono", monospace;
+
+		--pf-font-size-monospace: 1em;
 	}
 
 	:root[data-media="print"] {

@@ -63,9 +63,9 @@ export default defineConfig({
 						attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
 					},
 					// Provides the following fonts:
-					// - IBM Plex Sans: print body font
-					// - JetBrains Mono: print monospace font
 					// - Space Grotesk: web and print display font
+					// - IBM Plex Sans: print body font
+					// - JetBrains Mono: web and print monospace font
 					{
 						tag: "link",
 						attrs: {
