@@ -27,3 +27,24 @@
 		font-weight: 500;
 	}
 }
+
+@layer components {
+	.pf-institute-details,
+	.pf-org-details,
+	.pf-epic-details {
+		.content {
+			/*
+			 *   margin-inline-start
+			 * + border-inline-start-width
+			 * + padding-inline-start [same as margin-inline-start]
+			 * =
+			 *   the width of the icon [= 1em]
+			 * + the gap between the icon and the brand name [= var(--pf-spacing)]
+			 */
+
+			margin-inline-start: calc((1em + var(--pf-spacing) - 1px) / 2);
+			border-inline-start: 1px solid var(--pf-color-border);
+			padding-inline-start: calc((1em + var(--pf-spacing) - 1px) / 2);
+		}
+	}
+}
