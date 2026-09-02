@@ -51,6 +51,9 @@ importers:
       eslint-plugin-oxlint:
         specifier: ^1.75.0
         version: 1.75.0(oxlint@1.75.0)
+      eslint-plugin-simple-import-sort:
+        specifier: ^14.0.0
+        version: 14.0.0(eslint@9.39.5(jiti@2.4.2)(supports-color@7.2.0))
       oxfmt:
         specifier: ^0.60.0
         version: 0.60.0
@@ -2073,6 +2076,11 @@ packages:
     resolution: {integrity: sha512-L/r6kWnv+riXQ3He3Y1/OkViVZ2AqAWjZbIOCCU894ihJ4W0Oa/d0AK0yGWhQuA1AtKZJe+/KX4Yv/FTS1cHTQ==}
     peerDependencies:
       oxlint: ~1.75.0
+
+  eslint-plugin-simple-import-sort@14.0.0:
+    resolution: {integrity: sha512-NUJO0+XFCkk+o5EsAJruTgnfMEpeWrPWeJS15UVF60GgXmqz1BJ9/3hzlvG7lkL8Bubzos5cCLptThbFfPnSMQ==}
+    peerDependencies:
+      eslint: '>=5.0.0'
 
   eslint-scope@8.2.0:
     resolution: {integrity: sha512-PHlWUfG6lvPc3yvP5A4PNyBL1W8fkDUccmI21JUu/+GKZBoH/W5u6usENXUrWFRsyoW5ACUjFGgAFQp5gUlb/A==}
@@ -5336,6 +5344,10 @@ snapshots:
     dependencies:
       jsonc-parser: 3.3.1
       oxlint: 1.75.0
+
+  eslint-plugin-simple-import-sort@14.0.0(eslint@9.39.5(jiti@2.4.2)(supports-color@7.2.0)):
+    dependencies:
+      eslint: 9.39.5(jiti@2.4.2)(supports-color@7.2.0)
 
   eslint-scope@8.2.0:
     dependencies:
