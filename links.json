@@ -1,0 +1,4 @@
+{
+	"@recivi/schema": "~/Developer/recivi/recivi/packages/schema",
+	"@recivi/pf": "~/Developer/recivi/recivi/packages/pf"
+}
