@@ -1,0 +1,57 @@
+---
+// Render a period between two dates.
+// This component is also a table renderer.
+
+import { PfDate } from "virtual:pf/components";
+
+import type { PeriodProps } from "@recivi/pf/components/props/Period";
+
+type Props = PeriodProps;
+const { period, class: className, ...attrs } = Astro.props;
+---
+
+<span class:list={["db-period", className]} {...attrs}>
+	<PfDate date={period.start} />
+	<span class="sep">&ndash;</span>
+	{
+		period.end ? (
+			<PfDate date={period.end} />
+		) : (
+			<span class="present">
+				<span class="dot web-only" aria-hidden="true">
+					•
+				</span>
+				Present
+			</span>
+		)
+	}
+</span>
+
+<style>
+	@layer components {
+		.db-period {
+			& > .sep {
+				color: var(--pf-color-fg-subtle);
+				margin-inline: var(--pf-spacing);
+			}
+
+			.present {
+				font-family: var(--pf-font-family-monospace);
+				font-size: var(--pf-font-size-monospace);
+				color: var(--pf-color-fg-subtle);
+				font-style: italic;
+
+				.dot {
+					animation: pulse 2s infinite;
+					color: var(--pf-color-red);
+				}
+			}
+		}
+
+		@keyframes pulse {
+			50% {
+				opacity: 0.5;
+			}
+		}
+	}
+</style>

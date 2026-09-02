@@ -92,6 +92,10 @@ export default defineConfig({
 					Print: ["./src/styles/print.css"],
 				},
 			},
+			components: {
+				Period: "./src/components/defs/Period.astro",
+				PfDate: "./src/components/defs/PfDate.astro",
+			},
 			locale: {
 				bcp47: "en-IN",
 			},

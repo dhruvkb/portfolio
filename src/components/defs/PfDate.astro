@@ -1,0 +1,70 @@
+---
+// Render a date.
+// This component is also a table renderer.
+
+import config from "virtual:pf/config";
+
+import { jsDateToRcvDate } from "@recivi/schema/utils";
+import { formatDate } from "@recivi/schema/display";
+import { dateParts } from "@recivi/schema/utils";
+
+import type { PfDateProps } from "@recivi/pf/components/props/PfDate";
+
+type Props = PfDateProps;
+const { class: className, ...rest } = Astro.props;
+let { date, ...attrs } = rest;
+
+if (date instanceof Date) {
+	// The given date is a JavaScript Date object.
+	date = jsDateToRcvDate(date);
+} else if (!Array.isArray(date)) {
+	// The given date is using the object format.
+	date = [date.year, date.month, date.day];
+}
+
+const formatDateForUsage = (usage: "display" | "reading") => {
+	return formatDate(date, config.locale.bcp47, { usage });
+};
+const readableDate = formatDateForUsage("reading");
+
+const MONTH_NAMES = [
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Oct",
+	"Nov",
+	"Dec",
+];
+const [year, month, day] = dateParts(date);
+const displayParts = [];
+if (day) displayParts.push(day.toString().padStart(2, "0"));
+if (month) displayParts.push(MONTH_NAMES[month - 1]);
+if (year) displayParts.push(year);
+const displayDate = displayParts.join('<span class="sep">.</span>');
+---
+
+<span
+	class:list={["db-date", className]}
+	title={readableDate}
+	{...attrs}
+	set:html={displayDate}
+/>
+
+<style>
+	@layer components {
+		.db-date {
+			font-family: var(--pf-font-family-monospace);
+			font-size: var(--pf-font-size-monospace);
+
+			.sep {
+				color: var(--pf-color-fg-subtle);
+			}
+		}
+	}
+</style>
