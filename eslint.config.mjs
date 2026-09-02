@@ -1,10 +1,10 @@
 import skipFormatting from "eslint-config-prettier/flat";
 import pluginAstro from "eslint-plugin-astro";
 import pluginOxlint from "eslint-plugin-oxlint";
-import { globalIgnores } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
 	{ name: "app/files-to-lint", files: ["**/*.{astro,ts}"] },
 
 	globalIgnores(["**/dist/**", "**/.astro/**"]),
