@@ -1,0 +1,39 @@
+---
+// Render the footer with debug information and, optionally, credits.
+
+import { Icon, Brand } from "virtual:pf/components";
+
+import type { BaseProps } from "@recivi/pf/types/props";
+
+type Props = BaseProps;
+const { class: className, ...attrs } = Astro.props;
+---
+
+<footer class:list={["db-footer", className]} {...attrs}>
+	<div>
+		<Icon pack="lucide" name="hand-metal" />
+		&#32;Thanks for visiting!
+	</div>
+	<div>
+		Built with&#32;
+		<Brand
+			anchor={{ url: "https://recivi.dhruvkb.dev" }}
+			icon={{ pack: "pf", name: "recivi", title: "Récivi" }}
+			name="Récivi"
+		/>, my side project
+	</div>
+</footer>
+
+<style>
+	@layer components {
+		.db-footer {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: calc(2 * var(--pf-spacing)) calc(4 * var(--pf-spacing));
+			border-block-start: 1px solid var(--pf-color-border);
+			padding: calc(4 * var(--pf-spacing));
+			color: var(--pf-color-fg-subtle);
+		}
+	}
+</style>

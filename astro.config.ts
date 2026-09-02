@@ -93,6 +93,7 @@ export default defineConfig({
 				},
 			},
 			components: {
+				Footer: "./src/components/defs/Footer.astro",
 				Period: "./src/components/defs/Period.astro",
 				PfDate: "./src/components/defs/PfDate.astro",
 			},
