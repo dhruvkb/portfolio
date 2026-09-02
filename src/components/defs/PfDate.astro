@@ -4,11 +4,10 @@
 
 import config from "virtual:pf/config";
 
-import { jsDateToRcvDate } from "@recivi/schema/utils";
-import { formatDate } from "@recivi/schema/display";
-import { dateParts } from "@recivi/schema/utils";
-
 import type { PfDateProps } from "@recivi/pf/components/props/PfDate";
+import { formatDate } from "@recivi/schema/display";
+import { jsDateToRcvDate } from "@recivi/schema/utils";
+import { dateParts } from "@recivi/schema/utils";
 
 type Props = PfDateProps;
 const { class: className, ...rest } = Astro.props;
